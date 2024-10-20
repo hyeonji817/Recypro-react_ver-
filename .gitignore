@@ -1,24 +1,47 @@
-# Logs
-logs
+# 컴파일 결과물 제외
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# 로그파일 제외
 *.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
-
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
+# 운영체제에서 만드는 시스템 파일들 제외
 .DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+config.xml
+
+# 프로젝트정보 파일 제외
+.metadata
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+.recommenders
+.project
+.externalToolBuilders/
+*.launch
+.classpath
+.factorypath
+.buildpath
+.target
+/build/
+target/
+
+# Spring 팀프로젝트 충돌 방지
+MANIFEST.MF
+pom.properties
+target/
