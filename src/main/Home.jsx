@@ -1,5 +1,5 @@
-import "./home.css";
-import Header from "./Header";
+import "./Home.css";
+import Header from "/Header";
 
 function Home() {
 
