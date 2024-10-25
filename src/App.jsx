@@ -29,7 +29,7 @@ function App() {
         <Link to={"/home"}>Home</Link>
         <Link to={"/login"}>Login</Link>
         <Link to={"/products"}>Products</Link>
-        <Link to={"/mypage"}>mypage</Link>
+        <Link to={"/mypage/:id"}>mypage</Link>
         <Link to={"/review"}>Review</Link>
         <Link to={"/customer_main"}>Customer_main</Link>
         <Link to={"/index_admin"}>Index_admin</Link>
@@ -39,10 +39,10 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/products" element={<Products />} />
-        <Route path="/mypage" element={<Mypage />} />
+        <Route path="/mypage/:id" element={<Mypage />} />
         <Route path="/review" element={<Review />} />
         <Route path="/customer_main" element={<Customer_main />} />
-        <Route path="/index_admin" element={<Index_admin />} />
+        <Route path="/index_admin/:id" element={<Index_admin />} />
         <Route path="*" element={<Notfound />} />
       </Routes>
     </>
