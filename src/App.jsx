@@ -1,5 +1,5 @@
 import "./App.css";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import Home from "./main/home";
 import Login from "./account/Login";
 import Products from "./shop/Products";
@@ -7,6 +7,7 @@ import Mypage from "./mypage/Mypage";
 import Review from "./review/Review";
 import Customer_main from "./customer/Customer_main";
 import Index_admin from "./admin_page/index_admin";
+import Notfound from "./pages/Notfound";
 
 // 1. "/" : 계정, 상품, 게시판, 마이페이지, 고객센터 등을 조회하는 메인페이지
 // 2. "/login" : 계정을 관리하는 Login 페이지
@@ -16,16 +17,35 @@ import Index_admin from "./admin_page/index_admin";
 // 6. "/customer" : 고객센터 관리페이지 
 // 7. "/index_admin" : 관리자페이지 
 function App() {
+  const nav = useNavigate(); 
+
+  const onClickButton = () => {
+    nav("/home");
+  };
+
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/products" element={<Products />} />
-      <Route path="/mypage" element={<Mypage />} />
-      <Route path="/review" element={<Review />} />
-      <Route path="/customer_main" element={<Customer_main />} />
-      <Route path="/index_admin" element={<Index_admin />} />
-    </Routes>
+    <>
+      <div>
+        <Link to={"/home"}>Home</Link>
+        <Link to={"/login"}>Login</Link>
+        <Link to={"/products"}>Products</Link>
+        <Link to={"/mypage"}>mypage</Link>
+        <Link to={"/review"}>Review</Link>
+        <Link to={"/customer_main"}>Customer_main</Link>
+        <Link to={"/index_admin"}>Index_admin</Link>
+      </div>
+      <button onClick={onClickButton}>Home 페이지로 이동</button>
+      <Routes>
+        <Route path="/home" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/products" element={<Products />} />
+        <Route path="/mypage" element={<Mypage />} />
+        <Route path="/review" element={<Review />} />
+        <Route path="/customer_main" element={<Customer_main />} />
+        <Route path="/index_admin" element={<Index_admin />} />
+        <Route path="*" element={<Notfound />} />
+      </Routes>
+    </>
   );
 };
 
