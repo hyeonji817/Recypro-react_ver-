@@ -1,4 +1,10 @@
 import "./App.css";
+import Login from "./account/Login";
+import Products from "./shop/Products";
+import mypage from "./mypage/mypage";
+import Review from "./review/Review";
+import Customer_main from "./customer/Customer_main";
+import Index_admin from "./admin_page/index_admin";
 
 // 1. "/" : 계정, 상품, 게시판, 마이페이지, 고객센터 등을 조회하는 메인페이지
 // 2. "/login" : 계정을 관리하는 Login 페이지

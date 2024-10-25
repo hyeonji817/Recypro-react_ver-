@@ -1,11 +1,5 @@
-import "./Home.css";
-import Header from "/Header";
-
-function Home() {
-
-  return (
-    <Header />
-  );
+const Home = () => {
+  return <div>Home</div>;
 };
 
 export default Home;
