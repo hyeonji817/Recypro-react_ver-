@@ -25,16 +25,6 @@ function App() {
 
   return (
     <>
-      <div>
-        <Link to={"/home"}>Home</Link>
-        <Link to={"/login"}>Login</Link>
-        <Link to={"/products"}>Products</Link>
-        <Link to={"/mypage/:id"}>mypage</Link>
-        <Link to={"/review"}>Review</Link>
-        <Link to={"/customer_main"}>Customer_main</Link>
-        <Link to={"/index_admin"}>Index_admin</Link>
-      </div>
-      <button onClick={onClickButton}>Home 페이지로 이동</button>
       <Routes>
         <Route path="/home" element={<Home />} />
         <Route path="/login" element={<Login />} />
