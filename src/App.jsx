@@ -25,6 +25,7 @@ function App() {
 
   return (
     <>
+      <button onClick={onClickButton}>Home 페이지로 이동</button>
       <Routes>
         <Route path="/home" element={<Home />} />
         <Route path="/login" element={<Login />} />
