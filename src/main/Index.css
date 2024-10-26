@@ -1,0 +1,66 @@
+.wrap_center {
+  width: 100%;
+}
+
+.banner-container {
+  margin: 0 auto;
+  margin-top: 150px; 
+  margin-bottom: 200px; 
+  width: 1200px; 
+  height: 500px; 
+  overflow: hidden;
+}
+
+.img_wrap {
+  width: 1000px; 
+  height: 500px;
+  position: absolute;
+  border-radius: 30px;
+  overflow: hidden;
+} 
+
+.rolling_imgs {
+  list-style: none;
+  padding: 0;
+  height: 500px; 
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+}
+
+.rolling_img li {
+  position: absolute;
+  width: 1000px;
+  height: 100%;
+}
+
+.rolling_img li img {
+  height: 100%; 
+  opacity: 0.8;
+  border-radius: 30px;
+}
+
+.rolling_img li.currentroll {
+  left: 0; 
+  transition: left .5s ease-in-out, right .5s ease-in-out;
+}
+
+.rolling_imgs li.prevroll {
+  left: -1000px;
+	transition: left .5s ease-in-out, right .5s ease-in-out;
+}
+
+.rolling_imgs.reverse li.prevroll {
+  transition: none;
+}
+
+.rolling_imgs li.nextroll {
+  left: 1000px; 
+  display: block;
+  transition: none;
+}
+
+.rolling_imgs.reverse li.nextroll {
+  transition: left .5s ease-in-out, right .5s ease-in-out;
+}
+
+
