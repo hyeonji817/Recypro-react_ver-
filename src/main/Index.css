@@ -25,11 +25,13 @@
 }
 
 .rolling_imgs li {
-  position: relative;
+  position: absolute;   /* 이미지가 겹치지 않도록 조정 */
+  top: 0;
+  left: 100%; /* 기본적으로 화면 밖에 위치 */ 
   width: 1000px;
   height: 100%;
-  overflow: hidden;
-  /** transition: left 0.5s ease-in-out; */ 
+  z-index: 1;
+  transition: left 0.5s ease-in-out; 
 }
 
 .rolling_imgs li img {
@@ -40,20 +42,24 @@
   border-radius: 30px;
 }
 
+/* 현재 이미지가 화면에 표시 */ 
 .rolling_imgs li.currentroll {
   left: 0; 
+  z-index: 2;
 }
 
+/* 이전 이미지가 왼쪽으로 나가도록 설정 */ 
 .rolling_imgs li.prevroll {
-  left: -1000px;
+  left: -100%;
 }
 
 .rolling_imgs.reverse li.prevroll {
   transition: none;
 }
 
+/* 다음 이미지가 오른쪽에서 준비되도록 설정 */
 .rolling_imgs li.nextroll {
-  left: 1000px; 
+  left: 100%; 
 }
 
 .rolling_imgs.reverse li.nextroll {

@@ -11,14 +11,16 @@ const Index = () => {
   useEffect(() => {
     // DOMContentLoaded 이벤트 사용으로 초기화 보장 
     const handleLoad = () => {
+      console.log("DOMContentLoaded 이벤트 호출됨");
       if (window.banner) {
-        window.banner.rollInit(4000); // 배너 초기화 호출 
+        window.banner.rollInit(4000);
       }
     };
-    window.addEventListener("DOMContentLoaded", handleLoad);
-
+  
+    window.onload = handleLoad;
+  
     return () => {
-      window.removeEventListener("DOMContentLoaded", handleLoad);
+      window.onload = null;
     };
   }, []);
 
