@@ -22,31 +22,30 @@
 .rolling_imgs {
   list-style: none;
   padding: 0;
-  height: 500px; 
-  padding-bottom: 0px;
-  margin-bottom: 0px;
 }
 
-.rolling_img li {
-  position: absolute;
+.rolling_imgs li {
+  position: relative;
   width: 1000px;
   height: 100%;
+  overflow: hidden;
+  /** transition: left 0.5s ease-in-out; */ 
 }
 
-.rolling_img li img {
+.rolling_imgs li img {
   height: 100%; 
+  width: 100%; 
+  object-fit: cover;
   opacity: 0.8;
   border-radius: 30px;
 }
 
-.rolling_img li.currentroll {
+.rolling_imgs li.currentroll {
   left: 0; 
-  transition: left .5s ease-in-out, right .5s ease-in-out;
 }
 
 .rolling_imgs li.prevroll {
   left: -1000px;
-	transition: left .5s ease-in-out, right .5s ease-in-out;
 }
 
 .rolling_imgs.reverse li.prevroll {
@@ -55,12 +54,24 @@
 
 .rolling_imgs li.nextroll {
   left: 1000px; 
-  display: block;
-  transition: none;
 }
 
 .rolling_imgs.reverse li.nextroll {
   transition: left .5s ease-in-out, right .5s ease-in-out;
+}
+
+/** 텍스트를 이미지 위에 중앙 배치 */ 
+.rolling_imgs li .text {
+  position: absolute;
+  top: 50%; 
+  left: 50%; 
+  transform: translate(-50%, -50%); 
+  color: white; 
+  font-size: 24px; 
+  font-weight: bold; 
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* 텍스트 가독성 향상 */
+  z-index: 10; /* 이미지보다 앞에 위치 */
 }
 
 
