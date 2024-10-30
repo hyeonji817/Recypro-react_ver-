@@ -8,6 +8,7 @@ const Home = () => {
     <>
       <Header />
       <Index />
+      <Popular_pd />
     </>
   );
 };
