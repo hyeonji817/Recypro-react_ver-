@@ -2,11 +2,10 @@
 .popular {
   /** width: 1350px; */ 
   width: 100%; 
+  max-width: 1300px;
   padding: 20px;
-  box-sizing: border-box;
   position: relative;
   margin: 0 auto;
-  left: 3%;
   top: -14%;
   bottom: 22%; 
   /** padding-bottom: 22%; */
@@ -21,8 +20,8 @@
   align-items: center;    /** 수직 중앙 정렬 */
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
-  justify-content: space-between;   /** 한 줄에 4개씩 맞춤 */ 
+  gap: 15px;
+  justify-content: center;   /** 한 줄에 4개씩 맞춤 */ 
   padding: 0 10px;
 }
 
@@ -33,7 +32,7 @@
   margin: 0 auto;
   flex: 1 1 23%;    /** 한 행당 4개의 아이템이 나오도록 22% 비율 */
   max-width: 23%;
-  padding: 10px;
+  padding: 5px;
 }
 
 /** 특정 레이아웃 없이 목록 리스트 태그들이 존재할 경우에만 적용 */ 
