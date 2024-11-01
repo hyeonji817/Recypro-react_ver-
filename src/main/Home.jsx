@@ -9,6 +9,7 @@ const Home = () => {
       <Header />
       <Index />
       <Popular_pd />
+      <Shop_event />
     </>
   );
 };

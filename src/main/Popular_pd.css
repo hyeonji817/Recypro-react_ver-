@@ -6,9 +6,7 @@
   padding: 20px;
   position: relative;
   margin: 0 auto;
-  top: -14%;
-  bottom: 22%; 
-  /** padding-bottom: 22%; */
+  margin-bottom: 170px;
 }
 
 /** 인기상품 목록 첫 번째 하위 레이아웃 */ 

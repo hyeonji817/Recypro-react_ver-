@@ -1,0 +1,208 @@
+/** 이벤트 레이아웃 부분 */ 
+.coupon {
+  background: #eee;
+  width: 1800px;
+  position: relative;
+  margin: 0 auto;
+  height: 250px;
+  top: 900px;
+  clear: both;    /** 겹치지 않도록 분리 */
+  padding: 10px;
+  gap: 15px;
+  justify-content: center;
+}
+
+/** 쇼핑 이벤트 리스트 레이아웃 */ 
+.coupon li {
+  padding: 0; 
+  width: 21%; 
+  float: left;
+}
+
+.coupon li:first-child {
+  padding-top: 5%; 
+  padding-left: 2%; 
+  margin-right: 1%; 
+}
+
+.coupon li:nth-child(2) {
+  padding-top: 4%; 
+  margin-left: -1%; 
+  margin-right: -3%;
+}
+
+.coupon li:nth-child(3) {
+  padding-bottom: 3%; 
+  padding-left: 1%; 
+  margin-left: 1%;
+}
+
+.coupon li:nth-child(4) {
+  padding-left: 3%;
+}
+
+/** 선물 아이콘 */ 
+.gift img {
+  width: 110px;
+}
+
+/** 지갑 아이콘 */ 
+.wallet img {
+  width: 110px;
+}
+
+/** 이벤트 제목 */ 
+.event_title {
+  width: 270px;
+  margin-top: -5%;
+  position: relative;
+  right: 17%;
+}
+
+/** 이벤트 제목 폰트 설정 */ 
+.event_title h2 {
+  font-weight: bold;
+  padding-top: -3%; 
+  font-size: 27px;
+  position: relative;
+}
+
+/** 이벤트 기타 옵션 */ 
+.event_info {
+  padding-top: 5%;
+  position: relative;
+  right: 17%;
+}
+
+/** 카카오톡 플러스 친구추가 레이아웃 */ 
+.kakaotalk_plus {
+  background: #FFF612;
+  width: 144%; 
+  height: 200px;
+  margin-left: -8%; 
+  margin-top: 5%;
+  position: relative;
+  right: 22%;
+}
+
+/** 카카오톡 플러스 제목 */ 
+.kakaotalk_title h5 {
+  font-weight: 900;
+  float: right;
+  padding-right: 1%;
+  font-size: 20px;
+}
+
+/** 카카오톡 플러스 이미지 레이아웃 */ 
+.kakaotalk_icon {
+  display: block;
+}
+
+/** 카카오톡 플러스 이미지 설정 */ 
+.kakaotalk_icon img {
+  width: 100px;
+  margin-left: 1%; 
+  position: relative;
+  margin-top: 7%; 
+  top: 6%; 
+  padding-top: 4%; 
+}
+
+/** 카카오톡 플러스 내용설명 */ 
+.kakaotalk_info {
+  width: 225px;
+  display: block;
+  float: right;
+  margin-top: -13.5%;
+  margin-right: 2%;
+}
+
+/** 카카오톡 플러스 내용 폰트 설정 */ 
+.kakaotalk_info h5 {
+  font-weight: bold;
+  font-size: 24px;
+}
+
+/** 카카오톡 플러스 기타 옵션 */ 
+.kakaotalk_go {
+  float: right;
+  position: absolute;
+  right: 39.5%;
+  margin: 0 auto;
+}
+
+/** 카카오톡 플러스 기타 옵션 폰트 설정 */ 
+.kakaotalk_go h6 {
+  width: 220px;
+  color: black;
+  right: -53%; 
+  float: right;
+  margin-right: -35%; 
+  top: -2%; 
+  margin-top: 5%; 
+  padding-top: -1%; 
+  font-weight: bold;
+  padding-bottom: 2%;
+}
+
+/** 신규가입 레이아웃 */ 
+.join_event {
+  width: 146%; 
+  background: #B3F9EB;
+  height: 200px;
+  margin-left: 36%; 
+  margin-top: 6%;
+  position: relative;
+  right: 27%;
+}
+
+/** 신규가입 제목 */ 
+.join_event_title {
+  float: right;
+  margin-right: 3%; 
+}
+
+/** 신규가입 제목 폰트 설정 */ 
+.join_event_title h5 {
+  font-weight: bold;
+  width: 110%; 
+  margin-top: 17px; 
+  padding-right: 2%; 
+  font-size: 22px;
+  margin-right: 2%;
+}
+
+/** 신규가입 내용 레이아웃 */ 
+.join_info {
+  padding-top: 10%; 
+  margin-right: 2%; 
+}
+
+/** 신규가입 내용 폰트 설정 */ 
+.join_info h4 {
+  width: 130%; 
+  font-size: 25px;
+  font-weight: bold;
+  padding-left: 1%; 
+  padding-top: 3%;
+}
+
+/** 회원가입 이동 레이아웃 */ 
+.join_go {
+  float: right;
+  position: relative;
+  right: 4%; 
+  height: 30px;
+  margin: 0 auto;
+}
+
+/** 회원가입 이동 폰트 설정 */ 
+.join_go h6 {
+  color: black;
+  width: 200px;
+  position: relative;
+  margin: 0 auto;
+  font-weight: bold;
+  margin-right: -22%; 
+  margin-top: -1%;
+}
