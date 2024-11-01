@@ -4,9 +4,9 @@ import puppygum from "../assets/popular/puppy_gum_minimum.jpg";
 import pubbag from "../assets/popular/puppy_pubbag_minimum.png";
 import coffeeholder from "../assets/popular/coffee_holder_minimum.png";
 import cleanball from "../assets/popular/clean_ball_minimum.jpg";
-import rabbit_tumbler from "../assets/popular/rabbit_tumbler_minimum.png";
+import rabbit_tumblur from "../assets/popular/rabbit_tumblur_minimum.png";
 import eatsbetter from "../assets/popular/eats_better_minimum.jpg"; 
-import fingersnap from "../assets/popular/finger_snap_minumum.png";
+import fingersnap from "../assets/popular/finger_snap_minimum.png";
 
 const Popular_pd = () => {
   return (
@@ -62,7 +62,7 @@ const Popular_pd = () => {
         <div className="col-md-3" id="product_list">
           <div className="sub_explain">
             <a href="#">
-              <img src={rabbit_tumbler} alt="플라스틱 프리챌린지"/>
+              <img src={rabbit_tumblur} alt="플라스틱 프리챌린지"/>
             </a>
             <h2>플라스틱 프리챌린지</h2>
             <h5>
