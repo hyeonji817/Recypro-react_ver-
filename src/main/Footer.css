@@ -1,0 +1,25 @@
+.footer_bar {
+  margin-bottom: 20px;    /** Shop_event와의 간격 */ 
+  margin-top: 20px;     /** Popular_pd와의 간격 */ 
+  position: relative;
+  top: 880px;
+  height: 35px; 
+  background-color: black;
+  clear: both;
+  gap: 30px;
+}
+
+.container {
+  margin-right: 10px; 
+}
+
+#copyrt {
+  color: white;
+  text-align: right;
+}
+
+.py-5 {
+  margin-bottom: -10px;
+  height: 40px;
+}
+

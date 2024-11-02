@@ -7,6 +7,7 @@ import Mypage from "./mypage/Mypage";
 import Review from "./review/Review";
 import Customer_main from "./customer/Customer_main";
 import Index_admin from "./admin_page/index_admin";
+import loginOK from "./main/loginOK";
 import Notfound from "./pages/Notfound";
 
 // 1. "/" : 계정, 상품, 게시판, 마이페이지, 고객센터 등을 조회하는 메인페이지
@@ -23,9 +24,14 @@ function App() {
     nav("/home");
   };
 
+  const onClickButton2 = () => {
+    nav("/loginOK");
+  };
+
   return (
     <>
       <button onClick={onClickButton}>Home 페이지로 이동</button>
+      <button onClick={onClickButton2}>로그인 이후 페이지로 이동</button>
       <Routes>
         <Route path="/home" element={<Home />} />
         <Route path="/login" element={<Login />} />
@@ -34,6 +40,7 @@ function App() {
         <Route path="/review" element={<Review />} />
         <Route path="/customer_main" element={<Customer_main />} />
         <Route path="/index_admin/:id" element={<Index_admin />} />
+        <Route path="/loginOK" element={<loginOK />} />
         <Route path="*" element={<Notfound />} />
       </Routes>
     </>
