@@ -1,5 +1,9 @@
 import "./loginOK.css";
 import "../js/Index.js";
+import Header_loginOK from "./Header_loginOK.jsx";
+import Popular_pd from "./Popular_pd.jsx";
+import Shop_event from "./shop_event.jsx";
+import Footer from "./Footer.jsx";
 import { useEffect } from "react";
 import mainImage1 from "../assets/main1_2.png";
 import mainImage2 from "../assets/main2_2.png";
@@ -27,6 +31,12 @@ const loginOK = () => {
             </li>
           </ul>
         </div>
+      </div>
+      <div className="popular_wrap">
+        <Popular_pd />
+      </div>
+      <div className="shop_event_wrap">
+        <Shop_event />
       </div>
     </div>
   );
