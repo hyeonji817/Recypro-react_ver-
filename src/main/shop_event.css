@@ -5,7 +5,7 @@
   position: relative;
   margin: 0 auto;
   height: 250px;
-  top: 900px;
+  top: 500px;
   clear: both;    /** 겹치지 않도록 분리 */
   padding: 10px;
   gap: 15px;
