@@ -40,6 +40,7 @@
   text-align: center;
   padding-top: 5%;
   font-weight: bold;
+  font-size: 22px;
 }
 
 /** 두 번째 레이아웃 */
@@ -119,10 +120,37 @@
   margin-top: 3%;
 }
 
+.recycle {
+  position: relative;
+  display: inline-block;
+  width: 55%;
+  left: 36%;
+}
+
+.recycle img {
+  width: 100%;    /** 리싸이클 이미지 크기를 설정 */
+}
+
+.dollar {
+  position: absolute;
+  top: 50%;
+  left: 63%;
+  transform: translate(-50%, -50%);
+  width: 22%;   /** 달러 이미지 크기 조정 */
+  top: 35%;
+}
+
+.dollar img {
+  width: 100%;
+}
+
 ._10percent_off h3 {
   text-align: center;
   display: inline-block;
   position: relative;
+  padding-top: 22px;
+  padding-left: 22px;
+  font-size: 30px;
 }
 
 /** 20% 할인 쿠폰 */ 
@@ -158,6 +186,9 @@
 	text-align: center; 
 	display: inline-block; 
 	position: relative;
+  padding-top: 22px;
+  padding-left: 22px;
+  font-size: 30px;
 }
 
 /** 30% 할인쿠폰 */ 
@@ -193,6 +224,9 @@
 	text-align: center; 
 	display: inline-block; 
 	position: relative;
+  padding-top: 22px;
+  padding-left: 22px;
+  font-size: 30px;
 }
 
 /** 만원짜리 할인 쿠폰 */ 
@@ -211,6 +245,7 @@
 	display: inline-block; 
 	position: relative; 
 	padding-top: 4%; 
+  top: -30px;
 	left: 2%; 
 	font-size: 36px;
 }
@@ -223,19 +258,24 @@
 
 .dollar2 img {
 	display: inline-block;
+  position: relative;
+  bottom: 30px;
 }
 
 .dollar2 h6 {
 	font-weight: bold; 
 	display: inline-block;
+  bottom: 75px;
+  font-size: 30px;
 }
 
 .count_money {
 	display: inline-block;
-	right: 4%; 
-	padding-top: 3%;
+  bottom: 38px;
+  right: -170px;
 	position: relative; 
 	font-weight: bold; 
+  font-size: 27px;
 }
 
 /** 버튼 레이아웃 */ 

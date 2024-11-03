@@ -13,3 +13,12 @@
   color: white;
   font-weight: bold;
 }
+
+.Button_coupon {
+  background-color: rgb(26, 188, 156);
+  color: white;
+  font-weight: bold;
+  position: relative;
+  left: 14%;
+  font-size: 22px;
+}

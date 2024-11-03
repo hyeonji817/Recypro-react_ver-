@@ -1,8 +1,10 @@
 import "./event.css";
 import dollar from "../assets/shopdetail/dollar.jpg";
 import recycle from "../assets/shopdetail/recycle_2.jpg";
+import Button from "../pages/Button";
 
 const event = () => {
+
   return (
     /** 신규회원 특별 혜택 레이아웃 */
     <div className="wrapper_event">
@@ -13,9 +15,10 @@ const event = () => {
         </h2>
 
         <div className="give_coupon">
-          <a>
-            신규가입 시 할인쿠폰 증정!
-          </a>
+          <Button 
+            text={"신규가입 시 할인쿠폰 증정!"}
+            type={"coupon"}
+          />
         </div>
         <h5>2024.11.08 ~ 11.30까지</h5>
       </div>
@@ -48,12 +51,12 @@ const event = () => {
           </div>
 
           <div className="coupon_img1">
-            <span className="recycle">
+            <div className="recycle">
               <img src={recycle} alt="리싸이클"/>
-            </span>
-            <span className="dollar">
+            </div>
+            <div className="dollar">
               <img src={dollar} alt="달러"/>
-            </span>
+            </div>
             <div className="_10percent_off">
               <h3>10% OFF</h3>
             </div>
