@@ -1,5 +1,6 @@
 import "./shop_event.css";
 import Button from "../pages/Button";
+import event from "./event";
 import gift from "../assets/shop/gift.png";
 import wallet from "../assets/shop/wallet_1.png";
 import kakaotalk from "../assets/shop/kakaotalk.png";
@@ -25,7 +26,7 @@ const Shop_event = () => {
           </div>
           <div className="event_info">
             <Button 
-              onClick={() => nav("/home")}  /** 임의로 구현 */
+              onClick={() => nav("/event")}  /** 임의로 구현 */
               text={"더 많은 혜택 보러가기"}
               type={"event"}
             />
