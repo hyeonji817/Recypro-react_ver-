@@ -1,0 +1,95 @@
+@charset "UTF-8";
+.bd-placeholder-img {
+      font-size: 1.125rem;
+
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+}
+
+@media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+}
+
+/** 폰트 지정 */
+@font-face {
+  src: url("../fonts/BMJUA_otf.otf");
+  font-family: Jua;
+}
+
+@font-face {
+    font-family: 'S-CoreDream-3Light';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'S-CoreDream-5Medium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-5Medium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SDSamliphopangche_Outline';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts-20-12@1.0/SDSamliphopangche_Outline.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/** 로고 색상 결정 요소 */
+a:visited,
+a:hover,
+a:focus,
+a:active {
+      color:  rgb(53, 53, 53);
+}
+
+.logo {
+  width: 100%; 
+  text-align: center;
+  margin-top: 20px;
+}
+
+.logo a {
+  font-family: 'SDSamliphopangche_Outline';
+  font-size: 40px; /* 원하는 크기로 설정 */
+  color: black; /* 검은색 텍스트 */
+  text-decoration: none; /* 밑줄 제거 */
+  position: relative;
+  bottom: 600px;
+  top: -310px;
+  left: 95%;
+}
+
+.login {
+    position: relative;
+    margin: 0 auto;
+    margin-right: 1500px;
+    top: 420px;
+    border: 5px solid #eee;
+    width: 600px;
+    height: 800px;
+    padding-bottom: 50px;
+}
+
+#register {
+  text-align: center;
+  font-family: 'S-CoreDream-7ExtraBold';
+  font-size: 40px;
+  color: rgb(53, 53, 53);
+  font-weight: bold !important;
+  position: relative; 
+  top: -70px; 
+  text-align: center; 
+  margin-top: 90px; 
+}
+
+.user-only {
+  font-weight: bold !important;
+}

@@ -29,3 +29,15 @@
   color: white;
   flex: 1;
 }
+
+.Button_register {
+  background-color: rgb(53, 53, 53);
+  font-size: 18px;
+  color: white;
+}
+
+.Button_register_back {
+  background-color: rgb(53, 53, 53);
+  font-size: 18px;
+  color: white;
+}

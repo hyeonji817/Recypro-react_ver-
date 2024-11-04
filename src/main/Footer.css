@@ -16,6 +16,9 @@
 #copyrt {
   color: white;
   text-align: right;
+  padding-top: 17px;
+  right: -450px;
+  position: relative;
 }
 
 .py-5 {
