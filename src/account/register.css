@@ -126,6 +126,24 @@ form div input {
   font-weight: normal;
 }
 
+form button {
+  position: relative;
+  top: 70px;
+}
+
+.button_wrap {
+  width: 400px;
+  display: inline-block;
+  position: relative;
+  top: 70px;
+  text-align: center;
+}
+
+.button_wrap button {
+  width: 300px;
+  margin-bottom: 5px;
+}
+
 .wrapper_register {
   max-width: 800px;
   margin: auto;

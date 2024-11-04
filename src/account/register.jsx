@@ -47,17 +47,19 @@ const register = () => {
             <input type="email" className="form-control" placeholder="ex) abc@gmail.com" required/>
             <br />
           </div>
-            
+        </form>
+        <div className="button_wrap">
           <Button
+            className="register"
             text={"회원가입"}
             type={"register"}
           />
           <Button 
+            className="register_back"
             text={"뒤로가기"}
             type={"register_back"}
           />
-          
-        </form>
+        </div>
       </div>
     </div>
   );
