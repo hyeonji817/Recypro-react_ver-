@@ -22,3 +22,10 @@
   left: 14%;
   font-size: 22px;
 }
+
+.Button_login {
+  background-color: rgb(53, 53, 53);
+  font-size: 18px;
+  color: white;
+  flex: 1;
+}
