@@ -63,8 +63,8 @@ a:active {
   text-decoration: none; /* 밑줄 제거 */
   position: relative;
   bottom: 600px;
-  top: -310px;
-  left: 95%;
+  top: -330px;
+  left: 100%;
 }
 
 .login {
@@ -83,13 +83,51 @@ a:active {
   font-family: 'S-CoreDream-7ExtraBold';
   font-size: 40px;
   color: rgb(53, 53, 53);
-  font-weight: bold !important;
-  position: relative; 
-  top: -70px; 
-  text-align: center; 
-  margin-top: 90px; 
+  font-weight: bold;
+  margin-bottom: 10px;
+  position: relative;
+  top: 50px;
 }
 
 .user-only {
   font-weight: bold !important;
+  top: 10px;
+  position: relative;
+}
+
+form div label, 
+form div input {
+  display: block;   /** 각 요소를 블록 요소로 설정 */ 
+}
+
+.form-group {
+  margin-bottom: -17px;  /** 각 입력란 사이 여백 */ 
+  width: 300px;
+  position: relative;
+  top: 50px;
+}
+
+.form-control {
+  padding: 10px;    /** 내부 여백 */ 
+  border-radius: 5px;   /** 둥근 모서리 */ 
+}
+
+.gender-group {
+  display: flex;
+  gap: 80px;    /** 항목 간의 간격 */
+  align-items: center;    /** 수직 가운데 정렬 */ 
+  position: relative;
+  top: -17px;
+}
+
+.gender-group label {
+  display: inline-flex;   /** inline-flex로 변경하여 내용이 가로로 정렬되도록 설정 */
+  align-items: center;    /** 체크박스와 텍스트가 수직으로 정렬되도록 설정 */
+  font-weight: normal;
+}
+
+.wrapper_register {
+  max-width: 800px;
+  margin: auto;
+  padding: 10px;
 }
