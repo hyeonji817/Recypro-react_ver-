@@ -12,22 +12,22 @@ const register = () => {
           <h1 className="h3 mb-3 font-weight-normal" id="register">회원가입</h1>
           <div className="form-group">
             <label>ID</label>
-            <input type="text" className="form-control" placeholder="ID를 입력하세요"/><br />
+            <input type="text" className="form-control" placeholder="ID를 입력하세요"/>
           </div>
           
           <div className="form-group">
             <label>password</label>
-            <input type="password" className="form-control" placeholder="비밀번호를 입력하세요"/><br />
+            <input type="password" className="form-control" placeholder="비밀번호를 입력하세요"/>
           </div>
             
           <div className="form-group">
             <label>이름</label>
-            <input type="text" className="form-control" placeholder="이름을 입력하세요"/><br />
+            <input type="text" className="form-control" placeholder="이름을 입력하세요"/>
           </div>
 
           <div className="form-group">
             <label>나이</label>
-            <input type="number" className="form-control" placeholder="나이를 입력하세요"/><br />
+            <input type="number" className="form-control" placeholder="나이를 입력하세요"/>
           </div>
 
           <div className="form-group">
