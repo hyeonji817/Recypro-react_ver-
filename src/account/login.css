@@ -97,6 +97,10 @@ a:active {
   width: 300px;
 }
 
+.form-group {
+  padding-bottom: 30px;
+}
+
 .logo {
   font-family: 'SDSamliphopangche_Outline';
   font-weight: 700; 
@@ -116,9 +120,9 @@ a:active {
 
 .text-center {
   text-align: center;
-  margin-top: 20px;
+  margin-top: 80px;
   position: relative;
-  top: -17px;
+  top: -15px;
 }
 
 .text-center a {

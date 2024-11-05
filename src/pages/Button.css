@@ -23,6 +23,7 @@
   font-size: 22px;
 }
 
+/** 로그인 페이지 - '로그인' 버튼 */ 
 .Button_login {
   background-color: rgb(53, 53, 53);
   font-size: 18px;
@@ -30,14 +31,23 @@
   flex: 1;
 }
 
+/** 회원가입 페이지 - '회원가입' 버튼 */ 
 .Button_register {
   background-color: rgb(53, 53, 53);
   font-size: 18px;
   color: white;
 }
 
+/** 회원가입 페이지 - '뒤로가기' 버튼 */ 
 .Button_register_back {
   background-color: rgb(53, 53, 53);
+  font-size: 18px;
+  color: white;
+}
+
+/** 아이디찾기 페이지 - '아이디찾기' 버튼 */ 
+.Button_find_id {
+  background-color: rgb(0, 123, 255);
   font-size: 18px;
   color: white;
 }

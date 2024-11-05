@@ -9,7 +9,7 @@ const Login = () => {
           <a href="../main/home.jsx">리싸이프로</a>
         </h1>
         <form>
-          <br /><br /><br /><br /><br /><br />
+          <br /><br /><br /><br />
           <h1 className="login_title">로그인</h1>
           <br />
         </form>

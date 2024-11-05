@@ -3,6 +3,7 @@ import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import Home from "./main/home";
 import Login from "./account/Login";
 import Register from "./account/register";
+import find_id from "./account/find_id";
 import Products from "./shop/Products";
 import Mypage from "./mypage/Mypage";
 import Review from "./review/Review";
@@ -36,6 +37,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/find_id" element={<find_id />} />
         <Route path="/products" element={<Products />} />
         <Route path="/mypage/:id" element={<Mypage />} />
         <Route path="/review" element={<Review />} />
