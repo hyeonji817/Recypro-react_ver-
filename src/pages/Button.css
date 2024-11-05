@@ -51,3 +51,10 @@
   font-size: 18px;
   color: white;
 }
+
+/** 비밀번호찾기 페이지 - '비밀번호찾기' 버튼 */ 
+.Button_find_pw {
+  background-color: rgb(0, 123, 255);
+  font-size: 18px;
+  color: white;
+}

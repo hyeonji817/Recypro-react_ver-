@@ -4,6 +4,7 @@ import Home from "./main/home";
 import Login from "./account/Login";
 import Register from "./account/register";
 import FindId from "./account/find_id";
+import FindPw from "./account/find_pw";
 import Products from "./shop/Products";
 import Mypage from "./mypage/Mypage";
 import Review from "./review/Review";
@@ -38,6 +39,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/find_id" element={<FindId />} />
+        <Route path="/find_pw" element={<FindPw />} />
         <Route path="/products" element={<Products />} />
         <Route path="/mypage/:id" element={<Mypage />} />
         <Route path="/review" element={<Review />} />
