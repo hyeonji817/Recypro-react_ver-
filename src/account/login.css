@@ -101,6 +101,10 @@ a:active {
   padding-bottom: 30px;
 }
 
+.form-group input {
+  margin-bottom: 10px;
+}
+
 .logo {
   font-family: 'SDSamliphopangche_Outline';
   font-weight: 700; 
