@@ -40,6 +40,10 @@
   margin-bottom: -17px;
 }
 
+#email {
+  margin-top: -24px;
+}
+
 .card-body button {
   width: 350px;
   margin-top: -30px;

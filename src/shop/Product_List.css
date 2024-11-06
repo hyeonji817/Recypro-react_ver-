@@ -1,0 +1,139 @@
+/** 제목명 */ 
+.productLists_title h1 {
+  font-weight: bold;
+  margin-bottom: 60px;
+  margin-left: 17px;
+}
+
+/** 상품리스트 최상위 레이아웃 */
+.Product_List_wrap {
+  width: 100%;
+  max-width: 1300px;
+  padding: 20px;
+  position: relative;
+  margin: 0 auto;
+  margin-bottom: 170px;
+  margin-top: 120px;
+}
+
+/** 상품리스트 목록 첫 번째 하위 레이아웃 */ 
+#productLists {
+  /** width: 1200px; */ 
+  width: 100%;
+  height: 500px;
+  position: relative;
+  align-items: center;    /** 수직 중앙 정렬 */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;   /** 한 줄에 4개씩 맞춤 */ 
+  padding: 0 10px;
+}
+
+/** 상품리스트 목록 두 번째 하위 레이아웃 */
+#product_list {
+  /** width: 1500px; */
+  height: 500px; 
+  margin: 0 auto;
+  flex: 1 1 23%;    /** 한 행당 4개의 아이템이 나오도록 22% 비율 */
+  max-width: 23%;
+  padding: 5px;
+}
+
+/** 특정 레이아웃 없이 목록 리스트 태그들이 존재할 경우에만 적용 */ 
+ul {
+  list-style: none;     /** 목록 리스트 중에서 점을 없애는 스타일 방식 */ 
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+/** 나열된 상품리스트 */ 
+.sub_explain {
+  color: black; 
+  margin-right: -25%;
+  width: 300px;
+}
+
+/** 상품리스트 이미지 */
+.sub_explain img {
+  width: 220px;
+  border-radius: 30px;
+  border-color: black;
+}
+
+/** 상품리스트 상세내용 */ 
+.sub_explain p {
+  width: 220px;
+  height: 70px; 
+  margin-top: -2%;
+  text-align: left;
+}
+
+/** 상품리스트 정보 */ 
+.sub {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10%;  
+  position: absolute;
+}
+
+/** 상품명 */ 
+.sub_explain h2 {
+  margin-top: 20px;
+  font-size: 22px;
+  right: 14%;
+  position: relative;
+  font-weight: bold;
+  margin-bottom: 30px;
+  width: 300px;
+  text-align: center;
+}
+
+/** 상품 상세설명 */ 
+.sub_explain h5 {
+  font-size: 16px;
+  top: 5%;
+  font-weight: 700;
+  position: relative;
+}
+
+.sub_explain p {
+  width: 240px;
+}
+
+/** '상세 정보' 버튼 스타일 */ 
+.button-info {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  color: black;
+  background-color: #eee;  /* 파란색 버튼 */
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+/** 가격 */ 
+.sub_menu h6 {
+  margin-top: 5%;
+  font-weight: 700;
+  right: -27%;
+  margin-bottom: -1px;
+}
+
+/** 가격부분 폰트 설정 */ 
+h6 {
+  top: 2%; 
+  width: 90px;
+  font-size: 18px; 
+  float: right;
+  margin-right: -7%; 
+  position: relative;
+}
+
