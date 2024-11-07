@@ -117,11 +117,12 @@ ul {
   text-decoration: none;
   transition: background-color 0.3s ease;
   cursor: pointer;
+  margin-top: 80px;
 }
 
 /** 가격 */ 
 .sub_menu h6 {
-  margin-top: 5%;
+  margin-top: 80px;
   font-weight: 700;
   right: -27%;
   margin-bottom: -1px;
