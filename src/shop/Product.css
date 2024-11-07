@@ -41,7 +41,7 @@
 /** '상품 정보' 제목 요소 */
 .display-3 {
 	top: 15%;
-	left: 70px;
+	left: 220px;
   position: relative;
 	color: black;
 	font-weight: 700;
@@ -245,15 +245,15 @@
 	padding-left: 2%;
 }
 
+/** 신규회원 쿠폰발급 */
 .coupon_give {
 	display: block;		/** display 속성이 약함. 좀 더 공부해야 겠다 */
 	background: #FFF612;
 	margin: 0 auto;
 	width: 90%;
 	height: 260px;
-	margin-top: -19%;
 	margin-bottom: 4%;
-	margin-left: 0;
+	margin-left: 20px;
 }
 
 .new_member_give {
@@ -269,15 +269,20 @@
 
 .new_member_give_title h6 {
 	text-align: center;
+  position: relative;
+  right: 33px;
 	padding-top: 3%;
 	font-weight: bold;
 	font-size: 15px;
 	width: 250px; 
+
 }
 
+/** 지급할 쿠폰 가격 */ 
 .pay h5 {
 	text-align: center;
-	padding-top: 2%;
+  position: relative;
+  top: 3px;
 	font-weight: bold;
 	font-size: 28px;
 }
@@ -290,6 +295,8 @@
 
 .coupon_event h6 {
 	text-align: center;
+  position: relative; 
+  right: 45px;
 	padding-top: 8%;
 	font-weight: bold;
 	font-size: 17px;
@@ -299,25 +306,25 @@
 .star img {
 	display: block; 
 	margin: 0 auto;
-/* 	left: 42.5%; */
-/* 	right: 5%; */
 	position: relative;
-	/** padding-top: 2%; */
-	bottom: 45px;
+	bottom: 10px;
+  left: 5px;
 }
 
 .level h4 {
 	text-align: center; 
-	padding-top: 6%;
+	padding-top: 14%;
 	font-weight: bold; 
 	font-size: 27px;
 	position: relative; 
+  left: 5px;
 	bottom: 36px;
 }
 
 .level_event h6 {
 	text-align: center;
 	top: -15px; 
+  right: 25px;
 	position: relative;
 	font-weight: bold; 
 	font-size: 17px;
@@ -325,44 +332,49 @@
 	height: 65px; 
 }
 
+/** 무료배송 이미지 */ 
 .truck img {
 	display: block; 
 	margin: 0 auto;
 	position: relative;
-	padding-top: 11%;
+	padding-top: 3%;
 	width: 100px;
 }
 
 .shipment_title h4 {
 	text-align: center; 
-	padding-top: 3%;
+	padding-top: 2%;
 	font-weight: bold;
 	font-size: 27px;
 }
 
 .shipment_event h6 {
 	text-align: center; 
+  position: relative;
+  right: 50px;
 	padding-top: 7%;
 	font-weight: bold;
 	width: 360px;
 }
 
+/** 알림설정(신상 UP TO) 이미지 */ 
 .alarm_event img {
 	display: block; 
 	margin: 0 auto; 
-	position: relative; 
-	padding-top: 4%; 
+	position: relative;  
 }
 
 .new_update h4 {
 	text-align: center; 
-	padding-top: 4%; 
+	padding-top: 6%; 
 	font-weight: bold;
 }
 
 .new_discount h6 {
 	text-align: center; 
-	padding-top: 17%; 
+  position: relative;
+  right: 35px;
+	padding-top: 7%; 
 	font-weight: bold;
 	width: 355px;
 }
