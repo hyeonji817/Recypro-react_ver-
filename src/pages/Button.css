@@ -58,3 +58,49 @@
   font-size: 18px;
   color: white;
 }
+
+/** 상품 상세페이지 - '상품코드' 버튼 */ 
+.Button_badge-danger {
+  background-color: #dc3545;
+  font-size: 12px;
+  color: white;
+  font-weight: bold;
+  position: relative;
+  width: 70px;
+  height: 30px;
+}
+
+/** 상품 상세페이지 - '장바구니 담기' 버튼 */ 
+.Button_cart {
+  background-color: #b6f5f5;
+  font-size: 18px; 
+  font-weight: bold;
+}
+
+/** 상품 상세페이지 - '상품 목록' 버튼 */ 
+.Button_pdList {
+  background-color: #b6f5f5;
+  font-size: 18px; 
+  font-weight: bold;
+}
+
+/** 상품 상세페이지 - '리뷰확인' 버튼 */ 
+.Button_review_view {
+  background-color: #b6f5f5;
+  font-size: 18px; 
+  font-weight: bold;
+}
+
+/** 상품 상세페이지 - '주문하기' 버튼 */ 
+.Button_order {
+  background-color: #b6f5f5;
+  font-size: 18px; 
+  font-weight: bold;
+}
+
+/** 상품 상세페이지 - '주문내역 조회' */ 
+.Button_pd_orderlist {
+  background-color: #b6f5f5;
+  font-size: 18px; 
+  font-weight: bold;
+}

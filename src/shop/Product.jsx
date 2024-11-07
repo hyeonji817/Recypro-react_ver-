@@ -1,5 +1,9 @@
 import "./Product.css";
 import soap from "../assets/shopdetail/3-1.jpg";
+import star from "../assets/shop/star.png";
+import shipment from "../assets/shipment.png"; 
+import alarm from "../assets/shop/alarm.png"; 
+import Button from "../pages/Button";
 
 const Product = () => {
   return (
@@ -23,12 +27,17 @@ const Product = () => {
               </span>
               <span className="desc">
                 <h5>
-                  매일 사용하는 세제를 바꾸는 것만으로도 자연과 나와 이웃이 <br />
-                  행복해집니다.
+                  매일 사용하는 세제를 바꾸는 것만으로도 <br />
+                  자연과 나와 이웃이 행복해집니다.
                 </h5>
               </span>
               <p>
-                <b>상품 코드 : </b><span className="badge badge-daner">가치솝</span>
+                <b>상품 코드 : </b>
+                <Button 
+                  text={"가치솝"}
+                  type={"badge-danger"}
+                  className="badge-danger"
+                />
               </p>
               <p>
                 <b>제조사 : </b>
@@ -49,25 +58,35 @@ const Product = () => {
             <p className="button" />
             <form>
               <div className="product_bt">
-                <a>
-                  <span></span>
-                </a>
-                <a>
-                  <span></span>
-                </a>
-                <a>
-                  <span></span>
-                </a>
+                <Button 
+                  text={"장바구니 담기"}
+                  type={"cart"}
+                  className="cart_into"
+                />
+                <Button 
+                  text={"상품 목록"}
+                  type={"pdList"}
+                  className="pd_list"
+                />
+                <Button 
+                  text={"리뷰확인"}
+                  type={"review_view"}
+                  className="review_view"
+                />
               </div>
             </form>
             <form>
-              <div className="product_bt" id="order">
-                <a>
-                  <span></span>
-                </a>
-                <a>
-                  <span></span>
-                </a>
+              <div className="product_bt2" id="order">
+                <Button 
+                  text={"주문하기"}
+                  type={"order"}
+                  className="order"
+                />
+                <Button 
+                  text={"주문내역 조회"}
+                  type={"pd_orderlist"}
+                  className="pd_orderlist"
+                />
               </div>
             </form>
           </div>
@@ -104,7 +123,7 @@ const Product = () => {
             <li>
               <div className="star">
                 <a>
-                  <img />
+                  <img src={star} alt="별" />
                 </a>
               </div>
               <a href="#">
@@ -124,7 +143,7 @@ const Product = () => {
               <div className="free_shipment">
                 <a href="#">
                   <span className="truck">
-                    <img />
+                    <img src={shipment} alt="배송" />
                   </span>
                   <span className="shipment_title">
                     <h4>무료배송</h4>
@@ -143,7 +162,7 @@ const Product = () => {
               <div className="new_event">
                 <a href="#">
                   <span className="alarm_event">
-                    <img />
+                    <img src={alarm} alt="알림설정" />
                   </span>
                   <span className="new_update">
                     <h4>신상 UP TO</h4>
