@@ -2,7 +2,8 @@
 .productLists_title h1 {
   font-weight: bold;
   margin-bottom: 60px;
-  margin-left: 17px;
+  margin-left: -50px;
+  font-size: 50px;
 }
 
 /** 상품리스트 최상위 레이아웃 */
@@ -14,6 +15,7 @@
   margin: 0 auto;
   margin-bottom: 170px;
   margin-top: 120px;
+  left: 40px;
 }
 
 /** 상품리스트 목록 첫 번째 하위 레이아웃 */ 
@@ -121,13 +123,14 @@ ul {
   transition: background-color 0.3s ease;
   cursor: pointer;
   margin-top: 80px;
+  left: 10px;
 }
 
 /** 가격 */ 
 .sub_menu h6 {
   margin-top: 80px;
   font-weight: 700;
-  right: -27%;
+  right: -30%;
   margin-bottom: -1px;
 }
 
