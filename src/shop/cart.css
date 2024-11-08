@@ -19,6 +19,8 @@
   margin-top: -50px;
   font-weight: 700;
   color: #000;
+  position: relative;
+  left: 10px;
 }
 
 #progress {
@@ -150,27 +152,13 @@
   float: right;
 }
 
-.continue {
-  color: black;
-  font-weight: 700;
-}
-
-.order {
-  color: black;
-  font-weight: 700;
-}
-
-.delete {
-  color: black;
-  font-weight: 700;
-}
-
 .container {
   margin-top: 50px;
   font-weight: 700;
   position: relative;
   margin: 0 auto;
   top: 60px;
+  right: 10px;
 }
 
 .cart_table th {
