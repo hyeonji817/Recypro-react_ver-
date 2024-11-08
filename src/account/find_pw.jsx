@@ -14,12 +14,20 @@ const find_pw = () => {
 
         <div className="card-body">
           <form className="form-signin">
-            <input type="text" name="id" id="id" className="form-control" 
-        		placeholder="아이디" required/><br />
-            <input type="text" name="name" id="name" className="form-control" placeholder="이름" 
-        		required/><br />
-            <input type="email" name="email" id="email" className="form-control" 
-        		placeholder="이메일" required/><br />
+            <div className="user_id">
+              <input type="text" name="id" id="id" className="form-control" 
+        		  placeholder="아이디" required/><br />
+            </div>
+            
+            <div className="user_name">
+              <input type="text" name="name" id="name" className="form-control" placeholder="이름" 
+        		  required/><br />
+            </div>
+            
+            <div className="user_email">
+              <input type="email" name="email" id="email" className="form-control" 
+        		  placeholder="이메일" required/><br />
+            </div>
             <p className="checks" id="checks"></p>
             <Button 
               id="btn-Yes"

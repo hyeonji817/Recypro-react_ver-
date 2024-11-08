@@ -15,8 +15,13 @@ const find_id = () => {
         <div className="card-body">
           <form className="form-signin">
             <p className="text2"></p>
-            <input type="text" name="name" id="name" className="form-control" placeholder="이름" />
-            <input type="email" name="email" id="email" className="form-control" placeholder="이메일" />
+            <div className="user_name">
+              <input type="text" name="name" id="name" className="form-control" placeholder="이름" />
+            </div>
+            <div className="user_email">
+              <input type="email" name="email" id="email" className="form-control" placeholder="이메일" />
+            </div>
+            
             <p className="check" id="check"></p>
             <Button 
               id="btn-Yes"

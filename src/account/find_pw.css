@@ -40,8 +40,12 @@
   margin-bottom: -17px;
 }
 
-#email {
-  margin-top: -24px;
+.user_id {
+  margin-bottom: 5px;
+}
+
+.user_name {
+  margin-bottom: 5px;
 }
 
 .card-body button {

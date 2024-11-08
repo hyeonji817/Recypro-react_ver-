@@ -41,8 +41,8 @@
   margin-bottom: -10px;
 }
 
-#name {
-  margin-bottom: 7px;
+.user_name {
+  margin-bottom: 40px;
 }
 
 .card-body button {
