@@ -7,6 +7,7 @@ import FindId from "./account/find_id";
 import FindPw from "./account/find_pw";
 import Products from "./shop/Products";
 import Product from "./shop/Product";
+import Cart from "./shop/cart";
 import Mypage from "./mypage/Mypage";
 import Review from "./review/Review";
 import Customer_main from "./customer/Customer_main";
@@ -43,6 +44,7 @@ function App() {
         <Route path="/find_pw" element={<FindPw />} />
         <Route path="/products" element={<Products />} />
         <Route path="/product" element={<Product />} />
+        <Route path="/cart" element={<Cart />} />
         <Route path="/mypage/:id" element={<Mypage />} />
         <Route path="/review" element={<Review />} />
         <Route path="/customer_main" element={<Customer_main />} />

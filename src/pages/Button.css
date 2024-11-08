@@ -104,3 +104,13 @@
   font-size: 18px; 
   font-weight: bold;
 }
+
+/** 장바구니 페이지 - '삭제' 버튼 */ 
+.Button_cart_del {
+  background-color: rgb(220, 53, 69);
+  font-size: 15px;
+  color: white;
+  font-weight: bold;
+  position: relative;
+  right: 15px;
+}

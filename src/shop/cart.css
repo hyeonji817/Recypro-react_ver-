@@ -1,0 +1,182 @@
+.title {
+  margin-top: 120px;
+  height: 160px;
+}
+
+.btn btn-secondary {
+  font-size: 20px;
+}
+
+.btn btn-warning {
+  font-size: 20px;
+}
+
+.row {
+  font-size: 20px;
+}
+
+.display-3 {
+  margin-top: -50px;
+  font-weight: 700;
+  color: #000;
+}
+
+#progress {
+  width: 1080px; 
+  height: 250px;
+  position: relative; 
+  bottom: 6%;
+  margin: 0 auto; 
+  display: block; 
+}
+
+#progress li {
+  padding: 0; 
+  width: 33.3%; 
+  float: left; 
+  height: 250px; 
+  display: block; 
+}
+
+#progress li:first-child {
+/* 		border-right: 2px solid black; */
+  margin: 0 auto; 
+}
+
+.basket {
+  margin: 0 auto; 
+  overflow: hidden; 
+  border-radius: 123px; 
+  position: relative; 
+  top: 3.5%; 
+  width: 67.5%; 
+  height: 93%; 
+  background: rgb(159, 251, 244);
+  border: 2px solid black; 
+}
+
+.basket_icon img {
+  margin: 0 auto; 
+  width: 100px;
+  position: relative;
+  left: 29%; 
+  padding-top: 10%;
+}
+
+.first_continue h5 {
+  text-align: center; 
+  font-weight: bold;
+  padding-top: 15%; 
+  font-size: 22px;
+}
+  
+#progress li:nth-child(2) {
+/* 		border-right: 2px solid black; */
+  margin: 0 auto; 
+}
+
+.card {
+  margin: 0 auto; 
+  overflow: hidden; 
+  border-radius: 123px; 
+  top: 3.5%; 
+  width: 67.5%; 
+  height: 93%; 
+  position: relative; 
+  border: 2px solid black; 
+}
+
+.card_icon img {
+  margin: 0 auto; 
+  width: 100px;
+  position: relative;
+  left: 25%; 
+  padding-top: 10%;
+  width: 120px;
+} 
+
+.second_continue h5 {
+  text-align: center; 
+  font-weight: bold;
+  padding-top: 6%; 
+  font-size: 22px;
+}
+
+#progress li:nth-child(3) {
+  margin: 0 auto; 
+}
+
+.order_complete {
+  margin: 0 auto; 
+  overflow: hidden; 
+  border-radius: 123px; 
+  top: 3.5%; 
+  width: 67.5%; 
+  height: 93%; 
+  position: relative; 
+  background: white;
+  border: 2px solid black; 
+}
+
+.calendar_icon img {
+  margin: 0 auto; 
+  width: 120px;
+  position: relative;
+  left: 23%; 
+  padding-top: 8%;
+}
+
+.last_continue h5 {
+  text-align: center; 
+  font-weight: bold;
+  padding-top: 6%; 
+  font-size: 22px;
+}
+
+.table {
+  font-size: 20px;
+  font-weight: 700;
+  color: black;
+  border-color: #eee;
+  border-style: solid;
+}
+
+.table table-hover {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.btn-option {
+  float: right;
+}
+
+.continue {
+  color: black;
+  font-weight: 700;
+}
+
+.order {
+  color: black;
+  font-weight: 700;
+}
+
+.delete {
+  color: black;
+  font-weight: 700;
+}
+
+.container {
+  margin-top: 50px;
+  font-weight: 700;
+  position: relative;
+  margin: 0 auto;
+  top: 60px;
+}
+
+.cart_table th {
+  padding-left: 50px;
+}
+
+.cart_table td {
+  padding-left: 50px;
+}
