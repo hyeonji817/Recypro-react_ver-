@@ -73,27 +73,58 @@ const shoppingInfo_cart = () => {
             </div>
           </div>
           <div className="form-group row">
-            <label className="col-sm-2"></label>
+            <label className="col-sm-2">국가명</label>
             <div className="col-sm-3">
-              <input />
+              <input type="text" name="shopping_country" className="form-control"
+              placeholder="국가명" />
             </div>
           </div>
           <div className="form-group row">
-            <label className="col-sm-2"></label>
+            <label className="col-sm-2">우편번호</label>
             <div className="col-sm-3">
-              <input />
+              <input type="text" name="shopping_zipCode" className="form-control"
+              placeholder="우편번호" />
             </div>
           </div>
           <div className="form-group row">
-            <label className="col-sm-2"></label>
+            <label className="col-sm-2">주소</label>
             <div className="col-sm-3">
-              <input />
+              <input type="text" name="shopping_addressName" className="form-control"
+              placeholder="주소" />
             </div>
           </div>
           <div className="form-group row">
-            <label className="col-sm-2"></label>
-            <div className="col-sm-3">
-              <input />
+            <div className="col-sm-offset2 col-sm-10">
+              <div className="button">
+                <span className="button_back">
+                  <Button 
+                    text={"이전"}
+                    type={"back"}
+                    className="button_back"
+                  />
+                </span>
+                <span className="button_enroll">
+                  <Button 
+                    text={"등록"}
+                    type={"enroll"}
+                    className="button_enroll"
+                  />
+                </span>
+                <span className="button_cancel">
+                  <Button 
+                    text={"취소"}
+                    type={"cancel"}
+                    className="button_cancel"
+                  />
+                </span>
+                <span className="button_coupon2">
+                  <Button 
+                    text={"쿠폰받기"}
+                    type={"coupon2"}
+                    className="button_coupon2"
+                  />
+                </span>
+              </div>
             </div>
           </div>
         </form>
