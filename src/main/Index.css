@@ -1,5 +1,8 @@
 .wrap_center {
   width: 100%;
+  left: 100px;
+  position: relative;
+  bottom: -30px;
 }
 
 .banner-container {
