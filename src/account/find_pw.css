@@ -17,12 +17,18 @@
   width: 25rem;
 }
 
+#email {
+  position: relative;
+  top: -20px;
+}
+
 #btn-Yes {
   border: none; 
 	font-weight: 700;
   width: 300px;
   position: relative;
-  margin-bottom: -10px;
+  margin-bottom: 10px;
+  bottom: 10px;
 }
 
 .card-body {
@@ -51,6 +57,8 @@
 .card-body button {
   width: 350px;
   margin-top: -30px;
+  position: relative;
+  top: 40px;
 }
 
 .card-title {
