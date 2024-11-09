@@ -25,7 +25,7 @@ const shoppingInfo_cart = () => {
             </div>
           </li>
           <li>
-            <div className="card">
+            <div className="order-card">
               <div className="card_icon">
                 <img src={card} alt="결제" />
               </div>

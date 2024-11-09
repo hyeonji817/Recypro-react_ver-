@@ -26,7 +26,7 @@ const cart = () => {
             </div>
           </li>
           <li>
-            <div className="card">
+            <div className="order_card">
               <div className="card_icon">
                 <img src={card} alt="결제" />
               </div>
