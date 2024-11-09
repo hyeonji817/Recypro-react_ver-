@@ -15,8 +15,9 @@
   color: white;
   text-align: right;
   padding-top: 20px;
-  bottom: 140px;
-  right: -450px;
+  bottom: 17px;
+  right: 30px;
+  font-weight: bold;
   position: relative;
 }
 
