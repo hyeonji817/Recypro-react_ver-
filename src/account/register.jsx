@@ -44,7 +44,7 @@ const register = () => {
 
           <div className="form-group">
             <label>이메일</label>
-            <input type="email" className="form-control" placeholder="ex) abc@gmail.com" required/>
+            <input type="email" id="email-form" className="form-control" placeholder="ex) abc@gmail.com" required/>
             <br />
           </div>
         </form>

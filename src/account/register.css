@@ -63,7 +63,7 @@ a:active {
   text-decoration: none; /* 밑줄 제거 */
   position: relative;
   bottom: 600px;
-  top: -340px;
+  top: -350px;
   left: 100%;
 }
 
@@ -86,7 +86,7 @@ a:active {
   font-weight: bold;
   margin-bottom: 10px;
   position: relative;
-  top: 50px;
+  top: 70px;
 }
 
 .user-only {
@@ -101,11 +101,11 @@ form div input {
 }
 
 .form-group {
-  margin-bottom: -17px;  /** 각 입력란 사이 여백 */ 
+  margin-bottom: -30px;  /** 각 입력란 사이 여백 */ 
   width: 300px;
   position: relative;
-  top: 50px;
-  margin-bottom: -30px;
+  top: 60px;
+  margin-top: 10px;
 }
 
 .form-control {
@@ -118,13 +118,18 @@ form div input {
   gap: 80px;    /** 항목 간의 간격 */
   align-items: center;    /** 수직 가운데 정렬 */ 
   position: relative;
-  top: -17px;
+  top: -20px;
+  margin-bottom: -12px;
 }
 
 .gender-group label {
   display: inline-flex;   /** inline-flex로 변경하여 내용이 가로로 정렬되도록 설정 */
   align-items: center;    /** 체크박스와 텍스트가 수직으로 정렬되도록 설정 */
   font-weight: normal;
+}
+
+#email-form {
+  position: relative;
 }
 
 form button {
@@ -136,7 +141,7 @@ form button {
   width: 400px;
   display: inline-block;
   position: relative;
-  top: 45px;
+  top: 30px;
   text-align: center;
 }
 
