@@ -1,7 +1,8 @@
 .Product_wrap {
   margin: 0;
   padding: 0;
-  margin-right: 500px; 
+  margin-right: 100px; 
+	margin-top: -100px;
 }
 
 /** 상품 정보 (제목명) */ 
@@ -132,11 +133,11 @@
 /** 윗 라인 버튼 (장바구니 담기, 상품 목록, 리뷰확인) */ 
 .product_bt {
 	margin-top: 10%;
-	width: 500px;
-	float: right;
-	position: absolute;
-	left: 11%;
-	bottom: 17%;
+  width: 500px;
+  float: right;
+  position: absolute;
+  left: 50px;
+  bottom: -70px;
 }
 
 /** 첫째줄 버튼 라인 */ 
@@ -165,8 +166,8 @@
 	width: 500px;
 	float: right;
 	position: relative;
-	left: 12.3%;
-  margin-bottom: 65px;
+	left: 60px;
+	margin-bottom: -70px;
 }
 
 /** 주문내역 조회 버튼 */ 
