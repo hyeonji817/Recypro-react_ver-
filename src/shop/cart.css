@@ -150,15 +150,20 @@
 
 .btn-option {
   float: right;
+  position: relative;
+  left: 10px;
 }
 
-.container {
-  margin-top: 50px;
+.btn-option button {
+  margin-right: 10px;
+}
+
+.container2 {
   font-weight: 700;
   position: relative;
   margin: 0 auto;
-  top: 60px;
-  right: 10px;
+  top: 30px;
+  width: 1200px;
 }
 
 .cart_table th {

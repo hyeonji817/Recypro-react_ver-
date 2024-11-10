@@ -48,7 +48,7 @@ const cart = () => {
         </ul>
       </div>
 
-      <div className="container">
+      <div className="container2">
         <div className="cart_table">
           <table className="table table-hover">
             <tr>
