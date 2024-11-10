@@ -4,7 +4,7 @@
 }
 
 .display-3 {
-	margin-left: 70px;
+	margin-left: 170px;
 	margin-top: -20px;
 	font-weight: 700;
 	color: black;
@@ -17,6 +17,7 @@
 	position: relative;
 	bottom: 6%;
 	margin: 0 auto;
+	top: -40px;
 	display: block;
 }
 
@@ -33,7 +34,7 @@
 	margin: 0 auto;
 }
 
-.basket {
+.cart_continue .basket {
 	margin: 0 auto;
 	overflow: hidden;
 	border-radius: 123px;
@@ -44,7 +45,7 @@
 	border: 2px solid black;
 }
 
-.basket_icon img {
+.cart_continue .basket_icon img {
 	margin: 0 auto;
 	width: 100px;
 	position: relative;
@@ -52,7 +53,7 @@
 	padding-top: 10%;
 }
 
-.first_continue h5 {
+.cart_continue .first_continue h5 {
 	text-align: center;
 	font-weight: bold;
 	padding-top: 15%;
@@ -64,7 +65,7 @@
 	margin: 0 auto;
 }
 
-.order-card {
+.cart_continue .order-card {
 	margin: 0 auto;
 	overflow: hidden;
 	border-radius: 123px;
@@ -123,12 +124,13 @@
 	font-size: 22px;
 }
 
-.container {
+.shoppingInfo_wrap .container {
 	border: 3px solid #eee;
-	margin-top: 120px;
+	margin-top: -20px;
 	position: relative;
 	height: 800px;
 	bottom: 40px;
+	top: 50px;
 }
 
 .container form {
@@ -141,9 +143,10 @@
   display: flex;
   align-items: center;
   position: relative;
-  top: 30px;
+  top: 50px;
   float: left;
   left: -50px;
+	bottom: -10px;
 }
 
 /* label과 col-sm-3의 배치 설정 */
@@ -161,7 +164,7 @@
 #shopping_Info { 
 	background: white;
   width: 1000px;
-	height: 100px;
+	height: 80px;
 	margin: 0 auto;
 }
 
@@ -169,7 +172,7 @@
 #shopping_name {
 	background: white;
   width: 1000px;
-	height: 100px;
+	height: 80px;
 	margin: 0 auto;
 }
 
@@ -177,7 +180,7 @@
 #name {
 	background: white;
   width: 1000px;
-	height: 100px;
+	height: 80px;
 	margin: 0 auto;
 }
 
@@ -185,7 +188,7 @@
 #order_date {
 	background: white;
   width: 1000px;
-	height: 100px;
+	height: 80px;
 	margin: 0 auto;
 }
 
@@ -193,7 +196,7 @@
 #country {
 	background: white;
   width: 1000px;
-	height: 100px;
+	height: 80px;
 	margin: 0 auto;
 }
 
@@ -201,7 +204,7 @@
 #zipCode {
 	background: white;
   width: 1000px;
-	height: 100px;
+	height: 80px;
 	margin: 0 auto;
 }
 
@@ -209,7 +212,7 @@
 #address {
 	background: white;
   width: 1000px;
-	height: 100px;
+	height: 80px;
 	margin: 0 auto;
 }
 
@@ -221,7 +224,7 @@
 	color: white;
 	right: -160%;
 	width: 600px;
-	top: -60px;
+	top: 10px;
 }
 
 /** '이전' 버튼 */ 
