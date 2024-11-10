@@ -138,3 +138,35 @@
   color: black;
   font-weight: bold;
 }
+
+/** 배송정보 페이지 - '이전' 버튼 */ 
+.Button_back {
+  background-color: #9FFBF4;
+  font-size: 18px;
+  color: black;
+  font-weight: bold;
+}
+
+/** 배송정보 페이지 - '등록' 버튼 */ 
+.Button_enroll {
+  background-color: #9FFBF4;
+  font-size: 18px;
+  color: black;
+  font-weight: bold;
+}
+
+/** 배송정보 페이지 - '취소' 버튼 */ 
+.Button_cancel {
+  background-color: #9FFBF4;
+  font-size: 18px;
+  color: black;
+  font-weight: bold;
+}
+
+/** 배송정보 페이지 - '쿠폰받기' 버튼 */ 
+.Button_coupon2 {
+  background-color: #9FFBF4;
+  font-size: 18px;
+  color: black;
+  font-weight: bold;
+}
