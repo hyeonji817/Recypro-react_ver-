@@ -23,11 +23,13 @@ const find_id = () => {
             </div>
             
             <p className="check" id="check"></p>
-            <Button 
-              id="btn-Yes"
-              text={"아이디찾기"}
-              type={"find_id"}
-            />
+            <div className="Button_findId">
+              <Button 
+                id="btn-Yes"
+                text={"아이디찾기"}
+                type={"find_id"}
+              />
+            </div>
           </form>
         </div>
 
