@@ -58,7 +58,7 @@ a:active {
 
 .login_title {
   font-weight: 700;
-  left: 6%; 
+  left: 10%; 
   width: 150px;
   position: relative; 
   font-family: 'S-CoreDream-3Light';
@@ -98,7 +98,7 @@ a:active {
 }
 
 .form-group {
-  padding-bottom: 30px;
+  padding-bottom: 20px;
 }
 
 .form-group input {
@@ -118,7 +118,7 @@ a:active {
   text-decoration: none; /* 링크의 밑줄 제거 */
   position: relative;
   left: 75%;
-  top: -240px;
+  top: -330px;
   font-size: 40px;
 }
 
