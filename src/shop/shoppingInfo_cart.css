@@ -127,11 +127,87 @@
 	border: 3px solid #eee;
 	margin-top: 3%;
 	position: relative;
+	height: 800px;
 }
 
 .container form {
-	top: 5%;
+	left: 60px;
 	position: relative;
+}
+
+/* 각 폼 항목을 가로 정렬 */
+.shoppingInfo_row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px; /* 항목 간 간격 */
+	float: left;
+}
+
+/* label과 col-sm-3의 배치 설정 */
+.shoppingInfo_row label {
+  flex-basis: 20%; /* label의 너비 */
+  text-align: right; /* label을 오른쪽 정렬 */
+  margin-right: 10px; /* label과 input 사이 간격 */
+}
+
+.shoppingInfo_row .col-sm-3 {
+  flex-basis: 80%; /* input의 너비 */
+}
+
+/** id명 */ 
+#shopping_Info { 
+	background: white;
+  width: 1000px;
+	height: 100px;
+	margin: 0 auto;
+}
+
+/** 상품명 */ 
+#shopping_name {
+	background: white;
+  width: 1000px;
+	height: 100px;
+	margin: 0 auto;
+}
+
+/** 성명 */ 
+#name {
+	background: white;
+  width: 1000px;
+	height: 100px;
+	margin: 0 auto;
+}
+
+/** 주문일 */ 
+#order_date {
+	background: white;
+  width: 1000px;
+	height: 100px;
+	margin: 0 auto;
+}
+
+/** 국가명 */ 
+#country {
+	background: white;
+  width: 1000px;
+	height: 100px;
+	margin: 0 auto;
+}
+
+/** 우편번호 */ 
+#zipCode {
+	background: white;
+  width: 1000px;
+	height: 100px;
+	margin: 0 auto;
+}
+
+/** 주소 */ 
+#address {
+	background: white;
+  width: 1000px;
+	height: 100px;
+	margin: 0 auto;
 }
 
 .button {
@@ -144,4 +220,10 @@
 
 .form-group {
 	margin-top: 3%;
+}
+
+.form-control {
+	padding: 10px;
+  border-radius: 5px;
+  width: 350px;
 }

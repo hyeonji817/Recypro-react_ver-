@@ -48,52 +48,52 @@ const shoppingInfo_cart = () => {
       </div>
       <div className="container">
         <form className="form-horizontal">
-          <div className="form-group row">
+          <div className="shoppingInfo_row" id="shopping_Info">
             <label className="col-sm-2">id명</label>
             <div className="col-sm-3">
               <input name="shopping_userId" value="" className="form-control" placeholder="id명" readOnly />
             </div>
           </div>
-          <div className="form-group row">
+          <div className="shoppingInfo_row" id="shopping_name">
             <label className="col-sm-2">상품명</label>
             <div className="col-sm-3" name="shopping_productId">
               <input name="shopping_productId" className="form-control" id="shopping_productId" value="" placeholder="상품명" readOnly />
             </div>
           </div>
-          <div className="form-group row">
+          <div className="shoppingInfo_row" id="name">
             <label className="col-sm-2">성명</label>
             <div className="col-sm-3">
               <input type="text" name="shopping_name" className="form-control" placeholder="성명" />
             </div>
           </div>
-          <div className="form-group row">
+          <div className="shoppingInfo_row" id="order_date">
             <label className="col-sm-2">주문일</label>
             <div className="col-sm-3">
               <input type="text" name="shopping_date" className="form-control" value="" placeholder="yyyy/mm/dd" readOnly />
             </div>
           </div>
-          <div className="form-group row">
+          <div className="shoppingInfo_row" id="country">
             <label className="col-sm-2">국가명</label>
             <div className="col-sm-3">
               <input type="text" name="shopping_country" className="form-control"
               placeholder="국가명" />
             </div>
           </div>
-          <div className="form-group row">
+          <div className="shoppingInfo_row" id="zipCode">
             <label className="col-sm-2">우편번호</label>
             <div className="col-sm-3">
               <input type="text" name="shopping_zipCode" className="form-control"
               placeholder="우편번호" />
             </div>
           </div>
-          <div className="form-group row">
+          <div className="shoppingInfo_row" id="address">
             <label className="col-sm-2">주소</label>
             <div className="col-sm-3">
               <input type="text" name="shopping_addressName" className="form-control"
               placeholder="주소" />
             </div>
           </div>
-          <div className="form-group row">
+          <div className="shoppingInfo_row">
             <div className="col-sm-offset2 col-sm-10">
               <div className="button">
                 <span className="button_back">
