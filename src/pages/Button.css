@@ -170,3 +170,38 @@
   color: black;
   font-weight: bold;
 }
+
+/** 상품주문 페이지 - '이전' 버튼 */ 
+.Button_orderBack {
+  background-color: #9FFBF4;
+  font-size: 18px;
+  color: black;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+/** 상품주문 페이지 - '등록' 버튼 */ 
+.Button_orderEnroll {
+  background-color: #9FFBF4;
+  font-size: 18px;
+  color: black;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+/** 상품주문 페이지 - '결제' 버튼 */ 
+.Button_orderBuy {
+  background-color: #9FFBF4;
+  font-size: 18px;
+  color: black;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+/** 상품주문 페이지 - '취소' 버튼 */ 
+.Button_orderCancel {
+  background-color: #9FFBF4;
+  font-size: 18px;
+  color: black;
+  font-weight: bold;
+}

@@ -9,6 +9,7 @@ import Products from "./shop/Products";
 import Product from "./shop/Product";
 import Cart from "./shop/cart";
 import ShoppingInfo_cart from "./shop/shoppingInfo_cart";
+import OrderConfirmation from "./shop/orderConfirmation";
 import Mypage from "./mypage/Mypage";
 import Review from "./review/Review";
 import Customer_main from "./customer/Customer_main";
@@ -47,6 +48,7 @@ function App() {
         <Route path="/product" element={<Product />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/shoppingInfo_cart" element={<ShoppingInfo_cart />} />
+        <Route path="/orderConfirmation" element={<OrderConfirmation />} />
         <Route path="/mypage/:id" element={<Mypage />} />
         <Route path="/review" element={<Review />} />
         <Route path="/customer_main" element={<Customer_main />} />
