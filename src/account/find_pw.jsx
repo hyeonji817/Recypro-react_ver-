@@ -29,11 +29,14 @@ const find_pw = () => {
         		  placeholder="이메일" required/><br />
             </div>
             <p className="checks" id="checks"></p>
-            <Button 
-              id="btn-Yes"
-              text={"비밀번호찾기"}
-              type={"find_pw"}
-            />
+            
+            <div className="Button_findPw">
+              <Button 
+                id="btn-Yes"
+                text={"비밀번호찾기"}
+                type={"find_pw"}
+              />
+            </div>
           </form>
         </div>
 
