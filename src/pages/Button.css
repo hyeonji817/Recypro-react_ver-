@@ -205,3 +205,11 @@
   color: black;
   font-weight: bold;
 }
+
+/** 주문완료 페이지 - '상품 목록' 버튼 */ 
+.Button_thanks {
+  background-color: #9FFBF4;
+  font-size: 18px;
+  color: black;
+  font-weight: bold;
+}

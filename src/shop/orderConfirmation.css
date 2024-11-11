@@ -29,13 +29,14 @@
 	text-shadow: 1px 1px 5px #bdbdbd;
 }
 
-#progress {
+.orderConfirm_wrap #progress {
 	width: 1080px;
 	height: 250px;
 	position: relative;
 	bottom: 650px;
 	margin: 0 auto;
 	display: block;
+	top: -650px;
 }
 
 #progress li {
