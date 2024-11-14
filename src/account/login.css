@@ -97,12 +97,14 @@ a:active {
   width: 300px;
 }
 
-.form-group {
+.login_body .form-group {
   padding-bottom: 20px;
+  width: 300px; 
 }
 
-.form-group input {
+.login_body .form-group input {
   margin-bottom: 10px;
+  width: 300px;
 }
 
 .logo {
