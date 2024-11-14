@@ -122,14 +122,15 @@ a:active {
   font-size: 40px;
 }
 
-.text-center {
+.login_body .text-center {
   text-align: center;
   margin-top: 80px;
   position: relative;
   top: -15px;
+  width: 300px;
 }
 
-.text-center a {
+.login_body .text-center a {
   color: black;
   font-weight: bold;
 }
