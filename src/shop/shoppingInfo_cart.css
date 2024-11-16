@@ -178,7 +178,7 @@
 }
 
 /** 성명 */ 
-#name {
+.shoppingInfo_wrap #name {
 	background: white;
   width: 1000px;
 	height: 80px;

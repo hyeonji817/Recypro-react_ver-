@@ -11,7 +11,7 @@
 	background-repeat: no-repeat;
 }
 
-.card {
+.wrapper_findId .card {
   margin: 0 auto;
   float: none;
   margin-bottom: 10px;
@@ -29,11 +29,11 @@
   top: 50px;
 }
 
-.card-body {
+.wrapper_findId .card-body {
   padding-bottom: 100px;
 }
 
-.form-signin {
+.wrapper_findId .form-signin {
   margin-top: 60px;
 }
 
@@ -45,10 +45,10 @@
       box-sizing: border-box;
   padding: 10px;
   font-size: 16px;
-  margin-bottom: -10px;
+  margin-bottom: 17px;
 }
 
-.user_name {
+.wrapper_findId .user_name {
   position: relative;
   bottom: 20px;
 }
