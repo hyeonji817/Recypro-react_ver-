@@ -50,10 +50,10 @@
 
 .wrapper_findId .user_name {
   position: relative;
-  bottom: 20px;
+  bottom: 36px;
 }
 
-.user_email {
+.wrapper_findId .user_email {
   margin-top: 26px;
 }
 
