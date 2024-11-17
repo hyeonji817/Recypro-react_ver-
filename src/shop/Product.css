@@ -131,25 +131,18 @@
 }
 
 /** 윗 라인 버튼 (장바구니 담기, 상품 목록, 리뷰확인) */ 
-.product_bt {
+.Product_wrap .product_bt {
 	margin-top: 10%;
   width: 500px;
   float: right;
   position: absolute;
-  left: 50px;
-  bottom: -70px;
+  bottom: -110px;
 }
 
 /** 첫째줄 버튼 라인 */ 
 .product_bt button {
   margin-bottom: 60px;
   margin-left: 10px;
-}
-
-/** 주문하기 버튼 */ 
-#order {
-	position: absolute;
-	bottom: 7%;
 }
 
 /** '장바구니 담기' 버튼 */
@@ -160,14 +153,14 @@
   position: relative;
 }
 
-/** 두 번째 줄 버튼 레이아웃 */ 
-.product_bt2 {
+/** 두 번째 줄 버튼 레이아웃 (주문하기 버튼 라인) */ 
+.Product_wrap .product_bt2 {
 	margin-top: 10%;
 	width: 500px;
 	float: right;
-	position: relative;
-	left: 60px;
+	left: 10px;
 	margin-bottom: -70px;
+	position: absolute;
 }
 
 /** 주문내역 조회 버튼 */ 
@@ -180,8 +173,10 @@
 	width: 350px;
 }
 
-.container {
+.Product_wrap .container {
 	top: 15%;
+	position: relative;
+	margin: 0 auto;
 }
 
 .membership {
