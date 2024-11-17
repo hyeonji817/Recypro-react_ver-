@@ -10,11 +10,12 @@
 	background-repeat: no-repeat;
 }
 
-.card {
+.wrapper_findPw .card {
   margin: 0 auto;		/** Added */ 
 	float: none;		/** Added */
 	margin-bottom: 10px;	/** Added */ 
   width: 25rem;
+  height: 550px;
 }
 
 #email {
@@ -48,6 +49,7 @@
   padding: 10px;
   font-size: 16px;
   margin-bottom: -17px;
+  width: 350px;
 }
 
 .user_id {
@@ -55,8 +57,10 @@
   bottom: 30px;
 }
 
-.user_name {
-  margin-bottom: 5px;
+.wrapper_findPw .user_name {
+  margin-bottom: 8px;
+  position: relative;
+  top: -30px;
 }
 
 .user_email {
@@ -67,7 +71,7 @@
 .card-body button {
   width: 350px;
   position: relative;
-  top: -100px;
+  top: -125px;
 }
 
 .card-title {
