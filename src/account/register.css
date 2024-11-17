@@ -100,12 +100,16 @@ form div input {
   display: block;   /** 각 요소를 블록 요소로 설정 */ 
 }
 
-.form-group {
-  margin-bottom: -30px;  /** 각 입력란 사이 여백 */ 
+.wrapper_register .form-group {
   width: 300px;
   position: relative;
-  top: 60px;
+  top: 80px;
   margin-top: 10px;
+}
+
+.wrapper_register .form-group:last-child {
+  position: relative;
+  top: 65px;
 }
 
 .form-control {
@@ -130,6 +134,7 @@ form div input {
 
 #email-form {
   position: relative;
+  bottom: 2px;
 }
 
 form button {
@@ -141,7 +146,7 @@ form button {
   width: 400px;
   display: inline-block;
   position: relative;
-  top: 50px;
+  top: 35px;
   text-align: center;
 }
 
