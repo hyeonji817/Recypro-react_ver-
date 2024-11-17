@@ -112,9 +112,10 @@ form div input {
   top: 65px;
 }
 
-.form-control {
+.wrapper_register .form-control {
   padding: 10px;    /** 내부 여백 */ 
   border-radius: 5px;   /** 둥근 모서리 */ 
+  width: 300px;
 }
 
 .gender-group {
