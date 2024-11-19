@@ -1,0 +1,39 @@
+.pd_order_title {
+  top: -50px;
+	bottom: 10px;
+  position: relative;
+  font-weight: bold;
+  font-size: 56px;
+  left: 170px;
+}
+
+.Order_list {
+  top: 15%;
+  margin: 8% auto;
+}
+
+.pd_orderList_wrapper table {
+  top: 60px;
+  width: 1400px;
+  position: relative;
+  margin: 0 auto;
+}
+
+.pd_orderList_wrapper .review {
+  color: white;
+  font-weight: 700;
+}
+
+.pd_orderList_wrapper .return {
+  color: white;
+  font-weight: 700;
+}
+
+.pd_order_button {
+  background-color: #b6f5f5;
+  font-weight: bold;
+  right: 22%;
+  bottom: 10%;
+  position: relative;
+  color: black;
+}

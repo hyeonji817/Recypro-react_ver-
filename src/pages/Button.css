@@ -213,3 +213,30 @@
   color: black;
   font-weight: bold;
 }
+
+/** 주문내역 정보 페이지 - '리뷰작성' 버튼 */ 
+.Button_pdOrder_review {
+  background-color: #9FFBF4;
+  font-size: 18px;
+  color: black;
+  font-weight: bold;
+}
+
+/** 주문내역 정보 페이지 - '물품 반품신청' 버튼 */ 
+.Button_pdOrder_return {
+  background-color: #9FFBF4;
+  font-size: 18px;
+  color: black;
+  font-weight: bold;
+}
+
+/** 주문내역 정보 페이지 - '뒤로가기' 버튼 */ 
+.Button_pdOrder_back {
+  background-color: #9FFBF4;
+  font-size: 18px;
+  float: right;
+  position: relative;
+  left: 220px;
+  color: black;
+  font-weight: bold;
+}
