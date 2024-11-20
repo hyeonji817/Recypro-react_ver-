@@ -20,12 +20,12 @@
 }
 
 .orderConfirm_wrap .display-3 {
-	left: -220px;
+	left: -380px;
 	margin-bottom: 30px;
   position: relative;
 	font-weight: 700;
 	color: black;
-  top: -40px;
+  top: -30px;
 	text-shadow: 1px 1px 5px #bdbdbd;
 }
 

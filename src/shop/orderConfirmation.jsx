@@ -3,10 +3,14 @@ import Button from "../pages/Button";
 import basket from "../assets/shop/shopping_basket1.png";
 import card from "../assets/shop/card.png";
 import calendar from "../assets/shop/purchase_order.png";
+import Header_loginOK from "../main/Header_loginOK";
 
 const OrderConfirmation = () => {
   return (
     <div className="orderConfirm_wrap">
+      <div className="orderConfirm_Header">
+        <Header_loginOK />
+      </div>
       <div className="container2">
         <h1 className="display-3">주문 정보</h1>
       </div>

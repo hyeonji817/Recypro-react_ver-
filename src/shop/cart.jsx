@@ -3,10 +3,14 @@ import Button from "../pages/Button";
 import card from "../assets/shop/card.png";
 import basket from "../assets/shop/shopping_basket1.png";
 import purchase from "../assets/shop/purchase_order.png";
+import Header_loginOK from "../main/Header_loginOK";
 
 const cart = () => {
   return (
     <div className="cart_wrap">
+      <div className="cart_Header">
+        <Header_loginOK />
+      </div>
       <div className="title">
         <div className="title-container">
           <h1 className="display-3">장바구니</h1>
