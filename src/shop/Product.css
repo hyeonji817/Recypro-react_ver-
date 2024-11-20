@@ -6,9 +6,11 @@
 }
 
 /** 상품 정보 (제목명) */ 
-.title {
-	margin-top: 140px;
+.Product_wrap .title {
+	margin-top: 220px;
 	height: 140px;
+	right: 100px;
+	position: relative;
 }
 
 .btn {

@@ -4,10 +4,14 @@ import star from "../assets/shop/star.png";
 import shipment from "../assets/shipment.png"; 
 import alarm from "../assets/shop/alarm.png"; 
 import Button from "../pages/Button";
+import Header_loginOK from "../main/Header_loginOK";
 
 const Product = () => {
   return (
     <div className="Product_wrap">
+      <div className="Product_Header">
+        <Header_loginOK />
+      </div>
       <div className="title">
         <div className="container-title">
           <h1 className="display-3">상품 정보</h1>
