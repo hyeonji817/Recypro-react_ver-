@@ -1,9 +1,13 @@
 import "./Product_write.css";
 import Button from "../pages/Button";
+import Header_loginOK from "../main/Header_loginOK";
 
 const Product_write = () => {
   return (
     <div className="Product_write_wrapper">
+      <div className="pdWrite_Header">
+        <Header_loginOK />
+      </div>
       <div className="title">
         <div className="container">
           <h1 className="display-3">상품 리뷰</h1>
