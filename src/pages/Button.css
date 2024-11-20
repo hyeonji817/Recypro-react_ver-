@@ -240,3 +240,10 @@
   color: black;
   font-weight: bold;
 }
+
+/** 상품리뷰 작성페이지 - '글쓰기', '뒤로가기', '수정하기' 버튼 */ 
+.Button_pdWrite, .Button_pdWrite_back, .Button_pdWrite_modify {
+  font-weight: bold;
+  background-color: #9FFBF4;
+  color: black; 
+}

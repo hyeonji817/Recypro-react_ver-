@@ -12,6 +12,7 @@ import ShoppingInfo_cart from "./shop/shoppingInfo_cart";
 import OrderConfirmation from "./shop/orderConfirmation";
 import ThanksCustomer from "./shop/thanksCustomer";
 import Pd_orderList from "./shop/pd_orderList";
+import Pd_write from "./shop/Product_write";
 import Mypage from "./mypage/Mypage";
 import Review from "./review/Review";
 import Customer_main from "./customer/Customer_main";
@@ -53,6 +54,7 @@ function App() {
         <Route path="/orderConfirmation" element={<OrderConfirmation />} />
         <Route path="/thanksCustomer" element={<ThanksCustomer />} />
         <Route path="/pd_orderList" element={<Pd_orderList />} />
+        <Route path="/pd_write" element={<Pd_write />} />
         <Route path="/mypage/:id" element={<Mypage />} />
         <Route path="/review" element={<Review />} />
         <Route path="/customer_main" element={<Customer_main />} />
