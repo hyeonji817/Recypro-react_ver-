@@ -254,3 +254,10 @@
   background-color: #9FFBF4;
   color: black;
 }
+
+/** 상품리뷰 상세페이지 - '상품 리뷰목록', '삭제하기', '수정하기' */ 
+.Button_reviewView_list, .Button_reviewView_delete, .Button_reviewView_modify {
+  font-weight: bold;
+  background-color: #9FFBF4;
+  color: black;
+}

@@ -14,6 +14,7 @@ import ThanksCustomer from "./shop/thanksCustomer";
 import Pd_orderList from "./shop/pd_orderList";
 import Pd_write from "./shop/Product_write";
 import Product_Review from "./shop/Product_Review";
+import Product_reviewView from "./shop/Product_reviewView";
 import Mypage from "./mypage/Mypage";
 import Review from "./review/Review";
 import Customer_main from "./customer/Customer_main";
@@ -57,6 +58,7 @@ function App() {
         <Route path="/pd_orderList" element={<Pd_orderList />} />
         <Route path="/pd_write" element={<Pd_write />} />
         <Route path="/product_review" element={<Product_Review />} />
+        <Route path="/product_reviewView" element={<Product_reviewView />} />
         <Route path="/mypage/:id" element={<Mypage />} />
         <Route path="/review" element={<Review />} />
         <Route path="/customer_main" element={<Customer_main />} />

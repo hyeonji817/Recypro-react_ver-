@@ -1,0 +1,44 @@
+.Product_reviewView_wrapper .row {
+  margin-top: 17%;
+  width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  top: 220px;
+}
+
+.Product_reviewView_wrapper table {
+  text-align: center;
+  border: 1px solid #dddddd;
+}
+
+.Product_reviewView_wrapper th {
+  background-color: #eeeeee;
+  text-align: center;
+}
+
+.reviewView_title {
+  width: 200px;
+}
+
+.reviewView_content {
+  min-height: 200px;
+  text-align: center;
+}
+
+.Product_reviewView_wrapper .reviewView_button {
+  position: relative;
+  float: right;
+  right: -67%;
+  width: 450px;
+}
+
+.Product_reviewView_wrapper .reviewView_button button {
+  margin-right: 10px;
+}
+
+/** .reviewView_modify {
+  width: 120px;
+  float: right;
+  right: 24.5%;
+  position: relative;
+} */
