@@ -1,21 +1,21 @@
-.title {
+.cart_wrap .title {
   margin-top: 120px;
   height: 160px;
 }
 
-.btn btn-secondary {
+.cart_wrap .btn btn-secondary {
   font-size: 20px;
 }
 
-.btn btn-warning {
+.cart_wrap .btn btn-warning {
   font-size: 20px;
 }
 
-.row {
+.cart_wrap .row {
   font-size: 20px;
 }
 
-.display-3 {
+.cart_wrap .display-3 {
   margin-top: -50px;
   font-weight: 700;
   color: #000;
@@ -23,7 +23,7 @@
   left: 10px;
 }
 
-#progress {
+.cart_wrap #progress {
   width: 1080px; 
   height: 250px;
   position: relative; 
@@ -32,7 +32,7 @@
   display: block; 
 }
 
-#progress li {
+.cart_wrap #progress li {
   padding: 0; 
   width: 33.3%; 
   float: left; 
@@ -40,12 +40,12 @@
   display: block; 
 }
 
-#progress li:first-child {
+.cart_wrap #progress li:first-child {
 /* 		border-right: 2px solid black; */
   margin: 0 auto; 
 }
 
-.basket {
+.cart_wrap .basket {
   margin: 0 auto; 
   overflow: hidden; 
   border-radius: 123px; 
@@ -57,7 +57,7 @@
   border: 2px solid black; 
 }
 
-.basket_icon img {
+.cart_wrap .basket_icon img {
   margin: 0 auto; 
   width: 100px;
   position: relative;
@@ -65,19 +65,19 @@
   padding-top: 10%;
 }
 
-.first_continue h5 {
+.cart_wrap .first_continue h5 {
   text-align: center; 
   font-weight: bold;
   padding-top: 15%; 
   font-size: 22px;
 }
   
-#progress li:nth-child(2) {
+.cart_wrap #progress li:nth-child(2) {
 /* 		border-right: 2px solid black; */
   margin: 0 auto; 
 }
 
-.order_card {
+.cart_wrap .order_card {
   margin: 0 auto; 
   overflow: hidden; 
   border-radius: 123px; 
@@ -88,7 +88,7 @@
   border: 2px solid black; 
 }
 
-.card_icon img {
+.cart_wrap .card_icon img {
   margin: 0 auto; 
   width: 100px;
   position: relative;
@@ -97,18 +97,18 @@
   width: 120px;
 } 
 
-.second_continue h5 {
+.cart_wrap .second_continue h5 {
   text-align: center; 
   font-weight: bold;
   padding-top: 6%; 
   font-size: 22px;
 }
 
-#progress li:nth-child(3) {
+.cart_wrap #progress li:nth-child(3) {
   margin: 0 auto; 
 }
 
-.order_complete {
+.cart_wrap .order_complete {
   margin: 0 auto; 
   overflow: hidden; 
   border-radius: 123px; 
@@ -120,7 +120,7 @@
   border: 2px solid black; 
 }
 
-.calendar_icon img {
+.cart_wrap .calendar_icon img {
   margin: 0 auto; 
   width: 120px;
   position: relative;
@@ -128,14 +128,14 @@
   padding-top: 8%;
 }
 
-.last_continue h5 {
+.cart_wrap .last_continue h5 {
   text-align: center; 
   font-weight: bold;
   padding-top: 6%; 
   font-size: 22px;
 }
 
-.table {
+.cart_wrap .table {
   font-size: 20px;
   font-weight: 700;
   color: black;
@@ -143,22 +143,22 @@
   border-style: solid;
 }
 
-.table table-hover {
+.cart_wrap .table table-hover {
   font-size: 20px;
   font-weight: 700;
 }
 
-.btn-option {
+.cart_wrap .btn-option {
   float: right;
   position: relative;
   left: 10px;
 }
 
-.btn-option button {
+.cart_wrap .btn-option button {
   margin-right: 10px;
 }
 
-.container2 {
+.cart_wrap .container2 {
   font-weight: 700;
   position: relative;
   margin: 0 auto;
@@ -166,10 +166,10 @@
   width: 1200px;
 }
 
-.cart_table th {
+.cart_wrap .cart_table th {
   padding-left: 50px;
 }
 
-.cart_table td {
+.cart_wrap .cart_table td {
   padding-left: 50px;
 }

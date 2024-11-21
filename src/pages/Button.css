@@ -261,3 +261,14 @@
   background-color: #9FFBF4;
   color: black;
 }
+
+/** 상품리뷰 수정페이지 - '수정하기' 버튼 */ 
+.Button_pdModify {
+  font-weight: bold;
+  background-color: #9FFBF4;
+  color: black;
+  position: relative;
+  float: right;
+  right: -17%;
+  top: 180px; 
+}

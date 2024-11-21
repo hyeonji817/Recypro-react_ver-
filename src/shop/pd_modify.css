@@ -1,0 +1,100 @@
+.pd_modify_wrapper .row {
+  margin: 0 auto;
+  position: relative;
+  left: 350px;
+  min-height: 600px;
+}
+
+.pd_modify_wrapper table {
+  text-align: center;
+  border: 1px solid #dddddd;
+  position: relative; 
+  top: 25%; 
+  margin: 0 auto; 
+  width: 1000px; 
+  height: 550px;
+  left: 17%; 
+  right: 5%;
+}
+
+.pd_modify_wrapper textarea {
+  height: 500px;
+}
+
+/** 
+.pd_modify_wrapper .pdModify_button {
+  position: relative;
+  float: right;
+  right: -17%;
+  top: 26%; 
+  font-weight: bold; 
+  background-color: rgb(136, 253, 230);
+} */
+
+/** 차후 별점 작성할 때 필요한 CSS라 일단은 적어만 놓음 */
+.pd_modify_wrapper #pd_form h5 {
+  width: 350px;
+	float: left;  
+	position: relative; 
+	padding-top: 3%; 
+	padding-right: 22%;
+}
+
+/** 차후 별점 작성할 때 필요한 CSS라 일단은 적어만 놓음 */
+.pd_modify_wrapper #pd_form h6 {
+  float: left; 
+	position: relative; 
+	right: -2%;
+	padding-top: 3.5%;
+}
+
+/** 차후 별점 작성할 때 필요한 CSS라 일단은 적어만 놓음 */
+.pd_modify_wrapper #pd_Image input {
+  position: relative; 
+	margin: 0 auto; 
+	top: -80%;
+}
+
+/** 차후 별점 작성할 때 필요한 CSS라 일단은 적어만 놓음 */
+/** 별점 구현 */ 
+.pd_modify_wrapper #pd_form fieldset {
+  display: inline-block;
+	direction: rtl; /** 한 번 알아봐야 겠다 */
+	border: 0;
+	position: relative; 
+	right: 3%;
+}
+
+/** 차후 별점 작성할 때 필요한 CSS라 일단은 적어만 놓음 */
+.pd_modify_wrapper #pd_form fieldset legend {
+	text-align: right; /** 별점 아이콘 위치 */
+}
+
+/** 차후 별점 작성할 때 필요한 CSS라 일단은 적어만 놓음 */
+.pd_modify_wrapper #pd_form input[type=radio] {
+	display: none; /** radio 아이콘 표시 제거 */
+}
+
+/** 차후 별점 작성할 때 필요한 CSS라 일단은 적어만 놓음 */
+.pd_modify_wrapper #pd_form label {
+	font-size: 3em; /** 별 크기 설정 */
+	color: transparent; /** 아마 부모요소한테 물려받는 다는 뜻일듯 */
+	text-shadow: 0 0 0 #f0f0f0; /** 별 색상인 듯 */
+}
+
+/** 차후 별점 작성할 때 필요한 CSS라 일단은 적어만 놓음 */
+.pd_modify_wrapper #pd_form label:hover {
+	text-shadow: 0 0 0 rgb(136, 253, 230);
+	/** 별점을 마우스로 갖다댈 때마다 해당 지정한 색상으로 표시, 일단은 한 별만 적용됨 */
+}
+
+/** 차후 별점 작성할 때 필요한 CSS라 일단은 적어만 놓음 */
+.pd_modify_wrapper #pd_form label:hover ~ label {
+	text-shadow: 0 0 0 rgb(136, 253, 230);
+	/** 별점을 오른쪽으로 마우스 갖다댈 때마다 연달아 색상 표시됨 */
+}
+
+/** 차후 별점 작성할 때 필요한 CSS라 일단은 적어만 놓음 */
+.pd_modify_wrapper #pd_form input[type=radio]:checked ~ label {
+	text-shadow: 0 0 0 rgb(136, 253, 230);
+}
