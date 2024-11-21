@@ -1,0 +1,56 @@
+a, a:hover {
+  color: #000000;
+  text-decoration: none;
+}
+
+.Product_Review_wrapper {
+  margin-top: 100px;
+}
+
+.Product_Review_wrapper .title {
+  margin-top: 20px;
+  height: 120px;
+  margin-bottom: 50px;
+}
+
+.Product_Review_wrapper .display-3 {
+  margin-left: 150px;
+  margin-top: 50px;
+  margin-bottom: 30px;
+  font-weight: 700;
+  color: black;
+  text-shadow: 1px 1px 5px #bdbdbd;
+}
+
+.Product_Review_wrapper .PR_button {
+  margin-top: 30px;
+  position: relative;
+  right: -92%;
+}
+
+.Product_Review_wrapper .review {
+  position: relative;
+	left: 30%;
+	width: auto;
+	top: 10%;
+	margin-bottom: 20%;
+}
+
+.Product_Review_wrapper .row {
+  margin: 0 auto;
+  background: white;
+  width: 1400px;
+  height: 650px;
+  position: relative;
+  border: none;
+}
+
+.Product_Review_wrapper table {
+  text-align: center;
+  border: 1px solid #dddddd;
+}
+
+.Product_Review_wrapper th {
+  background-color: #eeeeee;
+  text-align: center;
+}

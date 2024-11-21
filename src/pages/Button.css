@@ -247,3 +247,10 @@
   background-color: #9FFBF4;
   color: black; 
 }
+
+/** 상품리뷰 목록페이지 - '상품 목록' 버튼 */ 
+.Button_PR_list {
+  font-weight: bold;
+  background-color: #9FFBF4;
+  color: black;
+}

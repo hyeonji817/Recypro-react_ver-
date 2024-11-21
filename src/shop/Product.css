@@ -27,7 +27,7 @@
 }
 
 /** 특정 상품 레이아웃 */ 
-.row {
+.Product_wrap .row {
 	font-size: 20px;
 	border: 5px solid #eee;
 	right: 5%;
