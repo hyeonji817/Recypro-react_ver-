@@ -1,0 +1,145 @@
+
+.mypage_title {
+	margin-top: 8%;
+	height: 150px;
+}
+
+.Mypage_wrapper .display-3 {
+  margin-left: -550px;
+  float: left; 
+  color: black;
+  position: relative;
+  font-weight: bold;
+  font-size: 55px; 
+  display: block;
+  font-weight: 700;
+  text-shadow: 1px 1px 5px #bdbdbd;
+}
+
+.mypage_side_menubar {
+  float: left;
+  width: 250px;
+  position: relative;
+  left: 1%; 
+  top: 3%; 
+  min-height: 480px;
+  margin-bottom: 10%; 
+  display: block;
+}
+
+.mypage_side_menubar li {
+  padding: 0;
+  display: block;
+  position: relative;
+  height: 60px;
+  width: auto;
+  left: 30px;
+}
+
+.Mypage_wrapper .user_modify {
+  border-radius: 10px;
+  height: 60px;
+  position: relative;
+  left: -20%; 
+  width: 250px;
+  border: 1px solid gray;
+}
+
+.Mypage_wrapper .user_modify a {
+  padding-top: 3%; 
+  top: 23%; 
+  position: relative;
+  left: 3%; 
+  font-size: 17px;
+  font-weight: bold;
+}
+
+.Mypage_wrapper .mylevel {
+  border-radius: 10px;
+  height: 60px;
+  position: relative;
+  left: -20%;
+  width: 250px;
+  border: 1px solid gray;
+}
+
+.Mypage_wrapper .mylevel a {
+  padding-top: 3%; 
+  top: 23%; 
+  position: relative;
+  left: 3%; 
+  font-size: 17px;
+  font-weight: bold;
+}
+
+.Mypage_wrapper .coupon_list {
+  border-radius: 10px; 
+	height: 60px;
+	position: relative; 
+	left: -20%; 
+	width: 250px;
+	border: 1px solid gray;
+}
+
+.Mypage_wrapper .coupon_list a {
+  padding-top: 3%;
+	top: 23%; 
+	position: relative; 
+	left: 3%;
+	font-size: 17px;
+	font-weight: bold;
+}
+
+.Mypage_wrapper .review_list {
+  border-radius: 10px; 
+	height: 60px;
+	position: relative; 
+	left: -20%; 
+	width: 250px;
+	border: 1px solid gray; 
+}
+
+.Mypage_wrapper .review_list a {
+  padding-top: 3%;
+	top: 23%; 
+	position: relative; 
+	left: 3%;
+	font-size: 17px;
+	font-weight: bold;
+}
+
+.Mypage_wrapper .orderlist {
+  border-radius: 10px; 
+	height: 60px;
+	position: relative; 
+	left: -20%; 
+	width: 250px;
+	border: 1px solid gray; 
+}
+
+.Mypage_wrapper .orderlist a {
+  padding-top: 3%;
+	top: 23%; 
+	position: relative; 
+	left: 3%;
+	font-size: 17px;
+	font-weight: bold;
+}
+
+.Mypage_wrapper .product_review {
+  border-radius: 10px; 
+	height: 60px;
+	position: relative; 
+	left: -20%;
+	width: 250px;
+	border: 1px solid gray; 
+}
+
+.Mypage_wrapper .product_review a {
+  padding-top: 3%;
+	top: 23%; 
+	position: relative; 
+	left: 3%;
+	font-size: 17px;
+	font-weight: bold;
+}

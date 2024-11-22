@@ -61,7 +61,7 @@ function App() {
         <Route path="/product_review" element={<Product_Review />} />
         <Route path="/product_reviewView" element={<Product_reviewView />} />
         <Route path="/pd_modify" element={<Pd_modify />} />
-        <Route path="/mypage/:id" element={<Mypage />} />
+        <Route path="/mypage" element={<Mypage />} />
         <Route path="/review" element={<Review />} />
         <Route path="/customer_main" element={<Customer_main />} />
         <Route path="/index_admin/:id" element={<Index_admin />} />
