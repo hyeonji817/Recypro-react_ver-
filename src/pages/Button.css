@@ -272,3 +272,11 @@
   right: -17%;
   top: 180px; 
 }
+
+/** 마이페이지 | 회원정보 페이지 - '뒤로가기' 버튼 */ 
+.Button_userInfo_back {
+  background-color: #b6f5f5; 
+  font-weight: bold; 
+  right: -10%; 
+  color: black;
+}
