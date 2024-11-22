@@ -21,16 +21,6 @@
   height: 500px;
 }
 
-/** 
-.pd_modify_wrapper .pdModify_button {
-  position: relative;
-  float: right;
-  right: -17%;
-  top: 26%; 
-  font-weight: bold; 
-  background-color: rgb(136, 253, 230);
-} */
-
 /** 차후 별점 작성할 때 필요한 CSS라 일단은 적어만 놓음 */
 .pd_modify_wrapper #pd_form h5 {
   width: 350px;
