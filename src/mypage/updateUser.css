@@ -1,0 +1,215 @@
+.updateUser_title {
+  margin-left: 90px;
+	margin-bottom: 10px;
+	margin-top: 170px;
+	height: 100px;
+}
+
+.updateUser_wrapper .side_menubar {
+  float: left;
+	width: 250px;
+	position: relative;
+	left: 1.5%;
+	top: 3%;
+	min-height: 480px;
+	margin-bottom: 10%;
+	display: block;
+}
+
+.updateUser_wrapper .side_menubar li {
+  padding: 0;
+	display: block;
+	position: relative; 
+	height: 60px; 
+	width: auto;
+  left: 45px;
+  top: 17px;
+}
+
+.updateUser_wrapper .user_modify {
+  border-radius: 10px; 
+	height: 60px;
+	position: relative; 
+	left: -30%;
+	width: 250px;
+	background-color: #eee;
+	border: 1px solid gray; 
+}
+
+.updateUser_wrapper .user_modify a {
+  padding-top: 3%;
+	top: 23%; 
+	position: relative; 
+	left: 3%;
+	font-size: 17px;
+	font-weight: bold;
+}
+
+.updateUser_wrapper .mylevel {
+  border-radius: 10px; 
+	height: 60px;
+	position: relative; 
+	left: -30%;
+	width: 250px;
+	border: 1px solid gray; 
+}
+
+.updateUser_wrapper .mylevel a {
+  padding-top: 3%;
+	top: 23%; 
+	position: relative; 
+	left: 3%;
+	font-size: 17px;
+	font-weight: bold;
+}
+
+.updateUser_wrapper .coupon_list {
+  border-radius: 10px; 
+	height: 60px;
+	position: relative; 
+	left: -30%; 
+	width: 250px;
+	border: 1px solid gray; 
+}
+
+.updateUser_wrapper .coupon_list a {
+  padding-top: 3%;
+	top: 23%; 
+	position: relative; 
+	left: 3%;
+	font-size: 17px;
+	font-weight: bold;
+}
+
+.updateUser_wrapper .review_list {
+  border-radius: 10px; 
+	height: 60px;
+	position: relative; 
+	left: -30%; 
+	width: 250px;
+	border: 1px solid gray; 
+}
+
+.updateUser_wrapper .review_list a {
+  padding-top: 3%;
+	top: 23%; 
+	position: relative; 
+	left: 3%;
+	font-size: 17px;
+	font-weight: bold;
+}
+
+.updateUser_wrapper .orderlist {
+  border-radius: 10px; 
+	height: 60px;
+	position: relative; 
+	left: -30%; 
+	width: 250px;
+	border: 1px solid gray; 
+}
+
+.updateUser_wrapper .orderlist a {
+  padding-top: 3%;
+	top: 23%; 
+	position: relative; 
+	left: 3%;
+	font-size: 17px;
+	font-weight: bold;
+}
+
+.updateUser_wrapper .product_review {
+  border-radius: 10px; 
+	height: 60px;
+	position: relative; 
+	left: -30%;
+	width: 250px;
+	border: 1px solid gray; 
+}
+
+.updateUser_wrapper .product_review a {
+  padding-top: 3%;
+	top: 23%; 
+	position: relative; 
+	left: 3%;
+	font-size: 17px;
+	font-weight: bold;
+}
+
+legend {
+  font-size: 3.5rem;
+	font-weight: 700;
+	color: black;
+	text-shadow: 1px 1px 5px #bdbdbd;
+}
+
+.updateUser_wrapper .update_userInfo {
+  width: 1200px; 
+	margin: 0 auto; 
+}
+
+.updateUser_wrapper .form-group {
+  margin: 0 auto;
+	height: 90px;
+	width: 350px;
+	position: relative;
+}
+
+.updateUser_wrapper .form-group:nth-child(4) {
+  margin-bottom: 20px;
+}
+
+.updateUser_wrapper #pwd {
+  width: 600px;
+}
+
+.updateUser_wrapper .tap2 {
+  display: flex; /* 가로 정렬 */
+  align-items: center; /* 수직 가운데 정렬 */
+  gap: 60px; /* 항목 간 간격 설정 */
+}
+
+.updateUser_wrapper .tap2 label {
+  display: flex; /* 레이블 내부 정렬 */
+  align-items: center;
+  font-size: 18px;
+}
+
+.updateUser_wrapper .male_check,
+.updateUser_wrapper .female_check {
+  margin-left: 5px; /* 라디오 버튼과 텍스트 간격 */
+}
+
+.updateUser_wrapper .form-button {
+  margin-bottom: 135px;
+}
+
+.updateUser_wrapper .col-md-2 {
+  width: 300px;
+	display: block;
+	float: left;
+	font-size: 14px;
+	text-indent: 5px;
+}
+
+.updateUser_wrapper .col-md-10 {
+  display: block;
+	float: left;
+	width: 650px;
+}
+
+.updateUser_wrapper #pwd_reply {
+  height: 50px;
+}
+
+.updateUser_wrapper input .form-control {
+  font-size: 14px;
+	border: 1px solid #eee;
+	width: 650px;
+}
+
+.updateUser_wrapper .form-modify {
+  margin-top: -20px;
+	position: relative;
+  right: -800px;
+  width: 500px;
+}

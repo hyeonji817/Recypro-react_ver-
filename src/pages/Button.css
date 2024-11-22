@@ -280,3 +280,21 @@
   right: -10%; 
   color: black;
 }
+
+/** 마이페이지 | 회원정보 수정하기 페이지 - '회원정보수정하기' 버튼 */ 
+.Button_userInfo_change {
+  background-color: #b6f5f5; 
+  font-weight: bold; 
+  color: black;
+}
+
+/** 마이페이지 | 회원정보 수정하기 페이지 - '뒤로가기' 버튼 */ 
+.Button_updateUser_back {
+  background-color: #b6f5f5; 
+  font-weight: bold;
+  color: black;
+  float: right;
+  position: relative;
+  top: 15px;
+  right: 200px;
+}
