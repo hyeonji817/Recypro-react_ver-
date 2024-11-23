@@ -307,3 +307,12 @@
   float: right;
   position: relative;
 }
+
+/** 마이페이지 | 상품리뷰 작성 내역 페이지 - '뒤로가기' 버튼 */ 
+.Button_pdRv_back {
+  background-color: #b6f5f5; 
+  font-weight: bold;
+  color: black;
+  float: right;
+  position: relative;
+}
