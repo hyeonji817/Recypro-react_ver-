@@ -1,0 +1,60 @@
+.Review_wrapper a, a:hover {
+  color: #000000;
+	text-decoration: none;
+}
+
+.Review_title {
+  margin-top: 20px;
+	height: 120px;
+	margin-bottom: 120px;
+  position: relative;
+  top: 50px;
+  right: 900px;
+}
+
+.Review_wrapper .container {
+  margin-top: 100px;
+}
+
+.Review_wrapper .display-3 {
+  margin-top: 50px;
+	font-weight: 700;
+	color: black;
+  position: relative;
+	text-shadow: 1px 1px 5px #bdbdbd;
+}
+
+.Review_wrapper .row {
+  border: 1px solid #eeeeee;
+}
+
+.Review_wrapper table {
+  text-align: center;
+  border: 1px solid #dddddd;
+}
+
+.Review_wrapper table th {
+  background-color: #eeeeee;
+  text-align: center;
+}
+
+.Review_wrapper table td a {
+  background-color: #9FFBF4;
+  display: inline-block; 
+  width: 90%; 
+  font-size: 16px; 
+  font-weight: bold;
+}
+
+.Review_wrapper .Review_button {
+  margin-top: 80px;
+	position: relative;
+	right: -30px;
+	float: right;
+}
+
+.Review_wrapper .Review_button a {
+  font-weight: 700;
+  color: black; 
+  background-color: #9FFBF4;
+}
