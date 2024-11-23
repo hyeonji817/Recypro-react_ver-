@@ -298,3 +298,12 @@
   top: 15px;
   right: 200px;
 }
+
+/** 마이페이지 | 게시판 작성 내역 페이지 - '뒤로가기' 버튼 */ 
+.Button_reviewBack {
+  background-color: #b6f5f5; 
+  font-weight: bold;
+  color: black;
+  float: right;
+  position: relative;
+}

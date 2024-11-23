@@ -21,6 +21,7 @@ import Userinfo from "./mypage/userinfo";
 import UpdateUser from "./mypage/updateUser";
 import Mylevel from "./mypage/mylevel";
 import Coupon_list from "./mypage/coupon_list";
+import Review_history from "./mypage/review_history";
 import Review from "./review/Review";
 import Customer_main from "./customer/Customer_main";
 import Index_admin from "./admin_page/index_admin";
@@ -70,6 +71,7 @@ function App() {
         <Route path="/updateuser" element={<UpdateUser />} />
         <Route path="/mylevel" element={<Mylevel />} />
         <Route path="/couponList" element={<Coupon_list />} />
+        <Route path="/review_history" element={<Review_history />} />
         <Route path="/review" element={<Review />} />
         <Route path="/customer_main" element={<Customer_main />} />
         <Route path="/index_admin/:id" element={<Index_admin />} />

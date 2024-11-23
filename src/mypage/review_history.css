@@ -1,0 +1,174 @@
+.reviewHistory_title {
+  margin-top: 200px;
+  height: 150px;
+  right: 600px;
+  position: relative;
+  margin-bottom: 50px;
+}
+
+.reviewHistory_wrapper .display-3 {
+  margin-left: -6%;
+	color: black;
+	position: relative;
+	font-weight: bold;
+	font-size: 55px;
+	display: block;
+}
+
+/** 사이드바 메뉴 */
+.reviewHistory_wrapper .side_menubar {
+  float: left;
+	width: 250px;
+	position: relative;
+	left: 1.5%;
+	top: 3%;
+	min-height: 480px;
+	margin-bottom: 10%;
+	display: block;
+}
+
+.reviewHistory_wrapper .side_menubar li {
+  padding: 0;
+	display: block;
+	position: relative; 
+	height: 60px; 
+	width: auto;
+  left: 80px;
+} 
+
+.reviewHistory_wrapper .user_modify {
+  border-radius: 10px; 
+	height: 60px;
+	position: relative; 
+	left: -27%;
+	width: 250px;
+	border: 1px solid gray; 
+}
+
+.reviewHistory_wrapper .user_modify a {
+  padding-top: 3%;
+	top: 23%; 
+	position: relative; 
+	left: 3%;
+	font-size: 17px;
+	font-weight: bold;
+}
+
+.reviewHistory_wrapper .mylevel {
+  border-radius: 10px; 
+	height: 60px;
+	position: relative; 
+	left: -27%;
+	width: 250px;
+	border: 1px solid gray; 
+}
+
+.reviewHistory_wrapper .mylevel a {
+  padding-top: 3%;
+	top: 23%; 
+	position: relative; 
+	left: 3%;
+	font-size: 17px;
+	font-weight: bold;
+}
+
+.reviewHistory_wrapper .coupon_list {
+  border-radius: 10px; 
+	height: 60px;
+	position: relative; 
+	left: -27%; 
+	width: 250px;
+	border: 1px solid gray; 
+}
+
+.reviewHistory_wrapper .coupon_list a {
+  padding-top: 3%;
+	top: 23%; 
+	position: relative; 
+	left: 3%;
+	font-size: 17px;
+	font-weight: bold;
+}
+
+.reviewHistory_wrapper .review_list {
+  border-radius: 10px; 
+	height: 60px;
+	position: relative; 
+	left: -27%; 
+	width: 250px;
+	background-color: #eee;
+	border: 1px solid gray; 
+}
+
+.reviewHistory_wrapper .review_list a {
+  padding-top: 3%;
+	top: 23%; 
+	position: relative; 
+	left: 3%;
+	font-size: 17px;
+	font-weight: bold;
+}
+
+.reviewHistory_wrapper .orderlist {
+  border-radius: 10px; 
+	height: 60px;
+	position: relative; 
+	left: -27%; 
+	width: 250px;
+	border: 1px solid gray; 
+}
+
+.reviewHistory_wrapper .orderlist a {
+  padding-top: 3%;
+	top: 23%; 
+	position: relative; 
+	left: 3%;
+	font-size: 17px;
+	font-weight: bold;
+}
+
+.reviewHistory_wrapper .product_review {
+  border-radius: 10px; 
+	height: 60px;
+	position: relative; 
+	left: -27%;
+	width: 250px;
+	border: 1px solid gray; 
+}
+
+.reviewHistory_wrapper .product_review a {
+  padding-top: 3%;
+	top: 23%; 
+	position: relative; 
+	left: 3%;
+	font-size: 17px;
+	font-weight: bold;
+}
+
+.reviewHistory_wrapper .rv_list {
+  width: 1500px; 
+	margin: 0 auto; 
+}
+
+.reviewHistory_wrapper .table {
+  text-align: center;
+	margin: 0 auto;
+	position: relative;
+	top: 70px;
+	width: 1000px;
+	height: 200px;
+  font-size: 18px;
+}
+
+.reviewHistory_wrapper .table thead {
+  height: 50px;
+  font-weight: bold;
+}
+
+.rv_button {
+  margin: 0 auto;
+	float: right;
+	right: 600px;
+	top: 200px;
+	position: relative;
+}
