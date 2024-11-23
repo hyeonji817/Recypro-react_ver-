@@ -154,6 +154,10 @@ legend {
 	position: relative;
 }
 
+#password1 {
+  width: 100%;
+}
+
 .updateUser_wrapper .form-group:nth-child(4) {
   margin-bottom: 20px;
 }

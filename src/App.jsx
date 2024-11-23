@@ -19,6 +19,7 @@ import Pd_modify from "./shop/pd_modify";
 import Mypage from "./mypage/Mypage";
 import Userinfo from "./mypage/userinfo";
 import UpdateUser from "./mypage/updateUser";
+import Mylevel from "./mypage/mylevel";
 import Review from "./review/Review";
 import Customer_main from "./customer/Customer_main";
 import Index_admin from "./admin_page/index_admin";
@@ -66,6 +67,7 @@ function App() {
         <Route path="/mypage" element={<Mypage />} />
         <Route path="/userinfo" element={<Userinfo />} />
         <Route path="/updateuser" element={<UpdateUser />} />
+        <Route path="/mylevel" element={<Mylevel />} />
         <Route path="/review" element={<Review />} />
         <Route path="/customer_main" element={<Customer_main />} />
         <Route path="/index_admin/:id" element={<Index_admin />} />
