@@ -1,0 +1,29 @@
+.View_wrapper .row {
+  margin-top: 300px;
+  border: 1px solid #eee;
+}
+
+.View_wrapper table {
+  text-align: center;
+  border: 1px solid #dddddd;
+}
+
+.View_wrapper table th {
+  background-color: #eeeeee; 
+  text-align: center;
+}
+
+.View_wrapper .View_content {
+  min-height: 200px;
+  text-align: center;
+}
+
+.View_wrapper .View_button {
+  position: relative;
+	float: right;
+	right: -81.5%;
+}
+
+.View_wrapper .View_button a {
+  color: white;
+}

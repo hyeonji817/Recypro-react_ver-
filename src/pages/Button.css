@@ -345,3 +345,42 @@
   position: relative;
   right: 480px;
 }
+
+/** 게시판 수정하기 페이지 - '목록' 버튼 */ 
+.Button_ViewList {
+  background-color: #b6f5f5; 
+  font-weight: bold;
+  color: black;
+  position: relative;
+  top: 200px;
+  right: 200px;
+}
+
+/** 게시판 수정하기 페이지 - '수정' 버튼 */ 
+.Button_View_Modify {
+  background-color: #b6f5f5; 
+  font-weight: bold;
+  color: black;
+  top: 152px;
+  right: 170px;
+}
+
+/** 게시판 수정하기 페이지 - '신고하기' 버튼 */ 
+.Button_View_declare {
+  background-color: #b6f5f5; 
+  font-weight: bold;
+  color: black;
+  position: relative;
+  top: 105px;
+  right: 20px;
+}
+
+/** 게시판 수정하기 페이지 - '삭제하기' 버튼 */ 
+.Button_View_delete {
+  background-color: #b6f5f5; 
+  font-weight: bold;
+  color: black;
+  position: relative;
+  top: 105px;
+  right: 10px;
+}
