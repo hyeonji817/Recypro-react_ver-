@@ -1,0 +1,52 @@
+.write_wrapper {
+  height: auto;
+}
+
+.write_wrapper  .container {
+  width: 300px;
+	margin: 0 auto;
+	margin-right: 1400px;
+	margin-top: 200px;
+}
+
+.write_wrapper .row {
+  height: 800px;
+}
+
+.write_wrapper table {
+  text-align: center; 
+  border: 1px solid #eeeeee;
+}
+
+.write_wrapper table th {
+  background-color: #eeeeee; 
+  text-align: center;
+}
+
+.write_wrapper #write {
+  position: relative;
+  right: 45%;
+}
+
+.write_wrapper .user_write input {
+  width: 800px;
+}
+
+.write_wrapper .user_content {
+  border: 1px solid #eeeeee;
+}
+
+.write_wrapper .user_content textarea {
+  height: 500px;
+  width: 800px;
+}
+
+.write_wrapper .submit {
+  right: -70%;
+	position: relative;	
+}
+
+.write_wrapper .submit input {
+  background-color: #9FFBF4; 
+  font-weight: bold;
+}

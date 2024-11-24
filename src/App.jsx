@@ -24,6 +24,7 @@ import Coupon_list from "./mypage/coupon_list";
 import Review_history from "./mypage/review_history";
 import ProductReview_history from "./mypage/productReview_history";
 import Review from "./review/Review";
+import Write from "./review/write";
 import Customer_main from "./customer/Customer_main";
 import Index_admin from "./admin_page/index_admin";
 import loginOK from "./main/loginOK";
@@ -75,6 +76,7 @@ function App() {
         <Route path="/review_history" element={<Review_history />} />
         <Route path="/productReview_history" element={<ProductReview_history />} />
         <Route path="/review" element={<Review />} />
+        <Route path="/write" element={<Write />} />
         <Route path="/customer_main" element={<Customer_main />} />
         <Route path="/index_admin/:id" element={<Index_admin />} />
         <Route path="/loginOK" element={<loginOK />} />

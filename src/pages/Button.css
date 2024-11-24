@@ -325,3 +325,23 @@
   float: right;
   position: relative;
 }
+
+/** 게시판 내 작성하기 페이지 - '글쓰기' 버튼 */ 
+.Button_Write {
+  background-color: #b6f5f5; 
+  font-weight: bold;
+  color: black;
+  float: right;
+  position: relative;
+  right: 700px;
+}
+
+/** 게시판 내 작성하기 페이지 - '취소하기' 버튼 */ 
+.Button_write_back {
+  background-color: #b6f5f5; 
+  font-weight: bold;
+  color: black;
+  float: right;
+  position: relative;
+  right: 480px;
+}
