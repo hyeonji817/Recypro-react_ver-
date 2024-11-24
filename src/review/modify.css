@@ -1,0 +1,34 @@
+.modify_wrapper .table {
+  text-align: center;
+  border: 1px solid #dddddd;
+  width: 800px;
+  position: relative;
+  top: 170px;
+  left: 50px;
+}
+
+.modify_wrapper .form-control {
+  font-size: 18px;
+}
+
+.modify_wrapper th {
+  background-color: #eeeeee; 
+  text-align: center;
+}
+
+.modify_wrapper textarea {
+  height: 350px;
+}
+
+.rvModify_button {
+  position: relative;
+  top: 120px;
+  left: 50px;
+}
+
+.rvModify_button button {
+  float: right; 
+  background-color: #b6f5f5; 
+  color: black; 
+  font-weight: bold;
+}
