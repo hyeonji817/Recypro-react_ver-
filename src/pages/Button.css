@@ -392,3 +392,18 @@
   color: black;
   font-size: 18px;
 }
+
+/** 고객센터 운영정책 페이지 - '고객센터 홈' 버튼 */ 
+.Button_customer_policy {
+  background-color: #b6f5f5; 
+  font-weight: bold;
+  color: black;
+  font-size: 18px;
+  position: relative; 
+  right: 700px;
+	float: right; 
+	margin-top: 50px; 
+	bottom: 80px; 
+	margin-bottom: 60px;
+  margin: 0 auto;
+}
