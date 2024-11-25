@@ -29,6 +29,7 @@ import View from "./review/View";
 import Modify from "./review/modify";
 import Customer_main from "./customer/Customer_main";
 import Customer_notice from "./customer/customer_notice";
+import Customer_policy from "./customer/customer_policy";
 import Index_admin from "./admin_page/index_admin";
 import loginOK from "./main/loginOK";
 import Event from "./main/event";
@@ -84,6 +85,7 @@ function App() {
         <Route path="/modify" element={<Modify />} />
         <Route path="/customer_main" element={<Customer_main />} />
         <Route path="/customer_notice" element={<Customer_notice />} />
+        <Route path="/customer_policy" element={<Customer_policy />} />
         <Route path="/index_admin/:id" element={<Index_admin />} />
         <Route path="/loginOK" element={<loginOK />} />
         <Route path="/event" element={<Event />} />
