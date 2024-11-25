@@ -407,3 +407,18 @@
 	margin-bottom: 60px;
   margin: 0 auto;
 }
+
+/** 고객센터 공지사항 페이지 - '고객센터 홈' 버튼 */ 
+.Button_customer_notice {
+  background-color: #b6f5f5; 
+  font-weight: bold;
+  color: black;
+  font-size: 18px;
+  position: relative; 
+  right: 100px;
+	float: right; 
+	margin-top: 50px; 
+	bottom: -30px; 
+	margin-bottom: 60px;
+  margin: 0 auto;
+}

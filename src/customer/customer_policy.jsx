@@ -1,4 +1,4 @@
-import "./customer_notice.css";
+import "./customer_policy.css";
 import Button from "../pages/Button";
 import Header_loginOK from "../main/Header_loginOK";
 import home from "../assets/shop/home.png";

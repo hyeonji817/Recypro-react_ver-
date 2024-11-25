@@ -1,34 +1,31 @@
 .customer_notice_wrapper .cn_title {
-  margin-top: 10%;
+	margin-top: 8%;
+	position: relative;
+	right: 900px;
 	height: 150px;
-	display: block;
-  position: relative;
-  right: 850px;
-} 
+	margin-bottom: 60px;
+}
 
 .customer_notice_wrapper .display-3 {
-  color: black;
-	position: relative;
-	right: 22%;
-  top: -30px;
+	color: black;
 	font-weight: bold;
 	font-size: 55px;
 	display: block;
-  text-shadow: 1px 1px 5px #bdbdbd;
+	text-shadow: 1px 1px 5px #bdbdbd;
 }
 
-/** 우측 사이드 경로 */ 
+/** 우측 사이드 경로 */
 .customer_notice_wrapper .side_path {
-  float: right; 
+	float: right; 
 	position: absolute; 
 	right: 10%; 
 	width: 300px; 
 	height: 50px;
-	margin-top: -5%;
+	margin-top: -8%;
 }
 
 .customer_notice_wrapper .home_icon {
-  width: 40px; 
+	width: 40px; 
 	height: 40px; 
 	position: relative; 
 	top: 5px;
@@ -36,12 +33,12 @@
 }
 
 .customer_notice_wrapper .home_icon img {
-  width: 33px;
+	width: 33px;
 	margin-left: 3px;
 }
 
 .customer_notice_wrapper .sub_path {
-  position: relative;
+	position: relative;
 	display: block; 
 	float: right;
 	width: 240px; 
@@ -53,222 +50,66 @@
 	font-weight: bold;
 }
 
-.customer_notice_wrapper .first_policy {
+/** 검색 기능 */ 
+.customer_notice_wrapper .cont-search {
+	float: right; 
+	position: absolute; 
+	right: 19%;
+	width: 40%; 
+	height: 70px;
+	top: 35%;
+}
+
+.customer_notice_wrapper .search_bar {
+	position: absolute; 
+	left: 40%; 
+	margin: 0 auto; 
+	width: 300px; 
+	height: 50px;
+	bottom: 75%;
+}
+
+.customer_notice_wrapper .search_bar form {
+	position: absolute; 
+	left: 10%;
+}
+
+.customer_notice_wrapper .search_bar .search-submit {
+	float: right;
+	position: relative;
+	right: -45px;
+	top: -28px;
+}
+
+.customer_notice_wrapper .search-field {
+	width: 270px;
+}
+
+/** 테이블 부분 */ 
+.customer_notice_wrapper .table {
+	text-align: center;
 	margin: 0 auto;
-	width: 1350px;
-}
-
-.customer_notice_wrapper .first_policy h2 {
-	font-weight: bold; 
-	left: 8%;
 	position: relative;
-	font-size: 30px;
-	width: 1000px; 
-}
-
-.customer_notice_wrapper .first_policy p {
-	font-size: 17px; 
-	left: 8%;
-	position: relative;
-	top: 3%;
+	top: 11%;
 	width: 1000px;
+	height: 200px;
+	border: 1px solid #eeeeee;
 }
 
-.customer_notice_wrapper .second_policy {
-	margin: 0 auto;
-	width: 1350px;
+.customer_notice_wrapper .table thead {
+	height: 50px;
 }
 
-.customer_notice_wrapper .second_policy h2 {
-	font-weight: bold; 
-	left: 8%; 
-	position: relative;
-	font-size: 30px;
-	margin-top: 6%;
-	width: 1000px;
+.customer_notice_wrapper .table th {
+	background-color: #eeeeee; 
+	text-align: center;
 }
 
-.customer_notice_wrapper .second_policy p {
-	font-size: 17px; 
-	left: 8%; 
-	position: relative; 
-	width: 1000px; 
-}
-
-.customer_notice_wrapper .third_policy {
+/** 버튼 부분 */ 
+.customer_notice_wrapper .policy_button {
 	margin: 0 auto; 
-	width: 1350px;
-}
-
-.customer_notice_wrapper .third_policy h2 {
-	font-weight: bold; 
-	left: 8%; 
+	float: right; 
+	right: 24%; 
+	top: 17%; 
 	position: relative;
-	font-size: 30px;
-	margin-top: 6%;
-	width: 1000px; 
-}
-
-.customer_notice_wrapper .third_policy p {
-	font-size: 17px; 
-	left: 8%; 
-	position: relative; 
-	margin-top: 6%;
-	width: 1000px; 
-}
-
-.customer_notice_wrapper .fourth_policy {
-	margin: 0 auto; 
-	width: 1350px; 
-}
-
-.customer_notice_wrapper .fourth_policy h2 {
-	font-weight: bold; 
-	left: 8%; 
-	position: relative;
-	font-size: 30px;
-	margin-top: 6%;
-	width: 1000px; 
-}
-
-.customer_notice_wrapper .fourth_policy p {
-	font-size: 17px; 
-	left: 8%; 
-	position: relative; 
-	width: 1000px; 
-}
-
-.customer_notice_wrapper .fifth_policy {
-	margin: 0 auto; 
-	width: 1350px;
-}
-
-.customer_notice_wrapper .fifth_policy h2 {
-	font-weight: bold; 
-	left: 8%; 
-	position: relative;
-	font-size: 30px;
-	margin-top: 6%;
-	width: 1000px; 
-}
-
-.customer_notice_wrapper .fifth_policy p {
-	font-size: 17px; 
-	left: 8%; 
-	position: relative; 
-	width: 1000px;
-}
-
-.customer_notice_wrapper .sixth_policy {
-	margin: 0 auto; 
-	width: 1350px;
-}
-
-.customer_notice_wrapper .sixth_policy h2 {
-	font-weight: bold; 
-	left: 8%; 
-	position: relative;
-	font-size: 30px;
-	margin-top: 6%;
-	width: 1000px; 
-}
-
-.customer_notice_wrapper .sixth_policy p {
-	font-size: 17px; 
-	left: 8%; 
-	position: relative; 
-	width: 1000px;
-}
-
-.customer_notice_wrapper .seventh_policy {
-	margin: 0 auto;
-	width: 1350px; 
-}
-
-.customer_notice_wrapper .seventh_policy h2 {
-	font-weight: bold; 
-	left: 8%; 
-	position: relative;
-	font-size: 30px;
-	margin-top: 6%;
-	width: 1000px; 
-}
-
-.customer_notice_wrapper .seventh_policy p {
-	font-size: 17px; 
-	left: 8%; 
-	position: relative; 
-	width: 1000px;
-}
-
-.customer_notice_wrapper .eighth_policy {
-	margin: 0 auto;
-	width: 1350px; 
-}
-
-.customer_notice_wrapper .eighth_policy h2 {
-	font-weight: bold; 
-	left: 8%; 
-	position: relative;
-	font-size: 30px;
-	margin-top: 6%;
-	width: 1000px; 
-}
-
-.customer_notice_wrapper .eighth_policy p {
-	font-size: 17px; 
-	left: 8%; 
-	position: relative; 
-	width: 1000px;
-}
-
-.customer_notice_wrapper .nineth_policy {
-	margin: 0 auto; 
-	width: 1350px;
-}
-
-.customer_notice_wrapper .nineth_policy h2 {
-	font-weight: bold; 
-	left: 8%; 
-	position: relative;
-	font-size: 30px;
-	margin-top: 6%;
-	width: 1000px; 
-}
-
-.customer_notice_wrapper .nineth_policy p {
-	font-size: 17px; 
-	left: 8%; 
-	position: relative; 
-	width: 1000px;
-}
-
-.customer_notice_wrapper .tenth_policy {
-	margin: 0 auto; 
-	width: 1350px;
-  margin-bottom: 100px;
-}
-
-.customer_notice_wrapper .tenth_policy h2 {
-	font-weight: bold; 
-	left: 8%; 
-	position: relative;
-	font-size: 30px;
-	margin-top: 6%;
-	width: 1000px; 
-}
-
-.customer_notice_wrapper .tenth_policy p {
-	font-size: 17px; 
-	left: 8%; 
-	position: relative; 
-	width: 1000px;
-}
-
-.customer_notice_wrapper .policy_button a {
-	margin-top: 10%; 
-	bottom: 17%; 
-	margin-bottom: 60px;
-	font-weight: bold; 
-	margin: 0 auto;
 }
