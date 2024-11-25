@@ -422,3 +422,48 @@
 	margin-bottom: 60px;
   margin: 0 auto;
 }
+
+/** 고객센터 온라인/상담 문의 페이지 - '신청하기' 버튼 */ 
+.Button_policy_register {
+  background-color: #b6f5f5; 
+  font-weight: bold;
+  color: black;
+  font-size: 18px;
+  position: relative; 
+  right: 220px;
+	float: right; 
+	margin-top: 50px; 
+	bottom: -30px; 
+	margin-bottom: 60px;
+  margin: 0 auto;
+}
+
+/** 고객센터 온라인/상담 문의 페이지 - '고객센터 홈' 버튼 */ 
+.Button_customer_home {
+  background-color: #b6f5f5; 
+  font-weight: bold;
+  color: black;
+  font-size: 18px;
+  position: relative; 
+  right: 230px;
+	float: right; 
+	margin-top: 50px; 
+	bottom: -30px; 
+	margin-bottom: 60px;
+  margin: 0 auto;
+}
+
+/** 고객센터 온라인/상담 문의 페이지 - '문의글 목록' 버튼 */ 
+.Button_quest_list {
+  background-color: #b6f5f5; 
+  font-weight: bold;
+  color: black;
+  font-size: 18px;
+  position: relative; 
+  right: 240px;
+	float: right; 
+	margin-top: 50px; 
+	bottom: -30px; 
+	margin-bottom: 60px;
+  margin: 0 auto;
+}
