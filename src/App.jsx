@@ -1,5 +1,5 @@
 import "./App.css";
-import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from "react-router-dom";
+import { Router, Routes, Route, Link, useNavigate } from "react-router-dom";
 import Home from "./main/home";
 import Login from "./account/Login";
 import Register from "./account/register";
@@ -56,7 +56,7 @@ function App() {
   };
 
   return (
-    <Router>
+    <>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
@@ -95,7 +95,7 @@ function App() {
         <Route path="/event" element={<Event />} />
         <Route path="*" element={<Notfound />} />
       </Routes>
-    </Router>
+    </>
   );
 };
 
