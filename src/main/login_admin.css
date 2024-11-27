@@ -1,83 +1,14 @@
-.wrap_center {
-  width: 100%;
+.loginAdmin_wrapper .popular_wrap {
+  position: relative;
+  left: 5px;
 }
 
-.banner-container {
-  margin: 0 auto;
-  margin-top: 150px; 
-  margin-bottom: 200px; 
-  width: 1200px; 
-  height: 500px; 
-  overflow: hidden;
+.loginAdmin_wrapper .shop_event_wrap {
+  position: relative;
+  left: 30px;
 }
 
-.img_wrap {
-  width: 1000px; 
-  height: 500px;
-  position: absolute;
-  border-radius: 30px;
-  overflow: hidden;
-} 
-
-.rolling_imgs {
-  list-style: none;
-  padding: 0;
+.loginAdmin_wrapper .loginAdmin_Footer {
+  position: relative;
+  top: -10px;
 }
-
-.rolling_imgs li {
-  position: absolute;   /* 이미지가 겹치지 않도록 조정 */
-  top: 0;
-  left: 100%; /* 기본적으로 화면 밖에 위치 */ 
-  width: 1000px;
-  height: 100%;
-  z-index: 1;
-  transition: left 0.5s ease-in-out; 
-}
-
-.rolling_imgs li img {
-  height: 100%; 
-  width: 100%; 
-  object-fit: cover;
-  opacity: 0.8;
-  border-radius: 30px;
-}
-
-/* 현재 이미지가 화면에 표시 */ 
-.rolling_imgs li.currentroll {
-  left: 0; 
-  z-index: 2;
-}
-
-/* 이전 이미지가 왼쪽으로 나가도록 설정 */ 
-.rolling_imgs li.prevroll {
-  left: -100%;
-}
-
-.rolling_imgs.reverse li.prevroll {
-  transition: none;
-}
-
-/* 다음 이미지가 오른쪽에서 준비되도록 설정 */
-.rolling_imgs li.nextroll {
-  left: 100%; 
-}
-
-.rolling_imgs.reverse li.nextroll {
-  transition: left .5s ease-in-out, right .5s ease-in-out;
-}
-
-/** 텍스트를 이미지 위에 중앙 배치 */ 
-.rolling_imgs li .text {
-  position: absolute;
-  top: 50%; 
-  left: 50%; 
-  transform: translate(-50%, -50%); 
-  color: white; 
-  font-size: 24px; 
-  font-weight: bold; 
-  text-align: center;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* 텍스트 가독성 향상 */
-  z-index: 10; /* 이미지보다 앞에 위치 */
-}
-
-

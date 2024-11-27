@@ -34,6 +34,7 @@ import Customer_consult from "./customer/customer_consult";
 import Customer_declare from "./customer/customer_declare";
 import Index_admin from "./admin_page/index_admin";
 import LoginOK from "./main/loginOK";
+import Login_admin from "./main/login_admin";
 import Event from "./main/event";
 import Notfound from "./pages/Notfound";
 
@@ -92,6 +93,7 @@ function App() {
         <Route path="/customer_declare" element={<Customer_declare />} />
         <Route path="/index_admin/:id" element={<Index_admin />} />
         <Route path="/loginOK" element={<LoginOK />} />
+        <Route path="/login_admin" element={<Login_admin />} />
         <Route path="/event" element={<Event />} />
         <Route path="*" element={<Notfound />} />
       </Routes>
