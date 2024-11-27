@@ -1,9 +1,13 @@
 import "./pd_orderList.css";
 import Button from "../pages/Button";
+import Header_loginOK from "../main/Header_loginOK";
 
 const pd_orderList = () => {
   return (
     <div className="pd_orderList_wrapper">
+      <div className="Pd_orderList_Header">
+        <Header_loginOK />
+      </div>
       <div className="Order_list">
         <h2 className="pd_order_title">주문내역 정보</h2>
         <table className="table bg-light text-center" border={1}>
