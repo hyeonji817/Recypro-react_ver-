@@ -32,9 +32,7 @@ import Customer_notice from "./customer/customer_notice";
 import Customer_policy from "./customer/customer_policy";
 import Customer_consult from "./customer/customer_consult";
 import Customer_declare from "./customer/customer_declare";
-import Admin_index from "./admin_page/admin_index";
 import Index_admin from "./admin_page/index_admin";
-import Sidebar from "./admin_page/sidebar";
 import loginOK from "./main/loginOK";
 import Event from "./main/event";
 import Notfound from "./pages/Notfound";
@@ -92,7 +90,6 @@ function App() {
         <Route path="/customer_policy" element={<Customer_policy />} />
         <Route path="/customer_consult" element={<Customer_consult />} />
         <Route path="/customer_declare" element={<Customer_declare />} />
-        <Route path="/admin_index" element={<Admin_index />} />
         <Route path="/index_admin/:id" element={<Index_admin />} />
         <Route path="/loginOK" element={<loginOK />} />
         <Route path="/event" element={<Event />} />
