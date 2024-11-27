@@ -1,5 +1,5 @@
 import "./App.css";
-import { Router, Routes, Route, Link, useNavigate } from "react-router-dom";
+import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import Home from "./main/home";
 import Login from "./account/Login";
 import Register from "./account/register";
@@ -33,7 +33,7 @@ import Customer_policy from "./customer/customer_policy";
 import Customer_consult from "./customer/customer_consult";
 import Customer_declare from "./customer/customer_declare";
 import Index_admin from "./admin_page/index_admin";
-import loginOK from "./main/loginOK";
+import LoginOK from "./main/loginOK";
 import Event from "./main/event";
 import Notfound from "./pages/Notfound";
 
@@ -91,7 +91,7 @@ function App() {
         <Route path="/customer_consult" element={<Customer_consult />} />
         <Route path="/customer_declare" element={<Customer_declare />} />
         <Route path="/index_admin/:id" element={<Index_admin />} />
-        <Route path="/loginOK" element={<loginOK />} />
+        <Route path="/loginOK" element={<LoginOK />} />
         <Route path="/event" element={<Event />} />
         <Route path="*" element={<Notfound />} />
       </Routes>
