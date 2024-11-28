@@ -423,6 +423,24 @@
   margin: 0 auto;
 }
 
+/** 고객센터 자주묻는질문 페이지 - '조회' 버튼 */ 
+.Button_Answer_View {
+  background-color: #b6f5f5; 
+  display: inline-block; 
+  width: 90%; 
+  font-size: 16px; 
+  font-weight: bold;
+}
+
+/** 고객센터 자주묻는질문 페이지 - '고객센터 홈' 버튼 */ 
+.Button_cq_home {
+  color: black; 
+  background-color: #b6f5f5; 
+  margin-right: 93%; 
+  float: right; 
+  font-weight: bold;
+}
+
 /** 고객센터 온라인/상담 문의 페이지 - '신청하기' 버튼 */ 
 .Button_policy_register {
   background-color: #b6f5f5; 

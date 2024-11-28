@@ -30,11 +30,13 @@ import Modify from "./review/modify";
 import Customer_main from "./customer/Customer_main";
 import Customer_notice from "./customer/customer_notice";
 import Customer_policy from "./customer/customer_policy";
+import Customer_question from "./customer/customer_question";
 import Customer_consult from "./customer/customer_consult";
 import Customer_declare from "./customer/customer_declare";
 import Index_admin from "./admin_page/index_admin";
 import LoginOK from "./main/loginOK";
 import Login_admin from "./main/login_admin";
+import Sidebar from "./admin_page/sidebar";
 import Event from "./main/event";
 import Notfound from "./pages/Notfound";
 
@@ -89,9 +91,11 @@ function App() {
         <Route path="/customer_main" element={<Customer_main />} />
         <Route path="/customer_notice" element={<Customer_notice />} />
         <Route path="/customer_policy" element={<Customer_policy />} />
+        <Route path="/customer_question" element={<Customer_question />} />
         <Route path="/customer_consult" element={<Customer_consult />} />
         <Route path="/customer_declare" element={<Customer_declare />} />
         <Route path="/index_admin/:id" element={<Index_admin />} />
+        <Route path="/sidebar" element={<Sidebar />} />
         <Route path="/loginOK" element={<LoginOK />} />
         <Route path="/login_admin" element={<Login_admin />} />
         <Route path="/event" element={<Event />} />
