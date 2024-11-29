@@ -2,7 +2,7 @@
   width: 1000px;
   min-height: 560px;
   position: relative;
-  top: 22%; 
+  top: 80px; 
   margin: 0 auto;
   display: block;
   border: 1px solid black;
@@ -245,7 +245,7 @@
 	display: inline-block; 
 	position: relative; 
 	padding-top: 4%; 
-  top: -30px;
+  top: -2px;
 	left: 2%; 
 	font-size: 36px;
 }
@@ -259,20 +259,20 @@
 .dollar2 img {
 	display: inline-block;
   position: relative;
-  bottom: 30px;
+  bottom: 10px;
 }
 
 .dollar2 h6 {
 	font-weight: bold; 
 	display: inline-block;
-  bottom: 75px;
+  bottom: -15px;
   font-size: 30px;
 }
 
 .count_money {
 	display: inline-block;
-  bottom: 38px;
-  right: -170px;
+  bottom: -15px;
+  right: -200px;
 	position: relative; 
 	font-weight: bold; 
   font-size: 27px;
