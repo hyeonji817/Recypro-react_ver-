@@ -9,8 +9,13 @@ const Home = () => {
   return (
     <div className="wrapper">
       <Header />
+      {/* 배너 컴포넌트 */}
       <Index />
+
+      {/* 인기 상품 섹션 */}
       <Popular_pd />
+
+      {/* 쇼핑 이벤트 섹션 */}
       <Shop_event />
       <Footer />
     </div>
