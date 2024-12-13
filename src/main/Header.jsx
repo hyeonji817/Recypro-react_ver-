@@ -41,10 +41,10 @@ const Header = () => {
             </ul>
           </li>
           <li>
-            <a className="link" href="./account/Login.jsx">로그인</a>
+            <a className="link" href="/account/Login">로그인</a>
           </li>
           <li>
-            <a className="link" href="./account/register.jsx">회원가입</a>
+            <a className="link" href="/account/register">회원가입</a>
           </li>
         </ul>
       </div>

@@ -63,7 +63,7 @@ a:active {
   position: relative; 
   font-family: 'S-CoreDream-3Light';
   margin-bottom: 10px; /* 간격 조절 */
-  top: 7%;
+  top: 10%;
 }
 
 .login {
@@ -89,7 +89,7 @@ a:active {
   margin: 30px 20px;
   width: 300px;
   position: relative;
-  top: -20px;
+  top: 20px;
 }
 
 .login_body Button {
@@ -102,9 +102,16 @@ a:active {
   width: 300px; 
 }
 
-.login_body .form-group input {
-  margin-bottom: 10px;
-  width: 300px;
+.form-group #id {
+  margin-bottom: -20px;
+  position: relative;
+  top: 40px;
+}
+
+.form-group #password {
+  margin-bottom: -50px;
+  position: relative;
+  top: 30px;
 }
 
 .logo {
@@ -113,6 +120,7 @@ a:active {
   color: black;
   text-decoration: none;
   margin: 0 auto;
+  padding-top: 50px;
 }
 
 .logo a {

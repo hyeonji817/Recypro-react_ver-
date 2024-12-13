@@ -2,7 +2,7 @@ import "./App.css";
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import Home from "./main/home";
 import Login from "./account/Login";
-import Register from "./account/register";
+import Register from "./account/Register";
 import FindId from "./account/find_id";
 import FindPw from "./account/find_pw";
 import Products from "./shop/Products";
@@ -62,8 +62,8 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/account/Login" element={<Login />} />
+        <Route path="/account/register" element={<Register />} />
         <Route path="/find_id" element={<FindId />} />
         <Route path="/find_pw" element={<FindPw />} />
         <Route path="/products" element={<Products />} />
