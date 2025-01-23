@@ -83,4 +83,93 @@
   z-index: 10; /* 이미지보다 앞에 위치 */
 }
 
+#wrap-center .banner-container2 {
+  background-image: url(https://cdn.prod.website-files.com/651143d00678effa4a6803f1/652cf531accc15724d1ab814_at-home.jpg); 
+  /** background-image: url(https://search.pstatic.net/sunny/?src=https%3A%2F%2Fmedia.gettyimages.com%2Fid%2F133940230%2Fvector%2Fcurrency-trading-profits-royalty-free-vector-icon-set-stickers.jpg%3Fs%3D612x612%26w%3D0%26k%3D20%26c%3DUpH0__ru8EZLPdRtzC1N5iL7g-Z4OkfArzsS4YwANas%3D&type=sc960_832); */
+  background-size: cover; 
+  border-radius: 20px; 
+  width: 2200px; 
+  height: 1200px; 
+  margin-bottom: 30px; 
+}
 
+#wrap-center .mini_title {
+  text-align: center;
+  flex-direction: row;
+  justify-content: space-between;
+  align-self: auto;
+  width: 100%; 
+  max-width: 2200px; 
+  display: flex;
+  position: static;
+  inset: auto;
+}
+
+#wrap-center .heading-4 {
+  text-align: left;
+  margin-top: 0; 
+  padding-left: 60px; 
+  font-weight: 700;
+  position: relative;
+}
+
+#wrap-center .content-section-desc {
+  clear: none; 
+  color: gray;
+  text-align: right;
+  margin-top: 6px;
+  margin-bottom: 30px;
+  padding-left: 4px;
+  padding-right: 30px;
+}
+
+#wrap-center .mini-iconlist {
+  display: grid; /* Grid layout으로 변경 */
+  grid-template-columns: repeat(2, 1fr); /* 한 줄에 2개의 열 */
+  gap: 20px; /* 아이템 간격 조정 */
+  width: 100%; 
+  max-width: 1800px; 
+  margin-top: 120px;
+  margin: 0 auto;
+  position: relative;
+  top: 150px;
+  margin-bottom: 100px;
+}
+
+#wrap-center .grid-item {
+  display: flex;
+  flex-direction: row; /* 아이콘과 텍스트를 가로로 정렬 */
+  justify-content: flex-start;
+  align-items: center;
+  width: 200px;
+}
+
+#wrap-center .grid-image {
+  background-color: white;
+  object-fit: cover;
+  background-clip: border-box;
+  border-radius: 0;
+  flex: 0 auto;
+  min-width: 80px; 
+  max-width: none; 
+  min-height: 80px; 
+  margin-right: 24px; 
+  display: block;
+}
+
+#wrap-center .grid-text {
+  width: 600px;
+}
+
+#wrap-center .heading-7 {
+  margin-top: 0;
+  font-size: 26px;
+  font-weight: 700;
+  width: 600px;
+  padding-left: 50px;
+}
+
+#wrap-center .grid-text p {
+  padding-top: 10px;
+  padding-left: 50px;
+}
