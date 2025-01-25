@@ -61,7 +61,7 @@ app.use('/uploads', (req, res, next) => {
 // API 경로 설정 (예: /api/account/register) (회원가입 처리과정)
 // 회원가입 데이터 처리 
 // 요청 본문(req.body)에서 사용자 정보 가져옴. 
-app.pose('/api/account/register', (req, res) => {
+app.post('/api/account/register', (req, res) => {
   const { id, password, name, age, gender, email } = req.body;
 
   // 요청 데이터 확인 
