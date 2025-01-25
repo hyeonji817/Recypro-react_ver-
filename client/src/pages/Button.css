@@ -32,7 +32,7 @@
 }
 
 /** 회원가입 페이지 - '회원가입' 버튼 */ 
-.Button_register {
+.Button_submit {
   background-color: rgb(53, 53, 53);
   font-size: 18px;
   color: white;
