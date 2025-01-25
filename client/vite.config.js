@@ -13,7 +13,7 @@ export default defineConfig({
     port: 5174,   // 개발 서버가 실행될 포트 지정 (기본값을 5174번)
     proxy: {
       '/api': {
-        target: 'http://localhost:5001',    // 프록시 요청을 보낼 대상 서버 URL 
+        target: 'http://localhost:5003',    // 프록시 요청을 보낼 대상 서버 URL 
         changeOrigin: true,   // 프록시 요청의 Origin 헤더를 대상 서버의 Origin으로 변경 
         rewrite: (path) => path.replace(/^\/api/, ''),    // 경로 재작성 함수. '/api'를 제거하고 대상 서버에 요청 보냄 
         // ex) 클라이언트에서 'fetch('/api/users')를 호출 -> 요청이 'http://localhost:5001/users'로 전달.
