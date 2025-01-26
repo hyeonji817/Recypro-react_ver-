@@ -157,6 +157,7 @@ const Register = () => {
             className="register_back"
             text={"뒤로가기"}
             type={"register_back"}
+            onClick={() => window.history.back()}
           />
         </div>
       </div>

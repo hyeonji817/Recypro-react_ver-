@@ -10,13 +10,13 @@ import { fileURLToPath } from "url";
 import Popular_Routes from "./routes/Popular_Product.js";   // 해당 페이지와 관련된 API 로직.
 import PP_Routes from "./routes/popular_products.js";
 
-// 라우트 경로 등록 
-app.use('/api/Popular_Product', Popular_Routes);  // Popular_Product.js 페이지 로직 실행 
-app.use('/api/popular_products', PP_Routes);    // popular_products.js 
-
 // JSON 형식의 요청을 처리하기 위한 미들웨어 
 // JSON 형식으 요청 본문을 읽고 사용할 수 있도록 설정. 
 app.use(express.json());
+
+// 라우트 경로 등록 
+app.use('/api/Popular_Product', Popular_Routes);  // Popular_Product.js 페이지 로직 실행 
+app.use('/api/popular_products', PP_Routes);    // popular_products.js 
 
 // CORS 설정 (프론트와 백 연결하는 징검다리)
 app.use(cors({
