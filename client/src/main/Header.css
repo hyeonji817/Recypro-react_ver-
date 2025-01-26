@@ -47,6 +47,7 @@
   opacity: 1;
   text-align: center;
   display: inline-block;
+  top: -50px;
 }
 
 .nav-right {
