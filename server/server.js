@@ -75,6 +75,7 @@ app.post('/api/account/register', (req, res) => {
     }
 
     // 성공적인 삽입 후 응답 
+    console.log('회원가입 성공:', results);
     res.status(201).json({ message: '회원가입 성공!' });
   });
 });

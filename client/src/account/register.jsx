@@ -23,11 +23,14 @@ const Register = () => {
   // 회원가입 처리 이벤트 기능
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log('회원가입 요청 시작:', formData);
 
     if (!isValidEmail(formData.email)) {
       alert("유효한 이메일 주소를 입력하세요.");
       return;
     }
+
+    console.log("FormData being sent:", formData);
 
     try {
       const response = await fetch("http://localhost:5003/api/account/register", {
@@ -36,7 +39,10 @@ const Register = () => {
         body: JSON.stringify(formData),
       });
 
+      console.log('서버 응답 상태:', response.status);
       const result = await response.json();
+      console.log('서버 응답 데이터:', result);
+
       if (response.ok) {
         alert(result.message);
       } else {
@@ -148,9 +154,10 @@ const Register = () => {
         </form>
         <div className="button_wrap">
           <Button
-            /** className="register" */
+            className="register" 
             text={"회원가입"}
             type={"submit"}
+            onClick={handleSubmit} // 추가 확인
           />
           <Button 
             /** className="register_back" */
