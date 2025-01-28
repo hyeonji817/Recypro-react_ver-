@@ -30,14 +30,13 @@ const Register = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:5003/api/account/register", {
-        method: "POST", 
+      const response = await fetch("http://localhost:5001/api/account/register", {
+        method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
 
       const result = await response.json();
-
       if (response.ok) {
         alert(result.message);
       } else {
@@ -70,7 +69,7 @@ const Register = () => {
           </div>
           
           <div className="form-group">
-            <label>password</label>
+            <label>Password</label>
             <input 
               type="password" 
               className="form-control" 
@@ -106,7 +105,7 @@ const Register = () => {
           </div>
 
           <div className="form-group">
-            <label className="user-only">성별</label><br />
+            <label>성별</label><br />
             <div className="gender-group">
               <label>
                 <input 
@@ -149,12 +148,12 @@ const Register = () => {
         </form>
         <div className="button_wrap">
           <Button
-            className="register"
+            /** className="register" */
             text={"회원가입"}
             type={"submit"}
           />
           <Button 
-            className="register_back"
+            /** className="register_back" */
             text={"뒤로가기"}
             type={"register_back"}
             onClick={() => window.history.back()}
