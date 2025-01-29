@@ -1,5 +1,5 @@
 import "./App.css";
-import { Routes, Route, Link, useNavigate } from "react-router-dom";
+import { Routes, Route, Router, Link, useNavigate } from "react-router-dom";
 import Home from "./main/home";
 import Login from "./account/Login";
 import Register from "./account/register";
@@ -96,7 +96,7 @@ function App() {
         <Route path="/customer_declare" element={<Customer_declare />} />
         <Route path="/index_admin/:id" element={<Index_admin />} />
         <Route path="/sidebar" element={<Sidebar />} />
-        <Route path="/loginOK" element={<LoginOK />} />
+        <Route path="/main/loginOK" element={<LoginOK />} />
         <Route path="/login_admin" element={<Login_admin />} />
         <Route path="/event" element={<Event />} />
         <Route path="*" element={<Notfound />} />
