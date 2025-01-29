@@ -80,6 +80,35 @@ app.post('/api/account/register', (req, res) => {
   });
 });
 
+// -----------------------------------------------------------------------------
+// 로그인 API 처리 기능 
+app.post('/login', (req, res) => {
+  const { id, password } = req.body; 
+
+  if (!id || !password) {
+    return res.status(400).json({ message: "아이디와 비밀번호를 입력하세요." });
+  }
+
+  const query = 'SELECT * FROM user WHERE id = ? AND password = ?'; 
+
+  pool.query(query, [id, password], (err, results) => {
+    if (err) {
+      console.error('로그인 실패:', err); 
+      return res.status(500).json({ message: "서버 오류로 인해 로그인할 수 없습니다." });
+    }
+
+    if (results.length === 0) {
+      return res.status(401).json({ message: "아이디 또는 비밀번호가 올바르지 않습니다. "});
+    }
+
+    // 로그인 성공 시 응답 
+    res.status(200).json ({
+      message: "로그인 성공!",
+      token: "dummy-token-for-now"    // 차후에 JWT 토큰 추가 가능 
+    });
+  });
+});
+
 // 서버 시작 
 // app.listen : 서버를 시작하고, 지정된 포트(5003)에서 클라이언트 요청을 대기. 
 // 성공적으로 실행되면 콘솔에 서버 주소 출력 
