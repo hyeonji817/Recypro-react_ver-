@@ -97,7 +97,7 @@ const Login = () => {
             <div className="text-center">
               <br />
               <a href="./register.jsx" className="d-block">회원가입하기</a>
-              <a href="./account/find_id.jsx" className="d-block">아이디 찾기</a>
+              <a href="/find_id.jsx" className="d-block">아이디 찾기</a>
               <a href="./find_pw.jsx" className="d-block">비밀번호 찾기</a>
             </div>
 
