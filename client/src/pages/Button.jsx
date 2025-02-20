@@ -1,8 +1,10 @@
 import "./Button.css";
 
-const Button = ({ text, type, onClick }) => {
+const Button = ({ id, text, type, className, onClick }) => {
   return (
     <button
+      id={id}
+      type={type}
       onClick={onClick}
       className={`Button Button_${type}`}
     >

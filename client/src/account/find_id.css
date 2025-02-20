@@ -25,8 +25,8 @@
   width: 360px;
   position: relative;
   margin-bottom: -10px;
-  margin-top: 50px;
-  top: 50px;
+  margin-top: -50px;
+  top: 5px;
 }
 
 .wrapper_findId .card-body {
