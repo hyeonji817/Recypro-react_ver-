@@ -128,7 +128,7 @@ app.post("/api/find_id", (req, res) => {
     return res.json({ success: false, message: "이름과 이메일을 입력해 주세요." });
   }
 
-  const sql = "SELECT id FROM users WHERE name = ? AND email = ?"; 
+  const sql = "SELECT id FROM user WHERE name = ? AND email = ?"; 
   pool.query(sql, [name, email], (err, results) => {
     if (err) {
       console.error(err); 
