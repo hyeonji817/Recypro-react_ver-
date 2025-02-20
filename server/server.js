@@ -36,6 +36,16 @@ const pool = mysql.createPool({
   queueLimit: 0     // 대기열 크기(0은 제한 없음)
 });
 
+// DB 연동 확인 (테스트용)
+pool.getConnection((err, connection) => {
+  if (err) {
+    console.error("MySQL 연결 실패: ", err); 
+  } else {
+    console.log("MySQL 연결 성공!");
+    connection.release();     // 사용한 연결 반환 
+  }
+});
+
 // ---------------------------------------------------------------------------
 // 인기상품 불러들이기 (해결 원인)
 // __dirname 대체 설정 
@@ -111,22 +121,22 @@ app.post('/login', (req, res) => {
 
 // -----------------------------------------------------------------------------
 // 아이디 찾기 API
-app.post("/find_id", (req, res) => {
+app.post("/api/find_id", (req, res) => {
   const { name, email } = req.body;
 
   if (!name || !email) {
     return res.json({ success: false, message: "이름과 이메일을 입력해 주세요." });
   }
 
-  const sql = "SELECT user_id FROM users WHERE name = ? AND email = ?"; 
+  const sql = "SELECT id FROM users WHERE name = ? AND email = ?"; 
   pool.query(sql, [name, email], (err, results) => {
     if (err) {
       console.error(err); 
-      return res.json({ success: false, userId: results[0].user_id });
+      return res.json({ success: false, message: "서버 오류가 발생했습니다." });
     } 
 
     if (results.length > 0) {
-      return res.json({ success: true, userId: results[0].user_id });
+      return res.json({ success: true, userId: results[0].id });
     } else {
       return res.json({ success: false, message: "일치하는 회원 정보가 없습니다." });
     }

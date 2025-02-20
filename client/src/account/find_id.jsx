@@ -44,6 +44,8 @@ const FindId = () => {
     }
   };
 
+  
+
   return (
     <div className="wrapper_findId">
       <div className="card align-middle">
@@ -81,7 +83,7 @@ const FindId = () => {
               />
             </div>
             
-            <p className="check" id="check"></p>
+            <p className="check" id="check">내 아이디 :</p>
             <div className="Button_findId">
               <Button 
                 id="btn-Yes"
