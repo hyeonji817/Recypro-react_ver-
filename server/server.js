@@ -143,6 +143,30 @@ app.post("/api/find_id", (req, res) => {
   });
 });
 
+// ---------------------------------------------------------------------------------
+// 비밀번호 찾기 API 
+app.post("/api/find_pw", (req, res) => {
+  const { id, name, email } = req.body;
+
+  if (!id || !name || !email) {
+    return res.json({ success: false, message: "모든 필드를 입력해 주세요." });
+  }
+
+  const sql = "SELECT password FROM user WHERE id = ? AND name = ? AND email = ?"; 
+  pool.query(sql, [id, name, email], (err, results) => {
+    if (err) {
+      console.error(err);
+      return res.json({ success: false, message: "서버 오류가 발생했습니다." });
+    }
+
+    if (results.length > 0) {
+      return res.json({ success: true, userPw: result[0].password });
+    } else {
+      return res.json({ success: false, message: "일치하는 회원 정보가 없습니다." });
+    }
+  });
+});
+
 // 서버 시작 
 // app.listen : 서버를 시작하고, 지정된 포트(5003)에서 클라이언트 요청을 대기. 
 // 성공적으로 실행되면 콘솔에 서버 주소 출력 
