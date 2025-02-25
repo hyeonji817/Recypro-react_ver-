@@ -18,12 +18,12 @@
   height: 550px;
 }
 
-#email {
+.wrapper_findPw #email {
   position: relative;
   top: -20px;
 }
 
-#btn-Yes {
+.wrapper_findPw #btn-Yes {
   border: none; 
 	font-weight: 700;
   width: 300px;
@@ -32,15 +32,15 @@
   bottom: 10px;
 }
 
-.card-body {
+.wrapper_findPw .card-body {
   padding-bottom: 100px;
 }
 
-.form-signin {
+.wrapper_findPw .form-signin {
   margin-top: 60px;
 }
 
-.form-signin .form-control {
+.wrapper_findPw .form-signin .form-control {
 	position: relative;
 	height: auto; 
 	-webkit-box-sizing: border-box;
@@ -52,52 +52,52 @@
   width: 350px;
 }
 
-.user_id {
+.wrapper_findPw .user_id {
   position: relative;
   bottom: 30px;
 }
 
-.wrapper_findPw .user_name {
+.wrapper_findPw .wrapper_findPw .user_name {
   margin-bottom: 8px;
   position: relative;
   top: -30px;
 }
 
-.user_email {
+.wrapper_findPw .user_email {
   position: relative;
   bottom: 17px;
 }
 
-.card-body button {
+.wrapper_findPw .card-body button {
   width: 350px;
   position: relative;
   top: -125px;
 }
 
-.card-title {
+.wrapper_findPw .card-title {
 	text-align: center;
   margin-top: 30px;
 }
 
-.card-title h2 {
+.wrapper_findPw .card-title h2 {
   color: #000;
 }
 
-a {
+.wrapper_findPw a {
 	color: #000;
 	text-decoration: none;
 }
 
-.links {
+.wrapper_findPw .links {
 	text-align: center;
 	margin-bottom: 10px; 
   font-weight: 700;
 }
 
-.checks {
+.wrapper_findPw .checks {
 	color: red;
 }
 
-.text2 {
+.wrapper_findPw .text2 {
   color : blue;
 }
