@@ -38,7 +38,7 @@ a:active {
   }
 }
 
-.login {
+.wrapper_login .login {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -56,7 +56,7 @@ a:active {
   transform: translate(-50%, -50%);
 }
 
-.login_title {
+.wrapper_login .login_title {
   font-weight: 700;
   left: 10%; 
   width: 150px;
@@ -84,7 +84,7 @@ a:active {
   transform: translate(-50%, -50%);
 }
 
-.login_body {
+.wrapper_login .login_body {
   font-family: 'S-CoreDream-3Light';
   margin: 30px 20px;
   width: 300px;
@@ -92,23 +92,23 @@ a:active {
   top: -10px;
 }
 
-.login_body Button {
+.wrapper_login .login_body Button {
   flex: 1;
   width: 300px;
 }
 
-.login_body .form-group {
+.wrapper_login .login_body .form-group {
   padding-bottom: 20px;
   width: 300px; 
 }
 
-.form-group #id {
+.wrapper_login .form-group #id {
   margin-bottom: -20px;
   position: relative;
   top: 40px;
 }
 
-.form-group #password {
+.wrapper_login .form-group #password {
   margin-bottom: -50px;
   position: relative;
   top: 30px;
@@ -122,10 +122,10 @@ a:active {
   margin: 0 auto;
   padding-top: 50px;
   position: relative;
-  left: -200px;
+  left: -10px;
 }
 
-.logo a {
+.wrapper_login .logo a {
   color: black; /* 링크 색상을 검은색으로 */
   text-decoration: none; /* 링크의 밑줄 제거 */
   position: relative;
@@ -134,7 +134,7 @@ a:active {
   font-size: 40px;
 }
 
-.login_body .text-center {
+.wrapper_login .login_body .text-center {
   text-align: center;
   margin-top: 80px;
   position: relative;
@@ -142,12 +142,12 @@ a:active {
   width: 300px;
 }
 
-.login_body .text-center a {
+.wrapper_login .login_body .text-center a {
   color: black;
   font-weight: bold;
 }
 
-.button-login img {
+.wrapper_login .button-login img {
   width: 300px; 
   height: auto;
 }

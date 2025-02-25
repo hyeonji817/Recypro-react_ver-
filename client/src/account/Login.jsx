@@ -53,7 +53,7 @@ const Login = () => {
     <div className="wrapper_login">
       <div className="login">
         <h1 className="logo">
-          <a href="../main/home.jsx">리싸이프로</a>
+          <a href="../main/Home.jsx">리싸이프로</a>
         </h1>
         <form onSubmit={handleSubmit}>
           <br /><br /><br /><br />
@@ -96,9 +96,9 @@ const Login = () => {
             />
             <div className="text-center">
               <br />
-              <a href="./register.jsx" className="d-block">회원가입하기</a>
+              <a href="./register" className="d-block">회원가입하기</a>
               <a href="/find_id" className="d-block">아이디 찾기</a>
-              <a href="/find_pw.jsx" className="d-block">비밀번호 찾기</a>
+              <a href="/find_pw" className="d-block">비밀번호 찾기</a>
             </div>
 
             <div className="button-login">
