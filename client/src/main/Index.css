@@ -45,11 +45,13 @@ img {
 
 #wrap-center .banner-container2 {
   background-image: url(https://cdn.prod.website-files.com/651143d00678effa4a6803f1/652cf531accc15724d1ab814_at-home.jpg); 
-  /** background-image: url(https://search.pstatic.net/sunny/?src=https%3A%2F%2Fmedia.gettyimages.com%2Fid%2F133940230%2Fvector%2Fcurrency-trading-profits-royalty-free-vector-icon-set-stickers.jpg%3Fs%3D612x612%26w%3D0%26k%3D20%26c%3DUpH0__ru8EZLPdRtzC1N5iL7g-Z4OkfArzsS4YwANas%3D&type=sc960_832); */
   background-size: cover; 
   border-radius: 20px; 
   width: 2200px; 
   height: 1200px; 
+  position: relative;
+  left: 180px;
+  top: 10px;
   margin-bottom: 30px; 
 }
 
@@ -67,8 +69,8 @@ img {
 
 #wrap-center .heading-4 {
   text-align: left;
-  margin-top: 0; 
-  padding-left: 60px; 
+  margin-top: 10px; 
+  padding-left: 170px; 
   font-weight: 700;
   position: relative;
 }
@@ -78,6 +80,7 @@ img {
   color: gray;
   text-align: right;
   margin-top: 6px;
+  margin-right: -200px;
   margin-bottom: 30px;
   padding-left: 4px;
   padding-right: 30px;
