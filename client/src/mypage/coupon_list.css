@@ -7,7 +7,7 @@
 }
 
 .couponList_wrapper .display-3 {
-  margin-left: -80px;
+  margin-left: -180px;
 	color: black;
 	position: relative;
 	font-weight: bold;
@@ -20,7 +20,7 @@
   float: left;
 	width: 250px;
 	position: relative;
-	left: 1.5%;
+	left: -58px;
 	top: 3%;
 	min-height: 480px;
 	margin-bottom: 10%;
