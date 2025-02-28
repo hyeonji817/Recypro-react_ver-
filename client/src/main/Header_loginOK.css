@@ -95,6 +95,13 @@
   top: 13px;
 }
 
+.common_top .nav-right > li img {
+  margin: 0 auto;
+  width: 50px;
+  position: relative;
+  padding-top: -17px;
+}
+
 .common_top .nav-right > li ul.submenu {
   display: none;
   position: absolute;

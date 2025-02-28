@@ -1,4 +1,5 @@
 import "./shoppingInfo_cart.css";
+import Header_loginOK from "../main/Header_loginOK";
 import Button from "../pages/Button";
 import card from "../assets/shop/card.png";
 import basket from "../assets/shop/shopping_basket1.png";
@@ -7,6 +8,9 @@ import purchase from "../assets/shop/purchase_order.png";
 const shoppingInfo_cart = () => {
   return (
     <div className="shoppingInfo_wrap">
+      <div className="loginOK_Header">
+        <Header_loginOK />
+      </div>
       <div className="title">
         <div className="title-container">
           <h1 className="display-3">배송정보</h1>
