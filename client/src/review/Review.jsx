@@ -29,7 +29,7 @@ const Review = () => {
               <tr>
                 <td>1</td>
                 <td>단골될게요!</td>
-                <td>witch0817</td>
+                <td>guswl0817</td>
                 <td>2024-11-23 16:56</td>
                 <td>
                   <a href="#" className="btn btn-info">조회하기</a>
@@ -38,7 +38,7 @@ const Review = () => {
               <tr>
                 <td>2</td>
                 <td>좋아요</td>
-                <td>witch0817</td>
+                <td>guswl0817</td>
                 <td>2024-11-23 16:57</td>
                 <td>
                   <a href="#" className="btn btn-info">조회하기</a>
@@ -47,7 +47,7 @@ const Review = () => {
               <tr>
                 <td>3</td>
                 <td>단골되고 싶어요!</td>
-                <td>witch0817</td>
+                <td>guswl0817</td>
                 <td>2024-11-23 16:58</td>
                 <td>
                   <a href="#" className="btn btn-info">조회하기</a>
@@ -56,7 +56,7 @@ const Review = () => {
               <tr>
                 <td>4</td>
                 <td>상품 재구매하고 싶어요!</td>
-                <td>witch0817</td>
+                <td>guswl0817</td>
                 <td>2024-11-23 17:10</td>
                 <td>
                   <a href="#" className="btn btn-info">조회하기</a>
@@ -65,7 +65,7 @@ const Review = () => {
               <tr>
                 <td>5</td>
                 <td>안녕하세요</td>
-                <td>witch0817</td>
+                <td>guswl0817</td>
                 <td>2024-11-23 17:11</td>
                 <td>
                   <a href="#" className="btn btn-info">조회하기</a>

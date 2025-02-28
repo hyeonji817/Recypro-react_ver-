@@ -38,6 +38,10 @@
   text-align: center;
 }
 
+.Review_wrapper table td {
+  font-weight: 400;
+}
+
 .Review_wrapper table td a {
   background-color: #9FFBF4;
   display: inline-block; 
