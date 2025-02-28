@@ -5,7 +5,7 @@
 }
 
 .productReview_history_wrapper .display-3 {
-  margin-left: -600px;
+  margin-left: -700px;
 	color: black;
 	position: relative;
 	font-weight: bold;
@@ -18,7 +18,7 @@
   float: left;
 	width: 250px;
 	position: relative;
-	left: 120px;
+	left: 22px;
 	top: 3%;
 	min-height: 480px;
 	margin-bottom: 10%;
