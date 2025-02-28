@@ -13,6 +13,10 @@
   text-align: center;
 }
 
+.View_wrapper table td {
+  font-weight: 400;
+}
+
 .View_wrapper .View_content {
   min-height: 200px;
   text-align: center;

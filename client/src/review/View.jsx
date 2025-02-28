@@ -23,7 +23,7 @@ const View = () => {
               </tr>
               <tr>
                 <td className="View_user">작성자</td>
-                <td colSpan="2">witch0817</td>
+                <td colSpan="2">guswl0817</td>
               </tr>
               <tr>
                 <td className="View_date">작성일자</td>
