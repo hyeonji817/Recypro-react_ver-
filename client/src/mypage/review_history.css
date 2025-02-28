@@ -7,7 +7,7 @@
 }
 
 .reviewHistory_wrapper .display-3 {
-  margin-left: -6%;
+  margin-left: -84px;
 	color: black;
 	position: relative;
 	font-weight: bold;
@@ -20,7 +20,7 @@
   float: left;
 	width: 250px;
 	position: relative;
-	left: 1.5%;
+	left: -51px;
 	top: 3%;
 	min-height: 480px;
 	margin-bottom: 10%;
