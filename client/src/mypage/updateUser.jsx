@@ -55,7 +55,7 @@ const updateUser = () => {
               <div className="form-group">
                 <h5 className="tap1">아이디</h5>
                 <div className="tap2">
-                  <input type="text" name="id" className="form-control" value="witch0817" readOnly/>
+                  <input type="text" name="id" className="form-control" value="guswl0817" readOnly/>
                 </div>
               </div>
               <div className="form-group">
