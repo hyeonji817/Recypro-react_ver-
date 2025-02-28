@@ -61,19 +61,19 @@ const review_history = () => {
             <tr>
               <td>1</td>
               <td>안녕하세요</td>
-              <td>witch0817</td>
+              <td>guswl0817</td>
               <td>2024-11-23</td>
             </tr>
             <tr>
               <td>2</td>
               <td>단골될게요!</td>
-              <td>witch0817</td>
+              <td>guswl0817</td>
               <td>2024-11-23</td>
             </tr>
             <tr>
               <td>3</td>
               <td>좋아요</td>
-              <td>witch0817</td>
+              <td>guswl0817</td>
               <td>2024-11-23</td>
             </tr>
           </tbody>
