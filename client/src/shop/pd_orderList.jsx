@@ -26,7 +26,7 @@ const pd_orderList = () => {
           </thead>
           <tbody>
             <tr>
-              <th>witch0817</th>
+              <th>guswl0817</th>
               <th>곽현지</th>
               <th>유기농 설거지 비누</th>
               <th>2024.11.19</th>
@@ -51,7 +51,7 @@ const pd_orderList = () => {
               </th>
             </tr>
             <tr>
-              <th>witch0817</th>
+              <th>guswl0817</th>
               <th>곽현지</th>
               <th>면 비누망</th>
               <th>2024.11.19</th>
@@ -75,7 +75,7 @@ const pd_orderList = () => {
                 </span>
               </th>
             </tr><tr>
-              <th>witch0817</th>
+              <th>guswl0817</th>
               <th>곽현지</th>
               <th>손목 터널증후군 운동</th>
               <th>2024.11.19</th>

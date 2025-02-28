@@ -19,6 +19,10 @@
   margin: 0 auto;
 }
 
+.pd_orderList_wrapper table th {
+  font-weight: 400;
+}
+
 .pd_orderList_wrapper .review {
   color: white;
   font-weight: 700;
