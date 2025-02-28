@@ -4,7 +4,7 @@
 }
 
 .Mypage_wrapper .display-3 {
-  margin-left: -550px;
+  margin-left: -350px;
   float: left; 
   color: black;
   position: relative;
@@ -19,7 +19,7 @@
   float: left;
   width: 250px;
   position: relative;
-  left: 1%; 
+  left: -17px; 
   top: 3%; 
   min-height: 480px;
   margin-bottom: 10%; 
