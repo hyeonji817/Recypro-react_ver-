@@ -1,12 +1,12 @@
 .mylevel_wrapper .mylevel_title {
-  margin-top: 15%; 
+  margin-top: 8%; 
   height: 150px;
   right: 600px;
   position: relative;
 }
 
 .mylevel_wrapper .display-3 {
-  margin-left: -6%;
+  margin-left: -100px;
 	color: black;
 	position: relative;
 	font-weight: bold;
@@ -19,7 +19,7 @@
 .flow_chart_icon {
   position: relative;
 	width: 100px; 
-	right: 200px;
+	right: 60px;
 	float: right;
 	height: 100px;  
 	bottom: 220px;
@@ -34,7 +34,7 @@
   float: left;
 	width: 250px;
 	position: relative;
-	left: 1%;
+	left: -17px;
 	top: 3%;
 	min-height: 480px;
 	margin-bottom: 10%;
