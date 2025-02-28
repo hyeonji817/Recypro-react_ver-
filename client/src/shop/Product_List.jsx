@@ -4,7 +4,6 @@ import soap from "../assets/shop/1_3-1_minimum.jpg";
 import towel from "../assets/shop/3_towel_minimum.png";
 import wash from "../assets/shop/8_wash-6_minimum.jpg";
 import poobRefill from "../assets/shop/5_puppy_poobrefill_minimum.png";
-import Net from "../assets/shop/9_cbag-1_minimum.jpg"; 
 import plastic_diet from "../assets/shop/6_plastic_diet_minimum.png";
 import memo_paper from "../assets/shop/memo_paper_minimum.jpg"; 
 import soapnet from "../assets/shop/2_soapnet_minimum.png";

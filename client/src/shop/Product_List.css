@@ -19,7 +19,7 @@
 }
 
 /** 상품리스트 목록 첫 번째 하위 레이아웃 */ 
-#productLists {
+.Product_List_wrap #productLists {
   width: 100%;
   height: 500px;
   position: relative;
@@ -36,7 +36,7 @@
 }
 
 /** 상품리스트 목록 두 번째 하위 레이아웃 */
-#product_list {
+.Product_List_wrap #product_list {
   /** width: 1500px; */
   height: 500px; 
   margin: 0 auto;
@@ -46,7 +46,7 @@
 }
 
 /** 특정 레이아웃 없이 목록 리스트 태그들이 존재할 경우에만 적용 */ 
-ul {
+.Product_List_wrap ul {
   list-style: none;     /** 목록 리스트 중에서 점을 없애는 스타일 방식 */ 
   padding: 0;
   margin: 0;
@@ -54,21 +54,21 @@ ul {
 }
 
 /** 나열된 상품리스트 */ 
-.sub_explain {
+.Product_List_wrap .sub_explain {
   color: black; 
   margin-right: -25%;
   width: 300px;
 }
 
 /** 상품리스트 이미지 */
-.sub_explain img {
+.Product_List_wrap .sub_explain img {
   width: 220px;
   border-radius: 30px;
   border-color: black;
 }
 
 /** 상품리스트 상세내용 */ 
-.sub_explain p {
+.Product_List_wrap .sub_explain p {
   width: 220px;
   height: 70px; 
   margin-top: -2%;
@@ -76,7 +76,7 @@ ul {
 }
 
 /** 상품리스트 정보 */ 
-.sub {
+.Product_List_wrap .sub {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -85,7 +85,7 @@ ul {
 }
 
 /** 상품명 */ 
-.sub_explain h2 {
+.Product_List_wrap .sub_explain h2 {
   margin-top: 20px;
   font-size: 22px;
   right: 14%;
@@ -97,21 +97,22 @@ ul {
 }
 
 /** 상품 상세설명 */ 
-.sub_explain h5 {
+.Product_List_wrap .sub_explain h5 {
   font-size: 16px;
   top: 5%;
   font-weight: 700;
   position: relative;
 }
 
-.sub_explain p {
+.Product_List_wrap .sub_explain p {
   width: 240px;
 }
 
 /** '상세 정보' 버튼 스타일 */ 
-.button-info {
+.Product_List_wrap .button-info {
   display: inline-block;
   padding: 10px 20px;
+  position: relative;
   font-size: 16px;
   font-weight: bold;
   text-align: center;
@@ -127,15 +128,21 @@ ul {
 }
 
 /** 가격 */ 
-.sub_menu h6 {
+.Product_List_wrap .sub_menu h6 {
   margin-top: 80px;
   font-weight: 700;
   right: -30%;
   margin-bottom: -1px;
 }
 
+/** 가격 */ 
+.Product_List_wrap #sub_menu {
+  float: right;
+  top: 0;
+}
+
 /** 가격부분 폰트 설정 */ 
-h6 {
+.Product_List_wrap h6 {
   top: 2%; 
   width: 90px;
   font-size: 18px; 
