@@ -79,7 +79,7 @@ const cart = () => {
               <th></th>
               <th></th>
               <th>총액</th>
-              <th></th>
+              <th>5,900</th>
               <th></th>
             </tr>
           </table>
