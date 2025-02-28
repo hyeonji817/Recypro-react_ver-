@@ -1,5 +1,5 @@
 .updateUser_title {
-  margin-left: 90px;
+  margin-left: 60px;
 	margin-bottom: 10px;
 	margin-top: 170px;
 	height: 100px;
@@ -9,7 +9,7 @@
   float: left;
 	width: 250px;
 	position: relative;
-	left: 1.5%;
+	left: -10px;
 	top: 3%;
 	min-height: 480px;
 	margin-bottom: 10%;
