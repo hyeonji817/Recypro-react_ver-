@@ -3,7 +3,7 @@ import user from "../assets/user.png";
 
 const Header_loginOK = () => {
   return (
-    <header className="common_top">
+    <header className="common_top2">
       <div className="header_nav">
         <a className="logo" href="#">리싸이프로</a>
         <ul className="nav-right">

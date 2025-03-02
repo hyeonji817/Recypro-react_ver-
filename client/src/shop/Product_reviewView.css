@@ -14,6 +14,13 @@
 .Product_reviewView_wrapper th {
   background-color: #eeeeee;
   text-align: center;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.Product_reviewView_wrapper table td {
+  font-size: 22px;
+  font-weight: bold;
 }
 
 .reviewView_title {
