@@ -49,6 +49,8 @@
   font-size: 18px;
   margin-top: 10px;
   font-weight: bold;
+  position: relative;
+  right: 26px;
 }
 
 /** 로딩 텍스트 스타일 */
