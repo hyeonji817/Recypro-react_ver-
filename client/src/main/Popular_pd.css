@@ -99,7 +99,7 @@
   display: flex;
   justify-content: space-between; /* 좌우로 배치 */
   align-items: center; /* 세로 정렬 */
-  margin-top: 350px; /* 여백 */
+  margin-top: 370px; /* 여백 */
   width: 100%;
   position: absolute;
 }
