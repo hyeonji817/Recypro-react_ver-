@@ -1,9 +1,6 @@
 import "./Index.css";
 import "../js/Index.js";
 import { useEffect } from "react";
-import mainImage1 from "../assets/main1_2.png";
-import mainImage2 from "../assets/main2_2.png";
-import cherryBlossom from "../assets/cherryblossom.png";
 import trash2 from "../assets/trash2.png";
 import recycle from "../assets/recycle.png";  
 import calender from "../assets/calender.png";
