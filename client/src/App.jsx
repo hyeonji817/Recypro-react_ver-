@@ -5,7 +5,7 @@ import Login from "./account/Login";
 import Register from "./account/register";
 import FindId from "./account/find_id";
 import FindPw from "./account/find_pw";
-import ChangePw from "./account/ChangePassword";
+import ChangePassword from "./account/ChangePassword";
 import Products from "./shop/Products";
 import Product from "./shop/Product";
 import Cart from "./shop/cart";
@@ -67,8 +67,8 @@ function App() {
         <Route path="/account/register" element={<Register />} />
         <Route path="/find_id" element={<FindId />} />
         <Route path="/find_pw" element={<FindPw />} />
-        <Route path="/ChangePw" element={<ChangePw />} />
-        <Route path="/products" element={<Products />} />
+        <Route path="/ChangePassword" element={<ChangePassword />} />
+        <Route path="/shop/products" element={<Products />} />
         <Route path="/product" element={<Product />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/shoppingInfo_cart" element={<ShoppingInfo_cart />} />

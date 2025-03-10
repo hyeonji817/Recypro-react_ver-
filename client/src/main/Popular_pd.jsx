@@ -19,6 +19,8 @@ const Popular_pd = () => {
     fetchProducts();
   }, []);
 
+  console.log("products 값 결과 : ", products);
+
   return (
     <div className="popular-products">
       <h2>인기 상품</h2>
