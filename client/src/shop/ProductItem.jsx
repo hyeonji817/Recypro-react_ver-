@@ -10,7 +10,7 @@ const ProductItem = ({ product }) => {
       <div className="product-item" onClick={() => navigate(`/product/${product.productId}`)}>
         <img src={`http://localhost:5003/uploads/shop/${product.filename}`} alt={product.pname} />
         <h2>{product.pname}</h2>
-        <p>{product.pname}</p>
+        <p>{product.description}</p>
         <div className="product_details">
           <a href="./Product.jsx" className="button-info">
             상세정보 &raquo;
