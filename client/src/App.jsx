@@ -68,7 +68,7 @@ function App() {
         <Route path="/find_id" element={<FindId />} />
         <Route path="/find_pw" element={<FindPw />} />
         <Route path="/ChangePassword" element={<ChangePassword />} />
-        <Route path="/shop/products" element={<Products />} />
+        <Route path="/shop/Products" element={<Products />} />
         <Route path="/product" element={<Product />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/shoppingInfo_cart" element={<ShoppingInfo_cart />} />
