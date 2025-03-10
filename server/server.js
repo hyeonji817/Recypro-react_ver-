@@ -1,4 +1,5 @@
 import express from "express";  // express : Node.js 기반 웹 애플리케이션 프레임워크. API 요청 처리.
+import bcryptjs from "bcryptjs"; 
 const app = express();
 const port = 5003;    // 프론트엔드에서 호출할 포트와 일치해야 한다. 
 import cors from "cors";    // 프론트엔드와 백엔드 간의 통신 허용. 
@@ -165,6 +166,31 @@ app.post("/api/find_pw", (req, res) => {
       return res.json({ success: false, message: "일치하는 회원 정보가 없습니다." });
     }
   });
+});
+
+// 비밀번호 변경 요청 처리 
+// 가짜 사용자 데이터 (실제로는 DB 사용)
+let user = {
+  id: 1, 
+  username: "user",
+  password: "$2b$10$abcdefghijklmnopqrstuv" // 해시된 비밀번호 (bcrypt 사용)
+};
+
+// 비밀번호 변경 API 
+app.post("/api/ChangePassword", async (req, res) => {
+  const { currentPassword, newPassword } = req.body;
+
+  // 현재 비밀번호 확인 
+  const passwordMatch = await bcryptjs.compare(currentPassword, user.password);
+  if (!passwordMatch) {
+    return res.status(400).json({ message: "현재 비밀번호가 일치하기 않습니다." });
+  }
+
+  // 새 비밀번호 해싱 후 저장 
+  const hashedNewPassword = await bcrypt.hash(newPassword, 10);
+  user.password = hashedNewPassword;
+  
+  res.json ({ message: "비밀번호가 성공적으로 변경되었습니다." });
 });
 
 // 서버 시작 
