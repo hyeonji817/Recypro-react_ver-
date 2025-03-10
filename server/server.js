@@ -193,6 +193,15 @@ app.post("/api/ChangePassword", async (req, res) => {
   res.json ({ message: "비밀번호가 성공적으로 변경되었습니다." });
 });
 
+// 상품 목록 조회 API 
+app.get("/api/Products", (req, res) => {
+  const sql = "SELECT * FROM product";
+  pool.query(sql, (err, result) => {
+    if (err) return res.json({ error: err });
+    res.json(result);
+  });
+});
+
 // 서버 시작 
 // app.listen : 서버를 시작하고, 지정된 포트(5003)에서 클라이언트 요청을 대기. 
 // 성공적으로 실행되면 콘솔에 서버 주소 출력 
