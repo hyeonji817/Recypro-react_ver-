@@ -6,6 +6,14 @@ import Button from "../pages/Button";
 import Header_loginOK from "../main/Header_loginOK";
 
 const Product = () => {
+  const { id } = useParams();
+  const [product, setProduct] = useState(null);
+
+  useEffect(() => {
+    // 서버에서 상품 정보를 가져옴 
+    const fetchProduct = async () => {};
+  })
+
   return (
     <div className="Product_wrap">
       <div className="Product_Header">
