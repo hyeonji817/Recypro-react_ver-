@@ -1,8 +1,7 @@
 import "./Product.css";
-import soap from "../assets/shopdetail/3-1.jpg";
-import star from "../assets/shop/star.png";
-import shipment from "../assets/shipment.png"; 
-import alarm from "../assets/shop/alarm.png"; 
+import React, { useEffect, useState } from "react"; 
+import { useParams } from "react-router-dom";
+import axios from "axios";
 import Button from "../pages/Button";
 import Header_loginOK from "../main/Header_loginOK";
 
