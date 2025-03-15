@@ -1,3 +1,12 @@
+@charset "UTF-8";
+
+@font-face {
+  font-family: 'HakgyoansimDunggeunmisoTTF-B';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2408-5@1.0/HakgyoansimDunggeunmisoTTF-B.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+}
+
 .Product_wrap {
   margin: 0;
   padding: 0;
@@ -5,45 +14,40 @@
 	margin-top: -100px;
 }
 
-/** 상품 정보 (제목명) */ 
-.Product_wrap .title {
-	margin-top: 220px;
-	height: 140px;
-	right: 100px;
+.Product_wrap .product-detail {
 	position: relative;
+	left: 30px;
 }
 
-.btn {
-	color: white;
-}
-
-.btn btn-secondary {
-	font-size: 20px;
-}
-
-.btn-warning {
-	font-size: 20px;
-	color: white;
+.Product_wrap .Product_title h2 {
+	position: relative;
+	top: 300px;
+	left: 170px;
+	font-size: 70px;
+	font-weight: bold;
+	font-family: 'HakgyoansimDunggeunmisoTTF-B';
 }
 
 /** 특정 상품 레이아웃 */ 
 .Product_wrap .row {
 	font-size: 20px;
 	border: 5px solid #eee;
-	right: 5%;
+	left: 450px;
+	top: 400px;
 	background: white;
 	width: 1400px;
 	height: 650px;
 	position: relative;
+	margin-bottom: 600px;
 }
 
 /** 상세페이지 이미지 */ 
-.pd_img {
+.Product_wrap .pd_img {
   width: 100%;
 }
 
 /** '상품 정보' 제목 요소 */
-.display-3 {
+.Product_wrap .display-3 {
 	top: 15%;
 	left: 220px;
   position: relative;
@@ -53,12 +57,12 @@
 	text-shadow: 1px 1px 5px #bdbdbd;
 }
 
-.table table-hover {
+.Product_wrap .table table-hover {
 	font-size: 20px;
 }
 
 /** 상품 이미지 */ 
-.col-md-5 img {
+.Product_wrap .col-md-5 img {
 	border-radius: 30px;
 	top: 7%;
 	position: relative;
@@ -67,7 +71,7 @@
 }
 
 /** 상품 정보 데이터 */
-.sub_explain {
+.Product_wrap .sub_explain {
 	color: black;
 	font-weight: bold;
 	margin-left: 10%;
@@ -75,42 +79,54 @@
 	position: relative;
 }
 
-.sub_explain p {
-	width: 220px !important; 
-	height: 45px !important;
-	margin-top: -2% !important;
+.Product_wrap .sub_explain p {
+	width: 600px !important; 
+	height: 40px !important;
 	text-align: left !important;  
+	font-family: 'HakgyoansimDunggeunmisoTTF-B';
 }
 
 /** 상품명 */ 
-.pname {
+.Product_wrap .pname {
 	margin-top: 10px;
 	position: relative;
 }
 
-.pname h3 {
+.Product_wrap .pname h3 {
 	width: 500px !important; 
   font-weight: bold;
   margin-bottom: 20px;
+	font-family: 'HakgyoansimDunggeunmisoTTF-B';
 }
 
 /** 상품 상세설명 */ 
-.desc {
+.Product_wrap .desc {
 	margin-top: 10px;
-	font-weight: 700;
+	font-weight: 100;
 	position: relative;
 }
 
-.desc h5 {
+.Product_wrap .sub_explain h4 b {
+	position: relative;
+	bottom: 50px;
+	font-family: 'HakgyoansimDunggeunmisoTTF-B';
+}
+
+.Product_wrap .desc h5 {
 	width: 420px !important;
 	height: 70px !important; 
 	margin-top: 5% !important;
 	text-align: left; 
-  margin-bottom: 10px;
+  margin-bottom: 60px;
+	font-size: 28px;
+}
+
+.Product_wrap .desc h5 p {
+	font-weight: 400;
 }
 
 /** 상품코드 버튼 */
-.Button_badge-danger {
+.Product_wrap .Button_badge-danger {
   background-color: #dc3545;
   font-size: 12px;
   color: white;
@@ -128,27 +144,33 @@
 }
 
 /** 버튼 영역 */
-.button {
+.Product_wrap .button {
 	font-weight: 700;
 }
 
 /** 윗 라인 버튼 (장바구니 담기, 상품 목록, 리뷰확인) */ 
 .Product_wrap .product_bt {
-	margin-top: 10%;
+	margin-top: 3%;
   width: 500px;
   float: right;
-  position: absolute;
-  bottom: -110px;
+	left: -1190px;
+  position: relative;
+  bottom: -60px;
+}
+
+.Product_wrap .product_bt a {
+	font-weight: bold;
+	font-family: 'HakgyoansimDunggeunmisoTTF-B';
 }
 
 /** 첫째줄 버튼 라인 */ 
-.product_bt button {
+.Product_wrap .product_bt button {
   margin-bottom: 60px;
   margin-left: 10px;
 }
 
 /** '장바구니 담기' 버튼 */
-.cart_into {
+.Product_wrap .cart_into {
 	color: black;
 	font-weight: 700;
   margin-bottom: 50px;
@@ -157,20 +179,25 @@
 
 /** 두 번째 줄 버튼 레이아웃 (주문하기 버튼 라인) */ 
 .Product_wrap .product_bt2 {
-	margin-top: 10%;
+	margin-top: 13%;
 	width: 500px;
 	float: right;
-	left: 10px;
+	left: -650px;
 	margin-bottom: -70px;
 	position: absolute;
 }
 
+.Product_wrap .product_bt2 a {
+	font-weight: bold;
+	font-family: 'HakgyoansimDunggeunmisoTTF-B';
+}
+
 /** 주문내역 조회 버튼 */ 
-.Button_pd_orderlist {
+.Product_wrap .Button_pd_orderlist {
   margin-left: 10px;
 }
 
-.sub_container {
+.Product_wrap .sub_container {
 	left: 23%;
 	width: 350px;
 }
@@ -181,7 +208,7 @@
 	margin: 0 auto;
 }
 
-.membership {
+.Product_wrap .membership {
 	width: 1700px;
 	height: 460px;
 	margin: 0 auto;
@@ -192,20 +219,20 @@
 	bottom: 5%;
 }
 
-.mb_title {
+.Product_wrap .mb_title {
 	text-align: center;
 	margin: 0 auto;
 	padding-top: 2%;
 }
 
-.mb_title h2 {
+.Product_wrap .mb_title h2 {
 	font-weight: 900;
 	font-size: 40px;
 	position: relative;
 	top: 1%;
 }
 
-#event {
+.Product_wrap #event {
 	position: relative !important;
 	width: auto !important;
 	/** background: #eee !important; */ 
@@ -214,7 +241,7 @@
 	top: 5% !important;
 }
 
-#event li {
+.Product_wrap #event li {
 	padding: 0;
 	width: 24%;
 	float: left;
@@ -222,40 +249,40 @@
 	display: block;
 }
 
-#event li:first-child {
+.Product_wrap #event li:first-child {
 	border-right: 2px solid gray;
 	height: 300px;
 	position: relative;
 	top: 2%;
 }
 
-#event li:nth-child(2) {
+.Product_wrap #event li:nth-child(2) {
 	border-right: 2px solid gray;
 	height: 300px;
 }
 
-#event li:nth-child(3) {
+.Product_wrap #event li:nth-child(3) {
 	border-right: 2px solid gray;
 	height: 300px;
 }
 
-#event li:nth-child(4) {
+.Product_wrap #event li:nth-child(4) {
 	margin: 0 auto;
 	padding-left: 2%;
 }
 
 /** 신규회원 쿠폰발급 */
-.coupon_give {
+.Product_wrap .coupon_give {
 	display: block;		/** display 속성이 약함. 좀 더 공부해야 겠다 */
 	background: #FFF612;
 	margin: 0 auto;
 	width: 90%;
 	height: 260px;
 	margin-bottom: 4%;
-	margin-left: 20px;
+	margin-left: 10px;
 }
 
-.new_member_give {
+.Product_wrap .new_member_give {
 	background: white;
 	border: 2px solid black;
 	border-radius: 30px;
@@ -266,10 +293,10 @@
 	top: 5%;
 }
 
-.new_member_give_title h6 {
+.Product_wrap .new_member_give_title h6 {
 	text-align: center;
   position: relative;
-  right: 33px;
+  right: -17px;
 	padding-top: 3%;
 	font-weight: bold;
 	font-size: 15px;
@@ -278,7 +305,7 @@
 }
 
 /** 지급할 쿠폰 가격 */ 
-.pay h5 {
+.Product_wrap .pay h5 {
 	text-align: center;
   position: relative;
   top: 3px;
@@ -286,94 +313,80 @@
 	font-size: 28px;
 }
 
-.direct_give h4 {
+.Product_wrap .direct_give h4 {
 	text-align: center;
 	font-weight: bold;
 	padding-top: 10%;
 }
 
-.coupon_event h6 {
+.Product_wrap .coupon_event h6 {
 	text-align: center;
   position: relative; 
-  right: 45px;
+  right: -17px;
 	padding-top: 8%;
 	font-weight: bold;
 	font-size: 17px;
 	width: 330px;
 }
 
-.star img {
-	display: block; 
-	margin: 0 auto;
+/** 등급별 혜택 */
+.Product_wrap .Grade_Star img {
 	position: relative;
-	bottom: 10px;
-  left: 5px;
+	left: 150px;
 }
 
-.level h4 {
-	text-align: center; 
-	padding-top: 14%;
-	font-weight: bold; 
-	font-size: 27px;
-	position: relative; 
-  left: 5px;
-	bottom: 36px;
+.Product_wrap .Grade_Benefit_title h4 {
+	margin-top: 22px;
+	font-weight: bold;
+	position: relative;
+	left: 135px;
 }
 
-.level_event h6 {
+.Product_wrap .Grade_Desc h6 {
+	margin-top: 40px;
+	font-weight: bold;
+	position: relative;
+	left: 2px;
 	text-align: center;
-	top: -15px; 
-  right: 25px;
-	position: relative;
-	font-weight: bold; 
-	font-size: 17px;
-	width: 400px;
-	height: 65px; 
 }
 
-/** 무료배송 이미지 */ 
-.truck img {
-	display: block; 
-	margin: 0 auto;
+.Product_wrap .shipment img {
 	position: relative;
-	padding-top: 3%;
+	left: 150px;
 	width: 100px;
+	margin-top: 10px;
 }
 
-.shipment_title h4 {
-	text-align: center; 
-	padding-top: 2%;
-	font-weight: bold;
-	font-size: 27px;
+.Product_wrap .free_shipment_title h4 {
+	font-weight: bold; 
+	margin-top: 10px;
+	position: relative;
+	left: 150px;
 }
 
-.shipment_event h6 {
-	text-align: center; 
-  position: relative;
-  right: 50px;
-	padding-top: 7%;
-	font-weight: bold;
-	width: 360px;
-}
-
-/** 알림설정(신상 UP TO) 이미지 */ 
-.alarm_event img {
-	display: block; 
-	margin: 0 auto; 
-	position: relative;  
-}
-
-.new_update h4 {
-	text-align: center; 
-	padding-top: 6%; 
+.Product_wrap .free_shipment_desc h6 {
+	text-align: center;
+	margin-top: 30px;
+	position: relative;
 	font-weight: bold;
 }
 
-.new_discount h6 {
-	text-align: center; 
-  position: relative;
-  right: 35px;
-	padding-top: 7%; 
+.Product_wrap .clock img {
+	position: relative;
+	left: 155px;
+}
+
+.Product_wrap .New_update_title h4 {
+	margin-top: 22px;
 	font-weight: bold;
-	width: 355px;
+	position: relative;
+	left: 140px;
+}
+
+.Product_wrap .New_update_desc h6 {
+	text-align: center;
+	margin-top: 30px;
+	position: relative;
+	left: 22px;
+	font-weight: bold;
 }

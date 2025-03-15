@@ -3,6 +3,9 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import Button from "../pages/Button";
+import star from "../assets/shop/star.png"; 
+import shipment from "../assets/shipment.png";
+import clock from "../assets/shop/alarm.png";
 import Header_loginOK from "../main/Header_loginOK";
 
 const Product = () => {
@@ -68,6 +71,9 @@ const Product = () => {
                   <p>{product.description}</p>
                 </h5>
               </span>
+              <h4>
+                <b>가격 : {product.price} 원</b>
+              </h4>
               <p>
                 <b>상품 코드 : </b>
                 <span className="badge badge-danger">{product.productId}</span>
@@ -84,9 +90,6 @@ const Product = () => {
                 <b>재고 수 : </b>
                 {product.numberOfstock}
               </p>
-              <h4>
-                <b>가격 : {product.price} 원</b>
-              </h4>
             </div>
 
             {/* 버튼 영역 */}
@@ -95,7 +98,7 @@ const Product = () => {
                 <div className="product_bt">
                   <a
                     className="btn btn-default btn-lg"
-                    style={{ backgroundColor: "#b6f5f5", marginRight: "3%" }}
+                    style={{ backgroundColor: "#b6f5f5", marginRight: "2.5%" }}
                     href="/cart"
                   >
                     장바구니 담기
@@ -103,14 +106,14 @@ const Product = () => {
                   <a
                     href="/products"
                     className="btn btn-default btn-lg"
-                    style={{ backgroundColor: "#b6f5f5", marginRight: "3%" }}
+                    style={{ backgroundColor: "#b6f5f5", marginRight: "2.5%" }}
                   >
                     상품 목록
                   </a>
                   <a
                     href="/productReview"
                     className="btn btn-default btn-lg"
-                    style={{ backgroundColor: "#b6f5f5" }}
+                    style={{ backgroundColor: "#b6f5f5", marginRight: "2.5%" }}
                   >
                     리뷰확인
                   </a>
@@ -118,10 +121,10 @@ const Product = () => {
               </form>
 
               <form name="addForm2" action={`/addOrder/${product.productId}`} method="post">
-                <div className="product_bt" id="order">
+                <div className="product_bt2" id="order">
                   <a
                     className="btn btn-default btn-lg"
-                    style={{ backgroundColor: "#b6f5f5", marginBottom: "-20px;" , marginRight: "3%" }}
+                    style={{ backgroundColor: "#b6f5f5", marginLeft: "-5.5%", marginRight: "2.5%" }}
                     href="/order"
                   >
                     주문하기
@@ -129,7 +132,7 @@ const Product = () => {
                   <a
                     href="/orderList"
                     className="btn btn-default btn-lg"
-                    style={{ backgroundColor: "#b6f5f5", marginBottom: "-120px;" }}
+                    style={{ backgroundColor: "#b6f5f5" }}
                   >
                     주문내역 조회
                   </a>
@@ -169,9 +172,56 @@ const Product = () => {
                 </div>
               </li>
               {/* Other Membership Events */}
-              <li></li>
-              <li></li>
-              <li></li>
+              <li>
+                <div className="Grade" id="star">
+                  <div className="Grade_Star">
+                    <img src={star} />
+                  </div>
+                  <div className="Grade_Benefit_title">
+                    <h4>등급별 혜택</h4>
+                  </div>
+                  <div className="Grade_Desc">
+                    <h6>
+                      할인/적립 <br />
+                      무료배송 및 배송비 할인 <br />
+                      생일쿠폰 지급 
+                    </h6>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div className="Free_shipment">
+                  <div className="shipment">
+                    <img src={shipment} />
+                  </div>
+                  <div className="free_shipment_title">
+                    <h4>무료배송</h4>
+                  </div>
+                  <div className="free_shipment_desc">
+                    <h6>
+                      6만원 이상 <br />
+                      구매 시, <br />
+                      무료배송
+                    </h6>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div className="New_update">
+                  <div className="clock">
+                    <img src={clock} />
+                  </div>
+                  <div className="New_update_title">
+                    <h4>신상 UP TO</h4>
+                  </div>
+                  <div className="New_update_desc">
+                    <h6>
+                      매일 업데이트 <br />
+                      30% 할인 지급 
+                    </h6>
+                  </div>
+                </div>
+              </li>
             </ul>
           </div>
         </div>
