@@ -202,6 +202,26 @@ app.get("/api/Products", (req, res) => {
   });
 });
 
+// 특정 상품 정보 API 
+app.get('/api/product/:id', (req, res) => {
+  const productId = req.params.id; 
+  const query = 'SELECT * FROM product WHERE productId = ?';
+
+  pool.query(query, [productId], (err, result) => {
+    if (err) {
+      console.error('DB 오류:', err); 
+      return res.status(500).json({ messsage: '서버 오류' });
+    }
+
+    if (result.length === 0) {
+      return res.status(404).json({ message: '상품을 찾을 수 없습니다.' });
+    }
+
+    console.log('쿼리 결과:', result); 
+    res.json(result[0]);
+  });
+});
+
 // 서버 시작 
 // app.listen : 서버를 시작하고, 지정된 포트(5003)에서 클라이언트 요청을 대기. 
 // 성공적으로 실행되면 콘솔에 서버 주소 출력 
