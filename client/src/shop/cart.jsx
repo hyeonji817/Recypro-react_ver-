@@ -1,11 +1,26 @@
+import React, { useEffect, useState } from "react"; 
 import "./cart.css";
 import Button from "../pages/Button";
 import card from "../assets/shop/card.png";
 import basket from "../assets/shop/shopping_basket1.png";
 import purchase from "../assets/shop/purchase_order.png";
 import Header_loginOK from "../main/Header_loginOK";
+import axios from "axios";
 
-const cart = () => {
+const Cart = () => {
+  const [cartItems, setCartItems] = useState([]);
+
+  useEffect(() => {
+    // 로그인한 사용자 ID 기준으로 장바구니 목록 가져오기 
+    axios.get("http://localhost:5003/cart", { withCredentials: true })
+      .then((res) => {
+        setCartItems(res.data);
+      })
+      .catch((err) => {
+        console.error("장바구니 불러오기 오류:", err);
+      });
+  }, []);
+
   return (
     <div className="cart_wrap">
       <div className="cart_Header">
@@ -106,4 +121,4 @@ const cart = () => {
   );
 };
 
-export default cart;
+export default Cart;
