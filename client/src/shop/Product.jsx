@@ -52,7 +52,7 @@ const Product = () => {
             <span className="pd_img">
               <img
                 alt="상품 이미지"
-                src={`http://localhost:5001/uploads/shopdetail/${product.filename}`}
+                src={`http://localhost:5003/uploads/shopdetail/${product.filename}`}
                 style={{ width: "100%" }}
               />
             </span>
