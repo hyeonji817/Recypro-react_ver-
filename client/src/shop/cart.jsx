@@ -69,33 +69,34 @@ const Cart = () => {
 
       <div className="container2">
         <div className="cart_table">
-          <table className="cart-table">
-            <thead>
-              <tr>
-                <th>상품명</th>
-                <th>판매가</th>
-                <th>수량</th>
-                <th>합계</th>
-                <th>비고</th>
-              </tr>
-            </thead>
-            <tbody>
-              {cartItems.map((item) => {
-                <tr key={item.cart_id}>
-                  <td>{item.productId} - {item.pname}</td>
-                  <td>{item.price}</td>
-                  <td>{item.cart_quantity}</td>
-                  <td>{(item.price * item.cart_quantity).toLocaleString()}원</td>
-                  <td>
-                    <Button 
-                      type={"cart_del"}
-                      text={"삭제"}
-                      className="cart_del"
-                    />
-                  </td>
-                </tr>
-              })}
-            </tbody>
+          <table className="table table-hover">
+            <tr>
+					    <th>상품</th>
+					    <th>가격</th>
+					    <th>수량</th>
+					    <th>소계</th>
+					    <th>비고</th>
+				    </tr>
+            <tr>
+              <td>강화 소창 수건-먼지 안 나는 무형광</td>
+              <td>5,900</td>
+              <td>1</td>
+              <td>5,900</td>
+              <td>
+                <Button 
+                  text={"삭제"}
+                  type={"cart_del"}
+                  className="cart_del"
+                />
+              </td>
+            </tr>
+            <tr>
+              <th></th>
+              <th></th>
+              <th>총액</th>
+              <th>5,900</th>
+              <th></th>
+            </tr>
           </table>
           <div className="btn-option">
             <Button 
