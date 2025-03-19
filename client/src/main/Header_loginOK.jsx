@@ -8,7 +8,7 @@ const Header_loginOK = () => {
         <a className="logo" href="#">리싸이프로</a>
         <ul className="nav-right">
           <li>
-            <a className="link" href="./shop/Products.jsx">상품</a>
+            <a className="link" href="../shop/Products">상품</a>
           </li>
           <li>
             <a className="link" href="./review/Review.jsx">게시판</a>
