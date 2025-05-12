@@ -39,6 +39,7 @@ import LoginOK from "./main/loginOK";
 import Login_admin from "./main/login_admin";
 import Sidebar from "./admin_page/sidebar";
 import Event from "./main/event";
+import LogoutAction from "./account/logoutAction";
 import Notfound from "./pages/Notfound";
 
 // 1. "/" : 계정, 상품, 게시판, 마이페이지, 고객센터 등을 조회하는 메인페이지
@@ -101,6 +102,7 @@ function App() {
         <Route path="/main/loginOK" element={<LoginOK />} />
         <Route path="/login_admin" element={<Login_admin />} />
         <Route path="/event" element={<Event />} />
+        <Route path="/logoutAction" element={<LogoutAction />} />
         <Route path="*" element={<Notfound />} />
       </Routes>
     </>
