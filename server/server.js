@@ -120,6 +120,19 @@ app.post('/login', (req, res) => {
   });
 });
 
+// ----------------------------------------------------------------------------
+// 로그아웃 API 
+app.post("/logout", (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      console.error("세션 삭제 실패:", err); 
+      return res.status(500).send("Logout failed");
+    }
+    res.clearCookie("connect.sid");   // 세션 쿠키 삭제 
+    return res.status(200).send("Logout success");
+  });
+});
+
 // -----------------------------------------------------------------------------
 // 아이디 찾기 API
 app.post("/api/find_id", (req, res) => {
