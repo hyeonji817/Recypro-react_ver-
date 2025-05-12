@@ -45,13 +45,13 @@ const Header_loginOK = () => {
             <img src={user} alt="사용자" />
             <ul className="submenu">
               <li>
-                <a className="link" href="#">장바구니</a>
+                <a className="link" href="./shop/cart.jsx">장바구니</a>
               </li>
               <li>
-                <a className="link" href="#">마이페이지</a>
+                <a className="link" href="./mypage/Mypage.jsx">마이페이지</a>
               </li>
               <li>
-                <a className="link" href="#">로그아웃</a>
+                <a className="link" href="/logoutAction">로그아웃</a>
               </li>
             </ul>
           </li>
