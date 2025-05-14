@@ -1,5 +1,6 @@
 import "./Product.css";
 import React, { useEffect, useState } from "react"; 
+import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import Button from "../pages/Button";
@@ -9,33 +10,60 @@ import clock from "../assets/shop/alarm.png";
 import Header_loginOK from "../main/Header_loginOK";
 
 const Product = () => {
-  const { id } = useParams();
+  const { productId } = useParams();
   const [product, setProduct] = useState(null);
+  const navigate = useNavigate();       // 페이지 이동 함수 추가 
+  console.log("장바구니 추가 요청:", productId);
+
+  const handleAddToCart = async () => {
+    try {
+      console.log("장바구니 추가 요청 시작");
+
+      const response = await fetch(`http://localhost:5003/api/cart/${productId}`, {
+        method: "POST", 
+        headers: {
+          "Content-Type": "application/json", 
+        },
+        credentials: "include",     // 세션 쿠키 포함 
+        body: JSON.stringify({ cart_quantity: 1 }),       // 적절한 요청 본문 추가
+      });
+
+      console.log("fetch 응답 상태 코드:", response.status);
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error("장바구니 추가 실패:", errorData.message);
+      } else {
+        const data = await response.json();
+        console.log("장바구니에 추가되었습니다!", data);
+        navigate("/cart");      // 장바구니 추가 후 cart.jsx로 이동 
+      }
+    } catch (error) {
+      console.error("장바구니 추가 오류:", error);
+    }
+  };
 
   useEffect(() => {
+    axios.defaults.withCredentials = true;  // ✅ 쿠키 포함 설정
+
     // 서버에서 상품 정보를 가져옴 
     const fetchProduct = async () => {
       try {
-        const response = await axios.get(`http://localhost:5003/api/product/${id}`);  // 서버 API 호출
-        setProduct(response.data);  // 서버에서 받은 데이터로 상태 업데이트
+        const res = await axios.get(`http://localhost:5003/api/product/${productId}`, { withCredentials: true });  // 서버 API 호출
+        setProduct(res.data);  // 서버에서 받은 데이터로 상태 업데이트
       } catch (error) {
-        if (error.response) {
-          console.error("상품 정보를 불러오는 데 실패했습니다:", error.response.data);
-        } else {
-          console.error("상품 정보를 불러오는 데 실패했습니다:", error.message);
-        }
+        console.error("상품 정보를 불러오는 데 실패했습니다:", error.response?.data || error.message);
       }
     };
 
     fetchProduct();   // 상품 정보 가져오기 호출 
-  }, [id]);
+  }, [productId]);
 
   if (!product) {
     return <div>상품 정보를 불러오는 중입니다...</div>;
   }
 
-  console.log("검색한 상품 ID:", id);
-  console.log("이미지 파일명:", product.filename);
+  console.log("검색한 상품 ID:", product.productId);
 
   return (
     <div className="Product_wrap">
@@ -94,12 +122,12 @@ const Product = () => {
 
             {/* 버튼 영역 */}
             <p className="button">
-              <form name="addForm" action={`/addCart/${product.productId}`} method="post">
+              {/** <form name="addForm" action={`/addCart/${product.productId}`} method="post"> */}
                 <div className="product_bt">
                   <a
                     className="btn btn-default btn-lg"
                     style={{ backgroundColor: "#b6f5f5", marginRight: "2.5%" }}
-                    href="/cart"
+                    onClick={handleAddToCart}
                   >
                     장바구니 담기
                   </a>
@@ -118,7 +146,7 @@ const Product = () => {
                     리뷰확인
                   </a>
                 </div>
-              </form>
+              {/** </form> */}
 
               <form name="addForm2" action={`/addOrder/${product.productId}`} method="post">
                 <div className="product_bt2" id="order">
