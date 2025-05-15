@@ -1,30 +1,51 @@
 import express from "express";  // express : Node.js 기반 웹 애플리케이션 프레임워크. API 요청 처리.
 import bcryptjs from "bcryptjs"; 
-const app = express();
-const port = 5003;    // 프론트엔드에서 호출할 포트와 일치해야 한다. 
+import session from "express-session"; 
 import cors from "cors";    // 프론트엔드와 백엔드 간의 통신 허용. 
-import mysql from "mysql2";   // MySQL 데이터베이스와의 연결 제공. 
-import path from "path";    // path : 파일 경로 조작을 위한 Node.js 기본 모듈 
-import { fileURLToPath } from "url";
+import dotenv from "dotenv"; 
 
 // 라우트 파일 연결 
 import Popular_Routes from "./routes/Popular_Product.js";   // 해당 페이지와 관련된 API 로직.
 import PP_Routes from "./routes/popular_products.js";
+import cartRouter from "./routes/cart.js"; 
+import mysql from "mysql2";   // MySQL 데이터베이스와의 연결 제공. 
+import path from "path";    // path : 파일 경로 조작을 위한 Node.js 기본 모듈 
+import { fileURLToPath } from "url";
 
-// JSON 형식의 요청을 처리하기 위한 미들웨어 
-// JSON 형식으 요청 본문을 읽고 사용할 수 있도록 설정. 
+dotenv.config(); 
+const app = express();
+const port = 5003;    // 프론트엔드에서 호출할 포트와 일치해야 한다. 
+
+// JSON 형식의 요청을 처리하기 위한 미들웨어
+// JSON 형식의 요청 본문을 읽고 사용할 수 있도록 설정. 
 app.use(express.json());
-
-// 라우트 경로 등록 
-app.use('/api/Popular_Product', Popular_Routes);  // Popular_Product.js 페이지 로직 실행 
-app.use('/api/popular_products', PP_Routes);    // popular_products.js 
+app.use(express.urlencoded({ extended: true }));  
+app.use(cookieParser());
 
 // CORS 설정 (프론트와 백 연결하는 징검다리)
 app.use(cors({
   origin: 'http://localhost:5174',  // Vite 개발 서버의 주소 (프론트엔드 주소)
   methods: ['GET', 'POST'],   // 허용할 HTTP 메소드 
   allowedHeaders: ['Content-Type'],   // 허용할 헤더 
+  credentials: true               // 쿠키 허용
 }));
+
+app.use(session({
+  secret: "guswl0817",    // 세션 암호화 키 
+  resave: false, 
+  saveUninitialized: false,
+  cookie: {
+    secure: false,     // 개발환경에서는 false (https 아니므로)
+    httpOnly: true,  // 클라이언트에서 쿠키를 조작할 수 없도록 설정
+    maxAge: 1000 * 60 * 60 * 24, // 1일
+    sameSite: "lax",   // 크로스 도메인 문제 방지
+  }
+}));
+
+// 라우트 경로 등록 
+app.use('/api/Popular_Product', Popular_Routes);  // Popular_Product.js 페이지 로직 실행 
+app.use('/api/popular_products', PP_Routes);    // popular_products.js 
+app.use('/api/cart', cartRouter);    // cartRouter 등록하여 로직 실행
 
 // MySQL 연결 설정 (공통) (DB 연결은 단일 세션으로 하면 안되고 pool을 통해 다중 세션 처리할 수 있도록 한다.)
 const pool = mysql.createPool({
