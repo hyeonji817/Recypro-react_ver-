@@ -116,6 +116,7 @@ app.post('/api/account/register', (req, res) => {
 // 로그인 API 처리 기능 
 app.post('/login', (req, res) => {
   const { id, password } = req.body; 
+  console.log("로그인 요청:", req.body); // 👈 여기에 로그 추가
 
   if (!id || !password) {
     return res.status(400).json({ message: "아이디와 비밀번호를 입력하세요." });
@@ -140,6 +141,16 @@ app.post('/login', (req, res) => {
     });
   });
 });
+
+// ----------------------------------------------------------------------------
+// 로그인 상태 확인 API 
+app.get("/api/session", (req, res) => {
+  if (req.session.user_id) {
+    res.json({ loggedIn: true, user: req.session.user_id });
+  } else {
+    res.status(401).json({ message: "로그인이 필요합니다." });
+  }
+}); 
 
 // ----------------------------------------------------------------------------
 // 로그아웃 API 
