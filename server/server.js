@@ -5,8 +5,6 @@ import cors from "cors";    // 프론트엔드와 백엔드 간의 통신 허용
 import dotenv from "dotenv"; 
 
 // 라우트 파일 연결 
-import Popular_Routes from "./routes/Popular_Product.js";   // 해당 페이지와 관련된 API 로직.
-import PP_Routes from "./routes/popular_products.js";
 import cartRouter from "./routes/cart.js"; 
 import mysql from "mysql2";   // MySQL 데이터베이스와의 연결 제공. 
 import path from "path";    // path : 파일 경로 조작을 위한 Node.js 기본 모듈 
@@ -43,8 +41,6 @@ app.use(session({
 }));
 
 // 라우트 경로 등록 
-app.use('/api/Popular_Product', Popular_Routes);  // Popular_Product.js 페이지 로직 실행 
-app.use('/api/popular_products', PP_Routes);    // popular_products.js 
 app.use('/api/cart', cartRouter);    // cartRouter 등록하여 로직 실행
 
 // MySQL 연결 설정 (공통) (DB 연결은 단일 세션으로 하면 안되고 pool을 통해 다중 세션 처리할 수 있도록 한다.)
@@ -273,3 +269,5 @@ app.get('/api/product/:id', (req, res) => {
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
+
+export const db = pool;    // 외부에서 pool을 사용하기 위함 
