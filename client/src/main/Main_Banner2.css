@@ -1,0 +1,47 @@
+@charset "UTF-8";
+
+@font-face {
+  font-family: 'GmarketSansMedium';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.main_Banner2_wrap {
+  margin-top: 30px;
+}
+
+#main .mid_bnr {
+  padding: 184px 0 0;
+  position: relative; 
+}
+
+#main .bnr_img img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* 워터마크 로고 */
+.main_Banner2_wrap .watermark_logo {
+  position: absolute;
+  bottom: 30px; /* 원하는 위치에 조절 가능 */
+  right: 30px;
+  width: 150px; /* 로고 크기 조절 */
+  opacity: 0.2; /* 워터마크처럼 연하게 */
+  pointer-events: none; /* 클릭 방지 */
+}
+
+/* 텍스트 스타일 */
+.main_Banner2_wrap .banner_text {
+  position: absolute;
+  top: 45%;
+  left: 35%;
+  color: white;
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+  line-height: 1.4;
+  opacity: 0.9;
+  font-family: 'GmarketSansMedium';
+}
