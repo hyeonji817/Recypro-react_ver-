@@ -1,6 +1,11 @@
 import "./App.css";
 import { Routes, Route, Router, Link, useNavigate } from "react-router-dom";
-import Home from "./main/home";
+import Home from "./main/Home";
+import Index from "./main/Index";
+import Main_Banner1 from "./main/Main_Banner1";
+import Main_Banner2 from "./main/Main_Banner2";
+import Main_Bottom from "./main/Main_Bottom";
+import BestProducts from "./main/BestProducts";
 import Login from "./account/Login";
 import Register from "./account/register";
 import FindId from "./account/find_id";
@@ -64,6 +69,11 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/index" element={<Index />} />
+        <Route path="/main_banner1" element={<Main_Banner1 />} />
+        <Route path="/main_banner2" element={<Main_Banner2 />} />
+        <Route path="/main_bottom" element={<Main_Bottom />} />
+        <Route path="/bestProducts" element={<BestProducts />} />
         <Route path="/account/Login" element={<Login />} />
         <Route path="/account/register" element={<Register />} />
         <Route path="/find_id" element={<FindId />} />
