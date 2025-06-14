@@ -3,6 +3,7 @@ import { Routes, Route, Router, Link, useNavigate } from "react-router-dom";
 import Home from "./main/Home";
 import Index from "./main/Index";
 import Main_Banner1 from "./main/Main_Banner1";
+import NewProducts from "./main/newProducts";
 import Main_Banner2 from "./main/Main_Banner2";
 import Main_Bottom from "./main/Main_Bottom";
 import BestProducts from "./main/BestProducts";
@@ -84,6 +85,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/index" element={<Index />} />
         <Route path="/main_banner1" element={<Main_Banner1 />} />
+        <Route path="/newProducts" element={<NewProducts />} />
         <Route path="/main_banner2" element={<Main_Banner2 />} />
         <Route path="/main_bottom" element={<Main_Bottom />} />
         <Route path="/bestProducts" element={<BestProducts />} />
