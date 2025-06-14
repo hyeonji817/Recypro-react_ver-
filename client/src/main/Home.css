@@ -1,5 +1,22 @@
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+.wrap_Home .main_Banner2 {
+  margin: 0 auto;
+  position: relative;
+  top: 100px;
+}
+
+.wrap_Home .bestProducts {
+  position: relative;
+  top: 220px;
+}
+
+.wrap_Home .main_Bottom {
+  position: relative;
+  top: 170px;
+}
+
+.wrap_Home .main_Bottom {
+  position: relative;
+  top: 300px;
+  margin-top: 220px;
+  margin-bottom: -220px;
 }
