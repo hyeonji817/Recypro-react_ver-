@@ -40,7 +40,7 @@ const Login = () => {
 
         // navigate를 useEffect에서 실행 
         setTimeout(() => {
-          window.location.href = "/main/loginOK";
+          window.location.href = "/index";
         }, 100);
       }
     } catch (error) {
