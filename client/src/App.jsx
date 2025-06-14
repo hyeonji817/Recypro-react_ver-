@@ -12,6 +12,19 @@ import FindId from "./account/find_id";
 import FindPw from "./account/find_pw";
 import ChangePassword from "./account/ChangePassword";
 import Products from "./shop/Products";
+import Products1 from "./shop/Products1";
+import Products2 from "./shop/Products2";
+import Products3 from "./shop/Products3";
+import Products4 from "./shop/Products4";
+import Products5 from "./shop/Products5";
+import Products6 from "./shop/Products6";
+import Product_List from "./shop/Product_List";
+import ProductsLife from "./shop/Products_Life";
+import ProductsBath from "./shop/Products_Bath";
+import ProductsFood from "./shop/Products_Food";
+import ProductsKitchen from "./shop/Products_Kitchen";
+import ProductsPet from "./shop/Products_Pet";
+import ProductsOffice from "./shop/Products_Office";
 import Product from "./shop/Product";
 import Cart from "./shop/cart";
 import ShoppingInfo_cart from "./shop/shoppingInfo_cart";
@@ -80,6 +93,19 @@ function App() {
         <Route path="/find_pw" element={<FindPw />} />
         <Route path="/ChangePassword" element={<ChangePassword />} />
         <Route path="/shop/Products" element={<Products />} />
+        <Route path="/shop/Products1" element={<Products1 />} />
+        <Route path="/shop/Products2" element={<Products2 />} />
+        <Route path="/shop/Products3" element={<Products3 />} />
+        <Route path="/shop/Products4" element={<Products4 />} />
+        <Route path="/shop/Products5" element={<Products5 />} />
+        <Route path="/shop/Products6" element={<Products6 />} />
+        <Route path="/shop/Product_List" element={<Product_List />} />
+        <Route path="/shop/Products_Life" element={<ProductsLife />} />
+        <Route path="/shop/Products_Bath" element={<ProductsBath />} />
+        <Route path="/shop/Products_Food" element={<ProductsFood />} />
+        <Route path="/shop/Products_Kitchen" element={<ProductsKitchen />} />
+        <Route path="/shop/Products_Office" element={<ProductsOffice />} />
+        <Route path="/shop/Products_Pet" element={<ProductsPet />} />
         <Route path="/product/:id" element={<Product />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/shoppingInfo_cart" element={<ShoppingInfo_cart />} />
