@@ -1,4 +1,5 @@
 import "./Header.css";
+import Products from "./shop/Products";
 
 const Header = () => {
   return (
@@ -7,7 +8,7 @@ const Header = () => {
         <a className="logo" href="./Home.jsx">리싸이프로</a>
         <ul className="nav-right">
           <li>
-            <a className="link" href="./shop/Products.jsx">상품</a>
+            <a className="link" href={Products}>상품</a>
           </li>
           <li>
             <a className="link" href="./review/Review.jsx">게시판</a>
