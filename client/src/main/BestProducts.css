@@ -1,0 +1,97 @@
+@charset "UTF-8";
+
+@font-face {
+  font-family: 'GmarketSansMedium';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.main_best {
+  font-family: 'GmarketSansMedium';
+}
+
+.best-products .main_best {
+  padding: 190px 60px 0;
+}
+
+.best-products .main_best .title_section {
+  padding-bottom: 113px;
+}
+
+.best-products .tac {
+  text-align: center !important;
+}
+
+.best-products .title_section > h2 {
+  color: #000;
+  font-size: 30px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 30px;
+}
+
+.best-products .prd_basic.col3 {
+  display: grid;
+  justify-content: center;
+  flex-wrap: nowrap;
+  align-items: start;
+  grid-template-columns: repeat(3, 31.4%);
+  align-items: center;
+  gap: 140px 2.9%;
+}
+
+.best-products .prd_basic.col3 > li {
+  width: 33.33%;
+  padding: 0;
+}
+
+.best-products .prd_basic.col3 .box {
+  position: relative;
+  width: 600px;
+  height: 850px;
+  margin: 0 auto;
+  padding: 10px;
+  border: 1px solid #eee;
+}
+
+.best-products .prd_basic .box .name > a {
+  color: black;
+  font-size: 22px; 
+  position: relative;
+  left: -30px;
+} 
+
+.best-products .info .name {
+  font-weight: bold;
+  margin-top: 10px;
+  position: relative;
+  right: 10px;
+  font-size: 22px;
+  width: 600px;
+}
+
+.best-products .prd_basic > li {
+  display: inline-block;
+  padding-bottom: 10px;
+  text-align: center;
+  vertical-align: top;
+}
+
+.best-products .prd_basic .box .price .discount_section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 10px;
+  width: 400px;
+  margin-left: 100px;
+}
+
+.best-products .prd_basic .discount_section .per {
+  text-align: center;
+  padding-left: 260px;
+}
+
+.ol, ul, li {
+  list-style: none;
+}
