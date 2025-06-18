@@ -50,6 +50,7 @@ import Modify from "./review/modify";
 import Customer_main from "./customer/Customer_main";
 import Customer_notice from "./customer/customer_notice";
 import Customer_policy from "./customer/customer_policy";
+import Customer_GiftCard from "./customer/customer_GiftCard";
 import Customer_question from "./customer/customer_question";
 import Customer_consult from "./customer/customer_consult";
 import Customer_declare from "./customer/customer_declare";
@@ -132,6 +133,7 @@ function App() {
         <Route path="/customer_main" element={<Customer_main />} />
         <Route path="/customer_notice" element={<Customer_notice />} />
         <Route path="/customer_policy" element={<Customer_policy />} />
+        <Route path="/customer_Giftcard" element={<Customer_GiftCard />} />
         <Route path="/customer_question" element={<Customer_question />} />
         <Route path="/customer_consult" element={<Customer_consult />} />
         <Route path="/customer_declare" element={<Customer_declare />} />
