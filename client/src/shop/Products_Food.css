@@ -1,0 +1,337 @@
+@charset "UTF-8";
+
+@font-face {
+  font-family: 'GmarketSansMedium';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+#productsFood_wrap {
+  padding-bottom: 50px;
+  min-height: 500px;
+}
+
+.products_body {
+  overflow: hidden;
+  margin: 0 auto;
+  width: 1900px;
+  font-family: 'GmarketSansMedium';
+}
+
+#big_section {
+  padding: 10px 60px 0;
+}
+
+#big_section .sub_category {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 100px;
+  padding: 100px 0 70px;
+  text-align: center;
+}
+
+ol, ul, li {
+  list-style: none;
+}
+
+#big_section .sub_category li a {
+  color: #000;
+  font-size: 30px;
+}
+
+a, a:hover, a:active, a:focus {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.total_sort {
+  clear: both;
+  height: 35px;
+  margin: 10px 0;
+}
+
+#productsFood_wrap .dn {
+  display: none !important;
+}
+
+#productsFood_wrap .total_sort .total {
+  float: left;
+  font-size: 11px;
+  line-height: 35px;
+}
+
+#productsFood_wrap .total_sort .sort {
+  float: right;
+}
+
+#productsFood_wrap select {
+  max-width: 100%;
+  height: 40px;
+  padding: 4px 6px;
+  /* border: 1px solid #dcdcdc; */
+  background: url(https://www.rolarola.com/_skin/rolarola_250402/img/common/select_down.png) no-repeat center right 13px #fff;
+  color: #666;
+  font: inherit;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.prd_basic .col3 {
+  width: auto;
+  display: grid;
+  justify-content: center;
+  align-items: start;
+  grid-template-columns: repeat(3, 31.4%);
+  gap: 140px 2.9%;
+}
+
+.prd_basic {
+  display: inline-block;
+  width: 100%;
+  font-size: 0;
+  text-align: left;
+}
+
+#big_section .prd_basic.col3 > li {
+  width: 33.33%;
+  padding: 0;
+}
+
+.prd_basic > li {
+  display: inline-block;
+  padding-bottom: 10px;
+  text-align: center;
+  vertical-align: top;
+}
+
+.prd_basic .box {
+  position: relative;
+  width: 600px;
+  height: 850px;
+  margin: 0 auto;
+  padding: 10px;
+  border: 1px solid #eee;
+} 
+
+.prd_basic .box .img {
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.prd_basic .box .img .prdimg {
+  transition: all .3s ease;
+}
+
+.prd_basic .box .img .prdimg img {
+  width: 550px;
+  height: 550px;
+  position: relative;
+}
+
+img {
+  vertical-align: top;
+}
+
+.prd_basic .box .img .soldout {
+  display: none;
+}
+
+.prd_basic .box .info {
+  width: 510px;
+  padding: 20px 0;
+  text-align: center;
+}
+
+.prd_basic .box .name {
+  padding-top: 0;
+  color: #000;
+  font-size: 14px;
+  font-weight: 400;
+  padding-left: 50px;
+  position: relative;
+  left: 50px;
+}
+
+.prd_basic .box .name > a {
+  color: #000;
+  font-size: 22px;
+  font-weight: 400;
+  padding-right: 100px;
+}
+
+.prd_basic .box .price {
+  padding-top: 7px;
+  font-size: 0;
+  text-align: center;
+  position: relative;
+  top: 30px;
+  left: 30px;
+  min-height: 130px;
+}
+
+.prd_basic .box .price .sellY {
+  position: relative;
+  display: inline-block;
+}
+
+.prd_basic .box .price p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+  font-size: 17px;
+  font-weight: 400;
+  word-break: break-all;
+  word-wrap: break-word;
+}
+
+.prd_basic .box .price p span {
+  padding-right: 5px;
+}
+
+.prd_basic .box .price p * {
+  color: #000;
+  font-size: 17px;
+  font-weight: 400;
+}
+
+.prd_basic .box .price .sellY:after {
+  position: absolute;
+  top: 41%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: #000;
+  content: '';
+}
+
+.prd_basic .box .price .discount_section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 10px;
+  width: 400px;
+  margin-left: 230px;
+}
+
+.prd_basic .box .price .per {
+  color: #ff0000;
+  font-size: 17px;
+  position: relative;
+  right: 180px;
+}
+
+.prd_basic .box .price p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+  font-size: 17px;
+  font-weight: 400;
+  word-break: break-all;
+  word-wrap: break-word;
+}
+
+.prd_basic .box .price .discountY {
+  display: inline-block;
+  text-align: center;
+  position: relative;
+  right: 170px;
+}
+
+.prd_basic .box .price .discount {
+  text-align: center;
+  position: relative;
+} 
+
+.paging {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  font-size: 0;
+  text-align: center;
+}
+
+.paging li {
+  display: inline;
+  padding: 0 10px;
+  color: #9e9e9e;
+  vertical-align: middle;
+}
+
+.paging * {
+  vertical-align: middle;
+}
+
+.paging li strong {
+  display: inline-block;
+  color: #000;
+  font-size: 20px;
+}
+
+.paging * {
+  vertical-align: middle;
+}
+
+.paging li a {
+  display: block;
+  color: #838383;
+  font-size: 20px;
+}
+
+.paging li a.next {
+  width: 20px;
+  background: url(https://www.rolarola.com/_skin/rolarola_250402/img/button/paging_next.png) no-repeat center top 6px;
+  text-indent: -9999px;
+}
+
+.paging li a.last, .paging li a.first {
+  display: none;
+}
+
+.tac {
+  text-align: center !important;
+}
+
+/** 검색기능 구현 */
+.search-container {
+  position: fixed;
+  bottom: 780px;
+  right: 280px;
+  z-index: 999;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+}
+
+.search-toggle {
+  background-color: #eee;
+  color: #fff;
+  font-size: 20px;
+  border: none;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-input {
+  margin-right: 10px;
+  padding: 10px;
+  font-size: 16px;
+  width: 240px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  outline: none;
+  transition: all 0.3s ease-in-out;
+}
