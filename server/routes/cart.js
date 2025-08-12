@@ -1,6 +1,6 @@
 import express from "express";
 import mysql from "mysql2";
-import { pool } from "../server.js"; // ← pool export가 필요함
+// import { pool } from "../server.js"; // ← pool export가 필요함
 const router = express.Router();
 
 // GET /api/product/:productId
