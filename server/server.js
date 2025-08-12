@@ -6,6 +6,14 @@ import dotenv from "dotenv";
 
 // 라우트 파일 연결 
 import cartRouter from "./routes/cart.js"; 
+import newProductRouter from "./routes/new_Product.js";
+import bestProductRouter from "./routes/best_Product.js";
+import ProductLifeRouter from "./routes/Product_Life.js";
+import ProductBathRouter from "./routes/Product_Bath.js";
+import ProductFoodRouter from "./routes/Product_Food.js";
+import ProductKitchenRouter from "./routes/Product_Kitchen.js";
+import ProductPetRouter from "./routes/Product_Pet.js";
+import ProductOfficeRouter from "./routes/Product_Office.js";
 import mysql from "mysql2";   // MySQL 데이터베이스와의 연결 제공. 
 import path from "path";    // path : 파일 경로 조작을 위한 Node.js 기본 모듈 
 import { fileURLToPath } from "url";
@@ -25,7 +33,7 @@ app.use(cors({
   origin: 'http://localhost:5174',  // Vite 개발 서버의 주소 (프론트엔드 주소)
   methods: ['GET', 'POST'],   // 허용할 HTTP 메소드 
   allowedHeaders: ['Content-Type'],   // 허용할 헤더 
-  credentials: true               // 쿠키 허용
+  credentials: true,               // 쿠키 허용
 }));
 
 app.use(session({
@@ -42,6 +50,14 @@ app.use(session({
 
 // 라우트 경로 등록 
 app.use('/api/cart', cartRouter);    // cartRouter 등록하여 로직 실행
+app.use("/api/newProducts", newProductRouter);
+app.use("/api/best_products", bestProductRouter);
+app.use("/api/product_life", ProductLifeRouter);
+app.use("/api/product_bath", ProductBathRouter);
+app.use("/api/product_food", ProductFoodRouter);
+app.use("/api/product_kitchen", ProductKitchenRouter);
+app.use("/api/product_pet", ProductPetRouter);
+app.use("/api/product_office", ProductOfficeRouter);
 
 // MySQL 연결 설정 (공통) (DB 연결은 단일 세션으로 하면 안되고 pool을 통해 다중 세션 처리할 수 있도록 한다.)
 const pool = mysql.createPool({
