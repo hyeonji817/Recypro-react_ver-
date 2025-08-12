@@ -1,5 +1,6 @@
 import express from "express";  // express : Node.js 기반 웹 애플리케이션 프레임워크. API 요청 처리.
 import bcryptjs from "bcryptjs"; 
+import cookieParser from "cookie-parser";
 import session from "express-session"; 
 import cors from "cors";    // 프론트엔드와 백엔드 간의 통신 허용. 
 import dotenv from "dotenv"; 
