@@ -1,7 +1,8 @@
 import "./Header.css";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react"; 
-import Products from "./shop/Products";
+import { Link } from "react-router-dom";
+// import Products from "./shop/Products";
 
 const Header = () => {
   const nav = useNavigate(); 
@@ -10,77 +11,83 @@ const Header = () => {
   const [searchQuery, setSearchQuery] = useState(""); 
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
+  const handleSearch = () => {
+    if (searchQuery.trim() === "") return;
+      nav(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
+      setIsSearchOpen(false);   // 검색창 닫기 
+      setSearchQuery("");     // 입력 후 초기화 (선택)     
+  };
+
+  useEffect(() => {
+    console.log("현재 isSearchOpen:", isSearchOpen);
+  }, [isSearchOpen]);  
+
   return (
     <header className="common_top">
       <div className="header_nav">
-        <a className="logo" href="./Home.jsx">리싸이프로</a>
+        <Link className="logo" to="/home">리싸이프로</Link>
         <ul className="nav-right">
           <li>
-            <a className="link" href="../shop/Products">상품</a>
+            <Link className="link" to="/shop/Products">상품</Link>
             <ul className="submenu">
               <li>
-                <a className="link">장바구니</a>
+                <Link className="link" to="/cart">장바구니</Link>
               </li>
               <li>
-                <a className="link">리뷰</a>
+                <Link className="link" to="/shop/Product_Review">리뷰</Link>
               </li>
             </ul>
           </li>
           <li>
-            <a className="link" href="../review">커뮤니티</a>
+            <Link className="link" to="/customer_main">고객센터</Link>
             <ul className="submenu">
               <li>
-                <a className="link" href="../review">목록</a>
+                <Link className="link" to="/customer_main">공지사항</Link>
               </li>
               <li>
-                <a className="link" href="../write">글쓰기</a>
+                <Link className="link" to="/customer_policy">운영정책</Link>
+              </li>
+              <li>
+                <Link className="link" to="/customer_question">Q&A</Link>
               </li>
             </ul>
           </li>
           <li>
-            <a className="link" href="../customer_main">고객센터</a>
-            <ul className="submenu">
-              <li>
-                <a className="link" href="../customer_main">목록</a>
-              </li>
-              <li>
-                <a className="link" href="../customer_notice">공지사항</a>
-              </li>
-              <li>
-                <a className="link" href="../customer_policy">운영정책</a>
-              </li>
-              <li>
-                <a className="link" href="../customer_question">Q&A</a>
-              </li>
-            </ul>
+            <Link className="link" to="/account/Login">로그인</Link>
           </li>
           <li>
-            <a className="link" href="/account/Login">로그인</a>
+            <Link className="link" to="/account/register">회원가입</Link>
           </li>
-          <li>
-            <a className="link" href="/account/register">회원가입</a>
-          </li>
-          <li>
-            <a className="link">검색하기
-              {/** 검색하기 기능 */}
-              <ul className="search-container">
-              {isSearchOpen && (
+
+          <li className="search-wrap">
+            <button 
+              className="search-toggle" 
+              onClick={(e) => {
+                e.stopPropagation(); // 다른 클릭 이벤트 방지
+                console.log("🔍 버튼 클릭됨!");
+                setIsSearchOpen(prev => {
+                  console.log("이전 상태:", prev);
+                  return !prev;
+                });
+              }}
+            >
+              🔍
+            </button>
+            {isSearchOpen && (
+              <>
+              <div className="search-container">
                 <input
                   type="text"
                   className="search-input"
                   placeholder="상품명을 입력하세요"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
+                  onKeyDown={(e) => e.key === "Enter" && handleSearch()}
                 />
-              )}
-            <button
-              className="search-toggle"
-              onClick={() => setIsSearchOpen(!isSearchOpen)}
-            >
-              🔍
-            </button>
-            </ul>
-            </a>
+                <button className="search-btn" onClick={handleSearch}><p>검색</p></button>
+              </div>
+              </>
+             )}
           </li>
         </ul>
       </div>
