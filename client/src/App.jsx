@@ -78,11 +78,11 @@ import ProductOffice4 from "./shop/productList/Office/Pd_Office4";
 import ProductOffice5 from "./shop/productList/Office/Pd_Office5";
 
 import Product from "./shop/Product";
+import OrderList from "./shop/orderList";
 import Cart from "./shop/cart";
-import ShoppingInfo_cart from "./shop/shoppingInfo_cart";
-import OrderConfirmation from "./shop/orderConfirmation";
-import ThanksCustomer from "./shop/thanksCustomer";
-import Pd_orderList from "./shop/pd_orderList";
+import ProductPay from "./shop/Product_payment";
+import OrderOK from "./shop/orderOK";
+
 import Pd_write from "./shop/Product_write";
 import Product_Review from "./shop/Product_Review";
 import Product_reviewView from "./shop/Product_reviewView";
@@ -94,17 +94,13 @@ import Mylevel from "./mypage/mylevel";
 import Coupon_list from "./mypage/coupon_list";
 import Review_history from "./mypage/review_history";
 import ProductReview_history from "./mypage/productReview_history";
-import Review from "./review/Review";
-import Write from "./review/write";
-import View from "./review/View";
-import Modify from "./review/modify";
+
 import Customer_main from "./customer/Customer_main";
 import Customer_notice from "./customer/customer_notice";
 import Customer_policy from "./customer/customer_policy";
 import Customer_GiftCard from "./customer/customer_GiftCard";
 import Customer_question from "./customer/customer_question";
-import Customer_consult from "./customer/customer_consult";
-import Customer_declare from "./customer/customer_declare";
+
 import Index_admin from "./admin_page/index_admin";
 import LoginOK from "./main/loginOK";
 import Login_admin from "./main/login_admin";
@@ -209,11 +205,10 @@ function App() {
         <Route path="/productoffice4/:productId" element={<ProductOffice4 />} />
         <Route path="/productoffice5/:productId" element={<ProductOffice5 />} />
 
+        <Route path="/orderList" element={<OrderList />} />
+        <Route path="/orderOk" element={<OrderOK />} />
         <Route path="/cart" element={<Cart />} />
-        <Route path="/shoppingInfo_cart" element={<ShoppingInfo_cart />} />
-        <Route path="/orderConfirmation" element={<OrderConfirmation />} />
-        <Route path="/thanksCustomer" element={<ThanksCustomer />} />
-        <Route path="/pd_orderList" element={<Pd_orderList />} />
+
         <Route path="/pd_write" element={<Pd_write />} />
         <Route path="/product_review" element={<Product_Review />} />
         <Route path="/product_reviewView" element={<Product_reviewView />} />
@@ -225,17 +220,13 @@ function App() {
         <Route path="/couponList" element={<Coupon_list />} />
         <Route path="/review_history" element={<Review_history />} />
         <Route path="/productReview_history" element={<ProductReview_history />} />
-        <Route path="/review" element={<Review />} />
-        <Route path="/write" element={<Write />} />
-        <Route path="/view" element={<View />} />
-        <Route path="/modify" element={<Modify />} />
+
         <Route path="/customer_main" element={<Customer_main />} />
         <Route path="/customer_notice" element={<Customer_notice />} />
         <Route path="/customer_policy" element={<Customer_policy />} />
         <Route path="/customer_Giftcard" element={<Customer_GiftCard />} />
         <Route path="/customer_question" element={<Customer_question />} />
-        <Route path="/customer_consult" element={<Customer_consult />} />
-        <Route path="/customer_declare" element={<Customer_declare />} />
+
         <Route path="/index_admin/:id" element={<Index_admin />} />
         <Route path="/sidebar" element={<Sidebar />} />
         <Route path="/main/loginOK" element={<LoginOK />} />

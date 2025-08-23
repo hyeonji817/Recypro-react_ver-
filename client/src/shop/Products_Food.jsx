@@ -169,3 +169,5 @@ const Products_Food = () => {
 </div>
   );
 };
+
+export default Products_Food;
