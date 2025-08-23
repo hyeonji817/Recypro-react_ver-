@@ -90,8 +90,12 @@ import Mypage from "./mypage/Mypage";
 import Customer_main from "./customer/Customer_main";
 import Customer_notice from "./customer/customer_notice";
 import Customer_policy from "./customer/customer_policy";
-import Customer_GiftCard from "./customer/customer_GiftCard";
+import Customer_GiftCardPolicy from "./customer/customer_GiftCardPolicy";
 import Customer_question from "./customer/customer_question";
+import CustomerQA_write from "./customer/customerQA_write";
+import Customer_Subqa from "./customer/customer_Subq&a";
+import Customer_guide from "./customer/customer_guide";
+import Customer_privacy from "./customer/customer_privacy";
 
 import Index_admin from "./admin_page/index_admin";
 import LoginOK from "./main/loginOK";
@@ -203,6 +207,7 @@ function App() {
         <Route path="/orderList" element={<OrderList />} />
         <Route path="/orderOk" element={<OrderOK />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/productPay" element={<ProductPay />} />
 
         <Route path="/pd_write" element={<Pd_write />} />
         <Route path="/shop/Product_Review" element={<Product_Review />} />
@@ -211,8 +216,12 @@ function App() {
         <Route path="/customer_main" element={<Customer_main />} />
         <Route path="/customer_notice" element={<Customer_notice />} />
         <Route path="/customer_policy" element={<Customer_policy />} />
-        <Route path="/customer_Giftcard" element={<Customer_GiftCard />} />
+        <Route path="/customer_GiftCardPolicy" element={<Customer_GiftCardPolicy />} />
         <Route path="/customer_question" element={<Customer_question />} />
+        <Route path="/customerQA_write" element={<CustomerQA_write />} />
+        <Route path="/customer_subqa" element={<Customer_Subqa />} />
+        <Route path="/customer_guide" element={<Customer_guide />} />
+        <Route path="/customer_privacy" element={<Customer_privacy />} />
 
         <Route path="/index_admin/:id" element={<Index_admin />} />
         <Route path="/sidebar" element={<Sidebar />} />
