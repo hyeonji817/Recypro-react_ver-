@@ -7,11 +7,13 @@ import NewProducts from "./main/newProducts";
 import Main_Banner2 from "./main/Main_Banner2";
 import Main_Bottom from "./main/Main_Bottom";
 import BestProducts from "./main/BestProducts";
+
 import Login from "./account/Login";
 import Register from "./account/register";
 import FindId from "./account/find_id";
 import FindPw from "./account/find_pw";
 import ChangePassword from "./account/ChangePassword";
+
 import Products from "./shop/Products";
 import Products1 from "./shop/Products1";
 import Products2 from "./shop/Products2";
@@ -19,6 +21,7 @@ import Products3 from "./shop/Products3";
 import Products4 from "./shop/Products4";
 import Products5 from "./shop/Products5";
 import Products6 from "./shop/Products6";
+
 import Product_List from "./shop/Product_List";
 import ProductsLife from "./shop/Products_Life";
 import ProductsBath from "./shop/Products_Bath";
@@ -26,6 +29,54 @@ import ProductsFood from "./shop/Products_Food";
 import ProductsKitchen from "./shop/Products_Kitchen";
 import ProductsPet from "./shop/Products_Pet";
 import ProductsOffice from "./shop/Products_Office";
+
+import ProductLife1 from "./shop/productList/Life/Pd_Life1";
+import ProductLife2 from "./shop/productList/Life/Pd_Life2";
+import ProductLife3 from "./shop/productList/Life/Pd_Life3";
+import ProductLife4 from "./shop/productList/Life/Pd_Life4";
+import ProductLife5 from "./shop/productList/Life/Pd_Life5";
+import ProductLife6 from "./shop/productList/Life/Pd_Life6";
+import ProductLife7 from "./shop/productList/Life/Pd_Life7";
+
+import ProductBath1 from "./shop/productList/Bath/Pd_Bath1";
+import ProductBath2 from "./shop/productList/Bath/Pd_Bath2";
+import ProductBath3 from "./shop/productList/Bath/Pd_Bath3";
+import ProductBath4 from "./shop/productList/Bath/Pd_Bath4";
+import ProductBath5 from "./shop/productList/Bath/Pd_Bath5";
+import ProductBath6 from "./shop/productList/Bath/Pd_Bath6";
+import ProductBath7 from "./shop/productList/Bath/Pd_Bath7";
+import ProductBath8 from "./shop/productList/Bath/Pd_Bath8";
+import ProductBath9 from "./shop/productList/Bath/Pd_Bath9";
+
+import ProductFood1 from "./shop/productList/Food/Pd_Food1";
+import ProductFood2 from "./shop/productList/Food/Pd_Food2";
+import ProductFood3 from "./shop/productList/Food/Pd_Food3";
+import ProductFood4 from "./shop/productList/Food/Pd_Food4";
+import ProductFood5 from "./shop/productList/Food/Pd_Food5";
+import ProductFood6 from "./shop/productList/Food/Pd_Food6";
+
+import ProductKitchen1 from "./shop/productList/Kitchen/Pd_Kitchen1";
+import ProductKitchen2 from "./shop/productList/Kitchen/Pd_Kitchen2";
+import ProductKitchen3 from "./shop/productList/Kitchen/Pd_Kitchen3";
+import ProductKitchen4 from "./shop/productList/Kitchen/Pd_Kitchen4";
+import ProductKitchen5 from "./shop/productList/Kitchen/Pd_Kitchen5";
+import ProductKitchen6 from "./shop/productList/Kitchen/Pd_Kitchen6";
+import ProductKitchen7 from "./shop/productList/Kitchen/Pd_Kitchen7";
+import ProductKitchen8 from "./shop/productList/Kitchen/Pd_Kitchen8";
+
+import ProductPet1 from "./shop/productList/Pet/Pd_Pet1";
+import ProductPet2 from "./shop/productList/Pet/Pd_Pet2";
+import ProductPet3 from "./shop/productList/Pet/Pd_Pet3";
+import ProductPet4 from "./shop/productList/Pet/Pd_Pet4";
+import ProductPet5 from "./shop/productList/Pet/Pd_Pet5";
+import ProductPet6 from "./shop/productList/Pet/Pd_Pet6";
+
+import ProductOffice1 from "./shop/productList/Office/Pd_Office1";
+import ProductOffice2 from "./shop/productList/Office/Pd_Office2";
+import ProductOffice3 from "./shop/productList/Office/Pd_Office3";
+import ProductOffice4 from "./shop/productList/Office/Pd_Office4";
+import ProductOffice5 from "./shop/productList/Office/Pd_Office5";
+
 import Product from "./shop/Product";
 import Cart from "./shop/cart";
 import ShoppingInfo_cart from "./shop/shoppingInfo_cart";
@@ -110,6 +161,54 @@ function App() {
         <Route path="/shop/Products_Office" element={<ProductsOffice />} />
         <Route path="/shop/Products_Pet" element={<ProductsPet />} />
         <Route path="/product/:id" element={<Product />} />
+
+        <Route path="/productlife1/:productId" element={<ProductLife1 />} />
+        <Route path="/productlife2/:productId" element={<ProductLife2 />} />
+        <Route path="/productlife3/:productId" element={<ProductLife3 />} />
+        <Route path="/productlife4/:productId" element={<ProductLife4 />} />
+        <Route path="/productlife5/:productId" element={<ProductLife5 />} />
+        <Route path="/productlife6/:productId" element={<ProductLife6 />} />
+        <Route path="/productlife7/:productId" element={<ProductLife7 />} />
+
+        <Route path="/productbath1/:productId" element={<ProductBath1 />} />
+        <Route path="/productbath2/:productId" element={<ProductBath2 />} />
+        <Route path="/productbath3/:productId" element={<ProductBath3 />} />
+        <Route path="/productbath4/:productId" element={<ProductBath4 />} />
+        <Route path="/productbath5/:productId" element={<ProductBath5 />} />
+        <Route path="/productbath6/:productId" element={<ProductBath6 />} />
+        <Route path="/productbath7/:productId" element={<ProductBath7 />} />
+        <Route path="/productbath8/:productId" element={<ProductBath8 />} />
+        <Route path="/productbath9/:productId" element={<ProductBath9 />} />
+
+        <Route path="/productfood1/:productId" element={<ProductFood1 />} />
+        <Route path="/productfood2/:productId" element={<ProductFood2 />} />
+        <Route path="/productfood3/:productId" element={<ProductFood3 />} />
+        <Route path="/productfood4/:productId" element={<ProductFood4 />} />
+        <Route path="/productfood5/:productId" element={<ProductFood5 />} />
+        <Route path="/productfood6/:productId" element={<ProductFood6 />} />
+
+        <Route path="/productkitchen1/:productId" element={<ProductKitchen1 />} />
+        <Route path="/productkitchen2/:productId" element={<ProductKitchen2 />} />
+        <Route path="/productkitchen3/:productId" element={<ProductKitchen3 />} />
+        <Route path="/productkitchen4/:productId" element={<ProductKitchen4 />} />
+        <Route path="/productkitchen5/:productId" element={<ProductKitchen5 />} />
+        <Route path="/productkitchen6/:productId" element={<ProductKitchen6 />} />
+        <Route path="/productkitchen7/:productId" element={<ProductKitchen7 />} />
+        <Route path="/productkitchen8/:productId" element={<ProductKitchen8 />} />
+
+        <Route path="/productpet1/:productId" element={<ProductPet1 />} />
+        <Route path="/productpet2/:productId" element={<ProductPet2 />} />
+        <Route path="/productpet3/:productId" element={<ProductPet3 />} />
+        <Route path="/productpet4/:productId" element={<ProductPet4 />} />
+        <Route path="/productpet5/:productId" element={<ProductPet5 />} />
+        <Route path="/productpet6/:productId" element={<ProductPet6 />} />
+
+        <Route path="/productoffice1/:productId" element={<ProductOffice1 />} />
+        <Route path="/productoffice2/:productId" element={<ProductOffice2 />} />
+        <Route path="/productoffice3/:productId" element={<ProductOffice3 />} />
+        <Route path="/productoffice4/:productId" element={<ProductOffice4 />} />
+        <Route path="/productoffice5/:productId" element={<ProductOffice5 />} />
+
         <Route path="/cart" element={<Cart />} />
         <Route path="/shoppingInfo_cart" element={<ShoppingInfo_cart />} />
         <Route path="/orderConfirmation" element={<OrderConfirmation />} />
