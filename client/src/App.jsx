@@ -85,15 +85,7 @@ import OrderOK from "./shop/orderOK";
 
 import Pd_write from "./shop/Product_write";
 import Product_Review from "./shop/Product_Review";
-import Product_reviewView from "./shop/Product_reviewView";
-import Pd_modify from "./shop/pd_modify";
 import Mypage from "./mypage/Mypage";
-import Userinfo from "./mypage/userinfo";
-import UpdateUser from "./mypage/updateUser";
-import Mylevel from "./mypage/mylevel";
-import Coupon_list from "./mypage/coupon_list";
-import Review_history from "./mypage/review_history";
-import ProductReview_history from "./mypage/productReview_history";
 
 import Customer_main from "./customer/Customer_main";
 import Customer_notice from "./customer/customer_notice";
@@ -137,11 +129,13 @@ function App() {
         <Route path="/main_banner2" element={<Main_Banner2 />} />
         <Route path="/main_bottom" element={<Main_Bottom />} />
         <Route path="/bestProducts" element={<BestProducts />} />
+
         <Route path="/account/Login" element={<Login />} />
         <Route path="/account/register" element={<Register />} />
         <Route path="/find_id" element={<FindId />} />
         <Route path="/find_pw" element={<FindPw />} />
         <Route path="/ChangePassword" element={<ChangePassword />} />
+
         <Route path="/shop/Products" element={<Products />} />
         <Route path="/shop/Products1" element={<Products1 />} />
         <Route path="/shop/Products2" element={<Products2 />} />
@@ -149,6 +143,7 @@ function App() {
         <Route path="/shop/Products4" element={<Products4 />} />
         <Route path="/shop/Products5" element={<Products5 />} />
         <Route path="/shop/Products6" element={<Products6 />} />
+
         <Route path="/shop/Product_List" element={<Product_List />} />
         <Route path="/shop/Products_Life" element={<ProductsLife />} />
         <Route path="/shop/Products_Bath" element={<ProductsBath />} />
@@ -210,16 +205,8 @@ function App() {
         <Route path="/cart" element={<Cart />} />
 
         <Route path="/pd_write" element={<Pd_write />} />
-        <Route path="/product_review" element={<Product_Review />} />
-        <Route path="/product_reviewView" element={<Product_reviewView />} />
-        <Route path="/pd_modify" element={<Pd_modify />} />
+        <Route path="/shop/Product_Review" element={<Product_Review />} />
         <Route path="/mypage" element={<Mypage />} />
-        <Route path="/userinfo" element={<Userinfo />} />
-        <Route path="/updateuser" element={<UpdateUser />} />
-        <Route path="/mylevel" element={<Mylevel />} />
-        <Route path="/couponList" element={<Coupon_list />} />
-        <Route path="/review_history" element={<Review_history />} />
-        <Route path="/productReview_history" element={<ProductReview_history />} />
 
         <Route path="/customer_main" element={<Customer_main />} />
         <Route path="/customer_notice" element={<Customer_notice />} />
