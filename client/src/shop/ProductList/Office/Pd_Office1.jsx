@@ -1,6 +1,3 @@
-
-
-
 import "./Pd_Office1.css";
 import React, { useEffect, useState } from "react"; 
 import { useNavigate } from "react-router-dom";
