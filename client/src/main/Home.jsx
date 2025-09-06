@@ -5,7 +5,6 @@ import Main_Banner1 from "./Main_Banner1";
 import Main_Banner2 from "./Main_Banner2";
 import Main_Bottom from "./Main_Bottom";
 import BestProducts from "./BestProducts";
-
 import Footer from "./Footer";
 
 const Home = () => {
