@@ -1,0 +1,590 @@
+@charset "UTF-8";
+
+@font-face {
+  font-family: 'GmarketSansMedium';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.orderList_Content {
+  padding-bottom: 50px;
+  min-height: 500px;
+  font-family: 'GmarketSansMedium';
+}
+
+.orderList_Content .orderList_body {
+  overflow: hidden;
+  width: 1700px;
+  height: auto;
+  margin: 0 auto;
+  position: relative;
+  top: 170px;
+}
+
+.orderList_body h2.subtitle {
+  padding: 64px 0 60px;
+  color: #1a1a1a;
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: 0.1rem;
+  text-align: center;
+}
+
+.orderList_Content #order .print_receipt {
+  padding-bottom: 10px;
+  text-align: right;
+  float: right;
+  line-height: 30px;
+}
+
+.orderList_Content .box_btn {
+  display: inline-block;
+  text-align: center;
+  vertical-align: top;
+}
+
+.orderList_Content .box_btn.small > * {
+  padding: 4px 8px;
+}
+
+.orderList_Content .box_btn > * {
+  display: inline-block;
+  margin: 0;
+  padding: 11px 12px;
+  border: 1px solid #676767;
+  outline: none;
+  background: #666;
+  color: #fff !important;
+  font-size: 12px;
+  font-family: 'LibreBodoni', 'Pretendard', sans-serif;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 1.4;
+  white-space: nowrap;
+  cursor: pointer;
+  appearance: none;
+  transition: all .2s ease;
+}
+
+.orderList_Content .box_btn.white * {
+  border-color: #c3c3c3;
+  background: #fff;
+  color: #666 !important;
+}
+
+.orderList_Content .tbl_col.prd {
+  border-bottom: 2px solid #e8e8e8;
+  position: relative;
+  top: 30px;
+  left: 20px;
+  width: 1800px;
+}
+
+.orderList_Content .tbl_col {
+  /** table-layout: fixed; */
+  clear: both;
+  width: 100%; 
+  border-collapse: collapse;
+}
+
+.orderList_Content table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.orderList_Content .tbl_col caption {
+  padding-bottom: 20px;
+  font-weight: bold;
+  text-align: left;
+}
+
+.orderList_Content .hidden {
+  visibility: hidden;
+  overflow: hidden;
+  width: 0 !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-size: 0;
+  line-height: 0;
+}
+
+.orderList_Content 
+.tbl_col.prd > thead > tr > th {
+    border-top: 0;
+    border-bottom: 2px solid #e8e8e8;
+    color: #000;
+    font-size: 17px;
+    letter-spacing: -0.03rem;
+}
+
+.orderList_Content .tbl_col > thead > tr > th {
+  padding: 15px 0;
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.orderList_Content .tbl_col.prd > tbody > tr > td {
+  padding: 20px 0;
+  border: none;
+  color: #1a1a1a;
+  font-size: 15px;
+}
+
+.orderList_Content .tbl_col > tbody > tr > td {
+  padding: 15px 0;
+  border-bottom: 1px solid #e0e0e0;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.orderList_Content .tbl_col > tbody > tr > td * {
+  color: #666;
+}
+
+.orderList_Content a, a:hover, a:active, a:focus {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.orderList_Content .tbl_col.prd > tbody > tr > td img {
+  vertical-align: middle;
+}
+
+.orderList_Content .tbl_col > tbody > tr > td.img img {
+  width: 100px;
+  height: auto;
+} 
+
+.orderList_Content .tbl_col > tbody > tr > td img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+
+.orderList_Content .tbl_col.prd > tbody > tr > td {
+  padding: 20px 0;
+  border: none;
+  color: #1a1a1a;
+  font-size: 17px;
+  position: relative;
+  left: 3px;
+} 
+
+.orderList_Content .tbl_col > tbody > tr > td.tal {
+  padding-left: 15px !important;
+}
+
+.orderList_Content #order .ord_info {
+  display: flex;
+}
+
+.orderList_Content h3.title {
+  padding: 30px 0 20px;
+}
+
+.orderList_Content .tbl_order {
+  table-layout: fixed;
+  width: 100%;
+  margin: 0 auto;
+  border-top: 1px solid #e0e0e0;
+}
+
+.orderList_Content .tbl_order caption {
+  padding-bottom: 20px;
+  font-weight: bold;
+  text-align: left;
+}
+
+.orderList_Content .tbl_order th {
+  padding: 20px;
+  border: 1px solid #e0e0e0;
+  border-width: 0 1px 1px 0;
+  font-weight: normal;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.orderList_Content .tbl_order td {
+  padding: 20px;
+  border-bottom: 1px solid #e0e0e0;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.orderList_Content .tbl_order td .form_input {
+  width: 260px;
+}
+
+.orderList_Content input[type=text], input[type=email], input[type=password] {
+  vertical-align: top;
+}
+
+.orderList_Content .form_input {
+  height: 40px;
+  padding: 4px 10px;
+  border: 1px solid #dcdcdc;
+  background: #fff;
+  color: #666;
+  font-family: 'LibreBodoni', 'Pretendard', sans-serif;
+  font-size: 12px;
+  transition: all .3s ease;
+}
+
+.orderList_Content .tar {
+  text-align: right !important;
+}
+
+.orderList_Content .tbl_order td .own_mileage, .tbl_order td .own_deposit {
+  color: #d53838;
+  line-height: 35px;
+} 
+
+ol, ul, li {
+  list-style: none;
+}
+
+.orderList_Content #order .coupon_list li:first-child {
+  margin-top: 0;
+}
+
+.orderList_Content #order .coupon_list li {
+  position: relative;
+  margin-top: 10px;
+  padding-left: 25px;
+}
+
+.orderList_Content #order .coupon_list li .check {
+  position: absolute;
+  left: 0;
+  top: -2px;
+}
+
+.orderList_Content #order .coupon_list li .name {
+  font-weight: bold;
+}
+
+.orderList_Content #order .coupon_list li .content {
+  font-size: 11px;
+}
+
+.orderList_Content input[type=radio] {
+  width: 22px;
+  height: 22px;
+  margin: 0 6px 0 0;
+  outline: 0;
+  border-radius: 0;
+  border: 0;
+  background: no-repeat left center / 22px 22px;
+  background-image: url(https://www.rolarola.com/_skin/rolarola_250613/img/common/radio.png);
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  vertical-align: middle;
+  transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+}
+
+.orderList_Content input[type=radio], input[type=checkbox] {
+  vertical-align: middle;
+}
+
+.orderList_Content #order .coupon_list li .name {
+  font-weight: bold;
+}
+
+.orderList_Content #order .coupon_list li .content {
+  font-size: 11px;
+}
+
+.orderList_Content 
+.tbl_order td .form_input {
+    width: 260px;
+}
+
+.orderList_Content input[type=checkbox]:checked {
+  background-image: url(https://www.rolarola.com/_skin/rolarola_250613/img/common/checkbox_on.png);
+}
+
+.orderList_Content input[type=checkbox] {
+  width: 23px;
+  height: 22px;
+  margin: 0 6px 0 0;
+  outline: 0;
+  border-radius: 0;
+  border: 0;
+  background: no-repeat left center / 23px 22px;
+  background-image: url(https://www.rolarola.com/_skin/rolarola_250613/img/common/checkbox.png);
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  vertical-align: middle;
+  transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+}
+
+.orderList_Content .tbl_order td .msg {
+  color: #999;
+  font-size: 11px;
+}
+
+.orderList_Content .msg {
+  position: relative;
+  right: -30px;
+}
+
+.orderList_Content .tbl_order td.edit {
+  line-height: 30px;
+}
+
+.orderList_Content #order .title_delivery h3.title {
+  display: inline-block;
+}
+
+.orderList_Content select {
+  max-width: 100%;
+  height: 40px;
+  padding: 4px 6px;
+  border: 1px solid #dcdcdc;
+  background: url(https://www.rolarola.com/_skin/rolarola_250613/img/common/select_down.png) no-repeat center right 13px #fff;
+  color: #666;
+  font: inherit;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.orderList_Content .tbl_order td.address p:first-child {
+  margin-top: 0;
+}
+
+.orderList_Content .tbl_order td.address p {
+  margin-top: 10px;
+}
+
+.orderList_Content .tbl_order td.address .zip .form_input {
+  width: 158px;
+}
+
+.orderList_Content .form_input.block {
+  width: 100% !important;
+}
+ 
+.orderList_Content textarea.form_input {
+  height: auto;
+}
+
+.orderList_Content #order .ord_info > .area_right {
+  padding: 30px 0 0 50px;
+}
+
+.orderList_Content #order .ord_info > .area_right .inner {
+  float: right;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 30px;
+}
+
+.orderList_Content #order .ord_info > .area_right .box {
+  width: 360px;
+  padding: 40px;
+  background: #f8f8f8;
+}
+
+.orderList_Content h3.title.first {
+  padding-top: 0;
+}
+
+.orderList_Content h3.title {
+  padding: 30px 0 20px;
+}
+
+.orderList_Content .tbl_order2 {
+  table-layout: fixed;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.orderList_Content .tbl_order2 caption {
+  padding-bottom: 20px;
+  font-weight: bold;
+  text-align: left;
+}
+
+.orderList_Content .tbl_order2 th {
+  padding: 6px 0;
+  color: #181818;
+  font-size: 17px;
+  font-weight: normal;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.orderList_Content .tbl_order2 td {
+  padding: 6px 0;
+  color: #181818;
+  font-size: 17px;
+  text-align: right;
+  vertical-align: middle;
+}
+
+.orderList_Content .tbl_order2 .total td {
+  position: relative;
+}
+
+.orderList_Content .tbl_order2 td p, .tbl_order2 td span {
+  color: #181818;
+  font-size: 17px;
+}
+
+.orderList_Content .tbl_order2.sale {
+  margin: 5px 0;
+  border: 1px solid #dcdcdc;
+  border-width: 1px 0;
+}
+
+.orderList_Content .i_info {
+  display: inline-block;
+  position: relative;
+  top: 4px;
+  width: 16px;
+  height: 16px;
+  background: url(https://www.rolarola.com/_skin/rolarola_250613/img/common/icon_info.png) no-repeat center;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+}
+
+.orderList_Content .p_cursor {
+  cursor: pointer;
+}
+
+.orderList_Content .tbl_order2 .total td .view_info {
+  display: none;
+  margin-top: 5px;
+}
+
+.orderList_Content .tbl_order2 .total_price, .tbl_order2 .total_price * {
+  color: #d53838;
+}
+
+.orderList_Content #order .ord_info > .area_right .box .line {
+  margin-top: 25px;
+  border-top: 1px solid #dfdfdf;
+}
+
+.orderList_Content #order .method > div {
+  position: relative;
+  padding: 25px 0 10px 25px;
+}
+
+.orderList_Content #order .method > div > label {
+  position: absolute;
+  left: 0;
+  top: 0;
+  cursor: pointer;
+}
+
+.orderList_Content #order .method > div > label {
+  position: absolute;
+  left: 0;
+  top: 0;
+  cursor: pointer;
+}
+
+.orderList_Content input[type=radio]:checked {
+  background-image: url(https://www.rolarola.com/_skin/rolarola_250613/img/common/radio_on.png);
+}
+
+.orderList_Content #order .method > div .msg_pay {
+  padding: 0 !important;
+  color: #999 !important;
+}
+
+.orderList_Content #order .method > div select {
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+.orderList_Content #order .method > div .bank_name {
+  display: none;
+}
+
+.orderList_Content #order .method > div #cash_reg {
+  padding: 5px 0 !important;
+}
+
+.orderList_Content #order .order_cancel_msg {
+  margin-bottom: 25px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid #dfdfdf;
+  color: #666;
+}
+
+.orderList_Content #order .event_pay {
+  margin-bottom: 25px;
+  padding: 15px;
+  background: #e7e7e7;
+}
+
+.orderList_Content #order .event_pay h3 {
+  font-size: 14px;
+}
+
+.orderList_Content #order .event_pay .th {
+  color: #e7622a;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.orderList_Content #order .reconfirm > label {
+  display: block;
+  position: relative;
+  padding: 15px 15px 15px 40px;
+  background-color: #e7e7e7;
+  cursor: pointer;
+}
+
+.orderList_Content #order .reconfirm > label > input {
+  position: absolute;
+  left: 15px;
+  top: 15px;
+}
+
+.orderList_Content #order #order1 .box_btn {
+  margin-top: 50px;
+  position: relative;
+  right: 30px;
+}
+
+.orderList_Content .box_btn.huge > * {
+  padding: 16px 20px;
+  font-size: 16px;
+}
+
+.orderList_Content #order #order2 {
+  display: none;
+  clear: both;
+  margin-top: 30px;
+  padding: 50px 0;
+  border: 1px solid #dedede;
+  text-align: center;
+}
+
+.orderList_Content #order #order2 .total_info {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.orderList_Content #order #order2 .total_info strong, #order #order2 .total_info strong * {
+  font-size: inherit;
+}
+
+.orderList_Content #order #order2 .msg {
+  padding: 23px 0;
+  color: #888;
+}
