@@ -1,169 +1,224 @@
-.CustomerMain_wrapper .customer_title {
-  margin-top: 8%; 
-  height: 150px;
-  margin-right: 30px;
+@charset "UTF-8";
+
+@font-face {
+  font-family: 'GmarketSansMedium';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
 
-.CustomerMain_wrapper .display-3 {
-  margin-left: -500px;
-	color: black;
+.CustomerMain_wrapper #cnt {
+	padding-bottom: 50px;
+	min-height: 500px;
+}
+
+.CustomerMain_wrapper .cntbody {
+	overflow: hidden;
+	width: 1300px;
 	position: relative;
+	top: 120px;
+	margin: 0 auto;
+}
+
+.CustomerMain_wrapper #wrapper {  
+	position: relative;
+	min-width: 1300px;
+	text-align: left;
+}
+
+.CustomerMain_wrapper h2.subtitle {
+	padding: 64px 0 60px;
+	color: #1a1a1a;
+	font-size: 40px;
+	font-weight: 700;
+	letter-spacing: 0.1rem;
+	text-align: center;
+}
+
+.CustomerMain_wrapper #boardlist {
+	width: 100%;
+	margin: 0 auto 16px;
+}
+
+.CustomerMain_wrapper #boardlist .board_col {
+	table-layout: fixed;
+	width: 100%;
+	margin: 0 auto;
+	border-bottom: 1px solid #aeaeae;
+}
+
+.CustomerMain_wrapper table {
+	border-collapse: collapse;
+	border-spacing: 0;
+	text-indent: initial;
+	border-spacing: 2px;
+}
+
+.CustomerMain_wrapper #boardlist .board_col {
+	table-layout: fixed;
+	width: 100%;
+	margin: 0 auto;
+	border-bottom: 1px solid #aeaeae;
+}
+
+.CustomerMain_wrapper table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+.CustomerMain_wrapper .hidden {
+	visibility: hidden;
+	overflow: hidden;
+	width: 0 !important;
+	height: 0 !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	font-size: 0;
+	line-height: 0;
+}
+
+.CustomerMain_wrapper colgroup {
+	display: table-column-group;
+	unicode-bidi: isolate;
+}
+
+.CustomerMain_wrapper col {
+	display: table-column;
+	unicode-bidi: isolate;
+}
+
+.CustomerMain_wrapper thead {
+	display: table-header-group;
+	vertical-align: middle;
+	unicode-bidi: isolate;
+	border-color: inherit;
+}
+
+.CustomerMain_wrapper #boardlist .board_col th {
+	padding: 11px 0;
+	border-top: 1px solid #000;
+	color: #181818;
+	font-weight: normal;
+	text-align: center;
+}
+
+.CustomerMain_wrapper tbody {
+	display: table-row-group;
+	vertical-align: middle;
+	unicode-bidi: isolate;
+	border-color: inherit;
+}
+
+.CustomerMain_wrapper #boardlist .board_col .notice_row td.no {
+	color: #f46665;
 	font-weight: bold;
-	font-size: 60px;
 }
 
-.CustomerMain_wrapper .sub_content {
-  margin: 0 auto;
-	width: auto;
-	position: relative;
-	min-height: 40%;
-	bottom: 5%;
-}
-
-.CustomerMain_wrapper .sub_title {
-  font-weight: bold;
-	text-align: center;
-	color: black;
-	font-size: 26px;
-	margin: 0 auto;
-	width: 500px;
-}
-
-.CustomerMain_wrapper .sub_title h2 {
-  font-weight: bold;
-  font-size: 26px;
-}
-
-.CustomerMain_wrapper .sub_title2 {
-  text-align: center;
-	color: grey;
-	position: relative;
-	margin-top: -1%;
-	margin: 0 auto;
-	width: 700px;
-}
-
-.CustomerMain_wrapper .sub_title2 h3 {
-  font-size: 22px;
-  font-weight: bold;
-}
-
-.CustomerMain_wrapper .consumer_info {
-  margin: 0 auto;
-	padding: 0;
-	width: 1000px;
-}
-
-.CustomerMain_wrapper .consumer_list1 {
-  width: 900px;
-	min-height: 220px; 
-	margin: 0 auto;
-}
-
-.CustomerMain_wrapper ul {
-  list-style: none; /** 목록 리스트 구현할 때, 점을 없애는 스타일 방식 */ 
-}
-
-.CustomerMain_wrapper .consumer_list1 li {
-  padding: 0; 
-	width: 10%;
-	position: relative;
-	margin: 0 auto;
-	float: left;
-	padding-left: 25%;
-	padding-top: 3%;
-	display: block;
+.CustomerMain_wrapper #boardlist .board_col td {
+	padding: 11px 0;
+	border-top: 1px solid #d7d7d7;
+	color: #837d81;
+	vertical-align: middle;
 	text-align: center;
 }
 
-.CustomerMain_wrapper .notice_text {
-  width: 80px;
-	left: 10px;
-	position: relative;
-	height: 15px;
-	display: block;
-	margin-top: 10px;
+.CustomerMain_wrapper #boardlist .board_col td.left {
+	text-align: left;
+}
+
+.CustomerMain_wrapper #boardlist .board_col td {
+	padding: 11px 0;
+	border-top: 1px solid #d7d7d7;
+	color: #837d81;
+	vertical-align: middle;
 	text-align: center;
 }
 
-.CustomerMain_wrapper .privacy_law {
-  position: relative;
-  left: 100px;
+.CustomerMain_wrapper #boardlist .board_col .notice_row td a {
+	color: #000;
 }
 
-.CustomerMain_wrapper .policy_text {
-  width: 80px;
-	left: 10px;
-	position: relative;
-	height: 15px; 
-	display: block;
-	margin-top: 10px;
+a, a:hover, a:active, a:focus {
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.CustomerMain_wrapper #boardlist .btn_write {
+	margin: 30px 0;
+	text-align: right;
+}
+
+img {
+	vertical-align: top;
+}
+
+.CustomerMain_wrapper .paging {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 30px;
+	font-size: 0;
 	text-align: center;
 }
 
-.CustomerMain_wrapper .consumer_list2 {
-  width: auto;
-	min-height: 220px; 
+.CustomerMain_wrapper .paging li {
+	display: inline;
+	padding: 0 10px;
+	color: #9e9e9e;
+	vertical-align: middle;
 }
 
-.CustomerMain_wrapper .consumer_list2 li {
-  padding: 0;
-	width: 30%; 
-	position: relative;
-	float: left;
-	display: block;
+.CustomerMain_wrapper .paging * {
+	vertical-align: middle;
 }
 
-.CustomerMain_wrapper .consumer_list2 li:first-child {
-	position: relative;
-	float: left;
-	margin: 0 auto;
-	left: 17%;
-	margin-top: 6%;
+.CustomerMain_wrapper .paging li strong {
+	display: inline-block;
+	color: #000;
+	font-size: 20px;
 }
 
-.CustomerMain_wrapper .question img {
-  width: 100px;
+ol, ul, li {
+	list-style: none;
 }
 
-.CustomerMain_wrapper .question_text {
-  position: relative;
-	left: 1%;
-	width: 150px;
-  top: 10px;
+.CustomerMain_wrapper #boardlist .board_search {
+	margin-top: 30px;
+	text-align: center;
 }
 
-.CustomerMain_wrapper .consumer_list2 li:nth-child(2) {
-	position: relative;
-	float: left; 
-	margin: 0 auto; 
-	left: 14%;
-	margin-top: 6%;
+.CustomerMain_wrapper #boardlist .board_search input {
+	vertical-align: middle;
 }
 
-.CustomerMain_wrapper .consult img {
-  width: 100px;
+.CustomerMain_wrapper #boardlist .board_search select {
+	min-width: 60px;
+	height: 30px;
+	vertical-align: middle;
+	margin-top: 21px;
 }
 
-.CustomerMain_wrapper .consult_text {
-  position: relative;
-	left: -2%;
-	padding-top: 1%;
-	width: 150px;
-  top: 8px;
+.CustomerMain_wrapper select {
+	max-width: 100%;
+	height: 40px;
+	padding: 4px 6px;
+	border: 1px solid #dcdcdc;
+	background: url(https://www.rolarola.com/_skin/rolarola_250402/img/common/select_down.png) no-repeat center right 13px #fff;
+	color: #666;
+	font: inherit;
+	appearance: none;
+	-webkit-appearance: none;
 }
 
-.CustomerMain_wrapper .consumer_list2 li:nth-child(3) {
-	position: relative;
-	float: left;
-	right: -10%;
-	margin: 0 auto;
-	margin-top: 6%;
+.CustomerMain_wrapper #boardlist .board_search .boardsearch {
+	width: 238px;
+	height: 27px;
+	border: 1px solid #aeaeae;
+	margin-top: 20px;
+	padding: 5px;
+	line-height: 30px;
 }
 
-.CustomerMain_wrapper .claim_text {
-  position: relative;
-	left: 18px;
-	width: 100px;
-  top: 8px;
-} 
+.boardClue {
+	margin-top: 20px;
+}
