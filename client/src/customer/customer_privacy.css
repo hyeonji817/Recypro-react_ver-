@@ -1,0 +1,89 @@
+.csPrivacy_Content {  
+  padding-bottom: 50px;
+  min-height: 500px;
+}
+
+.csPrivacy_Content .csPrivacyBody {
+  overflow: hidden;
+  width: 1300px;
+  margin: 0 auto;
+}
+
+.csPrivacy_Content h2.subtitle {
+  padding: 64px 0 60px;
+  color: #1a1a1a;
+  margin-top: 100px;
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: 0.1rem;
+  text-align: center;
+}
+
+#privacy {
+  margin: 10px 20px;
+  text-align: left;
+  font-size: 17px;
+}
+
+#privacy * {
+  color: #837d81;
+  line-height: 170%;
+}
+
+#privacy dt {
+  margin: 0;
+  padding: 0;
+  color: #181818;
+  font-weight: bold;
+}
+
+#privacy dd.first {
+  padding: 15px 0 0 0;
+}
+
+#privacy dd {
+  padding: 15px 10px;
+}
+
+#privacy ol.cont {
+  padding-bottom: 120px;
+}
+
+#privacy ol {
+  padding: 10px 15px 0 15px;
+}
+
+ol, ul, li {
+  list-style: none;
+}
+
+#privacy table {
+  table-layout: fixed;
+  width: 100%;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+#privacy table td {
+  padding: 10px 0;
+  border: 1px solid #837d81;
+  color: #837d81;
+  text-align: center;
+  vertical-align: middle;
+}
+
+#privacy table td {
+  padding: 10px 0;
+  border: 1px solid #837d81;
+  color: #837d81;
+  text-align: center;
+  vertical-align: middle;
+}
+
+#privacy table td.left {
+  padding-left: 10px;
+  text-align: left;
+}
