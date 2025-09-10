@@ -1,0 +1,45 @@
+.customerGuide_Content { 
+  padding-bottom: 50px;
+  min-height: 500px;
+  position: relative;
+  top: 170px;
+}
+
+.customerGuide_Content .csGuidebody {
+  overflow: hidden;
+  width: 1300px;
+  margin: 0 auto;
+}
+
+.customerGuide_Content h2.subtitle {
+  padding: 64px 0 60px;
+  color: #1a1a1a;
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: 0.1rem;
+  text-align: center;
+}
+
+#guide > dl > dt {
+  padding: 30px 0 10px;
+  font-weight: bold;
+}
+
+a, a:hover, a:active, a:focus {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#guide > dl > dd {
+  padding-left: 10px;
+  color: #666;
+}
+
+#guide > dl > dd > ul, #guide > dl > dd > ol {
+  padding-left: 10px;
+  color: #666;
+}
+
+ol, ul, li {
+  list-style: none;
+}
