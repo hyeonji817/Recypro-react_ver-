@@ -1,0 +1,597 @@
+.pdWrite_Content {
+  overflow: auto;
+  width: 1400px;
+  position: relative;
+  top: 170px;
+  height: 100%;
+  margin: 0 auto;
+  background: #fff;
+  text-align: center;
+}
+
+.pdWrite_Content h2.subtitle {
+  font-size: 40px;
+}
+
+.pdWrite_Content form {
+  display: inline-block;
+  width: 100%;
+  text-align: left;
+}
+
+.pdWrite_Content fieldset > legend {
+  display: block;
+  width: 100%;
+  margin-bottom: 25px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid #000;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.pdWrite_Content .hidden {
+  visibility: hidden;
+  overflow: hidden;
+  width: 0 !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-size: 0;
+  line-height: 0;
+}
+
+.pdWrite_Content fieldset > div.name {
+  min-height: 34px;
+  padding-right: 100px;
+  line-height: 34px;
+  font-weight: bold;
+}
+
+.pdWrite_Content fieldset > div {
+  position: relative;
+  margin-top: 10px;
+}
+
+.pdWrite_Content fieldset > div > label {
+  display: none;
+}
+
+.pdWrite_Content fieldset > div.name .check {
+  position: absolute;
+  right: 0;
+  top: 5px;
+}
+
+.pdWrite_Content fieldset select {
+  width: 100%;
+}
+
+.pdWrite_Content select {
+  max-width: 100%;
+  height: 40px;
+  padding: 4px 6px;
+  border: 1px solid #dcdcdc;
+  background: url(https://www.rolarola.com/_skin/rolarola_250402/img/common/select_down.png) no-repeat center right 13px #fff;
+  color: #666;
+  font: inherit;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.pdWrite_Content .form_input.block {
+  width: 100% !important;
+  font-size: 17px;
+}
+
+
+.pdWrite_Content input[type=text], input[type=email], input[type=password] {
+  vertical-align: top;
+}
+
+.pdWrite_Content .form_input {
+  height: 40px;
+  padding: 4px 10px;
+  border: 1px solid #dcdcdc;
+  background: #fff;
+  color: #666;
+  font-family: 'LibreBodoni', 'Pretendard', sans-serif;
+  font-size: 12px;
+  transition: all .3s ease;
+}
+
+.pdWrite_Content fieldset > div.contents {
+  background: #fff;
+  /** border: 1px solid #eee; */
+}
+
+.pdWrite_Content fieldset > div.contents textarea {
+  height: 400px;
+}
+
+.pdWrite_Content .form_input.block {
+  width: 100% !important;
+}
+
+#smart_editor2 {
+  margin-right: 1px !important;
+  min-width: 100px !important;
+}
+
+#smart_editor2 .se2_tool {
+  overflow: visible;
+  position: relative;
+  z-index: 25;
+}
+
+#smart_editor2 .se2_text_tool {
+  position: relative;
+  clear: both;
+  z-index: 30;
+  padding: 4px 0 4px 3px;
+  background: #f4f4f4 url(../img/bg_text_tool.gif) 0 0 repeat-x;
+  border-bottom: 1px solid #b5b5b5;
+}
+
+#smart_editor2 .se2_text_tool .se2_font_type {
+  position: relative;
+}
+
+#smart_editor2 .se2_text_tool ul {
+  float: left;
+  display: inline;
+  margin-right: 3px;
+  padding-left: 1px;
+  white-space: nowrap;
+}
+
+#smart_editor2 ol, #smart_editor2 ul {
+  list-style: none;
+}
+
+body, #smart_editor2, #smart_editor2 p, #smart_editor2 h1, #smart_editor2 h2, #smart_editor2 h3, #smart_editor2 h4, #smart_editor2 h5, #smart_editor2 h6, #smart_editor2 ul, #smart_editor2 ol, #smart_editor2 li, #smart_editor2 dl, #smart_editor2 dt, #smart_editor2 dd, #smart_editor2 table, #smart_editor2 th, #smart_editor2 td, #smart_editor2 form, #smart_editor2 fieldset, #smart_editor2 legend, #smart_editor2 input, #smart_editor2 textarea, #smart_editor2 button, #smart_editor2 select {
+  margin: 0;
+  padding: 0;
+}
+
+#smart_editor2 .se2_text_tool li {
+  _display: inline;
+  float: left;
+  position: relative;
+  z-index: 30;
+}
+
+#smart_editor2 .se2_text_tool .se2_font_type button {
+  text-align: left;
+}
+
+#smart_editor2 .se2_text_tool .se2_font_family {
+  width: 70px;
+  height: 21px;
+  background-position: 0 -10px;
+}
+
+#smart_editor2 .se2_text_tool button, #smart_editor2 .se2_multy .se2_icon {
+  width: 21px;
+  height: 21px;
+  background: url(../img/ko_KR/text_tool_set.png) no-repeat;
+  vertical-align: top;
+}
+
+#smart_editor2 button {
+  border: 0;
+  background: none;
+  font-size: 11px;
+  vertical-align: top;
+  cursor: pointer;
+}
+
+#smart_editor2 .se2_text_tool .se2_font_type button.se2_font_family span, #smart_editor2 .se2_text_tool .se2_font_type button.se2_font_size span {
+  display: inline-block;
+  visibility: visible;
+  position: static;
+  width: 52px;
+  height: 20px;
+  padding: 0 0 0 6px;
+  font-size: 12px;
+  line-height: 20px;
+  color: #333;
+}
+
+#smart_editor2 button span, #smart_editor2 button em {
+  visibility: hidden;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  font-size: 0;
+  line-height: 0;
+}
+
+#smart_editor2 span, #smart_editor2 em {
+  font-size: 12px;
+}
+
+#smart_editor2 .se2_text_tool .se2_font_type button {
+  text-align: left;
+}
+
+#smart_editor2 button {
+  border: 0;
+  background: none;
+  font-size: 11px;
+  vertical-align: top;
+  cursor: pointer;
+}
+
+#smart_editor2 .se2_text_tool .se2_layer {
+  display: none;
+  float: left;
+  position: absolute;
+  top: 20px;
+  left: 0;
+  z-index: 50;
+  margin: 0;
+  padding: 0;
+  border: 1px solid #bcbbbb;
+  background: #fafafa;
+}
+
+#smart_editor2 .se2_text_tool .se2_layer .se2_in_layer {
+  float: left;
+  margin: 0;
+  padding: 0;
+  border: 1px solid #fff;
+  background: #fafafa;
+}
+
+#smart_editor2 .se2_tool .se2_l_font_fam {
+  width: 202px;
+  margin: 0;
+  padding: 0;
+}
+
+#smart_editor2 .se2_text_tool ul {
+  float: left;
+  display: inline;
+  margin-right: 3px;
+  padding-left: 1px;
+  white-space: nowrap;
+}
+
+#smart_editor2 .se2_tool .se2_l_font_fam li {
+  display: block;
+  width: 202px;
+  height: 21px;
+  margin: 0;
+  padding: 0;
+  color: #333;
+  cursor: pointer;
+}
+
+#smart_editor2 .se2_l_font_fam button {
+  width: 200px;
+  height: 21px;
+  margin: 0;
+  padding: 2px 0 2px 0px;
+  background: none;
+  text-align: left;
+}
+
+#smart_editor2 .se2_l_font_fam button span {
+  display: block;
+  visibility: visible;
+  overflow: visible;
+  position: relative;
+  top: auto;
+  left: auto;
+  width: auto;
+  height: auto;
+  margin: 0 0 0 4px;
+  padding: 0;
+  font-size: 12px;
+  line-height: normal;
+  color: #333;
+}
+
+#smart_editor2 .se2_l_font_fam button span em {
+  visibility: visible;
+  overflow: auto;
+  position: static;
+  width: auto;
+  height: auto;
+  margin-right: -4px;
+  font-size: 12px;
+  color: #888;
+}
+
+#smart_editor2 .se2_l_font_fam button span span {
+  display: inline;
+  visibility: visible;
+  overflow: visible;
+  width: auto;
+  height: auto;
+  margin: 0 0 0 4px;
+  font-family: Verdana;
+  font-size: 12px;
+  line-height: 14px;
+  color: #888;
+}
+
+#smart_editor2 .se2_l_font_fam button span {
+  display: block;
+  visibility: visible;
+  overflow: visible;
+  position: relative;
+  top: auto;
+  left: auto;
+  width: auto;
+  height: auto;
+  margin: 0 0 0 4px;
+  padding: 0;
+  font-size: 12px;
+  line-height: normal;
+  color: #333;
+}
+
+#smart_editor2 .se2_text_tool .se2_font_size {
+  width: 45px;
+  height: 21px;
+  background-position: -70px -10px;
+}
+
+#smart_editor2 .se2_text_tool button, #smart_editor2 .se2_multy .se2_icon {
+  width: 21px;
+  height: 21px;
+  background: url(../img/ko_KR/text_tool_set.png) no-repeat;
+  vertical-align: top;
+}
+
+#smart_editor2 button {
+  border: 0;
+  background: none;
+  font-size: 11px;
+  vertical-align: top;
+  cursor: pointer;
+}
+
+#smart_editor2 .se2_text_tool .se2_layer {
+  display: none;
+  float: left;
+  position: absolute;
+  top: 20px;
+  left: 0;
+  z-index: 50;
+  margin: 0;
+  padding: 0;
+  border: 1px solid #bcbbbb;
+  background: #fafafa;
+}
+
+#smart_editor2 .se2_text_tool .se2_layer .se2_in_layer {
+  float: left;
+  margin: 0;
+  padding: 0;
+  border: 1px solid #fff;
+  background: #fafafa;
+}
+
+#smart_editor2 .se2_tool .se2_l_font_size {
+  width: 302px;
+  margin: 0;
+  padding: 0;
+}
+
+#smart_editor2 .se2_text_tool ul {
+  float: left;
+  display: inline;
+  margin-right: 3px;
+  padding-left: 1px;
+  white-space: nowrap;
+}
+
+#smart_editor2 .se2_text_tool li {
+  _display: inline;
+  float: left;
+  position: relative;
+  z-index: 30;
+}
+
+#smart_editor2 .se2_text_tool .se2_bold {
+  background-position: -115px -10px;
+}
+
+#smart_editor2 .se2_text_tool button, #smart_editor2 .se2_multy .se2_icon {
+  width: 21px;
+  height: 21px;
+  background: url(../img/ko_KR/text_tool_set.png) no-repeat;
+  vertical-align: top;
+}
+
+#smart_editor2 button {
+  border: 0;
+  background: none;
+  font-size: 11px;
+  vertical-align: top;
+  cursor: pointer;
+}
+
+#smart_editor2 ul li.first_child button span.tool_bg {
+  left: -1px;
+  width: 2px;
+  background: url(../img/bg_button_left.gif) no-repeat;
+}
+
+#smart_editor2 .se2_text_tool .se2_underline {
+  background-position: -136px -10px;
+}
+
+#smart_editor2 button span, #smart_editor2 button em {
+  visibility: hidden;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  font-size: 0;
+  line-height: 0;
+}
+
+#smart_editor2 span, #smart_editor2 em {
+  font-size: 12px;
+}
+
+#smart_editor2 .se2_text_tool .se2_italic {
+  background-position: -157px -10px;
+}
+
+#smart_editor2 .se2_text_tool .se2_tdel {
+  background-position: -178px -10px;
+}
+
+#smart_editor2 .se2_text_tool .selected_color {
+  position: absolute;
+  top: 14px;
+  left: 5px;
+  width: 11px;
+  height: 3px;
+  font-size: 0;
+}
+
+#smart_editor2 .se2_text_tool .se2_fcolor {
+  position: relative;
+  background-position: -199px -10px;
+}
+
+#smart_editor2 .se2_text_tool .se2_fcolor_more {
+  background-position: -220px -10px;
+  width: 10px;
+}
+
+#smart_editor2 .se2_text_tool .se2_layer {
+  display: none;
+  float: left;
+  position: absolute;
+  top: 20px;
+  left: 0;
+  z-index: 50;
+  margin: 0;
+  padding: 0;
+  border: 1px solid #bcbbbb;
+  background: #fafafa;
+}
+
+#smart_editor2 .se2_text_tool .se2_layer .se2_in_layer {
+  float: left;
+  margin: 0;
+  padding: 0;
+  border: 1px solid #fff;
+  background: #fafafa;
+}
+
+#smart_editor2 .se2_palette {
+  float: left;
+  position: relative;
+  width: 225px;
+  margin: 0;
+  padding: 11px 0 10px 0;
+}
+
+#smart_editor2 .se2_palette .se2_pick_color {
+  _display: inline;
+  float: left;
+  clear: both;
+  width: 205px;
+  margin: 0 0 0 11px;
+  padding: 0;
+}
+
+#smart_editor2 .se2_palette .se2_pick_color li {
+  float: left;
+  width: 12px;
+  height: 12px;
+  margin: 0;
+  padding: 0;
+}
+
+#smart_editor2 .se2_palette .se2_pick_color li button {
+  width: 11px;
+  height: 11px;
+  border: 0;
+}
+
+#smart_editor2 .se2_palette .se2_pick_color li button span {
+  display: block;
+  visibility: visible;
+  overflow: visible;
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  width: 11px;
+  height: 11px;
+}
+
+#smart_editor2 .se2_palette .se2_pick_color li button span span {
+  visibility: hidden;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+}
+
+#smart_editor2 .se2_palette .se2_pick_color li button {
+  width: 11px;
+  height: 11px;
+  border: 0;
+}
+
+#smart_editor2 .se2_palette .se2_view_more {
+  _display: inline;
+  float: left;
+  width: 46px;
+  height: 23px;
+  margin: 1px 0 0 1px;
+  background: url(../img/ko_KR/btn_set.png) 0 -47px no-repeat;
+}
+
+#smart_editor2 .se2_palette h4 {
+  _display: inline;
+  float: left;
+  width: 203px;
+  margin: 9px 0 0 11px;
+  padding: 10px 0 4px 0;
+  background: url(../img/bg_line1.gif) repeat-x;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 14px;
+  color: #333;
+  letter-spacing: -1px;
+}
+
+#smart_editor2 .se2_palette .se2_pick_color {
+  _display: inline;
+  float: left;
+  clear: both;
+  width: 205px;
+  margin: 0 0 0 11px;
+  padding: 0;
+}
+
+#smart_editor2 .se2_palette .se2_pick_color li {
+  float: left;
+  width: 12px;
+  height: 12px;
+  margin: 0;
+  padding: 0;
+}
+
+#smart_editor2 .se2_palette2 {
+  float: left;
+  _float: none;
+  width: 214px;
+  margin: 9px 0 0 0;
+  padding: 11px 0 0 11px;
+  background: url(../img/bg_line1.gif) repeat-x;
+}
+
+#smart_editor2 .se2_palette2 .se2_color_set {
+  float: left;
+}
