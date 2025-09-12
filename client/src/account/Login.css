@@ -32,122 +32,400 @@ a:active {
     font-style: normal;
 }
 
-@media (min-width: 768px) {
-  .bd-placeholder-img-lg {
-    font-size: 3.5rem;
-  }
-}
-
-.wrapper_login .login {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 500px;
-  height: 1000px;
-  padding: 33px 25px 29px;
-  color: rgb(53, 53, 53);
-  font-size: 18px;
-  font-family: 'S-CoreDream-5Medium';
-  border: 5px solid #eee;
-  position: absolute;
-  top: 50%;
-  left : 50%;
-  transform: translate(-50%, -50%);
-}
-
-.wrapper_login .login_title {
-  font-weight: 700;
-  left: 10%; 
-  width: 150px;
-  position: relative; 
-  font-family: 'S-CoreDream-3Light';
-  margin-bottom: 10px; /* 간격 조절 */
-  top: 10%;
-}
-
-.wrapper_login .login {
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* 가로 중앙 정렬 */
-  justify-content: center; /* 세로 중앙 정렬 (필요시) */
-  width: 700px;
-  height: 800px;
-  padding: 33px 25px 29px;
-  color: rgb(53, 53, 53);
-  font-size: 18px;
-  font-family: 'S-CoreDream-5Medium';
-  border: 5px solid #eee;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.wrapper_login .login_body {
-  font-family: 'S-CoreDream-3Light';
-  margin: 30px 20px;
-  width: 300px;
-  position: relative;
-  top: -10px;
-}
-
-.wrapper_login .login_body Button {
-  flex: 1;
-  width: 300px;
-}
-
-.wrapper_login .login_body .form-group {
-  padding-bottom: 20px;
-  width: 300px; 
-}
-
-.wrapper_login .form-group #id {
-  margin-bottom: -20px;
-  position: relative;
-  top: 40px;
-}
-
-.wrapper_login .form-group #password {
-  margin-bottom: -50px;
-  position: relative;
-  top: 30px;
-}
-
 .wrapper_login .logo {
   font-family: 'SDSamliphopangche_Outline';
   font-weight: 700; 
   color: black;
   text-decoration: none;
   margin: 0 auto;
-  padding-top: 50px;
-  position: relative;
-  left: -10px;
 }
 
 .wrapper_login .logo a {
   color: black; /* 링크 색상을 검은색으로 */
   text-decoration: none; /* 링크의 밑줄 제거 */
   position: relative;
-  left: 75%;
-  top: -330px;
+  left: 1100px;
+  top: -100px;
   font-size: 40px;
 }
 
-.wrapper_login .login_body .text-center {
-  text-align: center;
-  margin-top: 80px;
+#login {
+  margin-bottom: 178px;
+}
+
+.box_member {
+  width: 900px;
+  margin: 261px auto 0;
+}
+
+#login .login_wrap {
+  width: 100%;
+  max-width: 600px;
   position: relative;
-  top: -15px;
-  width: 300px;
+  top: 50px;
+  padding-top: 50px;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-bottom: 30px;
+  margin: 0 auto;
+  border: 1px solid #eee;
 }
 
-.wrapper_login .login_body .text-center a {
-  color: black;
-  font-weight: bold;
+/** 여기서부터는 선택사항 */
+input[type="hidden" i] {
+  display: none !important;
 }
 
-.wrapper_login .button-login img {
-  width: 300px; 
-  height: auto;
+input:not([type="image" i], [type="range" i], [type="checkbox" i], [type="radio" i]) {
+  overflow-clip-margin: 0px !important;
+  overflow: clip !important;
+}
+
+user agent stylesheet
+input[type="hidden" i] {
+  appearance: none;
+  background-color: initial;
+  cursor: default;
+  padding: initial;
+  border: initial;
+}
+
+/** 선택사항 끝 */
+
+.box_member fieldset {
+  position: relative;
+}
+
+.box_member fieldset legend {
+  padding: 0 0 11px;
+  color: #1a1a1a;
+  font-size: 16px;
+  font-weight: 900;
+}
+
+.hidden {
+  visibility: hidden;
+  overflow: hidden;
+  width: 0 !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-size: 0;
+  line-height: 0;
+}
+
+#login .fld.top {
+  margin-bottom: 70px;
+}
+
+.box_member fieldset .fld {
+  position: relative;
+  margin-bottom: 10px;
+  font-size: 0;
+}
+
+.box_member fieldset .fld label {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  color: #000;
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 0.025rem;
+  transform: translateY(-50%);
+  cursor: auto;
+  transition: all .3s ease;
+}
+
+.box_member .form_input.member {
+  height: 42px;
+  padding: 0 15px;
+  border-radius: 0;
+  border: 1px solid #555;
+  border-width: 0 0 1px;
+  background: #fff;
+  font-family: 'Pretendard';
+  color: #000;
+  font-size: 13px;
+}
+
+.form_input.block {
+  width: 100% !important;
+}
+
+input[type=text], input[type=email], input[type=password] {
+  vertical-align: top;
+}
+
+.box_member fieldset .fld {
+  position: relative;
+  margin-bottom: 10px;
+  font-size: 0;
+}
+
+.box_member fieldset .fld .show_icon {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 42px;
+  height: 42px;
+  background: url(https://www.rolarola.com/_skin/rolarola_250613/img/member/icon_pwd.png) no-repeat center;
+  cursor: pointer;
+}
+
+.box_member fieldset .savessl {
+  padding: 19px 0 13px;
+  font-size: 0;
+}
+
+.box_member fieldset .savessl input[type=checkbox]:checked {
+  background: #000;
+}
+
+.box_member fieldset .savessl input[type=checkbox] {
+  width: 23px;
+  height: 22px;
+  margin: 0 6px 0 0;
+  outline: 0;
+  border-radius: 0;
+  border: 0;
+  background: no-repeat left center / 23px 22px;
+  background: #d5d5d5;
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  vertical-align: middle;
+  transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+}
+
+input[type=checkbox]:checked {
+  background-image: url(https://www.rolarola.com/_skin/rolarola_250613/img/common/checkbox_on.png);
+}
+
+.box_member fieldset .savessl label {
+  margin-right: 60px;
+  color: #d5d5d5;
+  font-size: 14px;
+  letter-spacing: 0;
+  vertical-align: middle;
+}
+
+#login .login_btn_wrap {
+  margin-top: 11px;
+}
+
+.box_btn.block {
+  display: block;
+}
+
+.box_btn {
+  display: inline-block;
+  text-align: center;
+  vertical-align: top;
+}
+
+#login .login_btn_wrap .box_btn * {
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.box_btn.black2 * {
+  border-color: #3b3b39;
+  background: #fff;
+  color: #000 !important;
+}
+
+.box_btn.block > * {
+  width: 100%;
+}
+
+.box_btn > * {
+  display: inline-block;
+  margin: 0;
+  padding: 11px 12px;
+  border: 1px solid #676767;
+  outline: none;
+  background: #666;
+  color: #fff !important;
+  font-size: 12px;
+  font-family: 'LibreBodoni', 'Pretendard', sans-serif;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 1.4;
+  white-space: nowrap;
+  cursor: pointer;
+  -webkit-appearance: none;
+  transition: all .2s ease;
+}
+
+#login .joinfind {
+  padding-top: 47px;
+}
+
+#login .joinfind > p > a {
+  color: #000;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 15px;
+}
+
+a, a:hover, a:active, a:focus {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#login .simple {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  column-gap: 20px;
+}
+
+#login .simple a.kakao {
+  width: 56px;
+  height: 28px;
+  background: url(https://www.rolarola.com/_skin/rolarola_250613/img/member/login_kakao.png) no-repeat center / 56px auto;
+}
+
+#login .simple a {
+  display: block;
+  width: 100%;
+  text-indent: -9999px;
+}
+
+#login .simple a.naver {
+  width: 28px;
+  height: 28px;
+  background: url(https://www.rolarola.com/_skin/rolarola_250613/img/member/login_naver.png) no-repeat center / 28px auto;
+}
+
+#login .simple a.apple {
+  width: 25px;
+  height: 28px;
+  background: url(https://www.rolarola.com/_skin/rolarola_250613/img/member/login_apple.png) no-repeat center / 25px auto;
+}
+
+.box_member fieldset legend {
+  padding: 0 0 11px;
+  color: #1a1a1a;
+  font-size: 16px;
+  font-weight: 900;
+}
+
+#login .fld.top {
+  margin-bottom: 70px;
+}
+
+.box_member fieldset .fld {
+  position: relative;
+  margin-bottom: 10px;
+  font-size: 0;
+}
+
+.box_member fieldset .fld label {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  color: #000;
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 0.025rem;
+  transform: translateY(-50%);
+  cursor: auto;
+  transition: all .3s ease;
+}
+
+.box_member .form_input.member
+{
+  height: 42px;
+  padding: 0 15px;
+  border-radius: 0;
+  border: 1px solid #555;
+  border-width: 0 0 1px;
+  background: #fff;
+  font-family: 'Pretendard';
+  color: #000;
+  font-size: 13px;
+}
+
+.form_input.block {
+  width: 100% !important;
+}
+
+.box_member fieldset .fld {
+  position: relative;
+  margin-bottom: 10px;
+  font-size: 0;
+}
+
+.dn {
+  display: none !important;
+}
+
+#login .tab_order .login_btn_wrap {
+  margin-top: 75px;
+}
+
+#login .login_btn_wrap .box_btn * {
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.box_btn.black2 * {
+  border-color: #3b3b39;
+  background: #fff;
+  color: #000 !important;
+}
+
+.box_btn.block > * {
+  width: 100%;
+}
+
+.box_btn > * {
+  display: inline-block;
+  margin: 0;
+  padding: 11px 12px;
+  border: 1px solid #676767;
+  outline: none;
+  background: #666;
+  color: #fff !important;
+  font-size: 12px;
+  font-family: 'LibreBodoni', 'Pretendard', sans-serif;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 1.4;
+  white-space: nowrap;
+  cursor: pointer;
+  -webkit-appearance: none;
+  transition: all .2s ease;
+}
+
+.box_member.login .tab_member {
+  padding-top: 35px;
+}
+
+ol, ul, li {
+  list-style: none;
+}
+
+.box_member.login .tab_member > li a {
+  color: #000;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 15px;
+}
+
+.box_member.login .tab_member > li a.active {
+  display: none;
+}
+
+.box_member.login .tab_member > li a {
+  color: #000;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 15px;
 }
