@@ -1,144 +1,103 @@
-.mypage_title {
-	margin-top: 8%;
-	height: 150px;
+@charset "UTF-8";
+
+@font-face {
+  font-family: 'GmarketSansMedium';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
 
-.Mypage_wrapper .display-3 {
-  margin-left: -700px;
-  float: left; 
-  color: black;
-  position: relative;
-  font-weight: bold;
-  font-size: 55px; 
-  display: block;
+#mypage_Content {
+  min-height: 500px;
+  margin-top: 170px;
+}
+
+#mypage_Content .mypage_body {
+  overflow: hidden;
+  width: 1700px;
+  margin: 0 auto;
+  font-family: 'GmarketSansMedium';
+}
+
+h2.subtitle {
+  padding: 64px 0 60px;
+  color: #1a1a1a;
+  font-size: 40px;
   font-weight: 700;
-  text-shadow: 1px 1px 5px #bdbdbd;
+  letter-spacing: 0.1rem;
+  text-align: center;
 }
 
-.mypage_side_menubar {
-  float: left;
-  width: 250px;
-  position: relative;
-  left: -17px; 
-  top: 3%; 
-  min-height: 480px;
-  margin-bottom: 10%; 
+.mypage_top {
+  text-align: center;
+}
+
+.mypage_top .customer_section .name strong, .mypage_top .customer_section .name {
+  color: #000;
+  font-size: 27px;
+}
+
+.mypage_top .customer_section .my_edit {
+  color: #828282;
+  font-size: 22px;
+}
+
+a, a:hover, a:active, a:focus {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.mypage_top .point_section {
+  padding-top: 25px;
+  font-size: 0;
+}
+
+ol, ul, li {
+  list-style: none;
+}
+
+.mypage_top .point_section > li {
+  display: inline-block;
+  padding: 0 18px;
+  vertical-align: top;
+}
+
+.mypage_top .point_section > li > a, .mypage_top .point_section > li > a strong {
+  color: #000;
+  font-size: 22px;
+}
+
+.mypage_top .my_page_tab {
+  padding: 104px 0 144px;
+  font-size: 0;
+}
+
+.mypage_top .my_page_tab > li {
+  display: inline-block;
+  padding: 0 34px;
+  vertical-align: top;
+}
+
+.mypage_top .my_page_tab > li .tab_title {
   display: block;
+  color: #828282;
+  font-size: 17px;
 }
 
-.mypage_side_menubar li {
-  padding: 0;
+.mypage_top .my_page_tab > li .tab_sub {
   display: block;
-  position: relative;
-  height: 60px;
-  width: auto;
-  left: 30px;
+  color: #000;
+  font-size: 14px;
+  font-weight: 700;
 }
 
-.Mypage_wrapper .user_modify {
-  border-radius: 10px;
-  height: 60px;
-  position: relative;
-  left: -20%; 
-  width: 250px;
-  border: 1px solid gray;
-}
-
-.Mypage_wrapper .user_modify a {
-  padding-top: 3%; 
-  top: 23%; 
-  position: relative;
-  left: 3%; 
+#mypage .my_order > p {
+  padding-top: 100px;
+  color: #1a1a1a;
   font-size: 17px;
-  font-weight: bold;
 }
 
-.Mypage_wrapper .mylevel {
-  border-radius: 10px;
-  height: 60px;
-  position: relative;
-  left: -20%;
-  width: 250px;
-  border: 1px solid gray;
-}
-
-.Mypage_wrapper .mylevel a {
-  padding-top: 3%; 
-  top: 23%; 
-  position: relative;
-  left: 3%; 
-  font-size: 17px;
-  font-weight: bold;
-}
-
-.Mypage_wrapper .coupon_list {
-  border-radius: 10px; 
-	height: 60px;
-	position: relative; 
-	left: -20%; 
-	width: 250px;
-	border: 1px solid gray;
-}
-
-.Mypage_wrapper .coupon_list a {
-  padding-top: 3%;
-	top: 23%; 
-	position: relative; 
-	left: 3%;
-	font-size: 17px;
-	font-weight: bold;
-}
-
-.Mypage_wrapper .review_list {
-  border-radius: 10px; 
-	height: 60px;
-	position: relative; 
-	left: -20%; 
-	width: 250px;
-	border: 1px solid gray; 
-}
-
-.Mypage_wrapper .review_list a {
-  padding-top: 3%;
-	top: 23%; 
-	position: relative; 
-	left: 3%;
-	font-size: 17px;
-	font-weight: bold;
-}
-
-.Mypage_wrapper .orderlist {
-  border-radius: 10px; 
-	height: 60px;
-	position: relative; 
-	left: -20%; 
-	width: 250px;
-	border: 1px solid gray; 
-}
-
-.Mypage_wrapper .orderlist a {
-  padding-top: 3%;
-	top: 23%; 
-	position: relative; 
-	left: 3%;
-	font-size: 17px;
-	font-weight: bold;
-}
-
-.Mypage_wrapper .product_review {
-  border-radius: 10px; 
-	height: 60px;
-	position: relative; 
-	left: -20%;
-	width: 250px;
-	border: 1px solid gray; 
-}
-
-.Mypage_wrapper .product_review a {
-  padding-top: 3%;
-	top: 23%; 
-	position: relative; 
-	left: 3%;
-	font-size: 17px;
-	font-weight: bold;
+.empty {
+  padding: 100px 0 !important;
+  text-align: center;
 }
