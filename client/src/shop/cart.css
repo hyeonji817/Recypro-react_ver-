@@ -1,175 +1,550 @@
-.cart_wrap .title {
-  margin-top: 120px;
-  height: 160px;
+@charset "UTF-8";
+
+@font-face {
+  font-family: 'GmarketSansMedium';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
 
-.cart_wrap .btn btn-secondary {
-  font-size: 20px;
+#cart_Content {
+  padding-bottom: 50px;
+  min-height: 500px;
 }
 
-.cart_wrap .btn btn-warning {
-  font-size: 20px;
+#cart_Content .cart_body {
+  overflow: hidden;
+  width: 1700px;
+  position: relative;
+  top: 170px;
+  margin: 0 auto;
+  font-family: 'GmarketSansMedium';
 }
 
-.cart_wrap .row {
-  font-size: 20px;
-}
-
-.cart_wrap .display-3 {
-  margin-top: 100px;
+h2.subtitle {
+  padding: 64px 0 60px;
+  color: #1a1a1a;
+  font-size: 30px;
   font-weight: 700;
+  letter-spacing: 0.1rem;
+  text-align: center;
+}
+
+#cart .cart_step {
+  padding-bottom: 33px;
+  font-size: 0;
+}
+
+.tar {
+  text-align: right !important;
+}
+
+ol, ul, li {
+  list-style: none;
+}
+
+#cart .cart_step > li.first {
+  margin-right: 8px;
+  padding-right: 3px;
+  padding-bottom: 2px;
+  border-bottom: 1px solid #000;
+  font-weight: 500;
+}
+
+#cart .cart_step > li {
+  display: inline-block;
+  margin: 0 11px;
+  color: #1a1a1a;
+  font-size: 17px;
+  vertical-align: top;
+}
+
+#cart .cart_step > li.first span {
+  padding-right: 2px;
+  font-size: 17px;
+  font-weight: 900;
+}
+
+.cart_tbl_col.prd {
+  border-bottom: 2px solid #e8e8e8;
+}
+
+.cart_tbl_col {
+  table-layout: fixed;
+  clear: both;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.cart_tbl_col caption {
+  padding-bottom: 20px;
+  font-weight: bold;
+  text-align: left;
+}
+
+.hidden {
+  visibility: hidden;
+  overflow: hidden;
+  width: 0 !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-size: 0;
+  line-height: 0;
+}
+
+.cart_tbl_col.prd > thead > tr > th {
+  border-top: 0;
+  border-bottom: 2px solid #e8e8e8;
   color: #000;
-  position: relative;
-  left: -90px;
+  font-size: 17px;
+  letter-spacing: -0.03rem;
 }
 
-.cart_wrap #progress {
-  width: 1080px; 
-  height: 250px;
-  position: relative; 
-  bottom: 6%;
-  margin: 0 auto; 
-  display: block; 
+.cart_tbl_col > thead > tr > th {
+  padding: 15px 0;
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
 }
 
-.cart_wrap #progress li {
-  padding: 0; 
-  width: 33.3%; 
-  float: left; 
-  height: 250px; 
-  display: block; 
+.cart_tbl_col.prd > tbody > tr > td {
+  padding: 20px 0;
+  border: none;
+  color: #1a1a1a;
+  font-size: 17px;
 }
 
-.cart_wrap #progress li:first-child {
-/* 		border-right: 2px solid black; */
-  margin: 0 auto; 
+.cart_tbl_col > tbody > tr > td {
+  padding: 15px 0;
+  border-bottom: 1px solid #e0e0e0;
+  text-align: center;
+  vertical-align: middle;
 }
 
-.cart_wrap .basket {
-  margin: 0 auto; 
-  overflow: hidden; 
-  border-radius: 123px; 
-  position: relative; 
-  top: 3.5%; 
-  width: 67.5%; 
-  height: 93%; 
-  background: rgb(159, 251, 244);
-  border: 2px solid black; 
+.cart_tbl_col.prd > tbody > tr > td img {
+  vertical-align: middle;
 }
 
-.cart_wrap .basket_icon img {
-  margin: 0 auto; 
-  width: 100px;
-  position: relative;
-  left: 29%; 
-  padding-top: 10%;
+.cart_tbl_col > tbody > tr > td img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
 }
 
-.cart_wrap .first_continue h5 {
-  text-align: center; 
-  font-weight: bold;
-  padding-top: 15%; 
-  font-size: 22px;
-}
-  
-.cart_wrap #progress li:nth-child(2) {
-/* 		border-right: 2px solid black; */
-  margin: 0 auto; 
+.cart_tbl_col > tbody > tr > td.tal {
+  padding-left: 15px !important;
 }
 
-.cart_wrap .order_card {
-  margin: 0 auto; 
-  overflow: hidden; 
-  border-radius: 123px; 
-  top: 3.5%; 
-  width: 67.5%; 
-  height: 93%; 
-  position: relative; 
-  border: 2px solid black; 
-}
-
-.cart_wrap .card_icon img {
-  margin: 0 auto; 
-  width: 100px;
-  position: relative;
-  left: 25%; 
-  padding-top: 10%;
-  width: 120px;
-} 
-
-.cart_wrap .second_continue h5 {
-  text-align: center; 
-  font-weight: bold;
-  padding-top: 6%; 
-  font-size: 22px;
-}
-
-.cart_wrap #progress li:nth-child(3) {
-  margin: 0 auto; 
-}
-
-.cart_wrap .order_complete {
-  margin: 0 auto; 
-  overflow: hidden; 
-  border-radius: 123px; 
-  top: 3.5%; 
-  width: 67.5%; 
-  height: 93%; 
-  position: relative; 
-  background: white;
-  border: 2px solid black; 
-}
-
-.cart_wrap .calendar_icon img {
-  margin: 0 auto; 
-  width: 120px;
-  position: relative;
-  left: 23%; 
-  padding-top: 8%;
-}
-
-.cart_wrap .last_continue h5 {
-  text-align: center; 
-  font-weight: bold;
-  padding-top: 6%; 
-  font-size: 22px;
-}
-
-.cart_wrap .table {
-  font-size: 20px;
-  font-weight: 700;
-  color: black;
-  border-color: #eee;
-  border-style: solid;
-}
-
-.cart_wrap .table table-hover {
-  font-size: 20px;
+.cart_tbl_col.prd > tbody > tr > td .cart_name a {
+  color: #1a1a1a;
+  font-size: 13px;
   font-weight: 700;
 }
 
-.cart_wrap .btn-option {
-  float: right;
+.cart_tbl_col.prd > tbody > tr > td .cart_opt, .tbl_col.prd > tbody > tr > td .cart_opt > * {
+  color: #1a1a1a;
+  font-size: 13px;
+}
+
+#cart_Content #cart .box_qty .form_input {
+  width: 116px;
+  height: 26px;
+  padding-right: 28px;
+  padding-left: 28px;
+  text-align: center;
+}
+
+.empty {
+  padding: 100px 0 !important;
+  text-align: center;
   position: relative;
   left: 10px;
 }
 
-.cart_wrap .btn-option button {
-  margin-right: 10px;
+#cart_Content #cart .box_qty .btn_ea.left {
+  left: 0;
 }
 
-.cart_wrap .container2 {
-  font-weight: 700;
+#cart_Content #cart .box_qty .btn_ea {
+  position: absolute;
+  top: 0;
+  width: 28px;
+  height: 26px;
+}
+
+#cart_Content #cart .box_qty .btn_ea a.ea_down {
+  background-image: url(https://www.rolarola.com/_skin/rolarola_250716/img/shop/qty_minus.png);
+}
+
+#cart_Content #cart .box_qty .btn_ea a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+#cart_Content #cart .box_qty .btn_ea.right {
+  right: 0;
+}
+
+#cart_Content #cart .box_qty .btn_ea a.ea_up {
+  background-image: url(https://www.rolarola.com/_skin/rolarola_250716/img/shop/qty_plus.png);
+}
+
+#cart_Content .cart_tbl_col.prd > tbody > tr > td .btn_edit {
+  display: inline-block;
+  vertical-align: top;
+}
+
+#cart_Content .cart_tbl_col.prd > tbody > tr > td .btn_edit a {
+  font-size: 11px;
+  text-decoration: underline;
+  line-height: 35px;
+}
+
+#cart_Content #cart .cart_prc.is_sale > .before {
+  text-decoration: line-through;
+}
+
+#cart_Content #cart .cart_prc.is_sale > .after {
+  display: block;
+}
+
+#cart_Content .cart_tbl_col.prd > tbody > tr > td.delete_wish a {
+  display: block;
   position: relative;
-  margin: 0 auto;
-  top: 30px;
-  width: 1200px;
+  margin-bottom: 8px;
 }
 
-.cart_wrap .cart_table th {
-  padding-left: 50px;
+#cart_Content .tbl_order2 th {
+  padding: 6px 0;
+  color: #181818;
+  font-size: 17px;
+  font-weight: normal;
+  text-align: left;
+  vertical-align: middle;
 }
 
-.cart_wrap .cart_table td {
-  padding-left: 50px;
+#cart_Content .tbl_order2 td {
+  padding: 6px 0;
+  color: #181818;
+  font-size: 17px;
+  text-align: right;
+  vertical-align: middle;
+}
+
+#cart_Content .tbl_order2 td p, .tbl_order2 td span {
+  color: #181818;
+  font-size: 17px;
+}
+
+#cart_Content .tbl_order2 th.total {
+  color: #181818;
+  font-size: 18px;
+  letter-spacing: -0.05rem;
+}
+
+#cart_Content .tbl_order2 td.total, .tbl_order2 td.total strong, .tbl_order2 td.total span {
+  color: #181818;
+  font-size: 16px;
+  letter-spacing: -0.05rem;
+}
+
+#cart .area_right {
+  margin-top: 30px;
+  min-height: 170px;
+}
+
+#cart .area_right .box {
+  float: right;
+  width: 360px;
+  padding-left: 40px;
+  background: #fff;
+}
+
+#cart .area_left {
+  margin-top: 19px;
+  padding-top: 19px;
+  border-top: 2px solid #e8e8e8;
+}
+
+#cart .area_left .btn {
+  font-size: 0;
+}
+
+#cart .area_left .btn > div {
+  display: inline-block;
+  font-size: 0;
+  vertical-align: top;
+}
+
+#cart .area_left .btn > div.left_btn .box_btn {
+  margin-right: 13px;
+}
+
+.box_btn {
+  display: inline-block;
+  text-align: center;
+  vertical-align: top;
+  margin-right: 13px;
+}
+
+#cart .area_left .btn > div .box_btn * {
+  font-size: 14px;
+  line-height: 26px;
+  font-family: 'GmarketSansMedium';
+}
+
+.box_btn.gray3 * {
+  border-color: #eee;
+  background: #eee;
+  color: #1a1a1a !important;
+}
+
+.box_btn.w150 > * {
+  width: 150px;
+}
+
+.box_btn > * {
+  display: inline-block;
+  margin: 0;
+  padding: 11px 12px;
+  border: 1px solid #676767;
+  outline: none;
+  background: #666;
+  color: #fff !important;
+  font-size: 12px;
+  font-family: 'LibreBodoni', 'Pretendard', sans-serif;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 1.4;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all .2s ease;
+}
+
+#cart .area_left .btn > div.right_btn {
+  float: right;
+  margin-right: 13px;
+}
+
+#cart .area_left .btn > div {
+  display: inline-block;
+  font-size: 0;
+  vertical-align: top;
+}
+
+#cart .area_left .msg_box {
+  margin-top: 120px;
+}
+
+#cart .area_left .msg_box h4 {
+  color: #1a1a1a;
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 0.1rem;
+}
+
+#cart .area_left .msg dd {
+  color: #777;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+#cart .pay {
+  clear: both;
+  text-align: right;
+}
+
+#cart .pay > div {
+  padding-top: 10px;
+}
+
+.npay_type_A_1 {
+  width: 236px !important;
+  height: 88px !important;
+}
+
+.npay_storebtn_bx {
+  display: inline-block !important;
+}
+
+.npay_storebtn_bx, .npay_button_box, .npay_button_box2, .npay_storebtn_bx *, .npay_button_box *, .npay_button_box2 * {
+  display: block !important;
+  overflow: hidden !important;
+  float: none !important;
+  position: static !important;
+  top: auto !important;
+  left: auto !important;
+  width: auto !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 none !important;
+  font-size: 12px !important;
+  line-height: 16px !important;
+  font-family: '돋움', Dotum, Helvetica, sans-serif !important;
+  text-align: left !important;
+  text-decoration: none !important;
+  background: none !important;
+  border-radius: 0 !important;
+}
+
+.npay_button_box, .npay_button_box2 {
+  width: auto !important;
+  height: 100% !important;
+  zoom: 1 !important;
+  padding: 0 4px !important;
+  border-top: 2px solid #2b2f3a !important;
+  background-color: #fff !important;
+}
+
+.npay_button {
+  position: relative !important;
+  margin: 0 !important;
+  padding: 11px 0 11px 86px !important;
+  zoom: 1 !important;
+}
+
+.npay_text {
+  display: block !important;
+  position: absolute !important;
+  top: 11px !important;
+  left: 0 !important;
+  width: 79px !important;
+  height: 36px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: url(../../images/button/2023_10_diff/npay_sp_text.png) no-repeat !important;
+  background-size: 180px auto !important;
+}
+
+.npay_btn_list {
+  display: table !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  table-layout: fixed !important;
+  list-style: none !important;
+}
+
+.npay_btn_list tbody {
+  display: table-row-group !important;
+}
+
+.npay_btn_list tr {
+  display: table-row !important;
+}
+
+.npay_btn_item {
+  display: table-cell !important;
+  height: 37px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  text-align: left !important;
+}
+
+.npay_btn_link.npay_btn_pay.btn_gray, .npay_btn_link.npay_btn_zzim.btn_gray, .npay_btn_link.npay_btn_talk.btn_gray {
+  background-position: 50% -37px !important;
+}
+
+.npay_button_box .npay_blind, .npay_button_box .yellow, .npay_button_box .blue, .npay_button_box2 .npay_blind, .npay_button_box2 .yellow .npay_button_box2 .blue {
+  overflow: hidden !important;
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  padding: 0 !important;
+  clip: rect(0 0 0 0) !important;
+}
+
+.npay_event {
+  position: relative !important;
+  margin: 0 !important;
+  padding: 0 40px 0 0 !important;
+  border: 0 none !important;
+  border-top: 1px solid #eaecee !important;
+}
+
+.npay_more_prev {
+  right: 15px !important;
+  background-position: 0 0 !important;
+}
+
+.npay_more {
+  position: absolute !important;
+  top: 5px !important;
+  width: 16px !important;
+  height: 16px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: url(../../images/button/2023_10_diff/npay_sp_more.png) no-repeat !important;
+  background-size: 31px auto !important;
+  text-decoration: none !important;
+}
+
+.npay_storebtn_bx, .npay_button_box, .npay_button_box2, .npay_storebtn_bx *, .npay_button_box *, .npay_button_box2 * {
+  display: block !important;
+  overflow: hidden !important;
+  float: none !important;
+  position: static !important;
+  top: auto !important;
+  left: auto !important;
+  width: auto !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 none !important;
+  font-size: 12px !important;
+  line-height: 16px !important;
+  font-family: '돋움', Dotum, Helvetica, sans-serif !important;
+  text-align: left !important;
+  text-decoration: none !important;
+  background: none !important;
+  border-radius: 0 !important;
+}
+
+.npay_event_text {
+  display: block !important;
+  overflow: hidden !important;
+  margin: 0 !important;
+  padding: 5px 0 !important;
+  letter-spacing: 0 !important;
+  white-space: nowrap !important;
+  text-overflow: ellipsis !important;
+  word-wrap: normal !important;
+}
+
+.npay_event_text .event_title {
+  display: inline !important;
+  margin: 0 5px 0 0 !important;
+  padding: 0 !important;
+  font-weight: normal !important;
+  color: #00c05a !important;
+  vertical-align: middle !important;
+}
+
+.npay_event .npay_event_text .event_link {
+  display: inline !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-weight: normal !important;
+  color: #929294 !important;
+  text-decoration: none !important;
+  vertical-align: middle !important;
+}
+
+.npay_more_next {
+  right: 0 !important;
+  background-position: -15px 0 !important;
 }
