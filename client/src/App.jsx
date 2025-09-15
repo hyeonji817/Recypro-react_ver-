@@ -10,8 +10,8 @@ import BestProducts from "./main/BestProducts";
 
 import Login from "./account/Login";
 import Register from "./account/register";
-import FindId from "./account/find_id";
-import FindPw from "./account/find_pw";
+//import FindId from "./account/find_id";
+//import FindPw from "./account/find_pw";
 import ChangePassword from "./account/ChangePassword";
 
 import Products from "./shop/Products";
@@ -97,11 +97,11 @@ import Customer_Subqa from "./customer/customer_Subq&a";
 import Customer_guide from "./customer/customer_guide";
 import Customer_privacy from "./customer/customer_privacy";
 
-import Index_admin from "./admin_page/index_admin";
+//import Index_admin from "./admin_page/index_admin";
 import LoginOK from "./main/loginOK";
-import Login_admin from "./main/login_admin";
-import Sidebar from "./admin_page/sidebar";
-import Event from "./main/event";
+// import Login_admin from "./main/login_admin";
+//import Sidebar from "./admin_page/sidebar";
+//import Event from "./main/event";
 import LogoutAction from "./account/logoutAction";
 import Notfound from "./pages/Notfound";
 
@@ -136,9 +136,9 @@ function App() {
 
         <Route path="/account/Login" element={<Login />} />
         <Route path="/account/register" element={<Register />} />
-        <Route path="/find_id" element={<FindId />} />
-        <Route path="/find_pw" element={<FindPw />} />
-        <Route path="/ChangePassword" element={<ChangePassword />} />
+        {/** <Route path="/find_id" element={<FindId />} />
+        <Route path="/find_pw" element={<FindPw />} /> 
+        <Route path="/ChangePassword" element={<ChangePassword />} />*/}
 
         <Route path="/shop/Products" element={<Products />} />
         <Route path="/shop/Products1" element={<Products1 />} />
@@ -223,11 +223,11 @@ function App() {
         <Route path="/customer_guide" element={<Customer_guide />} />
         <Route path="/customer_privacy" element={<Customer_privacy />} />
 
-        <Route path="/index_admin/:id" element={<Index_admin />} />
-        <Route path="/sidebar" element={<Sidebar />} />
+        {/** <Route path="/index_admin/:id" element={<Index_admin />} /> */}
+        {/** <Route path="/sidebar" element={<Sidebar />} /> */}
         <Route path="/main/loginOK" element={<LoginOK />} />
-        <Route path="/login_admin" element={<Login_admin />} />
-        <Route path="/event" element={<Event />} />
+        {/** <Route path="/login_admin" element={<Login_admin />} /> */}
+        {/** <Route path="/event" element={<Event />} /> */}
         <Route path="/logoutAction" element={<LogoutAction />} />
         <Route path="*" element={<Notfound />} />
       </Routes>

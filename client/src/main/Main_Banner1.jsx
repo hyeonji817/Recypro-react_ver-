@@ -10,7 +10,7 @@ import tableProducts from "../assets/table_products.jpg";
 import woodProducts from "../assets/woodProducts.jpg"; 
 import bottles from "../assets/bottles2.jpg"; 
 import fourClover from "../assets/fourClover.jpg";
-import petWaterBowl from "../assets/pet_waterboul.jpg"; 
+import petWaterBowl from "../assets/pet_waterBowl1.jpg"; 
 import wheatChurros from "../assets/wheat_Churros.jpg";
 
 // Swiper 스타일 (필수)
