@@ -1,0 +1,366 @@
+.csSub_qa_Content {
+  padding-bottom: 50px;
+  min-height: 500px;
+}
+
+.csSub_qa_Content .csSub_qaBody {
+  overflow: hidden;
+  width: 1300px;
+  position: relative;
+  top: 140px;
+  margin: 0 auto;
+}
+
+.csSub_qa_Content .subtitle {
+  padding: 64px 0 60px;
+  color: #1a1a1a;
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: 0.1rem;
+  text-align: center;
+}
+
+.csSub_qa_Content .tbl_col {
+  table-layout: fixed;
+  clear: both;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.csSub_qa_Content .tbl_col caption {
+  padding-bottom: 20px;
+  font-weight: bold;
+  text-align: left;
+}
+
+.hidden {
+  visibility: hidden;
+  overflow: hidden;
+  width: 0 !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-size: 0;
+  line-height: 0;
+}
+
+colgroup {
+  display: table-column-group;
+  unicode-bidi: isolate;
+}
+
+.csSub_qa_Content .tbl_col.board > thead > tr > th {
+  border-top: 0;
+  border-bottom: 2px solid #e5e5e5;
+  color: #1a1a1a;
+  font-weight: 900;
+  letter-spacing: 0.05rem;
+}
+
+.csSub_qa_Content .tbl_col > thead > tr > th {
+  padding: 15px 0;
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.csSub_qa_Content .tbl_col > tbody > tr > td {
+  padding: 15px 0;
+  border-bottom: 1px solid #e0e0e0;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.csSub_qa_Content .tbl_col.board > tbody > tr > td, .csSub_qa_Content .tbl_col.board > tbody > tr > td * {
+  color: #8d8d8d;
+  font-size: 13px;
+  font-weight: normal;
+  letter-spacing: -0.025rem;
+}
+
+.csSub_qa_Content .tbl_col > tbody > tr > td.tal {
+  padding-left: 15px !important;
+}
+
+.csSub_qa_Content .tal {
+  text-align: left !important;
+}
+
+.csSub_qa_Content .tbl_col > tbody > tr > td * {
+  color: #666;
+}
+
+a, a:hover, a:active, a:focus {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.csSub_qa_Content .tbl_col.board > tbody > tr > td.subject img {
+  vertical-align: middle;
+}
+
+.csSub_qa_Content .tbl_col > tbody > tr > td img {
+  max-width: 100%;
+  height: auto;
+}
+
+.csSub_qa_Content .qna_list .qna_cnt {
+  padding: 0;
+  border: 0;
+}
+
+.csSub_qa_Content .qnarev_list .qna_cnt > div {
+  display: none;
+  padding: 40px;
+  border-bottom: 1px solid #e0e0e0;
+  text-align: left;
+  word-break: break-all;
+  word-wrap: break-word;
+}
+
+.csSub_qa_Content .qnarev_list .qna_cnt .question {
+  padding: 0 0 20px 50px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.csSub_qa_Content .qnarev_list .qna_cnt .icon {
+  display: inline-block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #777474;
+  color: #fff;
+  font-family: 'LibreBodoni', 'Pretendard', sans-serif;
+  text-align: center;
+  line-height: 28px;
+}
+
+.csSub_qa_Content #qnarevmod .modi_pwd, #qnarevmod .modi_cnt {
+  display: none;
+}
+
+.csSub_qa_Content #pwbox {
+  padding: 40px 0;
+  border: 1px solid #e0e0e0;
+  background: #fafafa;
+  text-align: center !important;
+}
+
+.csSub_qa_Content #pwbox h3 {
+  padding-bottom: 15px;
+}
+
+.csSub_qa_Content #pwbox p {
+  margin-bottom: 20px;
+  color: #888;
+}
+
+.csSub_qa_Content #pwbox .form_input {
+  width: 330px;
+  margin-bottom: 20px;
+}
+
+.csSub_qa_Content .box_btn {
+  display: inline-block;
+  text-align: center;
+  vertical-align: top;
+}
+
+.csSub_qa_Content .qnarev_write {
+  overflow: auto;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  background: #fff;
+  text-align: center;
+}
+
+.csSub_qa_Content #qnarevmod .modi_cnt .qnarev_write > form {
+  padding: 40px 0;
+  text-align: left;
+}
+
+.csSub_qa_Content .qnarev_write fieldset select {
+  width: 100%;
+}
+
+.csSub_qa_Content select {
+  max-width: 100%;
+  height: 40px;
+  padding: 4px 6px;
+  border: 1px solid #dcdcdc;
+  background: url(https://www.rolarola.com/_skin/rolarola_250613/img/common/select_down.png) no-repeat center right 13px #fff;
+  color: #666;
+  font: inherit;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.csSub_qa_Content .qnarev_write fieldset > legend {
+  display: block;
+  width: 100%;
+  margin-bottom: 25px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid #000;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.csSub_qa_Content .qnarev_write fieldset > div.name {
+  min-height: 34px;
+  padding-right: 100px;
+  line-height: 34px;
+  font-weight: bold;
+}
+
+.csSub_qa_Content .qnarev_write fieldset > div > label {
+  display: none;
+}
+
+.csSub_qa_Content .qnarev_write fieldset > div.name .check {
+    position: absolute;
+    right: 0;
+    top: 5px;
+}
+
+input[type=checkbox]:checked {
+  background-image: url(https://www.rolarola.com/_skin/rolarola_250613/img/common/checkbox_on.png);
+}
+
+input[type=checkbox] {
+  width: 23px;
+  height: 22px;
+  margin: 0 6px 0 0;
+  outline: 0;
+  border-radius: 0;
+  border: 0;
+  background: no-repeat left center / 23px 22px;
+  background-image: url(https://www.rolarola.com/_skin/rolarola_250613/img/common/checkbox.png);
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  vertical-align: middle;
+  transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+}
+
+input[type=radio], input[type=checkbox] {
+  vertical-align: middle;
+}
+
+.form_input.block {
+  width: 100% !important;
+}
+
+.csSub_qa_Content .qnarev_write fieldset > div.contents {
+  background: #fff;
+}
+
+.csSub_qa_Content .qnarev_write fieldset > div {
+  position: relative;
+  margin-top: 10px;
+}
+
+.csSub_qa_Content .qnarev_write fieldset > div.contents textarea {
+  height: 250px;
+}
+
+.csSub_qa_Content .form_input {
+  height: 40px;
+  padding: 4px 10px;
+  border: 1px solid #dcdcdc;
+  background: #fff;
+  color: #666;
+  font-family: 'LibreBodoni', 'Pretendard', sans-serif;
+  font-size: 12px;
+  transition: all .3s ease;
+}
+
+.csSub_qa_Content .qnarev_write fieldset > div:last-child {
+  margin-bottom: 0;
+}
+
+.csSub_qa_Content .qnarev_write .btn {
+  padding: 20px 0;
+  text-align: center !important;
+}
+
+.csSub_qa_Content .qna_list .qnarev_cnt .answer {
+  margin-top: 20px;
+}
+
+.csSub_qa_Content .qna_list .qnarev_cnt .question, .qna_list .qnarev_cnt .answer {
+  position: relative;
+  min-height: 40px;
+  padding-left: 50px;
+}
+
+.csSub_qa_Content .qna_list .qnarev_cnt .answer .icon {
+  background: #ef6363;
+}
+
+.csSub_qa_Content .qna_list .qna_cnt .question .icon {
+  display: inline-block;
+  position: relative;
+  left: -240px;
+  top: 25px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #777474;
+  color: #fff;
+  font-family: 'LibreBodoni', 'Pretendard', sans-serif;
+  text-align: center;
+  line-height: 28px;
+}
+
+.csSub_qa_Content .qna_list .qnarev_cnt .btn {
+  text-align: left;
+}
+
+.csSub_qa_Content .box_btn.white * {
+  border-color: #c3c3c3;
+  background: #fff;
+  color: #666 !important;
+}
+
+.csSub_qa_Content .qna_list .btn {
+  padding-top: 20px;
+  text-align: right;
+}
+
+.csSub_qa_Content .qnarev_write form {
+  display: inline-block;
+  width: 100%;
+  text-align: left;
+}
+
+.csSub_qa_Content .qnarev_write fieldset > legend {
+  display: block;
+  width: 100%;
+  margin-bottom: 25px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid #000;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.csSub_qa_Content textarea.form_input {
+  height: auto;
+}
+
+.csSub_qa_Content .box_btn.large > * {
+  padding: 12px 16px;
+  font-size: 14px;
+}
+
