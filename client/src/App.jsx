@@ -98,7 +98,7 @@ import Customer_guide from "./customer/customer_guide";
 import Customer_privacy from "./customer/customer_privacy";
 
 //import Index_admin from "./admin_page/index_admin";
-import LoginOK from "./main/loginOK";
+// import LoginOK from "./main/loginOK";
 // import Login_admin from "./main/login_admin";
 //import Sidebar from "./admin_page/sidebar";
 //import Event from "./main/event";
@@ -225,7 +225,7 @@ function App() {
 
         {/** <Route path="/index_admin/:id" element={<Index_admin />} /> */}
         {/** <Route path="/sidebar" element={<Sidebar />} /> */}
-        <Route path="/main/loginOK" element={<LoginOK />} />
+        {/** <Route path="/main/loginOK" element={<LoginOK />} /> */}
         {/** <Route path="/login_admin" element={<Login_admin />} /> */}
         {/** <Route path="/event" element={<Event />} /> */}
         <Route path="/logoutAction" element={<LogoutAction />} />
