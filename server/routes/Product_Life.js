@@ -12,6 +12,16 @@ const q = (sql, params = []) =>
     });
   });
 
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+/** 1) 생활상품 목록 (최신 12개) */
+router.get("/", async (req, res) => {
+  try {
+    const rows = await q(
+      "SELECT * FROM product_life ORDER BY productId DESC LIMIT 12"
+    );
+  } catch (err) {
+    console.error("DB error:", err);
+    return res.status(500).json({ message: "DB Error", detail: err.message });
+  }
+});
 
 export default router;
