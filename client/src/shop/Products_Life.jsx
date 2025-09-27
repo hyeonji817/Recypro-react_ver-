@@ -1,22 +1,24 @@
 import "./Product_List.css";
-import axios from "axios";
 import { useEffect, useState } from "react"; 
-// 이미지 
-import plasticDiet from "../assets/1-1_plastic_diet.png";
-import lineFriends from "../assets/1-2_linefriends_MugCup.jpg";
-import forestKeyRing from "../assets/1-3_forestKeyRing.jpg";
-import cbag from "../assets/1-4_cbag-1.jpg";
+import { Link } from "react-router-dom";
 
 const Products_Life = () => {
-  /** const [products, setProducts] = useState([]);
+  const [productLife, setProductsLife] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 3; 
 
   useEffect(() => {
-    axios.get("http://localhost:5001/api/Products", {
-      withCredentials: true
-    })
-    .then(res => setProducts(res.data))
-    .catch(err => console.error('데이터 로드 실패:', err));
-  }, []); */
+    const fetchProductLife = async () => {
+      try {
+        const res = await fetch("http://localhost:5003/api/product_life");    // Products.js (상품목록 페이지 라우터) 페이지 연동
+        const data = await res.json();
+        setProductsLife(data);
+      } catch (err) {
+        console.error("Failed to fetch best product:", err);
+      }
+    };
+    fetchProductLife();
+  }, []);
 
   return (
     <div id="productsLife_wrap">
@@ -42,20 +44,6 @@ const Products_Life = () => {
                     <a href="./Products6">사무</a>
                   </li>
                 </ul>   {/** sub_category end */}
-        
-              {/** 상품정렬 */}
-              {/** <div className="total_sort dn">
-                <p className="total">상품이 모두 <strong>272</strong>개 있습니다.</p>
-                <div className="sort">
-                  <select>
-                    <option value="">:: 상품정렬 ::</option>
-                    <option value="/shop/big_section.php?sort=1&amp;cno1=1800" selected="">신상품순</option>
-                    <option value="/shop/big_section.php?sort=2&amp;cno1=1800">상품명순</option>
-                    <option value="/shop/big_section.php?sort=4&amp;cno1=1800">높은가격순</option>
-                    <option value="/shop/big_section.php?sort=5&amp;cno1=1800">낮은가격순</option>
-                  </select>
-                </div>
-              </div> */} {/** total_sort dn end */}
       
             {/** 상품정렬 */}
             <ul className="prd_basic col3">
