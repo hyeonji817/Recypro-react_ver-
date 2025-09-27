@@ -20,6 +20,12 @@ const Products_Life = () => {
     fetchProductLife();
   }, []);
 
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = productLife.slice(indexOfFirstItem, indexOfLastItem);
+  const totalPages = Math.ceil(productLife.length / itemsPerPage);
+  const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
+
   return (
     <div id="productsLife_wrap">
       <div className="products_body">
