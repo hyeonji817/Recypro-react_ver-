@@ -41,128 +41,44 @@ const Products_Life = () => {
       
             {/** 상품정렬 */}
             <ul className="prd_basic col3">
-              <li>
-                <div className="box ">
-                  <div className="img">
-                    <div className="prdimg">
-                      <a href="#">
-                        <img src={plasticDiet} width="240" height="320" />
-                      </a>
-                    </div>  {/** prdimg end */}
-                  </div>  {/** img end */}
-      
-                  <div className="info">
-                    <p className="name">
-                      <a href="#">플라스틱 다이어트 4종세트 키트</a>
-                    </p>    {/** name end */}
-                    <div className="price">
-                      <p className="consumer consumerY">
-                        <span>KRW</span>22,500
-                      </p>    {/** consumer consumerY end */}
-                      <p className="sell sellY">
-                        <span>KRW</span>22,500
-                      </p>  {/** sell sellY end */}
-                      <div className="discount_section">
-                        <p className="per">10%</p>
-                        <p className="discount discountY">20,250</p>
-                      </div> {/** discount_section end */}
-                    </div>  {/** price end */}
-                  </div>  {/** info end */}
-                </div>  {/** box end */}
-              </li>
-      
-              <li>
-                <div className="box ">
-                  <div className="img">
-                    <div className="prdimg">
-                      <a href="#">
-                        <img src={lineFriends} width="240" height="320" />
-                      </a>
-                    </div>  {/** prdimg end */}
-                  </div>  {/** img end */}
-      
-                  <div className="info">
-                    <p className="name">
-                      <a href="#">라인프렌즈 법랑머그컵 (B급)</a>
-                    </p>  {/** name end */}
-                    <div className="price">
-                      <p className="consumer consumerY">
-                        <span>KRW</span>4,800
-                      </p>  {/** consumer consumerY end */}
-                      <p className="sell sellY">
-                        <span>KRW</span>4,800
-                      </p>  {/** sell sellY end */}
-                      <div className="discount_section">
-                        <p className="per">10%</p>
-                        <p className="discount discountY">4,320</p>
-                      </div>    {/** discount_section end */}
-                    </div>  {/** price end */}
-                  </div>  {/** info end */}
-                </div>  {/** box  end */}
-              </li>
-      
-              <li>
-                <div className="box ">
-                  <div className="img">
-                    <div className="prdimg">
-                      <a href="#">
-                        <img src={forestKeyRing} width="240" height="320" />
-                      </a>
-                    </div>  {/** prdimg end */}
-                  </div>  {/** img end */}
-      
-                  <div className="info">
-                    <p className="name">
-                      <a href="#">나무를 심는 업사이클 숲 키링</a>
-                    </p> {/** name end */}
-                    <div className="price">
-                      <p className="consumer consumerY">
-                        <span>KRW</span>8,000
-                      </p>    {/** consumer consumerY end */}
-                      <p className="sell sellY">
-                        <span>KRW</span>8,000
-                      </p>    {/** sell sellY end */}
-                      <div className="discount_section">
-                        <p className="per">10%</p>
-                        <p className="discount discountY">7,200</p>
-                      </div>    {/** discount_section end */}
-                    </div>    {/** price end */}
-                  </div>    {/** info end */}
-                </div>    {/** box  end */}
-              </li>
-      
-              <li>
-                <div className="box ">
-                  <div className="img">
-                    <div className="prdimg">
-                      <a href="#">
-                        <img src={cbag} width="240" height="320" />
-                      </a>
-                    </div>    {/** prdimg end */}
-                    {/** 상품품절 영역 */}
-                    <div className="soldout">SOLD OUT</div>
-                    {/** //상품품절 영역 */}
-                  </div>    {/** img end */}
-      
-                  <div className="info">
-                    <p className="name">
-                      <a href="#">아윌비백 재활용 프로듀스백 면주머니</a>
-                    </p>    {/** name end */}
-                    <div className="price">
-                      <p className="consumer consumerY">
-                        <span>KRW</span>1,500
-                      </p>    {/** consumer consumerY end */}
-                      <p className="sell sellY">
-                        <span>KRW</span>1,500
-                      </p>    {/** sell sellY end */}
-                      <div className="discount_section">
-                        <p className="per">10%</p>
-                        <p className="discount discountY">1,350</p>
-                      </div>    {/** discount_section end */}
-                    </div>    {/** price end */}
-                  </div>    {/** info end */}
-                </div>    {/** box  end */}
-              </li>
+            {currentItems.map((item) => {
+              const detailPath = `/shop/product1/${encodeURIComponent(item.productId)}`;
+              return (
+                <li key={item.productId}>
+                  <div className="box">
+                    <div className="img">
+                      <div className="prdimg">
+                        {/* ⛔️ <a href={item}>  이런 게 [object Object]의 원인 */}
+                        <Link to={detailPath}>
+                          <img
+                            src={`http://localhost:5001/uploads/${item.filename}`}
+                            alt={item.pname}
+                            width="240"
+                            height="320"
+                          />
+                        </Link>
+                      </div>
+                    </div>
+
+	                  <div className="info">
+                      <p className="name">
+                      {/* ⛔️ <Link to={item.href}> (DB href는 파라미터가 없음) */}
+                        <Link to={detailPath}>{item.pname}</Link>
+                      </p>
+                      <div className="price">
+                        <p className="sell sellY">
+                          {item.price}<span>원</span>
+                        </p>
+                        <div className="discount_section">
+                          <p className="per">{item.discount_rate}%</p>
+                          <p className="discount discountY">{item.discount_price}원</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              );
+            })} 
             </ul>
       
             <ul className="paging">
