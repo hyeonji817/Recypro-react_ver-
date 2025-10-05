@@ -72,6 +72,16 @@ const Product1 = () => {
   })
   .filter(Boolean)
   .join(" / ");
+
+	if (loading) return <div className="Product_wrap">Loading...</div>;
+  if (error) return <div className="Product_wrap">{error}</div>;
+  if (!product) return null;
+
+	const {
+    pname, price, discount_price, discount_rate,
+    description, manufacturer, numberOfstock, category, filename, mileage, img_Desc,
+		selectColor, productCount,
+  } = product;
 };
 
 export default Product1;
