@@ -170,6 +170,11 @@ const Product1 = () => {
 	// 업로드 경로 통일: DB에는 "life/xxx.jpg" 저장했다고 가정
   const mainImg = `http://localhost:5001/uploads/${String(filename).replace(/^\.\//,'')}`;
 	const DescImg = `http://localhost:5001/uploads/${String(img_Desc).replace(/^\.\//,'')}`;
-};
+
+	return (
+		<div className="Product_wrap">
+			
+		</div>
+	);
 
 export default Product1;
