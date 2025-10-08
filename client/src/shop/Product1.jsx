@@ -173,7 +173,13 @@ const Product1 = () => {
 
 	return (
 		<div className="Product_wrap">
-			
+			<div className="Product_Header">
+				<Header_loginOK />
+			</div>
+			<div className="Product_body"></div>
+			<div className="Product_Footer">
+				<Footer />
+			</div>
 		</div>
 	);
 
