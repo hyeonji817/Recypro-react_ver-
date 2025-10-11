@@ -227,6 +227,20 @@ const Product1 = () => {
 												</span>		{/** discount discountY end */}
 												<span className="per">{discount_rate}%</span>			{/** per end */}
 											</div>		{/** price end */}
+
+											{/** 상품옵션리스트 */}
+											{/** 옵션 예시 - 필요 시 DB에 옵션 컬럼/테이블 추가 */}
+											<div className="opt_list">
+												<div className="th">수량</div>
+												<div className="td">
+													<select value={qty} onChange={(e) => setQty(Number(e.target.value))}>
+														{Array.from({ length: Math.min(10, numberOfstock || 1) }, (_, i) => i + 1).map(v => (
+															<option key={v} value={v}>{v}</option>
+														))}
+													</select>
+												</div>
+											</div>
+
 										</div>		{/** info end */}
 									</div>		{/** wrap_prd end */}
 								</form>
