@@ -261,6 +261,28 @@ const Product1 = () => {
 												</div>
 											)}
 
+											{/** optionGroups가 있을 때만 노출 */}
+											{(product.optionGroups ?? []).map(group => (
+												<div className="opt_list" key={group.id}>
+													<div className="th">{group.displayName || group.name}</div>
+													<div className="td">
+														<select
+															value={selected[group.name] || ""}
+															onChange={(e) => setSelected(prev => ({ ...prev, [group.name]: e.target.value }))}
+														>
+															<option value="">
+																{group.required ? '선택하세요' : '선택 (옵션 없음 가능)'}
+															</option>
+															{group.values.map(v => (
+															<option key={v.id} value={v.value}>
+																{v.label}{v.priceDelta ? ` (+${v.priceDelta.toLocaleString()}원)` : ""}
+															</option>
+															))}
+														</select>
+													</div>
+												</div>
+											))}
+
 										</div>		{/** info end */}
 									</div>		{/** wrap_prd end */}
 								</form>
