@@ -304,7 +304,7 @@ const Product1 = () => {
 															{Math.floor((discount_price || 0) * 0.05).toLocaleString()} 원
 															<div className="box_info">
 																<div className="info">
-																	회원적입금 : {mileage} 원 <br />	
+																	회원적립립금 : {mileage} 원 <br />	
 																</div>		{/** info end */}	
 															</div>		{/** box_info end */}
 														</td>
@@ -312,7 +312,39 @@ const Product1 = () => {
 												</tbody>
 											</table>		{/** list end */}
 
-											
+											<div className="multi_opt"> 
+  											<ul id="detail_multi_option" className="selected_list">
+    											{requiredSatisfied ? (
+      											<li className="selected_item" style={{ display: "flex", alignItems: "center", gap: 12 }}>
+        											<div className="sel_name" style={{ flex: 1 }}>
+          											{pname}{selectedLabel ? ` (${selectedLabel})` : ""}
+        											</div>
+
+        											{/* 수량 컨트롤(선택박스와 연동) */}
+        												<div className="sel_ctrl" style={{ display: "flex", alignItems: "center", gap: 6 }}>
+          												<button type="button" onClick={() => setQty(q => Math.max(1, q - 1))}>-</button>
+          												<input readOnly value={qty} style={{ width: 36, textAlign: "center" }} />
+          												<button
+            												type="button"
+            												onClick={() => setQty(q => Math.min((numberOfstock || 99), q + 1))}
+          												>+</button>
+        												</div>
+      											</li>
+    													) : (
+      											<li className="selected_item empty">필수 옵션을 모두 선택해 주세요.</li>
+    											)}
+  											</ul>
+
+  											<div className="opt_total">
+    											<span className="title">총 상품금액(수량) : </span>
+    												<strong>
+      												<span id="detail_multi_option_prc">{totalPrice.toLocaleString()}</span> KRW
+      											<span className="ea_total"> ({requiredSatisfied ? qty : 0}개)</span>
+    											</strong>
+  											</div>
+											</div>		{/** multi_opt end */}
+
+
 
 										</div>		{/** info end */}
 									</div>		{/** wrap_prd end */}
