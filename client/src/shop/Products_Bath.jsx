@@ -1,14 +1,16 @@
-import "./Product_List.css";
-import axios from "axios";
+import "./Products_Bath.css";
 import { useEffect, useState } from "react"; 
-import gachisop from "../assets/1_3-1_minimum.jpg"; 
-import towel from "../assets/2_towel_minimum.png"; 
-import soapnet from "../assets/3_soapnet_minimum.png"; 
-import cleanBall from "../assets/4_clean_ball_minimum.jpg"; 
-import solidToothPaste from "../assets/5_solid_toothpaste.jpg";
-import grapefruitSoap from "../assets/6_grapefruit_soap.jpg";
+import { Link } from "react-router-dom";
 
 const Products_Bath = () => {
+  const [productBath, setProductBath] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 3; 
+  const indexOfLastItem = currentPage * itemsPerPage; 
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage; 
+  const currentItems = productBath.slice(indexOfFirstItem, indexOfLastItem);
+  const totalPages = Math.ceil(productBath.length / itemsPerPage);
+  const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
 
   return (
     <div id="productsBath_wrap">
