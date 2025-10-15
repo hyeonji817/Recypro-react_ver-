@@ -12,4 +12,11 @@ const q = (sql, params = []) =>
     });
   });
 
+// displayName 매핑 (필요 시 확장)
+const GROUP_LABEL = {
+  color: "색상", 
+  kind: "종류", 
+  size: "사이즈",
+};
+
 export default router;
