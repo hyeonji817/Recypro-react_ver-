@@ -12,6 +12,19 @@ const Products_Bath = () => {
   const totalPages = Math.ceil(productBath.length / itemsPerPage);
   const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
 
+  useEffect(() => {
+    const fetchProductBath = async () => {
+      try {
+        const res = await fetch("http://localhost:5003/api/product_bath");
+        const data = await res.json(); 
+        setProductBath(data);
+      } catch (err) {
+        console.error("Failed to fetch best product:", err);
+      }
+    };
+    fetchProductBath();
+  }, []);
+
   return (
     <div id="productsBath_wrap">
       <div className="products_body">
