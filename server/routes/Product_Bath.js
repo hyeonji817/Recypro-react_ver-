@@ -32,4 +32,32 @@ router.get("/", async (req, res) => {
   }
 });
 
+/** 2) 생활상품 상세 + 옵션그룹/옵션값 */
+router.get("/:productId", async (req, res) => {
+  try {
+    const productId = req.params.productId;   // 클라이언트에서 넘긴 값 
+
+    // (A) 기본 상품 조회 - 상품ID(PK)로 조회하는 경우 
+    const productRows = await q(
+      "SELECT * FROM product_bath WHERE productId = ?", 
+    );
+
+    if (!productRows.length) 
+      return res.status(404).json({ message: "Not found" });
+
+    const product = productRows[0];
+
+    // (B) 옵션 그룹들 
+
+    // (C) 각 그룹의 옵션값 
+
+    // (D) selectColor 컬럼 하위호환 처리 
+
+    // (E) 최종 응답 (항상 JSON)
+  } catch (err) {
+    console.error("Server error:", err); 
+    return res.status(500).json({ message: "Server error", detail: err.message });
+  }
+});
+
 export default router;
