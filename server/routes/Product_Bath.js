@@ -47,7 +47,11 @@ router.get("/:productId", async (req, res) => {
 
     const product = productRows[0];
 
-    // (B) 옵션 그룹들 
+    // (B) 옵션 그룹들 - 상품 PK를 저장했다면 productId(PK)로, 상품명 저장했다면 pname으로 조회
+    const groups = await q(
+      "SELECT * FROM product_option_group WHERE product_id = ? ORDER BY sort_order, id", 
+      [productId]
+    );
 
     // (C) 각 그룹의 옵션값 
 
