@@ -19,4 +19,17 @@ const GROUP_LABEL = {
   size: "사이즈",
 };
 
+/** 1) 생활상품 목록 (최신 12개) */
+router.get("/", async (req, res) => {
+  try {
+    const rows = await q(
+      "SELECT * FROM product_bath ORDER BY productId DESC LIMIT 12"
+    );
+    return res.json(rows);
+  } catch (err) {
+    console.error("DB error:", err);
+    return res.status(500).json({ message: "DB Error", detail: err.message });
+  }
+});
+
 export default router;
