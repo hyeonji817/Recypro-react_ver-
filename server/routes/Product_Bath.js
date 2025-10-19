@@ -76,6 +76,41 @@ router.get("/:productId", async (req, res) => {
     }
 
     // (D) selectColor 컬럼 하위호환 처리 
+    if ((!groups || groups.length === 0) && product.selectColor) {
+      try { 
+        let colorArray = [];
+        const raw = String(product.selectColor).trim(); 
+        if (raw.startsWith("[")) {
+          colorArray = JSON.parse(raw);     // ["아이보리", "민트", ...]
+        } else if (raw.startsWith("{")) {
+          const obj = JSON.parse(raw);
+          colorArray = Array.isArray(obj.color) ? obj.color : [];
+        } else {
+          colorArray = raw
+            .split(",")
+            .map((s) => s.trim())
+            .filter(Boolean);
+        }
+
+        if (colorArray.length > 0) {
+          optionGroups.push({
+            id: "legacy-color",
+            name: "color",
+            displayName: "종류", 
+            required: false, 
+            values: colorArray.map((c, i) => ({
+              id: `legacy-${i}`,
+              label: c,
+              value: c, 
+              priceDelta: 0,
+              stock: null,
+            })),
+          });
+        }
+      } catch (e) {
+        console.warn("selectColor parse error:", e);
+      }
+    }
 
     // (E) 최종 응답 (항상 JSON)
   } catch (err) {
