@@ -77,31 +77,37 @@ const Products_Bath = () => {
         </div>
       </li>
       );
+    })}
+    </ul>
 
-      <ul className="paging">
-        <li></li>
-        <li><strong>1</strong></li>
-        <li><a href="?page=2&amp;cno1=1800">2</a></li>
-        <li><a href="?page=3&amp;cno1=1800">3</a></li>
-        <li><a href="?page=4&amp;cno1=1800">4</a></li>
-        <li><a href="?page=5&amp;cno1=1800">5</a></li>
-        <li><a href="?page=6&amp;cno1=1800">6</a></li>
-        <li><a href="?page=7&amp;cno1=1800">7</a></li>
-        <li><a href="?page=8&amp;cno1=1800">8</a></li>
-        <li><a href="?page=9&amp;cno1=1800">9</a></li>
-        <li><a href="?page=10&amp;cno1=1800">10</a></li>
-        <li><a className="next moveto" href="?page=11&amp;cno1=1800">&gt;</a><a className="last moveto" href="?page=19&amp;cno1=1800">&gt;&gt;</a></li>
-      </ul>
-
-      <ul className="list_sns rola tac">
-        <li className="sns_child0"><a href="https://www.facebook.com/rolarola.official/" target="_blank"></a></li>
-        <li className="sns_child1"><a href="https://www.youtube.com/channel/UCK1MhHpLHBBBQpO-FGnQ72A" target="_blank"></a></li>
-        <li className="sns_child2"><a href="https://www.instagram.com/rolarola.official/" target="_blank"></a></li>
-      </ul>
-
-      <ul className="list_sns rlol tac">
-        <li className="sns_child0"><a href="https://www.instagram.com/rlol.official/" target="_blank"></a></li>
-        <li className="sns_child1"><a href="https://www.youtube.com/channel/UCK1MhHpLHBBBQpO-FGnQ72A" target="_blank"></a></li>
+    <ul className="paging">
+      <li>
+        <a href="#" onClick={(e) => { e.preventDefault(); setCurrentPage(1); }}>&laquo;</a>
+      </li>
+      <li>
+        <a href="#" onClick={(e) => { e.preventDefault(); setCurrentPage((prev) => Math.max(prev - 1, 1)); }}>&lt;</a>
+      </li>
+      {Array.from({ length: totalPages }, (_, i) => (
+        <li key={i}>
+          {currentPage === i + 1 ? (
+          <strong>{i + 1}</strong>
+          ) : (
+          <a href="#" onClick={(e) => { e.preventDefault(); setCurrentPage(i + 1); }}>
+            {i + 1}
+          </a>
+          )}
+        </li>
+      ))}
+        <li>
+          <a href="#" onClick={(e) => { e.preventDefault(); setCurrentPage((prev) => Math.min(prev + 1, totalPages)); }}>
+            &gt;
+          </a>
+        </li>
+        <li>
+          <a href="#" onClick={(e) => { e.preventDefault(); setCurrentPage(totalPages); }}>
+            &raquo;
+          </a>
+        </li>
       </ul>
     </div>
   </div>
