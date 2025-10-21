@@ -46,6 +46,15 @@ const Product2 = () => {
 		return () => { mounted = false; };
 	}, [productId]);
 
+  // 현재 옵션들로부터 추가요금 합계 
+	const optionDelta = React.useMemo(() => {
+		return groups.reduce((sum, g) => {
+			const selVal = selected[g.name];
+			const found = (g.values || []).find(v => v.value === selVal);
+			return sum + (found?.priceDelta || 0);
+		}, 0);
+	}, [selected, groups]);
+
   
 };
 
