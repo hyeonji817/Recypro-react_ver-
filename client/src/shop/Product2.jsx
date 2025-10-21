@@ -55,7 +55,12 @@ const Product2 = () => {
 		}, 0);
 	}, [selected, groups]);
 
-  
+  // 필수 옵션이 모두 선택되었는지
+	const requiredSatisfied = groups.every(
+		g => !g.required || selected[g.name]
+	);
+
+	
 };
 
 export default Product2;
