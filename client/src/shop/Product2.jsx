@@ -69,7 +69,49 @@ const Product2 = () => {
 	.filter(Boolean)
 	.join(" / ");
 
-	
+	// 장바구니 페이지 이동 (2025.10.07 신규추가) (장바구니 페이지로 이동하면서 해당 이동하려는 페이지에 데이터값 전달)
+	const handleAddToCart = async () => {
+		if (!requiredSatisfied) {
+			alert("필수 옵션을 모두 선택해 주세요.");
+			return;
+		}
+
+		// 옵션 라벨(기존 계산한 selectedLabel + 색상 콤보)
+		const colorPart = selectedColor ? (selectedLabel ? ` / 색상: ${selectedColor}` : `색상: ${selectedColor}`) : "";
+  	const optionLabel = `${selectedLabel || ""}${colorPart}`.trim();
+
+		// 옵션 JSON (선택 목록 + 단일 색상까지 포함)
+		const optionsPayload = {
+			...selected,
+			...(selectedColor ? { color: selectedColor } : {})
+		};
+
+		const payload = {
+			productTable: "product_bath",
+			productId,
+			qty,
+			options: optionsPayload,
+			optionLabel: optionLabel || null,
+			unitPrice,                   // (할인가 또는 정상가) + 옵션가
+			optionDelta: optionDelta || 0,
+			totalPrice,                  // unitPrice * qty
+			mileage: Math.floor((unitBase || 0) * 0.05)  // 적립금 계산(할인가 기준 5%)
+		};
+
+		try {
+			await axios.post("http://localhost:5001/api/cart", payload, { withCredentials: true });
+			// 장바구니 페이지로 이동
+			nav("/cart");
+		} catch (e) {
+			console.error(e);
+			if (e?.response?.status === 401) {
+				alert("로그인이 필요합니다.");
+				nav("/account/login");
+				return;
+			}
+			alert("장바구니 담기 중 오류가 발생했습니다.");
+		}
+	};
 };
 
 export default Product2;
