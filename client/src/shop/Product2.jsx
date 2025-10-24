@@ -142,7 +142,11 @@ const Product2 = () => {
 		selectColor, productCount,
   } = product;
 
-	
+	// 단가(할인가 우선) + 옵션가 
+	const unitBase = Number(discount_price || price || 0);
+	const unitPrice = Math.max(0, unitBase + optionDelta);
+	const totalPrice = unitPrice * qty;
+
 };
 
 export default Product2;
