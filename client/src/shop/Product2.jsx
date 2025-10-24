@@ -147,6 +147,22 @@ const Product2 = () => {
 	const unitPrice = Math.max(0, unitBase + optionDelta);
 	const totalPrice = unitPrice * qty;
 
+	// selectColor 파싱 
+	let colorOptions = [];
+	try {
+		if (selectColor) {
+			// JSON 형식 우선 
+			if (selectColor.trim().startWith("{")) {
+				const obj = JSON.parse(selectColor);
+				colorOptions = Array.isArray(obj.color) ? obj.color : [];
+			} else {
+				// CSV 형식 
+				colorOptions = selectColor.split(",").map(s => s.trim()).filter(Boolean);
+			}
+		}
+	} catch (e) {
+		console.warn("selectColor parse error:", e);
+	}
 };
 
 export default Product2;
