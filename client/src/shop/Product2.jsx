@@ -172,7 +172,11 @@ const Product2 = () => {
 		<div className="Product_wrap">
 			<div className="Product_Header">
 				<Header_loginOK />
-			</div>
+			</div>		{/** Product_Header end */}
+			<div className="Product_body"></div>		{/** Product_body end */}
+			<div className="Product_Footer">
+				<Footer />	
+			</div>	{/** Product_Footer end */}
 		</div>		/** Product_wrap end */
 	);
 };
