@@ -168,7 +168,11 @@ const Product2 = () => {
   const mainImg = `http://localhost:5003/uploads/${String(filename).replace(/^\.\//,'')}`;
 	const DescImg = `http://localhost:5003/uploads/${String(img_Desc).replace(/^\.\//,'')}`;
 
-
+	return (
+		<div className="Product_wrap">
+			
+		</div>		/** Product_wrap end */
+	);
 };
 
 export default Product2;
