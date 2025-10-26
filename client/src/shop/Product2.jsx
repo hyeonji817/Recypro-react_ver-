@@ -205,6 +205,33 @@ const Product2 = () => {
 								</div>		{/** related_wrap end */}
 							</div>			{/** prdimg end */}
 
+							{/** 상품 이미지 */}
+							<div className="info_scroll">
+								<form name="prdFrm" method="post" style={{ margin: "0px" }} acceptCharset="utf-8">
+									<div className="wrap_prd">
+										{/** 상품정보 & 버튼 */}
+										<div className="info">
+					            <h3 className="name">{pname}</h3>
+					            <p className="summary">{manufacturer} · {category}</p>
+					            <div className="price">
+						            <div className="top_price">
+							            <span className="consumer consumerY">{price?.toLocaleString()} 원</span>
+							            <span className="sell sellY">
+								            <strong>{discount_price?.toLocaleString()}</strong>
+							            </span>   {/** sell sellY end */}
+						            </div>    {/** top_price end */}
+						            <span className="discount discountY">
+							            <strong>{discount_price?.toLocaleString()}</strong>
+						            </span>   {/** discount discountY end */}
+							          <span className="per">{discount_rate}%</span>
+					            </div>    {/** price end */}
+
+										{/** 상품옵션리스트 */}
+
+									</div>		{/** wrap_prd end */}
+								</form>
+							</div>			{/** info_scroll end */}
+
 						</div>			{/** detail_top_wrap end */}
 					</div>		{/** detail end */}
 				</div>		{/** detailPd_body end */}
