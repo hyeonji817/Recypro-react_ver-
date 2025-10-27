@@ -228,7 +228,7 @@ const Product2 = () => {
 
 										{/** 상품옵션리스트 */}
 										<div className="opt_list">
-                        <div className="th">수량</div>
+                      <div className="th">수량</div>
                         <div className="td">
                           <select value={qty} onChange={(e) => setQty(Number(e.target.value))}>
 														{Array.from({ length: Math.min(10, numberOfstock || 1) }, 
@@ -239,7 +239,24 @@ const Product2 = () => {
                         </div>
                       </div>
 											
-											
+											{colorOptions.length > 0 && (
+												<div className="opt_list">
+													<div className="th">종류</div>
+													<div className="td">
+														<select
+															name="option1"
+															className="wing_multi_option pno4844 necessary_Y"
+															value={selectColor}
+															onChange={(e) => setSelectedColor(e.target.value)}
+														>
+															<option value="">::색상::</option>
+																{colorOptions.map((c) => (
+																	<option key={c} value={c}>{c}</option>
+																))}
+														</select>
+													</div>
+												</div>
+											)}
 
 									</div>		{/** wrap_prd end */}
 								</form>
