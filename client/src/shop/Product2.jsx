@@ -334,7 +334,16 @@ const Product2 = () => {
     											)}
   											</ul>
 
-												
+												<div className="opt_total">
+    											<span className="title">총 상품금액(수량) : </span>
+    												<strong>
+      												<span id="detail_multi_option_prc">{totalPrice.toLocaleString()}</span> KRW
+      											<span className="ea_total"> ({requiredSatisfied ? qty : 0}개)</span>
+    											</strong>
+  											</div>
+											</div> 
+
+											
 
 									</div>		{/** wrap_prd end */}
 								</form>
