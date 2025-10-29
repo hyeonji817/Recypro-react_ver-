@@ -343,7 +343,17 @@ const Product2 = () => {
   											</div>
 											</div> 
 
-											
+											{/** 버튼 */}
+					            {/** ★★★★ 모듈 ★★★★ */}
+											<div className="btn">
+						            <span className="box_btn large buy block">
+                          <a href="/orderList" onClick={(e)=>{ e.preventDefault(); alert("바로구매(추후연결)"); }}>BUY NOW</a>
+                        </span>   {/** box_btn large buy block end */}
+						            <span className="box_btn large cart block">
+                          <a href="/cart" onClick={(e)=>{ e.preventDefault(); handleAddToCart(); }}>ADD TO BAG</a>
+                        </span>   {/** box_btn large cart block end */}
+						          </div>    {/** btn end */}
+					            <div></div>
 
 									</div>		{/** wrap_prd end */}
 								</form>
