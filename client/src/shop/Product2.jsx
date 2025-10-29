@@ -355,6 +355,12 @@ const Product2 = () => {
 						          </div>    {/** btn end */}
 					            <div></div>
 
+											<div className="app_link">
+                        <a href="#">
+                          <img src={CouponBanner} border={0} />
+                        </a>
+                      </div>    {/** app_link end */}
+
 									</div>		{/** wrap_prd end */}
 								</form>
 							</div>			{/** info_scroll end */}
