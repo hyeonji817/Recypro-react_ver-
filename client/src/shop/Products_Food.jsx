@@ -1,4 +1,4 @@
-import "./Product_List.css";
+import "./Product_Food.css";
 import axios from "axios";
 import { useEffect, useState } from "react"; 
 import eatsBetter from "../assets/1_eats_better_minimum.jpg"; 
