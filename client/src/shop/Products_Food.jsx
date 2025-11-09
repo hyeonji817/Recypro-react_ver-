@@ -20,6 +20,12 @@ const Products_Food = () => {
     fetchProductFood();
   }, []);
 
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = productFood.slice(indexOfFirstItem, indexOfLastItem);
+  const totalPages = Math.ceil(productFood.length / itemsPerPage);
+  const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
+
   return (
     <div id="productsFood_wrap">
       <div className="products_body">
