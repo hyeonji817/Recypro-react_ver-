@@ -6,7 +6,20 @@ const Products_Food = () => {
   const [productFood, setProductFood] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 3; 
-  
+
+  useEffect(() => {
+    const fetchProductFood = async () => {
+      try {
+        const res = await fetch("http://localhost:5003/api/product_food");    // Product_Life.js (상품목록 페이지 라우터) 페이지 연동
+        const data = await res.json();
+        setProductFood(data);
+      } catch (err) {
+        console.error("Failed to fetch best product:", err);
+      }
+    };
+    fetchProductFood();
+  }, []);
+
   return (
     <div id="productsFood_wrap">
       <div className="products_body">
