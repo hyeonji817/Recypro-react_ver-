@@ -1,12 +1,12 @@
-import "./Product_Food.css";
-import axios from "axios";
+import "./Products_Food.css";
 import { useEffect, useState } from "react"; 
-import eatsBetter from "../assets/1_eats_better_minimum.jpg"; 
-import zeroSugarCookie from "../assets/2_zerosugarCookie.jpg"; 
-import wheatChurros from "../assets/3_wheat_Churros.jpg";
+import { Link } from "react-router-dom";
 
 const Products_Food = () => {
-
+  const [productFood, setProductFood] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 3; 
+  
   return (
     <div id="productsFood_wrap">
       <div className="products_body">
