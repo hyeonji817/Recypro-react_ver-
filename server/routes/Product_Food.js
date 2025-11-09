@@ -12,4 +12,17 @@ const q = (sql, params = []) =>
   });
 });
 
+/** 1) 식품상품 목록 (최신 12개) */
+router.get("/", async (req, res) => {
+  try {
+    const rows = await q(
+      "SELECT * FROM product_food ORDER BY productId DESC LIMIT 12"
+    );
+    return res.json(rows);
+  } catch (err) {
+    console.error("DB error:", err);
+    return res.status(500).json({ message: "DB Error", detail: err.message });
+  }
+});
+
 export default router;
