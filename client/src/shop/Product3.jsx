@@ -28,7 +28,23 @@ const Product3 = () => {
 	const [qty, setQty] = useState(1);		// 계산 상태, 수량
 	const groups = React.useMemo(() => product?.optionGroups ?? [], [product]);		// Product3 컴포넌트 내부 (state 선언들 아래 아무 곳에 배치하기)
 
-  
+  useEffect(() => {
+		let mounted = true; 
+		(async() => {
+			try {
+				// 라우터 페이지(Product_Food.js) 연동
+				const res = await axios.get(`http://localhost:5003/api/product_food/${encodeURIComponent(productId)}`, { withCredentials: true });
+				console.log(res.data);	
+				if (mounted) setProduct(prev => ({ ...res.data, optionGroups: res.data?.optionGroups ?? [] }));
+			} catch (err) {
+				console.error(err);
+				if (mounted) setError("상품 정보를 불러오지 못했습니다.");
+			} finally {
+				if (mounted) setLoading(false);
+			}
+		})();
+		return () => { mounted = false; }
+	}, [productId]);
 };
 
 export default Product3;
