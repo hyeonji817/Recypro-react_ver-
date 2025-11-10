@@ -59,6 +59,17 @@ const Product3 = () => {
 	const requiredSatisfied = groups.every(
 		g => !g.required || selected[g.name]
 	);
+
+	// 선택한 옵션 라벨을 "색상 : OO / 종류 : OO" 형태로 표시 
+	const selectedLabel = groups 
+	.map(g => {
+		const val = (g.values || []).find(v => v.value === selected[g.name]);
+		return val ? `${g.displayName || g.name}: ${val.label}` : null;
+	})
+	.filter(Boolean)
+	.join(" / ");
+
+	
 };
 
 export default Product3;
