@@ -69,7 +69,15 @@ const Product3 = () => {
 	.filter(Boolean)
 	.join(" / ");
 
-	
+	// 장바구니 페이지 이동 ()
+	const handleAddToCart = async () => {
+		if (!requiredSatisfied) {
+			alert("필수 옵션을 모두 선택해 주세요.");
+			return;
+		}
+
+		
+	};
 };
 
 export default Product3;
