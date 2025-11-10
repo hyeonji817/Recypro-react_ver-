@@ -97,6 +97,20 @@ const Product3 = () => {
 			totalPrice,                  // unitPrice * qty
 			mileage: Math.floor((unitBase || 0) * 0.05)  // 적립금 계산(할인가 기준 5%)
 		};
+
+		try {
+			await axios.post("http://localhost:5003/api/cart", payload, { withCredentials: true });
+			// 장바구니 페이지로 이동
+			nav("/cart");
+		} catch (e) {
+			console.error(e);
+			if (e?.response?.status === 401) {
+				alert("로그인이 필요합니다.");
+				nav("/account/login");
+				return;
+			}
+			alert("장바구니 담기 중 오류가 발생했습니다.");
+		}
 	};
 };
 
