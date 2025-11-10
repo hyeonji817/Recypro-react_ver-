@@ -80,6 +80,12 @@ const Product3 = () => {
 		const colorPart = selectedColor ? (selectedLabel ? ` / 색상: ${selectedColor}` : `색상: ${selectedColor}`) : "";
   	const optionLabel = `${selectedLabel || ""}${colorPart}`.trim();
 
+		// 옵션 JSON (선택 목록 + 단일 색상까지 포함)
+		const optionsPayload = {
+			...selected,
+			...(selectedColor ? { color: selectedColor } : {})
+		};
+
 		
 	};
 };
