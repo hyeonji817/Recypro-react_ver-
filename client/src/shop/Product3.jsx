@@ -86,6 +86,17 @@ const Product3 = () => {
 			...(selectedColor ? { color: selectedColor } : {})
 		};
 
+		const {
+			pname, price, discount_price, discount_rate,
+			description, manufacturer, numberOfstock, category, filename, mileage, img_Desc,
+			selectColor, productCount,
+		} = product;
+	
+		// 단가(할인가 우선) + 옵션가 
+		const unitBase = Number(discount_price || price || 0);
+		const unitPrice = Math.max(0, unitBase + optionDelta);
+		const totalPrice = unitPrice * qty;
+
 		const payload = {
 			productTable: "product_",
 			productId,
@@ -136,17 +147,26 @@ const Product3 = () => {
   if (!product) return null;
 	if (!productId) return <div className="Product_wrap">잘못된 페이지입니다.(상품 ID 없음)</div>;
 
-	const {
-    pname, price, discount_price, discount_rate,
-    description, manufacturer, numberOfstock, category, filename, mileage, img_Desc,
-		selectColor, productCount,
-  } = product;
+	// selectColor 파싱 
+	let colorOptions = []; 
+	try {
+		if (selectColor) {
+			// JSON 형식 우선
+			if (selectColor.trim().startsWith("{")) {
+				const obj = JSON.parse(selectColor);
+				colorOptions = Array.isArray(obj.color) ? obj.color : [];
+			} else {
+				// CSV 형식
+				colorOptions = selectColor.split(",").map(s => s.trim()).filter(Boolean);
+			}
+		}
+	} catch (e) {
+		console.warn("selectColor parse error:", e);
+	}
 
-	// 단가(할인가 우선) + 옵션가 
-	const unitBase = Number(discount_price || price || 0);
-	const unitPrice = Math.max(0, unitBase + optionDelta);
-	const totalPrice = unitPrice * qty;
-
+	// 업로드 경로 통일: DB에는 "life/xxx.jpg" 저장했다고 가정
+  const mainImg = `http://localhost:5003/uploads/${String(filename).replace(/^\.\//,'')}`;
+	const DescImg = `http://localhost:5003/uploads/${String(img_Desc).replace(/^\.\//,'')}`;
 	
 };
 
