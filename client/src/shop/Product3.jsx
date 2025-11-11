@@ -193,6 +193,16 @@ const Product3 = () => {
 									</div>			{/** detail_info end */}	
 								</div>			{/** addimg end */}	
 
+								<div className="related_wrap">
+				          <div className="btn_bottom dn">
+					          <span className="box_btn w141 left">
+                      <a href="#">선택상품 장바구니</a>
+                    </span>   {/** box_btn w141 left end */}
+					          <span className="box_btn w141">
+                      <a href="#">선택상품 구매</a>
+                    </span>   {/** box_btn w141 end */}
+				          </div>    {/** btn_bottom dn end */}
+			          </div>    {/** related_wrap end */}
 								
 							</div>		{/** prdimg end */}
 						</div>			{/** detail_top_wrap end */}
