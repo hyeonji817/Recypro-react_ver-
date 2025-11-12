@@ -293,6 +293,28 @@ const Product3 = () => {
 							          <a href="#" className="ea_down">-</a>
 						          </div>    {/** btn_ea end */}
 					          </div>    {/** box_qty hidden end */}
+
+										<table className="list">
+						          <colgroup>
+							          <col style={{ width: "30%" }} />
+							          <col />
+						          </colgroup>
+						          <tbody>
+							          <tr>
+								          <th scope="row">MILEAGE</th>
+								          <td>
+													{Math.floor((discount_price || 0) * 0.05).toLocaleString()} 원
+									          <div className="box_info">
+										          <div className="info">
+																회원적립금 : {mileage} 원 <br />
+										          </div>    {/** info end */}
+									          </div>    {/** box_info end */}
+								          </td>
+							          </tr>
+						          </tbody>
+					          </table>      {/** list end */}
+
+										
 									
 								</div>		{/** info end */}
 
