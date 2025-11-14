@@ -358,6 +358,12 @@ const Product3 = () => {
                     </span>   {/** box_btn large cart block end */}
 						      </div>    {/** btn end */}
 					        <div></div>
+
+									<div className="app_link">
+                    <a href="#">
+                      <img src={CouponBanner} border={0} />
+                    </a>
+                  </div>    {/** app_link end */}
 																
 								</div>		{/** info end */}
 
