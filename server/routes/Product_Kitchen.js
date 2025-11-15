@@ -45,6 +45,28 @@ router.get("/:productId", async (req, res) => {
       [productId]
     );
 
+    // (C) 각 그룹의 옵션값 
+    const optionGroups = [];
+    for (const g of groups) {
+      const vals = await q(
+        "SELECT * FROM product_option_value WHERE group_id = ? ORDER BY sort_order, id",
+        [g.id]
+      );
+      optionGroups.push({
+        id: g.id,
+        name: g.name,                  // 예: 'color'
+        displayName: g.display_name,   // 예: '종류'
+        required: !!g.required,
+        values: vals.map((v) => ({
+          id: v.id,
+          label: v.label,              // 예: '아이보리'
+          value: v.value,              // 예: 'ivory'
+          priceDelta: v.price_delta || 0,
+          stock: v.stock,              // null이면 공통/무제한 처리
+        })),
+      });
+    }
+
   } catch (err) {
 
   }
