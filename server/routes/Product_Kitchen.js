@@ -39,6 +39,12 @@ router.get("/:productId", async (req, res) => {
     if (!productRows.length) return res.status(404).json({ message: "Not found" });
     const product = productRows[0];
 
+    // (B) 옵션 그룹들 
+    const groups = await q(
+      "SELECT * FROM product_option_group WHERE product_id = ? ORDER BY sort_order, id",
+      [productId]
+    );
+
   } catch (err) {
 
   }
