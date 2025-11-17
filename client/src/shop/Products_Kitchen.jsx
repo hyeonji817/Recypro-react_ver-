@@ -1,13 +1,21 @@
 import "./Products_Kitchen.css";
 import { useEffect, useState } from "react"; 
+import { Link } from "react-router-dom";
 
 const Products_Kitchen = () => {
   const [productKitchen, setProductKitchen] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 3; 
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = productKitchen.slice(indexOfFirstItem, indexOfLastItem);
+  const totalPages = Math.ceil(productKitchen.length / itemsPerPage);
+  const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
 
   useEffect(() => {
     const fetchProductKitchen = async () => {
       try {
-        const res = await fetch("http://localhost:5001/api/product_kitchen");    // Product_Kitchen.js (주방항목 페이지 라우터) 페이지 연동
+        const res = await fetch("http://localhost:5003/api/product_kitchen");    // Product_Kitchen.js (주방항목 페이지 라우터) 페이지 연동
         const data = await res.json();
         setProductKitchen(data);
       } catch (err) {
