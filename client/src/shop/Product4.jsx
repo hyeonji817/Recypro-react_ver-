@@ -14,3 +14,7 @@ import CouponBanner from "../assets/coupon_banner.jpg";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/autoplay";
+
+const Product4 = () => {};
+
+export default Product4;
