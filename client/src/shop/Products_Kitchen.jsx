@@ -47,7 +47,46 @@ const Products_Kitchen = () => {
         </div>      {/** big_section end */}
 
         {/** 상품정렬 */}
-        <ul className="prd_basic col3"></ul>    {/** prd_basic col3 end */}
+        <ul className="prd_basic col3">
+        {currentItems.map((item) => {
+          const detailPath = `/shop/product4/${encodeURIComponent(item.productId)}`;
+          return (
+            <li key={item.productId}>
+              <div className="box">
+                <div className="img">
+                  <div className="prdimg">
+                    {/* ⛔️ <a href={item}>  이런 게 [object Object]의 원인 */}
+                    <Link to={detailPath}>
+                      <img
+                        src={`http://localhost:5003/uploads/${item.filename}`}
+                        alt={item.pname}
+                        width="240"
+                        height="320"
+                      />
+                    </Link>
+                  </div>    {/** prdimg end */}
+                </div>    {/** img end */}
+
+                <div className="info">
+                  <p className="name">
+                    {/* ⛔️ <Link to={item.href}> (DB href는 파라미터가 없음) */}
+                    <Link to={detailPath}>{item.pname}</Link>
+                  </p>    {/** name end */}
+                  <div className="price">
+                    <p className="sell sellY">
+                      {item.price}<span>원</span>
+                    </p>    {/** sell sellY end */}
+                    <div className="discount_section">
+                      <p className="per">{item.discount_rate}%</p>
+                      <p className="discount discountY">{item.discount_price}원</p>
+                    </div>      {/** discount_section end */}
+                  </div>    {/** price end */}
+                </div>      {/** info end */}
+              </div>    {/** box end */}
+            </li>
+            );
+          })}
+        </ul>    {/** prd_basic col3 end */}
 
         <ul className="paging"></ul>      {/** paging end */}
       </div>     {/** products_body end */}
