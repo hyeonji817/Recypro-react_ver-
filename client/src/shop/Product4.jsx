@@ -62,6 +62,17 @@ const Product4 = () => {
 		g => !g.required || selected[g.name]
 	);
 
+  // 선택한 옵션 라벨을 "색상: 핑크 / 종류: 라지" 형태로 표시
+	const selectedLabel = groups
+  .map(g => {
+    const val = (g.values || []).find(v => v.value === selected[g.name]);
+    return val ? `${g.displayName || g.name}: ${val.label}` : null;
+  })
+  .filter(Boolean)
+  .join(" / ");
+
+  
+
 };
 
 export default Product4;
