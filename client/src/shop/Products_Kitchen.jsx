@@ -37,7 +37,14 @@ const Products_Kitchen = () => {
   return (
     <div id="productsKitchen_wrap">
       <div className="products_body">
-        <div id="big_section"></div>      {/** big_section end */}
+        <div id="big_section">
+          <li><Link to="/shop/products1">생활</Link></li>
+          <li><Link to="/shop/products2">욕실</Link></li>
+          <li><Link to="/shop/products3">식품</Link></li>
+          <li><Link to="/shop/products4">주방</Link></li>
+          <li><Link to="/shop/products5">반려동물</Link></li>
+          <li><Link to="/shop/products5">사무</Link></li>  
+        </div>      {/** big_section end */}
 
         {/** 상품정렬 */}
         <ul className="prd_basic col3"></ul>    {/** prd_basic col3 end */}
