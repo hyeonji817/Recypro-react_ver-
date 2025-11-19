@@ -166,6 +166,10 @@ const Product4 = () => {
 		console.warn("selectColor parse error:", e);
 	}
 
+	// 업로드 경로 통일: DB에는 "life/xxx.jpg" 저장했다고 가정
+  const mainImg = `http://localhost:5003/uploads/${String(filename).replace(/^\.\//,'')}`;
+	const DescImg = `http://localhost:5003/uploads/${String(img_Desc).replace(/^\.\//,'')}`;
+
 };
 
 export default Product4;
