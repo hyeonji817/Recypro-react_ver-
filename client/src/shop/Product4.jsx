@@ -262,6 +262,15 @@ const Product4 = () => {
 												</div>			{/** opt_list end */}
 											))}
 
+											{/** 수량 */}
+					            <div className="box_qty hidden">
+						            <input type="text" name="buy_ea" value="1" className="form_input" />
+						            <div className="btn_ea">
+							            <a href="#" className="ea_up">+</a>
+							            <a href="#" className="ea_down">-</a>
+						            </div>    {/** btn_ea end */}
+					            </div>    {/** box_qty hidden end */}
+
 										</div>		{/** info end */}	
 									</div>			{/** wrap_prd end */}
 								</form>
