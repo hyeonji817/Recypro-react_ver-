@@ -187,6 +187,12 @@ const Product4 = () => {
 										<img src={mainImg} alt={pname} />	
 									</div>			{/** add_img end */}
 
+									<div className="detail_info">
+										<div className="img_wrapper" style={{ textAlign: "center" }}>
+											<img src={DescImg} />
+										</div>			{/** img_wrapper end */}	
+										<div style={{ textAlign: "center" }}><br /></div>
+									</div>			{/** detail_info end */}
 								</div>		{/** addimg end */}
 
 							</div>			{/** prdimg end */}
