@@ -16,7 +16,7 @@ import "swiper/css/pagination";
 import "swiper/css/autoplay";
 
 const Product4 = () => {
-  const { productId } = useParams();		// 상품명 호출
+	const { productId } = useParams();		// 상품명 호출
 	console.log("productId param = ", productId);
 	console.log("[Product4] productId =", productId);
 	const nav = useNavigate();
@@ -30,7 +30,7 @@ const Product4 = () => {
 	// Product4 컴포넌트 내부 (state 선언들 아래 아무 곳)
 	const groups = React.useMemo(() => product?.optionGroups ?? [], [product]);
 
-  useEffect(() => {
+	useEffect(() => {
 		let mounted = true; 
 		(async() => {
 			try {
@@ -48,7 +48,7 @@ const Product4 = () => {
 		return () => { mounted = false; }
 	}, [productId]);
 
-  // 현재 옵션들로부터 추가요금 합계 
+	// 현재 옵션들로부터 추가요금 합계 
 	const optionDelta = React.useMemo(() => {
 	  return groups.reduce((sum, g) => {
 	    const selVal = selected[g.name];
@@ -57,12 +57,12 @@ const Product4 = () => {
 	  }, 0);
 	}, [selected, groups]);
 
-  // 필수 옵션이 모두 선택되었는지
+	// 필수 옵션이 모두 선택되었는지
 	const requiredSatisfied = groups.every(
 		g => !g.required || selected[g.name]
 	);
 
-  // 선택한 옵션 라벨을 "색상: 핑크 / 종류: 라지" 형태로 표시
+	// 선택한 옵션 라벨을 "색상: 핑크 / 종류: 라지" 형태로 표시
 	const selectedLabel = groups
   .map(g => {
     const val = (g.values || []).find(v => v.value === selected[g.name]);
@@ -71,7 +71,7 @@ const Product4 = () => {
   .filter(Boolean)
   .join(" / ");
 
-  // 장바구니 페이지 이동 
+	// 장바구니 페이지 이동 (2025.10.07 신규추가) (장바구니 페이지로 이동하면서 해당 이동하려는 페이지에 데이터값 전달)
 	const handleAddToCart = async () => {
 		if (!requiredSatisfied) {
 			alert("필수 옵션을 모두 선택해 주세요.");
@@ -170,62 +170,64 @@ const Product4 = () => {
   const mainImg = `http://localhost:5003/uploads/${String(filename).replace(/^\.\//,'')}`;
 	const DescImg = `http://localhost:5003/uploads/${String(img_Desc).replace(/^\.\//,'')}`;
 
-	return (
-		<div className="Product_wrap">
-			<div className="Product_Header">
-				<Header_loginOK />
-			</div>		{/** Product_Header end */}
-
-			<div className="Product_body">
-				<div className="detailPd_body">
-					<div id="detail">
-						<div className="detail_top_wrap">
-							{/** 상품 이미지 */}
-							<div className="prdimg">
-								<div id="addimg" className="addimg">
+  return (
+    <div className="Product_wrap">
+      <div className="Product_Header">
+        <Header_loginOK />
+      </div>
+      <div className="Product_body">
+        <div className="detailPd_body">
+          <div id="detail">
+	          <div className="detail_top_wrap">
+              {/** 상품 이미지 */}
+		          <div className="prdimg">
+			          <div id="addimg" className="addimg">
 									<div className="add_img">
-										<img src={mainImg} alt={pname} />	
-									</div>			{/** add_img end */}
+										<img src={mainImg} alt={pname} />
+									</div>
 
-									<div className="detail_info">
+				          <div className="detail_info">
 										<div className="img_wrapper" style={{ textAlign: "center" }}>
 											<img src={DescImg} />
-										</div>			{/** img_wrapper end */}	
+										</div>
 										<div style={{ textAlign: "center" }}><br /></div>
-									</div>			{/** detail_info end */}
-								</div>		{/** addimg end */}
-
-								<div className="related_wrap">
-									<div className="btn_bottom dn">
-										<span className="box_btn w141 left">
+									</div>  
+			          </div>    
+			
+			          <div className="related_wrap">
+				          <div className="btn_bottom dn">
+					          <span className="box_btn w141 left">
                       <a href="#">선택상품 장바구니</a>
                     </span>   {/** box_btn w141 left end */}
 					          <span className="box_btn w141">
                       <a href="#">선택상품 구매</a>
                     </span>   {/** box_btn w141 end */}
-									</div>			{/** btn_bottom dn end */}	
-								</div>		{/** related_wrap end */}
-							</div>			{/** prdimg end */}
+				          </div>    {/** btn_bottom dn end */}
+			          </div>    {/** related_wrap end */}
+		          </div>     {/** prdimg end */}
 
-							{/** 상품 이미지 */}
-							<div className="info_scroll">
-								<form name="prdFrm" method="post" style={{ margin: "0px" }} acceptCharset="utf-8">
-									<div className="wrap_prd">
-										{/** 상품정보 & 버튼 */}
-										<div className="info">
-											<h3 className="name">{pname}</h3>
-											<p className="summary">{manufacturer} · {category}</p>
-											<div className="price">
-												<div className="top_price">
-													<span className="consumer consumerY">{price?.toLocaleString()} 원</span>
+		          {/** //상품 이미지 */}
+		          <div className="info_scroll">
+			          <form name="prdFrm" method="post" style={{ margin: "0px" }} acceptCharset="utf-8">
+			            <div className="wrap_prd">
+				            {/** 상품정보 & 버튼 */}
+				            <div className="info">
+					            <h3 className="name">{pname}</h3>
+					            <p className="summary">{manufacturer} · {category}</p>
+					            <div className="price">
+						            <div className="top_price">
+							            <span className="consumer consumerY">{price?.toLocaleString()} 원</span>
 													<span className="sell sellY"><strong>{discount_rate}%</strong></span>
-												</div>			{/** top_price end */}	
-
-												<span className="discount discountY">
+							            {/** <span className="sell sellY">
+								            <strong>{discount_price?.toLocaleString()}%</strong>
+							            </span> */}  
+						            </div>    {/** top_price end */}
+						            <span className="discount discountY">
 							            <strong>{discount_price?.toLocaleString()}</strong>
 						            </span>   {/** discount discountY end */}
 												<span className="per">{discount_price?.toLocaleString()}원</span>
-											</div>			{/** price end */}
+							          {/** <span className="per">{discount_rate}원</span> */}
+					            </div>    {/** price end */}
 
 											{/** 상품옵션리스트 */}
 											{/* 옵션 예시 - 필요 시 DB에 옵션 컬럼/테이블 추가 */}
@@ -237,8 +239,8 @@ const Product4 = () => {
         											<option key={v} value={v}>{v}</option>
       											))}
     											</select>
-  											</div>			{/** td end */}
-											</div>			{/** opt_list end */}
+  											</div>
+											</div>
 
 											{/** optionGroups가 있을 때만 노출 */}
 											{(product.optionGroups ?? []).map(group => (
@@ -258,11 +260,11 @@ const Product4 = () => {
           									</option>
         										))}
       											</select>
-    											</div>			{/** td end */}
-												</div>			{/** opt_list end */}
+    											</div>
+												</div>
 											))}
 
-											{/** 수량 */}
+					            {/** 수량 */}
 					            <div className="box_qty hidden">
 						            <input type="text" name="buy_ea" value="1" className="form_input" />
 						            <div className="btn_ea">
@@ -271,7 +273,7 @@ const Product4 = () => {
 						            </div>    {/** btn_ea end */}
 					            </div>    {/** box_qty hidden end */}
 
-											<table className="list">
+					            <table className="list">
 						            <colgroup>
 							            <col style={{ width: "30%" }} />
 							            <col />
@@ -293,7 +295,7 @@ const Product4 = () => {
 						            </tbody>
 					            </table>      {/** list end */}
 
-											<div className="multi_opt">
+											<div className="multi_opt"> {/* - ★ (부분 교체) */}
   											<ul id="detail_multi_option" className="selected_list">
     											{requiredSatisfied ? (
       											<li className="selected_item" style={{ display: "flex", alignItems: "center", gap: 12 }}>
@@ -316,16 +318,16 @@ const Product4 = () => {
     											)}
   											</ul>
 
-												<div className="opt_total">
+  											<div className="opt_total">
     											<span className="title">총 상품금액(수량) : </span>
     												<strong>
       												<span id="detail_multi_option_prc">{totalPrice.toLocaleString()}</span> KRW
       											<span className="ea_total"> ({requiredSatisfied ? qty : 0}개)</span>
     											</strong>
-  											</div>			{/** opt_total end */}
-											</div>			{/** multi_opt end */}
-
-											{/** 버튼 */}
+  											</div>
+											</div>
+					
+					            {/** 버튼 */}
 					            {/** ★★★★ 모듈 ★★★★ */}
 											<div className="btn">
 						            <span className="box_btn large buy block">
@@ -337,24 +339,47 @@ const Product4 = () => {
 						          </div>    {/** btn end */}
 					            <div></div>
 
-										</div>		{/** info end */}	
-									</div>			{/** wrap_prd end */}
+					            <div className="app_link">
+                        <a href="#">
+													<img src={CouponBanner} border={0} />
+												</a>
+                      </div>    {/** app_link end */}
+
+					            <div className="count_share tar dn">
+						            <div className="sns">
+							            <a><span className="kakao">kakao</span></a>
+							            <a><span className="kakaostory">kakaostory</span></a>
+							            <a href="#" className="facebook"></a>
+							            <a href="#" target="_blank" className="insta_share"></a>
+							            <span className="wish ">
+                            <a href="#"></a>
+                          </span>
+						            </div>    {/** sns end */}
+						            <div className="count_box">
+							            <p className="count">
+                            <a className="p_cursor">REVIEW (<span>5</span>)</a>
+                            <a className="p_cursor right">Q&amp;A (<span>0</span>)</a>
+                          </p>
+						            </div>    {/** count_box end */}
+					            </div>    {/** count_share tar dn end */}
+											{/** //버튼 */}
+										</div>		{/** info end */}
+										{/** //상품정보 & 버튼 */}
+									</div>		{/** wrap_prd end */}
+									<input type="hidden" name="opt_no" value="2" />
 								</form>
-							</div>			{/** info_scroll end */}
+							</div>		{/** info_scroll end */}
+						</div>		{/** detail_top_wrap end */}
+						{/** // 상단 */}
+					</div>	{/** detail end */}
+        </div>   {/** detailPd_body end */}
+      </div>   {/** Product_body end */}
 
-						</div>			{/** detail_top_wrap end */}
-					</div>			{/** detail end */}
-
-				</div>			{/** detailPd_body end */}
-
-			</div>			{/** Product_body end */}
-
-			<div className="Product_Footer">
-				<Footer />
-			</div>		{/** Product_Footer end */}
-		</div>			/** Product_wrap end */
-	);
-
+      <div className="Product_Footer">
+				<Footer/>
+			</div>
+    </div>
+  );
 };
 
-export default Product4;
+export default Product4; 
