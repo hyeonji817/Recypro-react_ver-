@@ -9,7 +9,9 @@ const Products5 = () => {
       <div className="Products5_Header">
         <Header_loginOK />  
       </div>      {/** Products5_Header end */}
-      <div className="Products5_Pet"></div>         {/** Products5_Pet end */}
+      <div className="Products5_Pet">
+        <Products_Pet />
+      </div>         {/** Products5_Pet end */}
       <div className="Products5_Footer">
         <Footer />
       </div>      {/** Products5_Footer end */}
