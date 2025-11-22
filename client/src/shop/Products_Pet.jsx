@@ -20,7 +20,11 @@ const Products_Pet = () => {
 		fetchProductPet();
 	}, []);
 
-  
+  const indexOfLastItem = currentPage * itemsPerPage; 
+  const indexOfFirstItem = indexOfLastItem - itemsPetPage; 
+  const currentItems = productPet.slice(indexOfFirstItem, indexOfLastItem);
+  const totalPages = Math.ceil(productPet.length / itemsPerPage);
+  const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
 
   return (
     <div id="productsPet_wrap">
