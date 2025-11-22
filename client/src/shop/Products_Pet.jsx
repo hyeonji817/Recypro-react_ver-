@@ -20,14 +20,7 @@ const Products_Pet = () => {
 		fetchProductPet();
 	}, []);
 
-  // 돋보기 기능 상태 추가 
-  const [searchQuery, setSearchQuery] = useState(""); 
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
-
-  // 돋보기 검색 핸들러 추가 
-  const filteredItems = productPet.filter(item => 
-    item.pname.toLowerCase().includes(searchQuery.toLocaleLowerCase())
-  );
+  
 
   return (
     <div id="productsPet_wrap">
