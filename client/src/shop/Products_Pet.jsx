@@ -1,13 +1,16 @@
 import "./Products_Pet.css";
 import { useEffect, useState } from "react"; 
+import { Link } from "react-router-dom";
 
 const Products_Pet = () => {
 	const [productPet, setProductPet] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1); 
+  const itemsPerPage = 3; 
 
 	useEffect(() => {
 		const fetchProductPet = async () => {
 			try {
-        const res = await fetch("http://localhost:5001/api/product_pet");    // Product_Life.js (상품목록 페이지 라우터) 페이지 연동
+        const res = await fetch("http://localhost:5003/api/product_pet");    // Product_Life.js (상품목록 페이지 라우터) 페이지 연동
         const data = await res.json();
         setProductPet(data);
       } catch (err) {
