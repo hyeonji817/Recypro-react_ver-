@@ -39,69 +39,50 @@ const Products_Pet = () => {
             <li><Link to="/shop/products6">사무</Link></li>
           </ul>   {/** sub_category end */}
 
-          
+	        {/** 상품정렬 */}
+          <ul className="prd_basic col3">
+          {currentItems.map((item) => {
+          const detailPath = `/shop/product5/${encodeURIComponent(item.productId)}`;
 
-	    {/** 상품정렬 */}
-      <ul className="prd_basic col3">
-				{productPet.map((item, index) => (
-				<li key={index}>
-		      <div className="box ">
-	          <div className="img">
-		          <div className="prdimg">
-                <a href={item.href}>
-                  <img 
-										src={`http://localhost:5001/uploads/${item.filename}`} 
-										alt={item.pname}
-										width="240" 
-										height="320" 
-									/>
-                </a>
-              </div>  {/** prdimg end */}
-	          </div>  {/** img end */}
+          return (
+            <li key={item.productId}>
+            <div className="box">
+              <div className="img">
+                <div className="prdimg">
+                  {/* ⛔️ <a href={item}>  이런 게 [object Object]의 원인 */}
+                  <Link to={detailPath}>
+                    <img
+                      src={`http://localhost:5001/uploads/${item.filename}`}
+                      alt={item.pname}
+                      width="240"
+                      height="320"
+                    />
+                  </Link>
+                </div>
+              </div>
 
-	          <div className="info">
-		          <p className="name">
-                <a href={item.href}>
-									{item.pname}
-								</a>
-              </p>    {/** name end */}
-		          <div className="price">
-								<p className="consumer consumerY">
-                  <span>KRW</span>
-									{item.price}
-                </p>    {/** consumer consumerY end */}
-			          <p className="sell sellY">
-                  <span>KRW</span>
-									{item.price}
-                </p>  {/** sell sellY end */}
-			          <div className="discount_section">
-				          <p className="per">{item.discount_rate}%</p>
-				          <p className="discount discountY">{item.discount_price}</p>
-			          </div> {/** discount_section end */}
-		          </div>  {/** price end */}
-	          </div>  {/** info end */}
-          </div>  {/** box end */}
-	      </li>
-				))}
-      </ul>
+              
+          );
+          })}  
+          </ul>      {/** prd_basic col3 */}
 
-	    <ul className="paging">
-        <li></li>
-        <li><strong>1</strong></li>
-        <li><a href="?page=2&amp;cno1=1800">2</a></li>
-        <li><a href="?page=3&amp;cno1=1800">3</a></li>
-        <li><a href="?page=4&amp;cno1=1800">4</a></li>
-        <li><a href="?page=5&amp;cno1=1800">5</a></li>
-        <li><a href="?page=6&amp;cno1=1800">6</a></li>
-        <li><a href="?page=7&amp;cno1=1800">7</a></li>
-        <li><a href="?page=8&amp;cno1=1800">8</a></li>
-        <li><a href="?page=9&amp;cno1=1800">9</a></li>
-        <li><a href="?page=10&amp;cno1=1800">10</a></li>
-        <li><a className="next moveto" href="?page=11&amp;cno1=1800">&gt;</a><a className="last moveto" href="?page=19&amp;cno1=1800">&gt;&gt;</a></li>
-      </ul>
+	        <ul className="paging">
+            <li></li>
+            <li><strong>1</strong></li>
+            <li><a href="?page=2&amp;cno1=1800">2</a></li>
+            <li><a href="?page=3&amp;cno1=1800">3</a></li>
+            <li><a href="?page=4&amp;cno1=1800">4</a></li>
+            <li><a href="?page=5&amp;cno1=1800">5</a></li>
+            <li><a href="?page=6&amp;cno1=1800">6</a></li>
+            <li><a href="?page=7&amp;cno1=1800">7</a></li>
+            <li><a href="?page=8&amp;cno1=1800">8</a></li>
+            <li><a href="?page=9&amp;cno1=1800">9</a></li>
+            <li><a href="?page=10&amp;cno1=1800">10</a></li>
+            <li><a className="next moveto" href="?page=11&amp;cno1=1800">&gt;</a><a className="last moveto" href="?page=19&amp;cno1=1800">&gt;&gt;</a></li>
+          </ul>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
   );
 };
 
