@@ -12,15 +12,17 @@ const q = (sql, params = []) =>
   });
 });
 
-router.get('/', async (req, res) => {
-  const sql = "SELECT * FROM product_pet ORDER BY productId DESC LIMIT 12";  // 최신순 12개 예시 
-  db.query(sql, (err, results) => {
-    if (err) {
-      console.error("DB error:", err);
-      return res.status(500).json({ error: "DB Error" });
-    }
-    res.json(results);
-  });
+/** 1) 반려동물 상품 목록 (최신 12개) */
+router.get("/", async (req, res) => {
+  try {
+    const rows = await q(
+      "SELECT * FROM product_pet ORDER BY productId DESC LIMIT 12"
+    );
+    return res.json(rows);
+  } catch (err) {
+    console.error("DB error:", err);
+    return res.status(500).json({ message: "DB Error", detail: err.message });
+  }
 });
 
 export default router;
