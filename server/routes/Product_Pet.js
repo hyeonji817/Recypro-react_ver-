@@ -104,10 +104,13 @@ router.get("/:productId", async (req, res) => {
         console.warn("selectColor parse error:", e);
       }
     }
-    
-  } catch (err) {
 
+   // (E) 최종 응답 (항상 JSON)
+   return res.json({ ...product, optionGroups });
+  } catch (err) {
+    console.error("Server error:", err);
+    return res.status(500).json({ message: "Server error", detail: err.message });
   }
-})
+});
 
 export default router;
