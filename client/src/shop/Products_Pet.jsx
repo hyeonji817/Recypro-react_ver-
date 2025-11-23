@@ -39,24 +39,7 @@ const Products_Pet = () => {
             <li><Link to="/shop/products6">사무</Link></li>
           </ul>   {/** sub_category end */}
 
-          {/** 검색하기 기능 */}
-          <ul className="search-container">
-            {isSearchOpen && (
-            <input
-              type="text"
-              className="search-input"
-              placeholder="상품명을 입력하세요"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-            )}
-            <button
-              className="search-toggle"
-              onClick={() => setIsSearchOpen(!isSearchOpen)}
-            >
-              🔍
-            </button>
-          </ul>
+          
 
 	    {/** 상품정렬 */}
       <ul className="prd_basic col3">
