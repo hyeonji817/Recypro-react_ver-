@@ -75,6 +75,10 @@ const Product5 = () => {
 			return;
 		}
 
+		// 옵션 라벨(기존 계산한 selectedLabel + 색상 콤보)
+		const colorPart = selectedColor ? (selectedLabel ? ` / 색상: ${selectedColor}` : `색상: ${selectedColor}`) : "";
+  	const optionLabel = `${selectedLabel || ""}${colorPart}`.trim();
+
 		
 	};
 };
