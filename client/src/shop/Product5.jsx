@@ -85,6 +85,18 @@ const Product5 = () => {
 			...(selectedColor ? { color: selectedColor } : {})
 		};
 
+		const payload = {
+			productTable: "product_pet",
+			productId,
+			qty,
+			options: optionsPayload,
+			optionLabel: optionLabel || null,
+			unitPrice,                   // (할인가 또는 정상가) + 옵션가
+			optionDelta: optionDelta || 0,
+			totalPrice,                  // unitPrice * qty
+			mileage: Math.floor((unitBase || 0) * 0.05)  // 적립금 계산(할인가 기준 5%)
+		};
+
 		
 	};
 };
