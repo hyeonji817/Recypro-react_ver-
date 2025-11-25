@@ -130,6 +130,11 @@ const Product5 = () => {
   	return [String(v)];
 	};
 
+	if (loading) return <div className="Product_wrap">Loading...</div>;
+  if (error) return <div className="Product_wrap">{error}</div>;
+  if (!product) return null;
+	if (!productId) return <div className="Product_wrap">잘못된 페이지입니다.(상품 ID 없음)</div>;
+
 	
 };
 
