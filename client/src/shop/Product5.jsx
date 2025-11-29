@@ -224,6 +224,19 @@ const Product5 = () => {
 												<span className="per">{discount_rate}원</span>		{/** per end */}
 											</div>			{/** price end */}	
 
+											{/** 상품옵션리스트 */}
+											<div className="opt_list">
+												<div className="th">수량</div>			{/** th end */}
+												<div className="td">
+													<select value={qty} onChange={(e) => setQty(Number(e.target.value))}>
+														{Array.from({ length: Math.min(10, numberOfstock || 1) }, 
+														(_, i) => i + 1).map(v => (
+															<option key={v} value={v}>{v}</option>
+														))}
+													</select>
+												</div>			{/** td end */}	
+											</div>			{/** opt_list end */}
+
 											
 										</div>			{/** info end */}	
 									</div>			{/** wrap_prd end */}
