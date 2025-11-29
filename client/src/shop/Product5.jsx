@@ -164,15 +164,32 @@ const Product5 = () => {
 	}
 
 	// 업로드 경로 통일: DB에는 "life/xxx.jpg" 저장했다고 가정
-  const mainImg = `http://localhost:5001/uploads/${String(filename).replace(/^\.\//,'')}`;
-	const DescImg = `http://localhost:5001/uploads/${String(img_Desc).replace(/^\.\//,'')}`;
+  const mainImg = `http://localhost:5003/uploads/${String(filename).replace(/^\.\//,'')}`;
+	const DescImg = `http://localhost:5003/uploads/${String(img_Desc).replace(/^\.\//,'')}`;
 
 	return (
 		<div className="Product_wrap">
 			<div className="Product_Header">
 				<Header_loginOK />
 			</div>			{/** Product_Header end */}
-			<div className="Product_body"></div>				{/** Product_body end */}
+			<div className="Product_body">
+				<div className="detailPd_body">
+					<div id="detail">
+						<div className="detail_top_wrap">
+							{/** 상품 이미지 */}
+							<div className="prdimg">
+								<div id="addimg" className="addimg">
+									<div className="add_img">
+										<img src={mainImg} alt={pname} />
+									</div>			{/** add_img end */}
+
+
+								</div>			{/** addimg end */}
+							</div>			{/** prdimg end */}
+						</div>			{/** detail_top_wrap end */}
+					</div>			{/** detail end */}
+				</div>			{/** detailPd_body end */}
+			</div>				{/** Product_body end */}
 			<div className="Product_Footer">
 				<Footer />	
 			</div>			{/** Product_Footer end */}
