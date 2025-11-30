@@ -308,8 +308,31 @@ const Product5 = () => {
 								            </td>
 													</tr>
 												</tbody>
-											</table>
+											</table>			{/** list end */}
 
+											<div className="multi_opt">
+												<ul id="detail_multi_option" className="selected_list">
+    											{requiredSatisfied ? (
+      											<li className="selected_item" style={{ display: "flex", alignItems: "center", gap: 12 }}>
+        											<div className="sel_name" style={{ flex: 1 }}>
+          											{pname}{selectedLabel ? ` (${selectedLabel})` : ""}
+        											</div>
+
+        											{/* 수량 컨트롤(선택박스와 연동) */}
+        												<div className="sel_ctrl" style={{ display: "flex", alignItems: "center", gap: 6 }}>
+          												<button type="button" onClick={() => setQty(q => Math.max(1, q - 1))}>-</button>
+          												<input readOnly value={qty} style={{ width: 36, textAlign: "center" }} />
+          												<button
+            												type="button"
+            												onClick={() => setQty(q => Math.min((numberOfstock || 99), q + 1))}
+          												>+</button>
+        												</div>
+      											</li>
+    													) : (
+      											<li className="selected_item empty">필수 옵션을 모두 선택해 주세요.</li>
+    											)}
+  											</ul>
+											</div>			{/** multi_opt end */}
 
 										</div>			{/** info end */}	
 									</div>			{/** wrap_prd end */}
