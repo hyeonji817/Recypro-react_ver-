@@ -332,6 +332,14 @@ const Product5 = () => {
       											<li className="selected_item empty">필수 옵션을 모두 선택해 주세요.</li>
     											)}
   											</ul>
+
+												<div className="opt_total">
+													<span className="title">총 상품금액(수량) : </span>
+    												<strong>
+      												<span id="detail_multi_option_prc">{totalPrice.toLocaleString()}</span> KRW
+      											<span className="ea_total"> ({requiredSatisfied ? qty : 0}개)</span>
+    											</strong>
+												</div>			{/** opt_total end */}
 											</div>			{/** multi_opt end */}
 
 										</div>			{/** info end */}	
