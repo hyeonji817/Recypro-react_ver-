@@ -353,6 +353,13 @@ const Product5 = () => {
 											</div>			{/** btn end */}
 											<div></div>
 
+											{/** 쿠폰관련 소규모 배너 */}
+											<div className="app_link">
+                        <a href="#">
+													<img src={CouponBanner} border={0} />
+												</a>
+                      </div>    {/** app_link end */}
+
 										</div>			{/** info end */}	
 									</div>			{/** wrap_prd end */}
 								</form>
