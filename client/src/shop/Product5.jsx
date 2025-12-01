@@ -377,11 +377,9 @@ const Product5 = () => {
                           </p>
 						            </div>    {/** count_box end */}
 					            </div>    {/** count_share tar dn end */}
-
-											
-
 										</div>			{/** info end */}	
 									</div>			{/** wrap_prd end */}
+									<input type="hidden" name="opt_no" value="2" />
 								</form>
 							</div>			{/** info_scroll end */}
 						</div>			{/** detail_top_wrap end */}
