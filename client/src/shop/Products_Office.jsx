@@ -63,7 +63,15 @@ const Products_Office = () => {
                     <p className="name">
                       <Link to={detailPath}>{item.pname}</Link>  
                     </p>    {/** name end */}
-                    <div className="price"></div>   {/** price end */}  
+                    <div className="price">
+                      <p className="sell sellY">
+                        {item.price}<span>원</span>
+                      </p>    {/** sell sellY end */}
+                      <div className="discount_section">
+                        <p className="per">{item.discount_rate}%</p>
+                        <p className="discount discountY">{item.discount_price}원</p>
+                      </div>    {/** discount_section end */}
+                    </div>   {/** price end */}  
                   </div>    {/** info end */}
                 </div>     {/** box end */}
               </li>
