@@ -59,7 +59,12 @@ const Products_Office = () => {
                     </div>    {/** prdimg end */}  
                   </div>     {/** img end */}  
 
-                  
+                  <div className="info">
+                    <p className="name">
+                      <Link to={detailPath}>{item.pname}</Link>  
+                    </p>    {/** name end */}
+                    <div className="price"></div>   {/** price end */}  
+                  </div>    {/** info end */}
                 </div>     {/** box end */}
               </li>
             );
