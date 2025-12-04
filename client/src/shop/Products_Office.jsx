@@ -20,14 +20,11 @@ const Products_Office = () => {
     fetchProductOffice();
   }, []);
 
-  // 돋보기 기능 상태 추가 
-  const [searchQuery, setSearchQuery] = useState(""); 
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
-
-  // 돋보기 검색 핸들러 추가 
-  const filteredItems = productOffice.filter(item => 
-    item.pname.toLowerCase().includes(searchQuery.toLocaleLowerCase())
-  );
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = productOffice.slice(indexOfFirstItem, indexOfLastItem);
+  const totalPages = Math.ceil(productOffice.length / itemsPerPage);
+  const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
 
   return (
     <div id="productsOffice_wrap">
