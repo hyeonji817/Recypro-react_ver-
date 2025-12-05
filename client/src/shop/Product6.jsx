@@ -27,6 +27,25 @@ const Product6 = () => {
   const groups = React.useMemo(() => product?.optionGroups ?? [], [product]);   
   console.log("productId param = ", productId);
   console.log("[Product6] productId = ", productId);
+
+  useEffect(() => {
+    let mounted = true; 
+    (async() => {
+      try {
+        // 라우터 페이지(Product_Office.js) 연동 
+        const res = await axios.get(`http://localhost:5001/api/product_office/${encodeURIComponent(productId)}`, { withCredentials: true });
+        if (mounted) setProduct(res.data);
+      } catch (err) {
+        console.error(err);
+        if (mounted) setError("상품 정보를 불러오지 못했습니다.");
+      } finally {
+        if (mounted) setLoading(false);
+      }
+    })();
+    return () => { mounted = false; }
+  }, [productId]);
+
+
 };
 
 export default Product6;
