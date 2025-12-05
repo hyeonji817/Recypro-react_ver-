@@ -15,3 +15,6 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/autoplay";
 
+const Product6 = () => {};
+
+export default Product6;
