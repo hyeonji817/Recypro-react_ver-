@@ -53,6 +53,13 @@ const Product6 = () => {
       return sum + (found?.priceDelta || 0);
     }, 0);
   }, [selected, groups]);
+
+  // 필수 옵션이 모두 선택되었는지 여부를 체크하는 함수 구현 
+  const requiredSatisfied = groups.every(
+    g => !g.required || selected[g.name]
+  );
+
+  
 };
 
 export default Product6;
