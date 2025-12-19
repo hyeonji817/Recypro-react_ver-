@@ -79,6 +79,21 @@ const Product6 = () => {
     const colorPart = selectedColor ? (selectedLabel ? ` / 색상: ${selectedColor}` : `색상: ${selectedColor}`) : "";
     const optionLabel = `${selectedLabel || ""}${colorPart}`.trim();
 
+    // 옵션 JSON (선택 목록 + 단일 색상까지 포함)
+    const optionPayload = {
+      ...selected,
+      ...(selectedColor ? { color: selectedColor } : {})
+    };
+
+    // 선택한 옵션 라벨을 "색상: 핑크 / 종류: 라지" 형태로 표시 
+    const selectedLabel = groups
+    .map(g => {
+      const val = (g.values || []).find(v => v.value === selected[g.name]);
+      return val ? `${g.displayName || g.name}: ${val.label}` : null;
+    })
+    .filter(Boolean)
+    .join(" / ");
+
     
   };
 };
