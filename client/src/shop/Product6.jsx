@@ -85,16 +85,18 @@ const Product6 = () => {
       ...(selectedColor ? { color: selectedColor } : {})
     };
 
-    // 선택한 옵션 라벨을 "색상: 핑크 / 종류: 라지" 형태로 표시 
-    const selectedLabel = groups
-    .map(g => {
-      const val = (g.values || []).find(v => v.value === selected[g.name]);
-      return val ? `${g.displayName || g.name}: ${val.label}` : null;
-    })
-    .filter(Boolean)
-    .join(" / ");
+    const payload = {
+			productTable: "product_office",
+			productId,
+			qty,
+			options: optionsPayload,
+			optionLabel: optionLabel || null,
+			unitPrice,                   // (할인가 또는 정상가) + 옵션가
+			optionDelta: optionDelta || 0,
+			totalPrice,                  // unitPrice * qty
+			mileage: Math.floor((unitBase || 0) * 0.05)  // 적립금 계산(할인가 기준 5%)
+		};
 
-    
   };
 };
 
