@@ -112,6 +112,24 @@ const Product6 = () => {
 		}
   };
 
+  // 문자열, JSON 문자열, 배열 어떤 형태여도 배열로 정규화 
+  const toArray = (v) => {
+    if (Array.isArray(v)) return v; 
+    if (v == null) return [];
+    if (typeof v === "string") {
+      try {
+        // JSON 문자열일 경우 
+        const parsed = JSON.parse(v);
+        return Array.isArray(parsed) ? parsed : [v.trim()];
+      } catch {
+        // 그냥 콤마/슬래시 구분 문자열 등 
+        return v.split(/[,|/]+/).map(s => s.trim()).filter(Boolean);
+      }
+    }
+    // 객체 등 기타 타입은 문자열화 
+    return [String(v)];
+  };
+
   
 };
 
