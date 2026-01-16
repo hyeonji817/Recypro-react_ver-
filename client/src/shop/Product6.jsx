@@ -238,6 +238,26 @@ const Product6 = () => {
                         </div>    {/** td end */}
                       </div>    {/** opt_list end */}
 
+                      {/* 상품옵션리스트 */}
+											{colorOptions.length > 0 && (
+												<div className="opt_list">
+													<div className="th">종류</div>
+													<div className="td">
+														<select
+															name="option1"
+															className="wing_multi_option pno4844 necessary_Y"
+															value={selectColor}
+															onChange={(e) => setSelectedColor(e.target.value)}
+														>
+															<option value="">::색상::</option>
+																{colorOptions.map((c) => (
+																	<option key={c} value={c}>{c}</option>
+																))}
+														</select>
+													</div>
+												</div>
+											)}
+
                       
                     </div>    {/** info end */}
                   </div>      {/** wrap_prd end */}  
