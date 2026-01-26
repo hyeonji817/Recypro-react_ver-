@@ -33,7 +33,7 @@ const Product6 = () => {
     (async() => {
       try {
         // 라우터 페이지(Product_Office.js) 연동 
-        const res = await axios.get(`http://localhost:5001/api/product_office/${encodeURIComponent(productId)}`, { withCredentials: true });
+        const res = await axios.get(`http://localhost:5003/api/product_office/${encodeURIComponent(productId)}`, { withCredentials: true });
         if (mounted) setProduct(res.data);
       } catch (err) {
         console.error(err);
@@ -80,7 +80,7 @@ const Product6 = () => {
     const optionLabel = `${selectedLabel || ""}${colorPart}`.trim();
 
     // 옵션 JSON (선택 목록 + 단일 색상까지 포함)
-    const optionPayload = {
+    const optionsPayload = {
       ...selected,
       ...(selectedColor ? { color: selectedColor } : {})
     };
@@ -360,9 +360,29 @@ const Product6 = () => {
                           <img src={CouponBanner} border={0} />
                         </a>
                       </div>    {/** app_link end */}
-                      
+
+                      <div className="count_share tar dn">
+						            <div className="sns">
+							            <a><span className="kakao">kakao</span></a>
+							            <a><span className="kakaostory">kakaostory</span></a>
+							            <a href="#" className="facebook"></a>
+							            <a href="#" target="_blank" className="insta_share"></a>
+							            <span className="wish ">
+                            <a href="#"></a>
+                          </span>
+						            </div>    {/** sns end */}
+						            <div className="count_box">
+							            <p className="count">
+                            <a className="p_cursor">REVIEW (<span>5</span>)</a>
+                            <a className="p_cursor right">Q&amp;A (<span>0</span>)</a>
+                          </p>
+						            </div>    {/** count_box end */}
+					            </div>    {/** count_share tar dn end */}
+                      {/** //버튼 */}
                     </div>    {/** info end */}
+                    {/** //상품정보 & 버튼 */}
                   </div>      {/** wrap_prd end */}  
+                  <input type="hidden" name="opt_no" value="2" />
                 </form>  
               </div>   {/** info_scroll end */}
             </div>   {/** detail_top_wrap end */}
