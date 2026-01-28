@@ -1,5 +1,5 @@
 import express from "express"; 
-import { db } from "../server";
+import { db } from "../server.js";
 
 const router = express.Router();    // 라우터 설정 
 
