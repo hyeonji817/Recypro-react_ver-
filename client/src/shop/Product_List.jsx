@@ -11,6 +11,19 @@ const Product_List = () => {
   const currentItems = productLists.slice(indexOfFirstItem, indexOfLastItem);
   const totalPages = Math.ceil(productLists.length / itemsPerPage);
   const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
+
+  useEffect(() => {
+    const fetchProductsList = async () => {
+      try {
+        const res = await fetch("http://localhost:5003/api/product_list");
+        const data = await res.json();
+        setProductsList(data);
+      } catch (err) {
+        console.error("Failed to fetch best product:", err);
+      }
+    };
+    fetchProductsList();
+  }, []);
   
   return (
     <div className="Product_List_wrap">
