@@ -27,7 +27,31 @@ const Product_List = () => {
   
   return (
     <div className="Product_List_wrap">
-      
+      <div className="products_body">
+        <div id="big_section">
+          {/** 카테고리 */}
+          <ul className="sub_category">
+            <li>
+              <a href="./Products1">생활</a>
+            </li>
+	          <li>
+              <a href="./Products2">욕실</a>
+            </li>
+	          <li>
+              <a href="./Products3">식품</a>
+            </li>
+	          <li>
+              <a href="./Products4">주방</a>
+            </li>
+						<li>
+              <a href="./Products5">반려동물</a>
+            </li>
+						<li>
+              <a href="./Products6">사무</a>
+            </li>
+          </ul>      {/** sub_category end */}  
+        </div>      {/** big_section end */}
+      </div>     {/** products_body end */}
     </div>
   );
 };
