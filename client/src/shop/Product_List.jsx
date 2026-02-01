@@ -50,6 +50,28 @@ const Product_List = () => {
               <a href="./Products6">사무</a>
             </li>
           </ul>      {/** sub_category end */}  
+
+          {/** 상품정렬 */}
+          <ul className="prd_basic col3">
+            {currentItems.map((item, index) => (
+              <li key={index}>
+                <div className="box ">
+                  <div className="img">
+                    <div className="prdimg">
+                      <Link to={`/shop/product1/${encodeURIComponent(item.productId)}`}>
+                        <img 
+                          src={`http://localhost:5003/uploads/${String(item.filename).replace(/^\.\//,'')}`} 
+                          alt={item.pname}
+                          width="240" 
+                          height="320"
+                        />
+                      </Link>
+                    </div>      {/** prdimg end */}
+                  </div>       {/** img end */}  
+                </div>      {/** box  end */}
+              </li>
+            ))}
+          </ul>      {/** prd_basic col3 end */}
         </div>      {/** big_section end */}
       </div>     {/** products_body end */}
     </div>
