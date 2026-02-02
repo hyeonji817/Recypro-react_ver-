@@ -68,10 +68,27 @@ const Product_List = () => {
                       </Link>
                     </div>      {/** prdimg end */}
                   </div>       {/** img end */}  
+
+                  <div className="info">
+                    <p className="name">
+                      <Link to={`/shop/product1/${encodeURIComponent(item.productId)}`}>{item.pname}</Link>
+                    </p>    {/** name end */}
+		                <div className="price">
+			                <p className="sell sellY">
+                        {item.price}<span>원</span>
+                      </p>  {/** sell sellY end */}
+			                <div className="discount_section">
+				                <p className="per">{item.discount_rate}%</p>
+				                <p className="discount discountY">{item.discount_price}원</p>
+			                </div> {/** discount_section end */}
+		                </div>  {/** price end */}
+                  </div>      {/** info end */}
                 </div>      {/** box  end */}
               </li>
             ))}
           </ul>      {/** prd_basic col3 end */}
+
+          
         </div>      {/** big_section end */}
       </div>     {/** products_body end */}
     </div>
