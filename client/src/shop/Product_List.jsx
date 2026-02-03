@@ -88,7 +88,40 @@ const Product_List = () => {
             ))}
           </ul>      {/** prd_basic col3 end */}
 
-          
+          {/** 페이지네이션 */}
+          <ul className="paging">
+            <li>
+              <a href="#" onClick={(e) => { e.preventDefault(); setCurrentPage(1); }}>
+                &laquo;
+              </a>
+            </li>
+            <li>
+              <a href="#" onClick={(e) => { e.preventDefault(); setCurrentPage((prev) => Math.max(prev - 1, 1)); }}>
+                &lt;
+              </a>
+            </li>
+            {Array.from({ length: totalPages }, (_, i) => (
+            <li key={i}>
+              {currentPage === i + 1 ? (
+                <strong>{i + 1}</strong>
+                  ) : (
+                <a href="#" onClick={(e) => { e.preventDefault(); setCurrentPage(i + 1); }}>
+                  {i + 1}
+                </a>
+              )}
+            </li>
+            ))}
+            <li>
+              <a href="#" onClick={(e) => { e.preventDefault(); setCurrentPage((prev) => Math.min(prev + 1, totalPages)); }}>
+                &gt;
+              </a>
+            </li>
+            <li>
+              <a href="#" onClick={(e) => { e.preventDefault(); setCurrentPage(totalPages); }}>
+                &raquo;
+              </a>
+            </li>
+          </ul>    {/** paging end */}
         </div>      {/** big_section end */}
       </div>     {/** products_body end */}
     </div>
