@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./cart.css";
 import Header_loginOK from "../main/Header_loginOK";
 import Footer from "../main/Footer";
-import beepBeep_Toy1 from "../assets/pet/1. beepBeep_Toy1.jpg";
+import axios from "axios";
+import cart_del from "../assets/cart_del.png"; 
+import cart_wish from "../assets/cart_wish.png";
+
+const CDN = (path) => `http://localhost:5003/uploads/${String(path || "").replace(/^\.\//,'')}`;
 
 const Cart = () => {
   return (
