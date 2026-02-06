@@ -10,6 +10,21 @@ import cart_wish from "../assets/cart_wish.png";
 const CDN = (path) => `http://localhost:5003/uploads/${String(path || "").replace(/^\.\//,'')}`;
 
 const Cart = () => {
+	const [rows, setRows] = useState([]);
+	const [loading, setLoading] = useState(true);
+	const navigate = useNavigate(); 
+	const totalQty = rows.reduce((s, r) => s + (r.cart_quantity || 0), 0);
+	const totalPay = rows.reduce((s, r) => s + (r.total_price || 0), 0);
+	const totalMileage = rows.reduce((s, r) => s + (r.mileage || 0), 0);
+	const [checked, setChecked] = useState({});
+	
+	const toggle = (id) => setChecked(prev => ({...prev, [id]: !prev[id]}));
+	const goOrderAll = () => navigate("/orderList?all=1");
+	const goOrderSelected = () => {
+		const ids = Object.entries(checked).filter(([,v])=>v).map(([id])=>id);
+		if (ids.length === 0) return alert("선택된 상품이 없습니다.");
+		navigate(`/orderList?cart_ids=${ids.join(",")}`);
+	};
   return (
     <div className="cart_wrap">
       <div className="cart_Header">
