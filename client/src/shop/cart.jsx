@@ -25,6 +25,13 @@ const Cart = () => {
 		if (ids.length === 0) return alert("선택된 상품이 없습니다.");
 		navigate(`/orderList?cart_ids=${ids.join(",")}`);
 	};
+
+	const handleOrderSelected = () => {
+		const selectedIds = rows.filter(r => r.checked).map(r => r.cart_id);
+		if (!selectedIds.length) return alert("선택된 상품이 없습니다.");
+		navigate(`/order2?ids=${selectedIds.join(",")}`);
+	};
+
   return (
     <div className="cart_wrap">
       <div className="cart_Header">
