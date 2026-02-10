@@ -32,6 +32,19 @@ const Cart = () => {
 		navigate(`/order2?ids=${selectedIds.join(",")}`);
 	};
 
+	// 장바구니 조회
+	const fetchCart = async () => {
+		try {
+			const { data } = await axios.get("http://localhost:5003/api/cart", { withCredentials: true });
+      setRows(data || []);
+		} catch (e) {
+			console.error(e);
+      alert(e?.response?.data?.message || "장바구니 조회 중 오류");
+		} finally {
+			setLoading(false);
+		}
+	};
+
   return (
     <div className="cart_wrap">
       <div className="cart_Header">
