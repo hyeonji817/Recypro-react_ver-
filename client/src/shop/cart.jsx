@@ -45,6 +45,21 @@ const Cart = () => {
 		}
 	};
 
+	// 수량변경 이벤트 기능 
+	const updateQty = async (row, nextQty) => {
+    if (nextQty < 1) return;
+    try {
+      await axios.put(`http://localhost:5003/api/cart/${row.cart_id}/qty`,
+        { qty: nextQty, unitPrice: row.unit_price },
+        { withCredentials: true }
+      );
+      fetchCart();
+    } catch (e) {
+      console.error(e);
+      alert("수량 변경 실패");
+    }
+  };
+
   return (
     <div className="cart_wrap">
       <div className="cart_Header">
