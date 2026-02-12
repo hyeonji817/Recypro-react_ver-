@@ -60,6 +60,18 @@ const Cart = () => {
     }
   };
 
+	const removeItem = async (row) => {
+		try {
+      await axios.delete(`http://localhost:5003/api/cart/${row.cart_id}`, { withCredentials: true });
+      fetchCart();
+    } catch (e) {
+      console.error(e);
+      alert("삭제 실패");
+    }
+	};
+
+	if (loading) return <div className="cart_wrap">Loading...</div>;
+
   return (
     <div className="cart_wrap">
       <div className="cart_Header">
