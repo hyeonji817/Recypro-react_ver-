@@ -120,7 +120,65 @@ const Cart = () => {
 			              <th scope="col">WISH / DEL</th>
 									</tr>
 								</thead>
-								<tbody></tbody>
+
+								<tbody>
+								{rows.length === 0 ? (
+    									<tr><td colSpan={9} style={{ textAlign: "center" }}>장바구니가 비어 있습니다.</td></tr>
+  									) : (
+    									rows.map((r) => (
+      									<tr key={r.cart_id}>
+        									<td><input type="checkbox" checked={!!checked[r.cart_id]} onChange={()=>toggle(r.cart_id)} /></td>
+        									<td>
+          									<a href="#">
+            									<img src={CDN(r.filename)} width={75} height={100} alt={r.pname} />
+          									</a>
+        									</td>
+       	 									<td className="tal">
+          									<div className="cart_name"><a href="#">{r.pname}</a></div>
+          									<div className="cart_opt">{r.option_label || "-"}</div>
+        									</td>
+        									<td className="tac">{(r.unit_price ?? 0).toLocaleString()} 원</td>
+        									<td className="qty">
+          									<div className="box_qty">
+            									<input
+              									type="text"
+              									value={r.cart_quantity}
+              									readOnly    // 읽기전용 경고 제거
+              									className="form_input"
+            									/>
+            									<div className="btn_ea left">
+              									<a
+                									href="#"
+                									className="ea_down"
+                									onClick={(e)=>{ e.preventDefault(); updateQty(r, r.cart_quantity - 1); }}
+              									/>
+            									</div>
+            									<div className="btn_ea right">
+              									<a
+                									href="#"
+                									className="ea_up"
+                									onClick={(e)=>{ e.preventDefault(); updateQty(r, r.cart_quantity + 1); }}
+              									/>
+            									</div>
+          									</div>
+        									</td>
+        									<td>{(r.option_delta ?? 0).toLocaleString()} 원</td>
+        									<td className="cart_prc is_sale">
+          									<p className="after">{(r.total_price ?? 0).toLocaleString()} 원</p>
+        									</td>
+        									<td>{(r.mileage ?? 0).toLocaleString()} 원</td>
+        									<td className="delete_wish">
+          									<a href="#" onClick={(e)=>{ e.preventDefault(); removeItem(r); }}>
+            									<img src={cart_del} alt="삭제" />
+          									</a>
+          									<a href="#" className="wish_">
+            									<img src={cart_wish} alt="관심상품" />
+          									</a>
+        									</td>
+     	 									</tr>
+    									))
+  									)}
+								</tbody>
 							</table>		{/** cart_tbl_col prd end */}
 						</form>
           </div>{/** cart end */}
