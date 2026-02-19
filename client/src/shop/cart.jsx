@@ -90,12 +90,25 @@ const Cart = () => {
 	          <form name="cartFrm" method="post" style={{ margin: 0 }}>
 							<ul className="cart_step tar">
 								<li className="first"><span>01.</span> 장바구니</li>			{/** first end */}
-								<li></li>
-								<li></li>
+								<li>02</li>
+								<li>03</li>
 							</ul>			{/** cart_step tar end */}
 
 							<table className="cart_tbl_col prd">
+								<caption className="hidden">장바구니</caption>
+	              <colgroup>
+		              <col style={{ width: "5%" }} />
+		              <col style={{ width: "12%" }} />
+		              <col />
+		              <col style={{ width: "12%" }} />
+		              <col style={{ width: "9%" }} />
+		              <col style={{ width: "10%" }} />
+		              <col style={{ width: "9%" }} />
+		              <col style={{ width: "9%" }} />
+		              <col style={{ width: "9%" }} />
+	              </colgroup>
 
+								
 							</table>		{/** cart_tbl_col prd end */}
 						</form>
           </div>{/** cart end */}
