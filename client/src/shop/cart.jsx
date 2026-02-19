@@ -108,7 +108,19 @@ const Cart = () => {
 		              <col style={{ width: "9%" }} />
 	              </colgroup>
 
-								
+								<thead>
+									<tr>
+										<th scope="col"></th>
+										<th scope="col" colSpan={2}>PRODUCT</th>
+			              <th scope="col">PRICE</th>
+			              <th scope="col">QTY</th>
+			              <th scope="col">ADD PRICE</th>
+			              <th scope="col">TOTAL PRICE</th>
+			              <th scope="col">MILEAGE</th>
+			              <th scope="col">WISH / DEL</th>
+									</tr>
+								</thead>
+								<tbody></tbody>
 							</table>		{/** cart_tbl_col prd end */}
 						</form>
           </div>{/** cart end */}
