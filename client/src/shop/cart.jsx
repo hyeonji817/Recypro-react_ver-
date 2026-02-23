@@ -122,7 +122,7 @@ const Cart = () => {
 								</thead>
 
 								<tbody>
-								{rows.length === 0 ? (
+									{rows.length === 0 ? (
     									<tr><td colSpan={9} style={{ textAlign: "center" }}>장바구니가 비어 있습니다.</td></tr>
   									) : (
     									rows.map((r) => (
@@ -179,6 +179,25 @@ const Cart = () => {
     									))
   									)}
 								</tbody>
+
+								<div className="area_right">
+									<div className="box">
+                  	<table className="tbl_order2">
+                    	<colgroup><col style={{ width: "50%" }} /><col /></colgroup>
+                    	<tbody>
+                      	<tr><th>주문수량 합계:</th><td><span className="total_prd_prc">{totalQty.toLocaleString()}</span> 개</td></tr>
+                      	<tr><th>배송비:</th><td><span className="dlv_prc_cart">0</span> 원</td></tr>
+                      	<tr><th>적립금:</th><td><span className="total_total_milage">{totalMileage.toLocaleString()}</span> 원</td></tr>
+                      	<tr className="total">
+                        	<th>총 결제금액:</th>
+                        	<td className="total">
+                          	<strong><span className="price total_order_price_cartlist">{totalPay.toLocaleString()}</span> 원</strong>
+                        	</td>
+                      	</tr>
+                    	</tbody>
+                  	</table>		{/** tbl_order2 end */}
+                	</div>		{/** box end */}
+								</div>			{/** area_right end */}
 							</table>		{/** cart_tbl_col prd end */}
 						</form>
           </div>{/** cart end */}
