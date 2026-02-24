@@ -198,6 +198,36 @@ const Cart = () => {
                   	</table>		{/** tbl_order2 end */}
                 	</div>		{/** box end */}
 								</div>			{/** area_right end */}
+
+								{/** 장바구니 버튼 */}
+								<div className="area_left">
+									<div className="btn">
+										<div className="left_btn">
+											<span className="box_btn w150 gray3">
+												<a href="#">선택 삭제</a>
+											</span>			{/** box_btn w150 gray3 end */}
+											<span className="box_btn w150 gray3">
+												<a href="#">장바구니 비우기</a>
+											</span>			{/** box_btn w150 gray3 end */}
+											<span className="box_btn w150 gray3">
+												<a href="#">견적서출력</a>
+											</span>			{/** box_btn w150 gray3 end */}
+										</div>			{/** left_btn end */}
+										<div className="right_btn">
+											<span className="box_btn w150 gray3">
+												<a href="#">쇼핑 계속하기</a>
+											</span>			{/** box_btn w150 gray3 end */}
+											<span className="box_btn w150 gray3">
+												<a href="/orderList2" onClick={(e)=>{e.preventDefault(); goOrderSelected();}}>선택상품 주문하기</a>
+											</span>			{/** box_btn w150 gray3 end */}
+											<span className="box_btn w150 gray3">
+												<a href="/orderList" onClick={(e)=>{e.preventDefault(); goOrderAll();}}>전체상품 주문하기</a>	
+											</span>			{/** box_btn w150 gray3 end */}
+										</div>			{/** right_btn end */}
+									</div>			{/** btn end */}
+
+									
+								</div>			{/** 장바구니 버튼 */}
 							</table>		{/** cart_tbl_col prd end */}
 						</form>
           </div>{/** cart end */}
