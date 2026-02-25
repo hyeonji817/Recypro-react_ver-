@@ -226,8 +226,61 @@ const Cart = () => {
 										</div>			{/** right_btn end */}
 									</div>			{/** btn end */}
 
-									
+									<div className="msg_box">
+										<h4>SHOPPING GUIDE</h4>
+				          	<dl className="msg">
+					          	<dd>- 배송비는 3만원이상 무료배송 적용 됩니다.</dd>
+					          	<dd>- 상품 쿠폰 및 적립금 사용은 [주문서 작성/결제]에서 적용됩니다.</dd>
+					          	<dd>- 장바구니는 접속 종료 후 장바구니는 회원에 한해 7일(168시간)동안 보관됩니다.시간만 보관됩니다. 더 오래 보관 하시려면 관심상품에 담아주세요</dd>
+				          	</dl>	
+									</div>		{/** msg_box end */}
 								</div>			{/** 장바구니 버튼 */}
+
+								<div className="pay">
+			          <div>
+		              <div id="naver_checkout_buttons">
+		                <div id="NC_ID_1750057343580394" className="npay_storebtn_bx npay_type_A_1">	
+                      <div id="NPAY_BUTTON_BOX_ID" className="npay_button_box ">		
+                        <div className="npay_button">			
+                          <div className="npay_text">
+                            <span className="npay_blind">NAVER 네이버 ID로 간편구매 네이버페이</span>
+                          </div>				
+                          <table className="npay_btn_list" cellSpacing={0} cellPadding={0}>
+                            <tbody>
+                              <tr>    
+                                <td className="npay_btn_item">        
+                                  <a id="NPAY_BUY_LINK_IDNC_ID_1750057343580394" href="#" className="npay_btn_link npay_btn_pay btn_gray" style={{ boxSizing : "content-box" }} title="새창">
+                                    <span className="npay_blind">네이버페이 구매하기</span>
+																	</a>    
+                                	</td>
+                              	</tr>
+                            	</tbody>
+                          	</table>		
+                        	</div>		
+                        
+                        	<div id="NPAY_EVENT_ID" className="npay_event">			
+                          	<a id="NPAY_PROMOTION_PREV_IDNC_ID_1750057343580394" href="#" className="npay_more npay_more_prev">
+                            	<span className="npay_blind">이전</span>
+                         	 	</a>			
+                          	<p id="NPAY_PROMOTION_IDNC_ID_1750057343580394" className="npay_event_text">
+                            	<strong className="event_title">Npay 10주년</strong>
+                            	<a className="event_link" href="#" target="_blank" title="새창">
+                              	AI가 들려주는 당신만의 소비일기 감상해보세요
+                            	</a>
+                          	</p>			
+                          	<a id="NPAY_PROMOTION_NEXT_IDNC_ID_1750057343580394" href="#" className="npay_more npay_more_next">
+                            	<span className="npay_blind">다음</span>
+                          	</a>		
+                        	</div>	
+                      	</div>
+                    	</div>
+		              	</div>
+		            	</div>
+			          	<div></div>
+		          	</div>
+
+								<input type="hidden" name="cart_rows" value="0" />
+              	<input type="hidden" id="partner_data" name="partner_data" value="" />
 							</table>		{/** cart_tbl_col prd end */}
 						</form>
           </div>{/** cart end */}
