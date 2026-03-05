@@ -13,6 +13,8 @@
 
 .best-products .main_best {
   padding: 190px 60px 0;
+  position: relative;
+  top: 220px;
 }
 
 .best-products .main_best .title_section {
@@ -25,34 +27,41 @@
 
 .best-products .title_section > h2 {
   color: #000;
-  font-size: 30px;
+  font-size: 33px;
   font-weight: 400;
   letter-spacing: 0;
   line-height: 30px;
+  position: relative;
+  top: 70px;
+  font-family: 'GmarketSansMedium';
 }
 
 .best-products .prd_basic.col3 {
   display: grid;
+  gap: 60px 0px;
   justify-content: center;
-  flex-wrap: nowrap;
-  align-items: start;
-  grid-template-columns: repeat(3, 31.4%);
-  align-items: center;
-  gap: 140px 2.9%;
+  padding: 0 20px;
 }
 
 .best-products .prd_basic.col3 > li {
-  width: 33.33%;
-  padding: 0;
+  width: 100%;
 }
 
+/** 상품 항목 박스 */
 .best-products .prd_basic.col3 .box {
-  position: relative;
-  width: 600px;
-  height: 850px;
+  width: 100%;
+  max-width: 600px;
   margin: 0 auto;
-  padding: 10px;
   border: 1px solid #eee;
+  padding: 10px;
+  background-color: #fff;
+}
+
+/* 상품 이미지 */
+.prdimg img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
 }
 
 .best-products .prd_basic .box .name > a {
@@ -60,15 +69,16 @@
   font-size: 22px; 
   position: relative;
   left: -30px;
+  font-family: 'GmarketSansMedium';
 } 
 
 .best-products .info .name {
   font-weight: bold;
-  margin-top: 10px;
-  position: relative;
-  right: 10px;
-  font-size: 22px;
+  margin-top: 50px;
+  text-align: center;
+  font-size: 20px;
   width: 600px;
+  position: relative;
 }
 
 .best-products .prd_basic > li {
@@ -76,6 +86,22 @@
   padding-bottom: 10px;
   text-align: center;
   vertical-align: top;
+}
+
+.best-products .prd_basic .box .price {
+  position: relative;
+  top: -20px;
+}
+
+.best-products .prd_basic .box .price .sellY {
+  font-family: 'GmarketSansMedium';
+  position: relative;
+  display: inline-block;
+  margin-top: -10px;
+}
+
+.best-products .prd_basic .box .price .sellY span { 
+  font-family: 'GmarketSansMedium';
 }
 
 .best-products .prd_basic .box .price .discount_section {
@@ -90,6 +116,13 @@
 .best-products .prd_basic .discount_section .per {
   text-align: center;
   padding-left: 260px;
+  font-family: 'GmarketSansMedium';
+}
+
+.best-products .prd_basic .discount {
+  text-align: center;
+  position: relative;
+  font-family: 'GmarketSansMedium';
 }
 
 .ol, ul, li {
