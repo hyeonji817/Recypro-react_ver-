@@ -1,4 +1,5 @@
 import "./Footer.css";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -11,9 +12,9 @@ const Footer = () => {
 				</div>	{/** ft_box end */}
 				<div className="shopInfo">
 					<ul className="ft_menu">
-						<li><a href="#">이용안내 | </a></li>
-						<li><a href="#"> 이용약관 | </a></li>
-						<li><a href="#"> 개인정보 처리방침</a></li>
+						<li><Link className="link" to="/customer_guide" style={{ color: "black" }}>이용안내 | </Link></li>
+						<li><Link className="link" to="/customer_policy" style={{ color: "black" }}> 이용약관 | </Link></li>
+						<li><Link className="link" to="/customer_privacy" style={{ color: "black" }}> 개인정보 처리방침</Link></li>
 					</ul>
 					<address className="info">
 						<span>법인명. ㈜리싸이프로</span><br />
