@@ -1,138 +1,32 @@
-#wrap-center {
-  width: 100%;
+.loginOK_Wrap .newProducts {
   position: relative;
-  margin-bottom: 220px;
-  top: 50px;
+  top: 100px;
 }
 
-#intro_index .cont {
-  width: 100%;
-  height: 100vh; /* 전체 화면 채우기 */
-  overflow: hidden;
-  position: relative;
-}
-
-/* 비디오 배너 스타일 */
-#intro_index .banner1 {
-  width: 100%;
-  height: 100vh; /* 전체 화면 채우기 */
-  position: absolute;
-  top: 0;
-  left: 0;
-  overflow: hidden;
-}
-
-/* iframe이 화면을 꽉 채우도록 설정 */
-.video-frame {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  object-fit: cover;
-}
-
-/* 로고 위치 조정 */
-header .gnb .main_logo {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-img {
-  vertical-align: top;
-}
-
-#wrap-center .banner-container2 {
-  background-image: url(https://cdn.prod.website-files.com/651143d00678effa4a6803f1/652cf531accc15724d1ab814_at-home.jpg); 
-  background-size: cover; 
-  border-radius: 20px; 
-  width: 2200px; 
-  height: 1200px; 
-  position: relative;
-  left: 100px;
-  top: 10px;
-  margin-bottom: 30px; 
-}
-
-#wrap-center .mini_title {
-  text-align: center;
-  flex-direction: row;
-  justify-content: space-between;
-  align-self: auto;
-  width: 100%; 
-  max-width: 2200px; 
-  display: flex;
-  position: static;
-  inset: auto;
-}
-
-#wrap-center .heading-4 {
-  text-align: left;
-  margin-top: 10px; 
-  padding-left: 110px; 
-  font-weight: 700;
-  position: relative;
-}
-
-#wrap-center .content-section-desc {
-  clear: none; 
-  color: gray;
-  text-align: right;
-  margin-top: 6px;
-  margin-right: -200px;
-  margin-bottom: 30px;
-  padding-left: 4px;
-  padding-right: 110px;
-}
-
-#wrap-center .mini-iconlist {
-  display: grid; /* Grid layout으로 변경 */
-  grid-template-columns: repeat(2, 1fr); /* 한 줄에 2개의 열 */
-  gap: 20px; /* 아이템 간격 조정 */
-  width: 100%; 
-  max-width: 1800px; 
-  margin-top: 120px;
+.loginOK_Wrap .main_Banner2 {
   margin: 0 auto;
   position: relative;
-  top: 150px;
-  margin-bottom: 100px;
+  top: 300px;
 }
 
-#wrap-center .grid-item {
-  display: flex;
-  flex-direction: row; /* 아이콘과 텍스트를 가로로 정렬 */
-  justify-content: flex-start;
-  align-items: center;
-  width: 200px;
+.loginOK_Wrap .bestProducts {
+  position: relative;
+  top: 100px;
 }
 
-#wrap-center .grid-image {
-  background-color: white;
-  object-fit: cover;
-  background-clip: border-box;
-  border-radius: 0;
-  flex: 0 auto;
-  min-width: 80px; 
-  max-width: none; 
-  min-height: 80px; 
-  margin-right: 24px; 
-  display: block;
+.loginOK_Wrap .main_Bottom {
+  position: relative;
+  top: 170px;
 }
 
-#wrap-center .grid-text {
-  width: 600px;
+.loginOK_Wrap .main_Bottom {
+  position: relative;
+  top: 300px;
+  margin-top: 220px;
+  margin-bottom: -220px;
 }
 
-#wrap-center .heading-7 {
-  margin-top: 0;
-  font-size: 26px;
-  font-weight: 700;
-  width: 600px;
-  padding-left: 50px;
-}
-
-#wrap-center .grid-text p {
-  padding-top: 10px;
-  padding-left: 50px;
+.loginOK_Wrap .Footer {
+  position: relative;
+  top: -120px;
 }
