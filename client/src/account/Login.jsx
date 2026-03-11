@@ -1,7 +1,6 @@
 import { useState } from "react";
 import "./Login.css";
 import { Link, useNavigate } from "react-router-dom";
-import Button from "../pages/Button";
 
 const Login = () => {
   // formData 및 상태 선언
@@ -18,7 +17,7 @@ const handleSubmit = async (e) => {
   e.preventDefault();
 
   try {
-    const response = await fetch("http://localhost:5001/login", {
+    const response = await fetch("http://localhost:5003/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       credentials: "include", // 세션 쿠키 포함
@@ -67,30 +66,30 @@ const handleSubmit = async (e) => {
 					        <fieldset>
 						        <legend className="hidden">회원 로그인</legend>
 						        <div className="fld top">
-							        <label htmlFor="login_id">ID</label>
-							        <input 
-                        type="text" 
-                        name="id" 
-                        value={formData.id} 
-                        onChange={handleChange} 
-                        maxLength={50} 
-                        id="login_id" 
-                        className="form_input member block" 
+                      {formData.id === "" && <label htmlFor="login_id">ID</label>}
+                      <input
+                        type="text"
+                        name="id"
+                        value={formData.id}
+                        onChange={handleChange}
+                        maxLength={50}
+                        id="login_id"
+                        className="form_input member block"
                       />
-							        <div className="auto_complete auto_complete_member_id"></div>
-					  	      </div>    {/** fld top end */}
+                    </div>    {/** fld top end */}
 
 						        <div className="fld">
-							        <label htmlFor="login_pwd">PASSWORD</label>
-							        <input 
-                        type="password" 
-                        name="password" 
-                        value={formData.password} 
-                        onChange={handleChange} 
-                        id="login_pwd" 
-                      className="form_input member block" />
-							        <span className="show_icon"></span>
-						        </div>    {/** fld end */}
+                      {formData.password === "" && <label htmlFor="login_pwd">PASSWORD</label>}
+                      <input
+                        type="password"
+                        name="password"
+                        value={formData.password}
+                        onChange={handleChange}
+                        id="login_pwd"
+                        className="form_input member block"
+                      />
+                      <span className="show_icon"></span>
+                    </div>    {/** fld end */}
 
 						        <div className="savessl">
 							        <input type="checkbox" name="setOpenSSL" id="member_ssl" checked="" />
@@ -110,8 +109,10 @@ const handleSubmit = async (e) => {
 
 						        <div className="joinfind">
                       <p><Link to="/account/register">CREATE ACCOUNT</Link></p>
-							        <p><a href="#">FIND ID</a></p>
-                      <p><a href="#">FIND PASSWORD</a></p>
+                      <p><Link to="/find_id">FIND ID</Link></p>
+							        {/** <p><a href="#">FIND ID</a></p> */}
+                      <p><Link to="/find_pw">FIND PASSWORD</Link></p>
+                      {/** <p><a href="#">FIND PASSWORD</a></p> */}
 						        </div>    {/** joinfind end */}
 					        </fieldset>
 				        </form>
@@ -161,16 +162,6 @@ const handleSubmit = async (e) => {
 		        </div>    {/** login_box end */}
 	        </div>    {/** login_wrap end */}
         </div>    {/** box_member login end */}
-
-        {/** <div className="button-login">
-          <a>
-            <img 
-              src="//k.kakaocdn.net/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg"
-              alt="카카오계정 로그인"
-            />
-          </a>
-          <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-        </div> */}
       </div>
     </div>
   );

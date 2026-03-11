@@ -32,6 +32,13 @@ a:active {
     font-style: normal;
 }
 
+@font-face {
+  font-family: 'GmarketSansMedium';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 .wrapper_login .logo {
   font-family: 'SDSamliphopangche_Outline';
   font-weight: 700; 
@@ -44,8 +51,8 @@ a:active {
   color: black; /* 링크 색상을 검은색으로 */
   text-decoration: none; /* 링크의 밑줄 제거 */
   position: relative;
-  left: 1100px;
-  top: -100px;
+  left: 980px;
+  top: 200px;
   font-size: 40px;
 }
 
@@ -56,6 +63,7 @@ a:active {
 .box_member {
   width: 900px;
   margin: 261px auto 0;
+  font-family: 'GmarketSansMedium';
 }
 
 #login .login_wrap {
@@ -81,7 +89,6 @@ input:not([type="image" i], [type="range" i], [type="checkbox" i], [type="radio"
   overflow: clip !important;
 }
 
-user agent stylesheet
 input[type="hidden" i] {
   appearance: none;
   background-color: initial;
@@ -129,7 +136,7 @@ input[type="hidden" i] {
   top: 50%;
   left: 0;
   color: #000;
-  font-size: 15px;
+  font-size: 22px;
   font-weight: 400;
   letter-spacing: 0.025rem;
   transform: translateY(-50%);
@@ -146,7 +153,7 @@ input[type="hidden" i] {
   background: #fff;
   font-family: 'Pretendard';
   color: #000;
-  font-size: 13px;
+  font-size: 22px;
 }
 
 .form_input.block {
@@ -262,7 +269,9 @@ input[type=checkbox]:checked {
 }
 
 #login .joinfind {
-  padding-top: 47px;
+  padding-top: 40px;
+  padding-bottom: 30px;
+  font-family: 'GmarketSansMedium';
 }
 
 #login .joinfind > p > a {
@@ -270,6 +279,8 @@ input[type=checkbox]:checked {
   font-size: 15px;
   font-weight: 400;
   line-height: 15px;
+  margin-bottom: 10px;
+  font-family: 'GmarketSansMedium';
 }
 
 a, a:hover, a:active, a:focus {
