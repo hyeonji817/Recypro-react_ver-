@@ -428,6 +428,8 @@ ol, ul, li {
   font-size: 15px;
   font-weight: 400;
   line-height: 15px;
+  position: relative;
+  left: -30px;
 }
 
 .box_member.login .tab_member > li a.active {
