@@ -11,6 +11,9 @@
 .title_section.tac {
   text-align: center;
   margin-bottom: 30px;
+  position: relative;
+  top: -40px;
+  left: 170px;
 }
 
 .prd_basic .box {
