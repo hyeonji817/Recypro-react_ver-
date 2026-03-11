@@ -22,32 +22,32 @@
 }
 
 @font-face {
-  font-family: 'HakgyoansimDunggeunmisoTTF-B';
-  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2408-5@1.0/HakgyoansimDunggeunmisoTTF-B.woff2') format('woff2');
-  font-weight: 700;
+  font-family: 'GmarketSansMedium';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+  font-weight: normal;
   font-style: normal;
 }
 
-.common_top2 .header_nav {
+.common_top .header_nav {
   width: 100%;
   height: 80px;
-  position: relative;
-  background-color: rgb(212, 244, 250);
   display: flex; 
   position: fixed; 
   top: 0;
+  background-color: rgba(255, 255, 255, 0.1); /* 투명도 60% */
+  backdrop-filter: blur(10px); /* 배경 흐림 효과 (선택 사항) */
   z-index: 99; 
   text-align: center;
-  left: 0;
+  margin-top: 0px; 
+  padding-top: 0px;
 }
 
-.common_top2 .logo {
+.common_top .logo {
   font-family: 'SDSamliphopangche_Outline';
   font-size: 30px; 
   width: 200px; 
   position: absolute; 
   margin: 0px; 
-  left: 0px; 
   line-height: 80px;
   text-decoration: none;
   color: rgb(0, 0, 0);
@@ -56,10 +56,10 @@
   display: inline-block;
 }
 
-.common_top2 .nav-right {
+.common_top .nav-right {
   width: 1300px; 
   position: relative;
-  right: -43%; 
+  right: -40%; 
   margin: 0 auto; 
   float: right; 
   opacity: 1;
@@ -67,43 +67,44 @@
   text-align: center;
 }
 
-.common_top2 .nav-right a {
+.common_top .nav-right a {
   padding: 10px; 
   color: rgb(0, 0, 0);
   font-size: 21px; 
   font-weight: 700; 
   text-decoration: none;
-  font-family: 'HakgyoansimDunggeunmisoTTF-B';
 }
 
-.common_top2 .nav-right a:hover {
+.common_top .nav-right a:hover {
   text-decoration: none;
 }
 
-.common_top2 .nav-right > li {
+.common_top .nav-right > li {
   display: inline-block;
   vertical-align: middle;
   margin-right: 20px; 
   text-align: center;
   position: relative;
   font-size: 18px;
+  font-family: 'GmarketSansMedium' !important;
 }
 
-.common_top2 .nav-right > li:last-child {
-  margin-right: 170px;
+.common_top .nav-right > li > .link {
+  padding-bottom: 10px;
+}
+
+.common_top .nav-right > li:nth-child(3) img {
+  margin-top: 4px;
+  margin-right: 22px;
+}
+
+
+.common_top .nav-right > li:last-child {
+  margin-right: 130px;
   font-weight: 800;
-  position: relative;
-  top: 13px;
 }
 
-.common_top2 .nav-right > li img {
-  margin: 0 auto;
-  width: 50px;
-  position: relative;
-  padding-top: -17px;
-}
-
-.common_top2 .nav-right > li ul.submenu {
+.common_top .nav-right > li ul.submenu {
   display: none;
   position: absolute;
   padding: 0;
@@ -114,9 +115,39 @@
   font-weight: bold;
 }
 
-.common_top2 ul.nav-right > li:hover ul.submenu {
+.common_top .nav-right > li:hover ul.submenu {
   display: block;
   width: 150px;
-  background-color: rgb(235, 235, 235);
   border-radius: 0px 0px 8px 8px;
+}
+
+/** 검색기능 구현(New.ver) */
+.search-wrap {
+  position: relative;
+  z-index: 999;
+}
+
+/* 수정된 검색창 위치 */
+.header_nav .search-container {
+  position: fixed;           /* 절대 위치가 아니라 뷰포트 기준으로 */
+  top: 100px;                /* 헤더보다 아래로 충분히 */
+  right: 40px;               /* 우측 여백 */
+  padding: 10px;
+  z-index: 9999;
+  display: flex;
+  gap: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  color: black;              /* 혹시 글자색 안 보이는 문제 대비 */
+}
+
+.search-input {
+  padding: 4px 8px;
+  width: 150px;
+}
+
+.search-toggle {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
 }
