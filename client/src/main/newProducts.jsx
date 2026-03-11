@@ -73,7 +73,7 @@ const NewProducts = () => {
                     </p>
                     <div className="price">
                       <p className="sell_sellY" style={{ textDecoration: "line-through" }}>
-                        {item.price}<span>원</span>
+                        KRW {item.price}
                       </p>
                       <div className="discount_section">
                         <p className="per">{item.discount_rate}%</p>

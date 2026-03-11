@@ -97,7 +97,7 @@
   font-family: 'GmarketSansMedium';
   position: relative;
   display: inline-block;
-  margin-top: -10px;
+  margin-top: 50px;
 }
 
 .best-products .prd_basic .box .price .sellY span { 
@@ -107,6 +107,8 @@
 .best-products .prd_basic .box .price .discount_section {
   display: flex;
   align-items: center;
+  position: relative;
+  top: -12px;
   justify-content: center;
   column-gap: 10px;
   width: 400px;
