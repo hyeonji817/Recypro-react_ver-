@@ -2,7 +2,7 @@ import "./Index.css";
 import "../js/Index.js";
 import { useEffect } from "react";
 import Header_loginOK from "./Header_loginOK.jsx";
-import NewProducts from "./NewProducts";
+import NewProducts from "./newProducts.jsx";
 import Main_Banner1 from "./Main_Banner1.jsx";
 import Main_Banner2 from "./Main_Banner2.jsx";
 import Main_Bottom from "./Main_Bottom.jsx";

@@ -6,17 +6,12 @@
 
 .wrap_Home .bestProducts {
   position: relative;
-  top: 220px;
-}
-
-.wrap_Home .main_Bottom {
-  position: relative;
-  top: 170px;
+  top: -50px;
 }
 
 .wrap_Home .main_Bottom {
   position: relative;
   top: 420px;
-  margin-top: 220px;
+  margin-top: 120px;
   margin-bottom: -220px;
 }
