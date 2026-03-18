@@ -27,7 +27,15 @@ export default defineConfig({
   plugins: [react()],
   server: {
     host: '127.0.0.1',
-    port: 3000,
+    port: 5274,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:5303',    // 프록시 요청을 보낼 대상 서버 URL 
+        changeOrigin: true,   // 프록시 요청의 Origin 헤더를 대상 서버의 Origin으로 변경 
+        rewrite: (path) => path.replace(/^\/api/, ''),    // 경로 재작성 함수. '/api'를 제거하고 대상 서버에 요청 보냄 
+        // ex) 클라이언트에서 'fetch('/api/users')를 호출 -> 요청이 'http://localhost:5001/users'로 전달.
+      },
+    },
     strictPort: true,
   },
 })
