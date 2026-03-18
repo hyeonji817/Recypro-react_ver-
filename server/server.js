@@ -32,12 +32,19 @@ app.use(cookieParser());
 
 // CORS 설정 (프론트와 백 연결하는 징검다리)
 app.use(cors({
+  origin: 'http://127.0.0.1:5274',
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type'],
+  credentials: true,
+}));
+
+/** app.use(cors({
   origin: 'http://localhost:5274',
   //origin: 'http://localhost:5174',  // Vite 개발 서버의 주소 (프론트엔드 주소)
   methods: ['GET', 'POST'],   // 허용할 HTTP 메소드 
   allowedHeaders: ['Content-Type'],   // 허용할 헤더 
   credentials: true,               // 쿠키 허용
-}));
+})); */ 
 
 app.use(session({
   secret: "guswl0817",    // 세션 암호화 키 
