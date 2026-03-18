@@ -57,7 +57,7 @@ const NewProducts = () => {
                     <div className="prdimg">
                       <a href={item.href}>
                         <img 
-                          src={`http://localhost:5003/uploads/${item.filename}`}
+                          src={`http://localhost:5303/uploads/${item.filename}`}
                           alt={item.name}
                           width="285"
                           height="380"
