@@ -10,7 +10,7 @@ const BestProducts = () => {
   useEffect(() => {
     const fetchBestProducts = async () => {
       try {
-        const res = await fetch("http://localhost:5003/api/best_products");   // best_Product.js (인기상품 페이지 연동 라우터) 페이지 연동
+        const res = await fetch("http://localhost:5303/api/best_products");   // best_Product.js (인기상품 페이지 연동 라우터) 페이지 연동
         const data = await res.json(); 
         setBestProducts(data);
       } catch (err) {
@@ -34,7 +34,7 @@ const BestProducts = () => {
                 <div className="prdimg">
                   <a href={item.href}>
                     <img 
-                        src={`http://localhost:5003/uploads/${item.filename}`}
+                        src={`http://localhost:5303/uploads/${item.filename}`}
                         alt={item.name}
                         width="285"
                         height="380"
