@@ -56,7 +56,7 @@ const BestProducts = () => {
                   </p>
                   <div className="discount_section">
                     <p className="per">{item.discount_rate}%</p>
-                    <p className="discount discountY">{item.discount_price}</p>
+                    <p className="discount discountY">{item.discount_price}원</p>
                   </div>
                 </div>
               </div>
