@@ -69,7 +69,7 @@
 
 .common_top .nav-right a {
   padding: 10px; 
-  color: rgb(0, 0, 0);
+  color: rgb(0, 0, 0); 
   font-size: 21px; 
   font-weight: 700; 
   text-decoration: none;
@@ -94,7 +94,7 @@
 }
 
 .common_top .nav-right > li:nth-child(3) img {
-  margin-top: 12px;
+  margin-top: 4px;
   margin-right: 22px;
 }
 
@@ -109,7 +109,7 @@
   position: absolute;
   padding: 0;
   text-align: center;
-  background-color: black;
+  background-color: #eee;
   font-size: 18px;
   list-style: none;
   font-weight: bold;
