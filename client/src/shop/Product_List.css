@@ -143,8 +143,10 @@ img {
 }
 
 .prd_basic .box .info {
-  width: 510px;
+  width: 600px;
   padding: 20px 0;
+  position: relative;
+  left: -10px;
   text-align: center;
 }
 
@@ -153,16 +155,16 @@ img {
   color: #000;
   font-size: 14px;
   font-weight: 400;
-  padding-left: 50px;
-  position: relative;
-  left: 50px;
 }
 
 .prd_basic .box .name > a {
   color: #000;
   font-size: 22px;
   font-weight: 400;
-  padding-right: 100px;
+  position: relative;
+  left: -40px;
+  width: 600px;
+  display: inline-block;
 }
 
 .prd_basic .box .price {
@@ -177,6 +179,7 @@ img {
 .prd_basic .box .price .sellY {
   position: relative;
   display: inline-block;
+  right: -25px;
 }
 
 .prd_basic .box .price p {
@@ -216,7 +219,8 @@ img {
   justify-content: center;
   column-gap: 10px;
   width: 400px;
-  margin-left: 230px;
+  position: relative;
+  right: 100px;
 }
 
 .prd_basic .box .price .per {
