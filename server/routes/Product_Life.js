@@ -18,6 +18,8 @@ router.get("/", async (req, res) => {
     const rows = await q(
       "SELECT * FROM product_life ORDER BY productId DESC LIMIT 12"
     );
+
+    return res.json(rows);
   } catch (err) {
     console.error("DB error:", err);
     return res.status(500).json({ message: "DB Error", detail: err.message });
