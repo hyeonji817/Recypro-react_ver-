@@ -54,7 +54,7 @@ const BestProducts = () => {
                     <span>KRW</span>
                     {item.price}
                   </p>
-                  <div className="discount_section">
+                  <div className="discount_section" style={{ position: "relative", right: "-22px"}}>
                     <p className="per">{item.discount_rate}%</p>
                     <p className="discount discountY">{item.discount_price}원</p>
                   </div>
