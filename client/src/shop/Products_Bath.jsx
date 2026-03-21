@@ -15,7 +15,7 @@ const Products_Bath = () => {
   useEffect(() => {
     const fetchProductBath = async () => {
       try {
-        const res = await fetch("http://localhost:5003/api/product_bath");
+        const res = await fetch("http://localhost:5303/api/product_bath");
         const data = await res.json(); 
         setProductBath(data);
       } catch (err) {
@@ -50,7 +50,7 @@ const Products_Bath = () => {
               {/* ⛔️ <a href={item}>  이런 게 [object Object]의 원인 */}
               <Link to={detailPath}>
                 <img
-                  src={`http://localhost:5001/uploads/${item.filename}`}
+                  src={`http://localhost:5303/uploads/${item.filename}`}
                   alt={item.pname}
                   width="240"
                   height="320"
@@ -66,7 +66,7 @@ const Products_Bath = () => {
             </p>
             <div className="price">
               <p className="sell sellY">
-                {item.price}<span>원</span>
+                KRW {item.price}
               </p>
               <div className="discount_section">
                 <p className="per">{item.discount_rate}%</p>
