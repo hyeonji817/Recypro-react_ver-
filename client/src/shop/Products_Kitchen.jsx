@@ -38,12 +38,14 @@ const Products_Kitchen = () => {
     <div id="productsKitchen_wrap">
       <div className="products_body">
         <div id="big_section">
-          <li><Link to="/shop/products1">생활</Link></li>
-          <li><Link to="/shop/products2">욕실</Link></li>
-          <li><Link to="/shop/products3">식품</Link></li>
-          <li><Link to="/shop/products4">주방</Link></li>
-          <li><Link to="/shop/products5">반려동물</Link></li>
-          <li><Link to="/shop/products5">사무</Link></li>  
+          <ul className="sub_category">
+            <li><Link to="/shop/products1">생활</Link></li>
+            <li><Link to="/shop/products2">욕실</Link></li>
+            <li><Link to="/shop/products3">식품</Link></li>
+            <li><Link to="/shop/products4">주방</Link></li>
+            <li><Link to="/shop/products5">반려동물</Link></li>
+            <li><Link to="/shop/products5">사무</Link></li>
+          </ul>
         </div>      {/** big_section end */}
 
         {/** 상품정렬 */}
