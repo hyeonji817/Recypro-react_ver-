@@ -13,7 +13,7 @@
 }
 
 .products_body {
-  overflow: hidden;
+  overflow: visible;
   margin: 0 auto;
   width: 1900px;
   font-family: 'GmarketSansMedium';
@@ -77,7 +77,7 @@ a, a:hover, a:active, a:focus {
   -webkit-appearance: none;
 }
 
-.prd_basic .col3 {
+.prd_basic.col3 {
   width: auto;
   display: grid;
   justify-content: center;
@@ -93,16 +93,15 @@ a, a:hover, a:active, a:focus {
   text-align: left;
 }
 
-#big_section .prd_basic.col3 > li {
+.prd_basic.col3 > li {
   width: 33.33%;
   padding: 0;
 }
 
 .prd_basic > li {
-  display: inline-block;
-  padding-bottom: 10px;
+  width: 100%;
+  padding: 0;
   text-align: center;
-  vertical-align: top;
 }
 
 .prd_basic .box {

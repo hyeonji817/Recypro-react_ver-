@@ -23,7 +23,7 @@ const Products_Kitchen = () => {
       }
     };
     fetchProductKitchen();
-  });
+  }, []);
 
   // 돋보기 기능 상태 추가 
   const [searchQuery, setSearchQuery] = useState(""); 
@@ -46,9 +46,8 @@ const Products_Kitchen = () => {
             <li><Link to="/shop/products5">반려동물</Link></li>
             <li><Link to="/shop/products5">사무</Link></li>
           </ul>
-        </div>      {/** big_section end */}
 
-        {/** 상품정렬 */}
+          {/** 상품정렬 */}
         <ul className="prd_basic col3">
         {currentItems.map((item) => {
           const detailPath = `/shop/product4/${encodeURIComponent(item.productId)}`;
@@ -124,6 +123,7 @@ const Products_Kitchen = () => {
             </a>
           </li>
         </ul>      {/** paging end */}
+        </div>      {/** big_section end */}
       </div>     {/** products_body end */}
     </div>     /** productsKitchen_wrap end */
   );
