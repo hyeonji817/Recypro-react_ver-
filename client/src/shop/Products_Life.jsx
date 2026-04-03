@@ -10,7 +10,7 @@ const Products_Life = () => {
   useEffect(() => {
     const fetchProductLife = async () => {
       try {
-        const res = await fetch("http://localhost:5003/api/product_life");    // Products.js (상품목록 페이지 라우터) 페이지 연동
+        const res = await fetch("http://localhost:5103/api/product_life");    // Products.js (상품목록 페이지 라우터) 페이지 연동
         const data = await res.json();
         setProductsLife(data);
       } catch (err) {
@@ -51,7 +51,7 @@ const Products_Life = () => {
                         {/* ⛔️ <a href={item}>  이런 게 [object Object]의 원인 */}
                         <Link to={detailPath}>
                           <img
-                            src={`http://localhost:5001/uploads/${item.filename}`}
+                            src={`http://localhost:5103/uploads/${item.filename}`}
                             alt={item.pname}
                             width="240"
                             height="320"

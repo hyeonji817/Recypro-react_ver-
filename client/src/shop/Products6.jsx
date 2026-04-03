@@ -10,7 +10,7 @@ const Products6 = () => {
         <Header_loginOK />  
       </div>      {/** Products6_Header end */}
       <div className="Products6_Office">
-        <Products6 />  
+        <Products_Office />  
       </div>      {/** Products6_Office end */}
       <div className="Products6_Footer">
         <Footer />

@@ -21,7 +21,7 @@ import { fileURLToPath } from "url";
 
 dotenv.config(); 
 const app = express();
-const port = 5303;
+const port = 5103;
 // const port = 5003;    // 프론트엔드에서 호출할 포트와 일치해야 한다. 
 
 // JSON 형식의 요청을 처리하기 위한 미들웨어
@@ -32,7 +32,7 @@ app.use(cookieParser());
 
 // CORS 설정 (프론트와 백 연결하는 징검다리)
 app.use(cors({
-  origin: 'http://127.0.0.1:5274',
+  origin: 'http://127.0.0.1:5174',
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type'],
   credentials: true,

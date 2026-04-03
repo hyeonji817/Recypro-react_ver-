@@ -44,7 +44,7 @@ const Main_Banner1 = () => {
   useEffect(() => {
     const fetchNewArrivals = async () => {
       try {
-        const res = await fetch("http://localhost:5001/api/main_banner1", { // 여기서부터 credentials 까지는 새로 추가한 코드
+        const res = await fetch("http://localhost:5103/api/main_banner1", { // 여기서부터 credentials 까지는 새로 추가한 코드
           method: "GET", 
           credentials: "include", 
         });  // new_Product.js 페이지(신상품 라우터 페이지) 연동

@@ -78,7 +78,7 @@ const Register = () => {
     e.preventDefault();
 
     try {
-      const res = await fetch("http://localhost:5001/api/register", {   // 값 전달할 페이지 지정 
+      const res = await fetch("http://localhost:5103/api/register", {   // 값 전달할 페이지 지정 
         method: "POST",
         headers: {
           "Content-Type": "application/json",

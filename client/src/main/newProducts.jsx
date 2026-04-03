@@ -15,7 +15,7 @@ const NewProducts = () => {
   useEffect(() => {
       const fetchNewArrivals = async () => {
         try {
-          const res = await fetch("http://localhost:5303/api/newProducts", { // 여기서부터 credentials 까지는 새로 추가한 코드
+          const res = await fetch("http://localhost:5103/api/newProducts", { // 여기서부터 credentials 까지는 새로 추가한 코드
             method: "GET", 
             credentials: "include", 
           });  // new_Product.js 페이지(신상품 라우터 페이지) 연동
@@ -57,7 +57,7 @@ const NewProducts = () => {
                     <div className="prdimg">
                       <a href={item.href}>
                         <img 
-                          src={`http://localhost:5303/uploads/${item.filename}`}
+                          src={`http://localhost:5103/uploads/${item.filename}`}
                           alt={item.name}
                           width="285"
                           height="380"
