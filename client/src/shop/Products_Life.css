@@ -12,18 +12,18 @@
   min-height: 500px;
 }
 
-.products_body {
+#productsLife_wrap .products_body {
   overflow: hidden;
   margin: 0 auto;
   width: 1900px;
   font-family: 'GmarketSansMedium';
 }
 
-#big_section {
+#productsLife_wrap #big_section {
   padding: 10px 60px 0;
 }
 
-#big_section .sub_category {
+#productsLife_wrap #big_section .sub_category {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -36,7 +36,7 @@ ol, ul, li {
   list-style: none;
 }
 
-#big_section .sub_category li a {
+#productsLife_wrap #big_section .sub_category li a {
   color: #000;
   font-size: 22px;
   font-weight: bold;
@@ -47,7 +47,7 @@ a, a:hover, a:active, a:focus {
   cursor: pointer;
 }
 
-.total_sort {
+#productsLife_wrap .total_sort {
   clear: both;
   height: 35px;
   margin: 10px 0;
@@ -78,7 +78,7 @@ a, a:hover, a:active, a:focus {
   -webkit-appearance: none;
 }
 
-.prd_basic .col3 {
+#productsLife_wrap .prd_basic .col3 {
   width: auto;
   display: grid;
   justify-content: center;
@@ -87,26 +87,26 @@ a, a:hover, a:active, a:focus {
   gap: 140px 2.9%;
 }
 
-.prd_basic {
+#productsLife_wrap .prd_basic {
   display: inline-block;
   width: 100%;
   font-size: 0;
   text-align: left;
 }
 
-#big_section .prd_basic.col3 > li {
+#productsLife_wrap #big_section .prd_basic.col3 > li {
   width: 33.33%;
   padding: 0;
 }
 
-.prd_basic > li {
+#productsLife_wrap .prd_basic > li {
   display: inline-block;
   padding-bottom: 10px;
   text-align: center;
   vertical-align: top;
 }
 
-.prd_basic .box {
+#productsLife_wrap .prd_basic .box {
   position: relative;
   width: 600px;
   height: 850px;
@@ -114,7 +114,7 @@ a, a:hover, a:active, a:focus {
   padding: 10px;
 } 
 
-.prd_basic .box .img {
+#productsLife_wrap .prd_basic .box .img {
   overflow: hidden;
   position: relative;
   z-index: 1;
@@ -123,11 +123,11 @@ a, a:hover, a:active, a:focus {
   text-align: center;
 }
 
-.prd_basic .box .img .prdimg {
+#productsLife_wrap .prd_basic .box .img .prdimg {
   transition: all .3s ease;
 }
 
-.prd_basic .box .img .prdimg img {
+#productsLife_wrap .prd_basic .box .img .prdimg img {
   width: 550px;
   height: 550px;
   position: relative;
@@ -137,17 +137,17 @@ img {
   vertical-align: top;
 }
 
-.prd_basic .box .img .soldout {
+#productsLife_wrap .prd_basic .box .img .soldout {
   display: none;
 }
 
-.prd_basic .box .info {
+#productsLife_wrap .prd_basic .box .info {
   width: 510px;
   padding: 20px 0;
   text-align: center;
 }
 
-.prd_basic .box .name {
+#productsLife_wrap .prd_basic .box .name {
   padding-top: 0;
   color: #000;
   font-size: 14px;
@@ -157,14 +157,14 @@ img {
   left: 50px;
 }
 
-.prd_basic .box .name > a {
+#productsLife_wrap .prd_basic .box .name > a {
   color: #000;
   font-size: 22px;
   font-weight: 400;
   padding-right: 100px;
 }
 
-.prd_basic .box .price {
+#productsLife_wrap .prd_basic .box .price {
   padding-top: 7px;
   font-size: 0;
   text-align: center;
@@ -174,12 +174,12 @@ img {
   min-height: 130px;
 }
 
-.prd_basic .box .price .sellY {
+#productsLife_wrap .prd_basic .box .price .sellY {
   position: relative;
   display: inline-block;
 }
 
-.prd_basic .box .price p {
+#productsLife_wrap .prd_basic .box .price p {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -190,17 +190,17 @@ img {
   word-wrap: break-word;
 }
 
-.prd_basic .box .price p span {
+#productsLife_wrap .prd_basic .box .price p span {
   padding-right: 5px;
 }
 
-.prd_basic .box .price p * {
+#productsLife_wrap .prd_basic .box .price p * {
   color: #000;
   font-size: 17px;
   font-weight: 400;
 }
 
-.prd_basic .box .price .sellY:after {
+#productsLife_wrap .prd_basic .box .price .sellY:after {
   position: absolute;
   top: 41%;
   left: 0;
@@ -210,7 +210,7 @@ img {
   content: '';
 }
 
-.prd_basic .box .price .discount_section {
+#productsLife_wrap .prd_basic .box .price .discount_section {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -218,14 +218,14 @@ img {
   width: 600px;
 }
 
-.prd_basic .box .price .per {
+#productsLife_wrap .prd_basic .box .price .per {
   color: #ff0000;
   font-size: 17px;
   position: relative;
   right: 180px;
 }
 
-.prd_basic .box .price p {
+#productsLife_wrap .prd_basic .box .price p {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -236,19 +236,19 @@ img {
   word-wrap: break-word;
 }
 
-.prd_basic .box .price .discountY {
+#productsLife_wrap .prd_basic .box .price .discountY {
   display: inline-block;
   text-align: center;
   position: relative;
   right: 170px;
 }
 
-.prd_basic .box .price .discount {
+#productsLife_wrap .prd_basic .box .price .discount {
   text-align: center;
   position: relative;
 } 
 
-.paging {
+#productsLife_wrap .paging {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -257,83 +257,83 @@ img {
   text-align: center;
 }
 
-.paging li {
+#productsLife_wrap .paging li {
   display: inline;
   padding: 0 10px;
   color: #9e9e9e;
   vertical-align: middle;
 }
 
-.paging * {
+#productsLife_wrap .paging * {
   vertical-align: middle;
 }
 
-.paging li strong {
+#productsLife_wrap .paging li strong {
   display: inline-block;
   color: #000;
   font-size: 20px;
 }
 
-.paging * {
+#productsLife_wrap .paging * {
   vertical-align: middle;
 }
 
-.paging li a {
+#productsLife_wrap .paging li a {
   display: block;
   color: #838383;
   font-size: 20px;
 }
 
-.paging li a.next {
+#productsLife_wrap .paging li a.next {
   width: 20px;
   background: url(https://www.rolarola.com/_skin/rolarola_250402/img/button/paging_next.png) no-repeat center top 6px;
   text-indent: -9999px;
 }
 
-.paging li a.last, .paging li a.first {
+#productsLife_wrap .paging li a.last, .paging li a.first {
   display: none;
 }
 
-#big_section .list_sns {
+#productsLife_wrap #big_section .list_sns {
   display: none;
   padding: 100px 0 22px;
 }
 
-.tac {
+#productsLife_wrap .tac {
   text-align: center !important;
 }
 
-#big_section .list_sns > li {
+#productsLife_wrap #big_section .list_sns > li {
   display: inline-block;
   padding: 0 20px;
   vertical-align: top;
 }
 
-#big_section .list_sns > li {
+#productsLife_wrap #big_section .list_sns > li {
   display: inline-block;
   padding: 0 20px;
   vertical-align: top;
 }
 
-#big_section .list_sns.rola > li.sns_child1 a {
+#productsLife_wrap #big_section .list_sns.rola > li.sns_child1 a {
   background: url(https://www.rolarola.com/_skin/rolarola_250402/img/main/sns_youtube.png) no-repeat center;
 }
 
-#big_section .list_sns > li a {
+#productsLife_wrap #big_section .list_sns > li a {
   display: block;
   width: 60px;
   height: 60px;
   text-indent: -9999px;
 }
 
-.tac {
+#productsLife_wrap .tac {
   text-align: center !important;
 }
 
-#big_section .list_sns.rlol > li.sns_child0 a {
+#productsLife_wrap #big_section .list_sns.rlol > li.sns_child0 a {
   background: url(https://www.rolarola.com/_skin/rolarola_250402/img/main/sns_youtube.png) no-repeat center;
 }
 
-#big_section .list_sns.rlol > li.sns_child1 a {
+#productsLife_wrap #big_section .list_sns.rlol > li.sns_child1 a {
   background: url(https://www.rolarola.com/_skin/rolarola_250402/img/main/sns_instagram.png) no-repeat center;
 }

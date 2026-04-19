@@ -12,18 +12,18 @@
   min-height: 500px;
 }
 
-.products_body {
+#productsKitchen_wrap .products_body {
   overflow: visible;
   margin: 0 auto;
   width: 1900px;
   font-family: 'GmarketSansMedium';
 }
 
-#big_section {
+#productsKitchen_wrap #big_section {
   padding: 10px 60px 0;
 }
 
-#big_section .sub_category {
+#productsKitchen_wrap #big_section .sub_category {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -36,7 +36,7 @@ ol, ul, li {
   list-style: none;
 }
 
-#big_section .sub_category li a {
+#productsKitchen_wrap #big_section .sub_category li a {
   color: #000;
   font-size: 30px;
 }
@@ -46,7 +46,7 @@ a, a:hover, a:active, a:focus {
   cursor: pointer;
 }
 
-.total_sort {
+#productsKitchen_wrap .total_sort {
   clear: both;
   height: 35px;
   margin: 10px 0;
@@ -77,7 +77,7 @@ a, a:hover, a:active, a:focus {
   -webkit-appearance: none;
 }
 
-.prd_basic.col3 {
+#productsKitchen_wrap .prd_basic.col3 {
   width: auto;
   display: grid;
   justify-content: center;
@@ -86,25 +86,25 @@ a, a:hover, a:active, a:focus {
   gap: 140px 2.9%;
 }
 
-.prd_basic {
+#productsKitchen_wrap .prd_basic {
   display: inline-block;
   width: 100%;
   font-size: 0;
   text-align: left;
 }
 
-.prd_basic.col3 > li {
+#productsKitchen_wrap .prd_basic.col3 > li {
   width: 33.33%;
   padding: 0;
 }
 
-.prd_basic > li {
+#productsKitchen_wrap .prd_basic > li {
   width: 100%;
   padding: 0;
   text-align: center;
 }
 
-.prd_basic .box {
+#productsKitchen_wrap .prd_basic .box {
   position: relative;
   width: 600px;
   height: 850px;
@@ -113,7 +113,7 @@ a, a:hover, a:active, a:focus {
   border: 1px solid #eee;
 } 
 
-.prd_basic .box .img {
+#productsKitchen_wrap .prd_basic .box .img {
   overflow: hidden;
   position: relative;
   z-index: 1;
@@ -122,11 +122,11 @@ a, a:hover, a:active, a:focus {
   text-align: center;
 }
 
-.prd_basic .box .img .prdimg {
+#productsKitchen_wrap .prd_basic .box .img .prdimg {
   transition: all .3s ease;
 }
 
-.prd_basic .box .img .prdimg img {
+#productsKitchen_wrap .prd_basic .box .img .prdimg img {
   width: 550px;
   height: 550px;
   position: relative;
@@ -136,17 +136,17 @@ img {
   vertical-align: top;
 }
 
-.prd_basic .box .img .soldout {
+#productsKitchen_wrap .prd_basic .box .img .soldout {
   display: none;
 }
 
-.prd_basic .box .info {
+#productsKitchen_wrap .prd_basic .box .info {
   width: 510px;
   padding: 20px 0;
   text-align: center;
 }
 
-.prd_basic .box .name {
+#productsKitchen_wrap .prd_basic .box .name {
   padding-top: 0;
   color: #000;
   font-size: 14px;
@@ -156,14 +156,14 @@ img {
   left: 50px;
 }
 
-.prd_basic .box .name > a {
+#productsKitchen_wrap .prd_basic .box .name > a {
   color: #000;
   font-size: 22px;
   font-weight: 400;
   padding-right: 100px;
 }
 
-.prd_basic .box .price {
+#productsKitchen_wrap .prd_basic .box .price {
   padding-top: 7px;
   font-size: 0;
   text-align: center;
@@ -173,12 +173,12 @@ img {
   min-height: 130px;
 }
 
-.prd_basic .box .price .sellY {
+#productsKitchen_wrap .prd_basic .box .price .sellY {
   position: relative;
   display: inline-block;
 }
 
-.prd_basic .box .price p {
+#productsKitchen_wrap .prd_basic .box .price p {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -189,17 +189,17 @@ img {
   word-wrap: break-word;
 }
 
-.prd_basic .box .price p span {
+#productsKitchen_wrap .prd_basic .box .price p span {
   padding-right: 5px;
 }
 
-.prd_basic .box .price p * {
+#productsKitchen_wrap .prd_basic .box .price p * {
   color: #000;
   font-size: 17px;
   font-weight: 400;
 }
 
-.prd_basic .box .price .sellY:after {
+#productsKitchen_wrap .prd_basic .box .price .sellY:after {
   position: absolute;
   top: 41%;
   left: 0;
@@ -209,7 +209,7 @@ img {
   content: '';
 }
 
-.prd_basic .box .price .discount_section {
+#productsKitchen_wrap .prd_basic .box .price .discount_section {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -218,14 +218,14 @@ img {
   margin-left: 230px;
 }
 
-.prd_basic .box .price .per {
+#productsKitchen_wrap .prd_basic .box .price .per {
   color: #ff0000;
   font-size: 17px;
   position: relative;
   right: 180px;
 }
 
-.prd_basic .box .price p {
+#productsKitchen_wrap .prd_basic .box .price p {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -236,27 +236,27 @@ img {
   word-wrap: break-word;
 }
 
-.prd_basic .box .price .discountY {
+#productsKitchen_wrap .prd_basic .box .price .discountY {
   display: inline-block;
   text-align: center;
   position: relative;
   right: 170px;
 }
 
-.prd_basic .box .price .discount {
+#productsKitchen_wrap  .prd_basic .box .price .discount {
   text-align: center;
   position: relative;
 } 
 
 /** 새로 추가한 버전 (임시) */ 
-.paging {
+#productsKitchen_wrap .paging {
   display: flex;
   justify-content: center;
   gap: 8px;
   margin-top: 20px;
 }
 
-.paging button {
+#productsKitchen_wrap .paging button {
   padding: 6px 12px;
   border: none;
   background-color: #eee;
@@ -264,55 +264,55 @@ img {
   border-radius: 4px;
 }
 
-.paging button.active {
+#productsKitchen_wrap .paging button.active {
   background-color: #333;
   color: white;
   font-weight: bold;
 }
 
-.paging li {
+#productsKitchen_wrap .paging li {
   display: inline;
   padding: 0 10px;
   color: #9e9e9e;
   vertical-align: middle;
 }
 
-.paging * {
+#productsKitchen_wrap .paging * {
   vertical-align: middle;
 }
 
-.paging li strong {
+#productsKitchen_wrap .paging li strong {
   display: inline-block;
   color: #000;
   font-size: 20px;
 }
 
-.paging * {
+#productsKitchen_wrap .paging * {
   vertical-align: middle;
 }
 
-.paging li a {
+#productsKitchen_wrap .paging li a {
   display: block;
   color: #838383;
   font-size: 20px;
 }
 
-.paging li a.next {
+#productsKitchen_wrap .paging li a.next {
   width: 20px;
   background: url(https://www.rolarola.com/_skin/rolarola_250402/img/button/paging_next.png) no-repeat center top 6px;
   text-indent: -9999px;
 }
 
-.paging li a.last, .paging li a.first {
+#productsKitchen_wrap .paging li a.last, .paging li a.first {
   display: none;
 }
 
-.tac {
+#productsKitchen_wrap .tac {
   text-align: center !important;
 }
 
 /** 검색기능 구현 */
-.search-container {
+#productsKitchen_wrap .search-container {
   position: fixed;
   bottom: 780px;
   right: 280px;
@@ -322,7 +322,7 @@ img {
   align-items: center;
 }
 
-.search-toggle {
+#productsKitchen_wrap .search-toggle {
   background-color: #eee;
   color: #fff;
   font-size: 20px;
@@ -336,7 +336,7 @@ img {
   align-items: center;
 }
 
-.search-input {
+#productsKitchen_wrap .search-input {
   margin-right: 10px;
   padding: 10px;
   font-size: 16px;

@@ -5,7 +5,7 @@
 }
 
 /* 핵심 */
-.main_new {
+.newProducts_wrap .main_new {
   width: 111.111%;
   transform: scale(0.9);
   transform-origin: top center;
@@ -13,28 +13,28 @@
 }
 
 /* 제목 */
-.title_section.tac {
+.newProducts_wrap .title_section.tac {
   text-align: center;
   margin-bottom: 30px;
 }
 
-.title_section.tac h2 {
+.newProducts_wrap .title_section.tac h2 {
   font-size: 42px;
   font-weight: 500;
   margin: 0;
 }
 
 /* 슬라이드 */
-.slide_wrap {
+.newProducts_wrap .slide_wrap {
   width: 100%;
 }
 
-.main_new_slide {
+.newProducts_wrap .main_new_slide {
   width: 100%;
 }
 
 /* 카드 */
-.prd_basic .box {
+.newProducts_wrap .prd_basic .box {
   width: 100%;
   max-width: 520px;
   margin: 0 auto;
@@ -44,7 +44,7 @@
   box-sizing: border-box;
 }
 
-.prdimg {
+.newProducts_wrap .prdimg {
   width: 100%;
   aspect-ratio: 3 / 4;
   overflow: hidden;
@@ -52,14 +52,14 @@
   left: 15px;
 }
 
-.prdimg img {
+.newProducts_wrap .prdimg img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
 
-.prd_basic .box .info {
+.newProducts_wrap .prd_basic .box .info {
   text-align: center;
   font-size: 22px;
   padding-top: 14px;
@@ -67,56 +67,55 @@
   top: -220px;
 }
 
-.info .name {
+.newProducts_wrap .info .name {
   font-weight: bold;
   margin: 0 0 10px;
   line-height: 1.4;
 }
 
-.info .name a {
+.newProducts_wrap .info .name a {
   color: #000;
   text-decoration: none;
 }
 
-.price {
+.newProducts_wrap .price {
   margin-top: 8px;
 }
 
-.sell_sellY {
+.newProducts_wrap .sell_sellY {
   margin: 0;
 }
 
-.newProducts_wrap .discount_section {
+.newProducts_wrap .newProducts_wrap .discount_section {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 10px;
   margin-top: 6px;
-  padding-right: 50px;
 }
 
-.per {
+.newProducts_wrap .per {
   color: red;
   margin: 0;
 }
 
-.discount_discountY {
+.newProducts_wrap .discount_discountY {
   margin: 0;
 }
 
 /* 모바일/태블릿에서는 축소 해제 */
 @media (max-width: 1024px) {
-  .main_new {
+  .newProducts_wrap .main_new {
     width: 100%;
     transform: none;
     margin-left: 0;
   }
 
-  .title_section.tac h2 {
+  .newProducts_wrap .title_section.tac h2 {
     font-size: 34px;
   }
 
-  .prd_basic .info {
+  .newProducts_wrap .prd_basic .info {
     font-size: 18px;
   }
 }
