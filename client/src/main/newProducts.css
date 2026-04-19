@@ -1,75 +1,122 @@
 .newProducts_wrap {
   width: 100%;
-  margin: 0 auto;
   font-family: 'GmarketSansMedium';
+  padding: 60px 0 100px;
 }
 
+/* 핵심 */
 .main_new {
-  margin-top: 60px;
+  width: 111.111%;
+  transform: scale(0.9);
+  transform-origin: top center;
+  margin-left: -5.555%;
 }
 
+/* 제목 */
 .title_section.tac {
   text-align: center;
   margin-bottom: 30px;
-  position: relative;
-  top: -40px;
-  left: 80px;
 }
 
+.title_section.tac h2 {
+  font-size: 42px;
+  font-weight: 500;
+  margin: 0;
+}
+
+/* 슬라이드 */
+.slide_wrap {
+  width: 100%;
+}
+
+.main_new_slide {
+  width: 100%;
+}
+
+/* 카드 */
 .prd_basic .box {
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
   border: 1px solid #eee;
   padding: 10px;
   background: #fff;
+  box-sizing: border-box;
+}
+
+.prdimg {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
   position: relative;
-  width: 660px; 
-  min-height: 700px;
-  margin: 0 auto;
+  left: 15px;
 }
-
-.prd_basic .info {
-  text-align: center;
-  font-size: 22px;
-}
-
-.prd_basic .discount_section .per {
-  text-align: center;
-  padding-left: 250px;
-}
-
-.prd_basic .discount_section .discount_discountY {
-  margin-left: 10px;
-} 
 
 .prdimg img {
   width: 100%;
-  height: 700px;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
-.soldout {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  background: red;
-  color: white;
-  padding: 4px 8px;
-  font-size: 12px;
+.prd_basic .box .info {
+  text-align: center;
+  font-size: 22px;
+  padding-top: 14px;
+  position: relative;
+  top: -220px;
 }
 
 .info .name {
   font-weight: bold;
-  margin-top: 10px;
+  margin: 0 0 10px;
+  line-height: 1.4;
+}
+
+.info .name a {
+  color: #000;
+  text-decoration: none;
 }
 
 .price {
-  margin-top: 10px;
+  margin-top: 8px;
+}
+
+.sell_sellY {
+  margin: 0;
 }
 
 .newProducts_wrap .discount_section {
   display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 10px;
-  margin-top: 5px;
+  margin-top: 6px;
+  padding-right: 50px;
 }
 
 .per {
   color: red;
+  margin: 0;
+}
+
+.discount_discountY {
+  margin: 0;
+}
+
+/* 모바일/태블릿에서는 축소 해제 */
+@media (max-width: 1024px) {
+  .main_new {
+    width: 100%;
+    transform: none;
+    margin-left: 0;
+  }
+
+  .title_section.tac h2 {
+    font-size: 34px;
+  }
+
+  .prd_basic .info {
+    font-size: 18px;
+  }
 }
