@@ -13,12 +13,12 @@
   font-family: 'GmarketSansMedium' !important;
 }
 
-.main_visual img {
+.main_banner1_wrap .main_visual img {
   width: 100%;
   display: block;
 }
 
-.Banner_text {
+.main_banner1_wrap .Banner_text {
   position: absolute;
   top: 40%;       /* 중앙 정렬 */
   left: 50%;
@@ -33,17 +33,17 @@
   font-family: 'GmarketSansMedium' !important;
 }
 
-.main_new {
+.main_banner1_wrap .main_new {
   margin-top: 170px;
 }
 
-.title_section.tac {
+.main_banner1_wrap .title_section.tac {
   text-align: center;
   margin-bottom: 30px;
 }
 
 /* 각 슬라이드(상품 카드)의 기본 스타일 */
-.main_new_slide .swiper-slide {
+.main_banner1_wrap .main_new_slide .swiper-slide {
   display: flex;
   justify-content: center;
   position: relative;
@@ -51,43 +51,43 @@
   width: auto !important;   /* swiper-slide 너비를 콘텐츠에 맞게 자동으로 */
 }
 
-.main_new .prd_basic .box {
+.main_banner1_wrap .main_new .prd_basic .box {
   width: 600px;
   max-width: 800px;
   min-height: 500px;
   margin: 0 auto;
 }
 
-.main_new .prd_basic .box .name > a {
+.main_banner1_wrap .main_new .prd_basic .box .name > a {
   color: black;
   font-size: 22px; 
   position: relative;
   left: -30px;
 } 
 
-.main_new .prd_basic .info {
+.main_banner1_wrap .main_new .prd_basic .info {
   text-align: center;
   font-size: 22px;
 }
 
-.main_new .prd_basic .discount_section .per {
+.main_banner1_wrap .main_new .prd_basic .discount_section .per {
   text-align: center;
   padding-left: 220px;
 }
 
-.main_new .prd_basic .discount_section .discount_discountY {
+.main_banner1_wrap .main_new .prd_basic .discount_section .discount_discountY {
   margin-left: 10px;
   position: relative;
   right: 185px;
 } 
 
-.prdimg img {
+.main_banner1_wrap .prdimg img {
   width: 100%;
   height: 380px;
   object-fit: cover;
 }
 
-.soldout {
+.main_banner1_wrap .soldout {
   position: absolute;
   top: 10px;
   left: 10px;
@@ -97,7 +97,7 @@
   font-size: 12px;
 }
 
-.main_new .info .name {
+.main_banner1_wrap .main_new .info .name {
   font-weight: bold;
   margin-top: 10px;
   position: relative;
@@ -106,7 +106,7 @@
   width: 600px;
 }
 
-.main_new .price {
+.main_banner1_wrap .main_new .price {
   margin-top: 10px;
   margin-left: 50px;
 }
@@ -126,13 +126,13 @@
   margin-left: 100px;
 }
 
-.main_new .per {
+.main_banner1_wrap .main_new .per {
   color: red;
   position: relative;
   right: 40px;
 }
 
-.main_new .discount_discountY {
+.main_banner1_wrap .main_new .discount_discountY {
   position: relative;
   right: 30px;
 }
