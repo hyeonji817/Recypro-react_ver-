@@ -1,121 +1,143 @@
-.newProducts_wrap {
-  width: 100%;
+@charset "UTF-8";
+
+@font-face {
   font-family: 'GmarketSansMedium';
-  padding: 60px 0 100px;
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
 
-/* 핵심 */
-.newProducts_wrap .main_new {
-  width: 111.111%;
-  transform: scale(0.9);
-  transform-origin: top center;
-  margin-left: -5.555%;
+.newProducts_wrap {
+  font-family: 'GmarketSansMedium';
+  width: 1920px;
 }
 
-/* 제목 */
-.newProducts_wrap .title_section.tac {
+.main_new {
+  margin-top: 170px;
+}
+
+.title_section.tac {
   text-align: center;
   margin-bottom: 30px;
-}
-
-.newProducts_wrap .title_section.tac h2 {
-  font-size: 42px;
-  font-weight: 500;
-  margin: 0;
-}
-
-/* 슬라이드 */
-.newProducts_wrap .slide_wrap {
-  width: 100%;
-}
-
-.newProducts_wrap .main_new_slide {
-  width: 100%;
-}
-
-/* 카드 */
-.newProducts_wrap .prd_basic .box {
-  width: 100%;
-  max-width: 520px;
-  margin: 0 auto;
-  border: 1px solid #eee;
-  padding: 10px;
-  background: #fff;
-  box-sizing: border-box;
-}
-
-.newProducts_wrap .prdimg {
-  width: 100%;
-  aspect-ratio: 3 / 4;
-  overflow: hidden;
   position: relative;
-  left: 15px;
+  left: 100px;
 }
 
-.newProducts_wrap .prdimg img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-.newProducts_wrap .prd_basic .box .info {
+.main_new h2 {
+  font-size: 33px;
   text-align: center;
-  font-size: 22px;
-  padding-top: 14px;
+  font-family: 'GmarketSansMedium';
+  color: black;
   position: relative;
-  top: -220px;
+  top: -30px;
 }
 
-.newProducts_wrap .info .name {
-  font-weight: bold;
-  margin: 0 0 10px;
-  line-height: 1.4;
-}
-
-.newProducts_wrap .info .name a {
-  color: #000;
-  text-decoration: none;
-}
-
-.newProducts_wrap .price {
-  margin-top: 8px;
-}
-
-.newProducts_wrap .sell_sellY {
-  margin: 0;
-}
-
-.newProducts_wrap .newProducts_wrap .discount_section {
+/* 각 슬라이드(상품 카드)의 기본 스타일 */
+.main_new_slide .swiper-slide {
   display: flex;
   justify-content: center;
+  position: relative;
+  width: auto !important;   /* swiper-slide 너비를 콘텐츠에 맞게 자동으로 */
+}
+
+.newProducts_wrap .main_new .prd_basic {
+  position: relative;
+  left: 120px;
+}
+
+.main_new .prd_basic .box {
+  width: 600px;
+  max-width: 800px;
+  min-height: 500px;
+  margin: 0 auto;
+}
+
+.main_new .prd_basic .box .name > a {
+  color: black;
+  font-size: 22px; 
+  position: relative;
+  left: -30px;
+  font-family: 'GmarketSansMedium';
+} 
+
+.main_new .prd_basic .info {
+  text-align: center;
+  font-size: 22px;
+  font-family: 'GmarketSansMedium';
+}
+
+.main_new .prd_basic .discount_section .per {
+  text-align: center;
+  padding-left: 220px;
+  font-family: 'GmarketSansMedium';
+}
+
+.main_new .prd_basic .discount_section .discount_discountY {
+  margin-left: 10px;
+  position: relative;
+  right: 185px;
+  font-family: 'GmarketSansMedium';
+} 
+
+.prdimg img {
+  width: 100%;
+  height: 380px;
+  object-fit: cover;
+}
+
+.soldout {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: red;
+  color: white;
+  padding: 4px 8px;
+  font-size: 12px;
+  font-family: 'GmarketSansMedium';
+}
+
+.main_new .info .name {
+  font-weight: bold;
+  margin-top: 10px;
+  position: relative;
+  right: 10px;
+  font-size: 22px;
+  width: 600px;
+  font-family: 'GmarketSansMedium';
+}
+
+.main_new .price {
+  margin-top: 10px;
+  margin-left: 50px;
+  font-family: 'GmarketSansMedium';
+}
+
+.newProducts_wrap .main_new .sell_sellY {
+  font-family: 'GmarketSansMedium';
+}
+
+.newProducts_wrap .main_new .sell_sellY span {
+  font-family: 'GmarketSansMedium';
+}
+
+.main_new .prd_basic .box .price .discount_section {
+  display: flex;
   align-items: center;
-  gap: 10px;
-  margin-top: 6px;
+  justify-content: center;
+  column-gap: 10px;
+  width: 400px;
+  margin-left: 100px;
+  font-family: 'GmarketSansMedium';
 }
 
-.newProducts_wrap .per {
+.main_new .per {
   color: red;
-  margin: 0;
+  position: relative;
+  right: 40px;
 }
 
-.newProducts_wrap .discount_discountY {
-  margin: 0;
-}
-
-/* 모바일/태블릿에서는 축소 해제 */
-@media (max-width: 1024px) {
-  .newProducts_wrap .main_new {
-    width: 100%;
-    transform: none;
-    margin-left: 0;
-  }
-
-  .newProducts_wrap .title_section.tac h2 {
-    font-size: 34px;
-  }
-
-  .newProducts_wrap .prd_basic .info {
-    font-size: 18px;
-  }
+.main_new .discount_discountY {
+  position: relative;
+  right: 30px;
+  font-family: 'GmarketSansMedium';
 }

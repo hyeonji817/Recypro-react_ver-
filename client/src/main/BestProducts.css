@@ -7,6 +7,13 @@
   font-style: normal;
 }
 
+.best-products {
+  width: 100%;
+  font-family: 'GmarketSansMedium';
+  padding: 60px 0 100px;
+  box-sizing: border-box;
+}
+
 .main_best {
   font-family: 'GmarketSansMedium';
 }
