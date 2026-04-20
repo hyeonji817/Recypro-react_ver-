@@ -42,14 +42,21 @@
 
 .newProducts_wrap .main_new .prd_basic {
   position: relative;
-  left: 120px;
+  left: 300px;
 }
 
-.main_new .prd_basic .box {
-  width: 600px;
-  max-width: 800px;
+.newProducts_wrap .main_new .prd_basic .box {
+  width: 500px;
+  max-width: 700px;
   min-height: 500px;
   margin: 0 auto;
+  height: 700px;
+}
+
+.newProducts_wrap .main_new .prd_basic .box .img .prdimg img {
+  width: 450px; 
+  height: 450px; 
+  position: relative;
 }
 
 .main_new .prd_basic .box .name > a {
@@ -114,19 +121,21 @@
 
 .newProducts_wrap .main_new .sell_sellY {
   font-family: 'GmarketSansMedium';
+  position: relative;
+  right: 100px;
 }
 
 .newProducts_wrap .main_new .sell_sellY span {
   font-family: 'GmarketSansMedium';
 }
 
-.main_new .prd_basic .box .price .discount_section {
+.newProducts_wrap .main_new .prd_basic .box .price .discount_section {
   display: flex;
   align-items: center;
   justify-content: center;
   column-gap: 10px;
   width: 400px;
-  margin-left: 100px;
+  margin-left: 140px;
   font-family: 'GmarketSansMedium';
 }
 
