@@ -64,14 +64,15 @@
   margin: 0 auto;
   border: 1px solid #eee;
   padding: 10px;
-  height: 700px;
+  height: 750px;
   background-color: #fff;
 }
 
 /* 상품 이미지 */
 .prdimg img {
   width: 450px;
-  height: auto;
+  height: 450px;
+  position: relative;
   object-fit: cover;
 }
 
