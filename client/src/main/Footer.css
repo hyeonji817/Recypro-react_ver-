@@ -16,13 +16,13 @@
 
 .footer_bar .ft_title {
   position: relative;
-  left: 100px;
+  left: 60px;
   top: 100px;
 }
 
 .footer_bar .ft_box {
   position: relative;
-  left: 100px;
+  left: 60px;
   top: 100px;
   width: 330px;
 }
@@ -44,7 +44,7 @@
 .footer_bar .shopInfo .ft_menu {
   position: relative;
   top: -66px;
-  left: 700px;
+  left: 600px;
 }
 
 .footer_bar .shopInfo .ft_menu li {
@@ -54,7 +54,7 @@
 
 .footer_bar .info {
   position: relative;
-  left: 730px;
+  left: 632px;
   top: -60px;
 }
 
@@ -62,7 +62,7 @@
   display: inline-block;
   position: relative;
   bottom: 170px;
-  left: 1120px;
+  left: 1000px;
 }
 
 .footer_bar .ft_pay li {
