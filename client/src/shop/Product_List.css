@@ -255,7 +255,7 @@ img {
 } 
 
 /** 새로 추가한 버전 (임시) */ 
-.paging {
+#products_wrap .paging {
   display: flex;
   justify-content: center;
   gap: 8px;

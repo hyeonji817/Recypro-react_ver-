@@ -1,4 +1,4 @@
-import "./Product_List.css";
+import "./Products_Life.css";
 import { useEffect, useState } from "react"; 
 import { Link } from "react-router-dom";
 

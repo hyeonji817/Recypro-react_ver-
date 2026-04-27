@@ -32,7 +32,8 @@ const Product_List = () => {
         <div id="big_section">
           <ul className="sub_category">
             <li>
-              <a href="./Products1">생활</a>
+              <Link to={`./Products1`} ></Link>
+              {/** <a href="./Products1">생활</a> */}
             </li>
 	          <li>
               <a href="./Products2">욕실</a>
