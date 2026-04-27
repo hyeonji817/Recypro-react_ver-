@@ -20,11 +20,11 @@
   font-family: 'GmarketSansMedium';
 }
 
-#big_section {
+#products_wrap #big_section {
   padding: 10px 60px 0;
 }
 
-#big_section .sub_category {
+#products_wrap #big_section .sub_category {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -37,9 +37,10 @@ ol, ul, li {
   list-style: none;
 }
 
-#big_section .sub_category li a {
+#products_wrap #big_section .sub_category li a {
   color: #000;
   font-size: 30px;
+  font-weight: bold;
 }
 
 a, a:hover, a:active, a:focus {

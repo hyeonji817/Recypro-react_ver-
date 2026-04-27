@@ -38,7 +38,7 @@ ol, ul, li {
 
 #productsLife_wrap #big_section .sub_category li a {
   color: #000;
-  font-size: 22px;
+  font-size: 30px;
   font-weight: bold;
 }
 
@@ -112,6 +112,7 @@ a, a:hover, a:active, a:focus {
   height: 850px;
   margin: 0 auto;
   padding: 10px;
+  border: 1px solid #eee;
 } 
 
 #productsLife_wrap .prd_basic .box .img {
@@ -142,8 +143,11 @@ img {
 }
 
 #productsLife_wrap .prd_basic .box .info {
-  width: 510px;
+  width: 600px;
   padding: 20px 0;
+  position: relative;
+  left: -10px;
+  top: 30px;
   text-align: center;
 }
 
@@ -152,21 +156,20 @@ img {
   color: #000;
   font-size: 14px;
   font-weight: 400;
-  padding-left: 50px;
-  position: relative;
-  left: 50px;
 }
 
 #productsLife_wrap .prd_basic .box .name > a {
   color: #000;
   font-size: 22px;
   font-weight: 400;
-  padding-right: 100px;
+  position: relative;
+  left: 10px;
+  width: 600px;
+  display: inline-block;
 }
 
 #productsLife_wrap .prd_basic .box .price {
   padding-top: 7px;
-  font-size: 0;
   text-align: center;
   position: relative;
   top: 30px;
@@ -177,6 +180,7 @@ img {
 #productsLife_wrap .prd_basic .box .price .sellY {
   position: relative;
   display: inline-block;
+  right: 12px;
 }
 
 #productsLife_wrap .prd_basic .box .price p {
@@ -215,7 +219,9 @@ img {
   align-items: center;
   justify-content: center;
   column-gap: 10px;
-  width: 600px;
+  width: 400px;
+  position: relative;
+  right: -260px;
 }
 
 #productsLife_wrap .prd_basic .box .price .per {

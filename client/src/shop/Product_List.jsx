@@ -31,25 +31,12 @@ const Product_List = () => {
 		  <div className="products_body">
         <div id="big_section">
           <ul className="sub_category">
-            <li>
-              <Link to={`./Products1`} ></Link>
-              {/** <a href="./Products1">생활</a> */}
-            </li>
-	          <li>
-              <a href="./Products2">욕실</a>
-            </li>
-	          <li>
-              <a href="./Products3">식품</a>
-            </li>
-	          <li>
-              <a href="./Products4">주방</a>
-            </li>
-						<li>
-              <a href="./Products5">반려동물</a>
-            </li>
-						<li>
-              <a href="./Products6">사무</a>
-            </li>
+            <li><Link to="/shop/products1">생활</Link></li>
+            <li><Link to="/shop/products2">욕실</Link></li>
+            <li><Link to="/shop/products3">식품</Link></li>
+            <li><Link to="/shop/products4">주방</Link></li>
+            <li><Link to="/shop/products5">반려동물</Link></li>
+            <li><Link to="/shop/products6">사무</Link></li>
           </ul>   {/** sub_category end */}
 
 	        {/** 상품정렬 */}
@@ -76,7 +63,7 @@ const Product_List = () => {
                 </p>    {/** name end */}
 		            <div className="price">
 			            <p className="sell sellY">
-                    KRW {item.price}<span></span>
+                    KRW {item.price}<span>원</span>
                   </p>  {/** sell sellY end */}
 			            <div className="discount_section">
 				            <p className="per">{item.discount_rate}%</p>
