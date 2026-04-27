@@ -51,7 +51,7 @@ a:active {
   color: black; /* 링크 색상을 검은색으로 */
   text-decoration: none; /* 링크의 밑줄 제거 */
   position: relative;
-  left: 980px;
+  left: 900px;
   top: 150px;
   font-size: 40px;
 }
@@ -123,6 +123,11 @@ input[type="hidden" i] {
 
 #login .fld.top {
   margin-bottom: 70px;
+}
+
+#login .login_wrap {
+  position: relative;
+  left: 30px;
 }
 
 .box_member fieldset .fld {
