@@ -13,7 +13,7 @@
 }
 
 
-.products_body {
+#products_wrap .products_body {
   overflow: hidden;
   width: 1900px;
   margin: 0 auto;
@@ -78,7 +78,7 @@ a, a:hover, a:active, a:focus {
   -webkit-appearance: none;
 }
 
-.prd_basic.col3 {
+#products_wrap .prd_basic.col3 {
   width: auto;
   display: grid;
   justify-content: center;
@@ -87,26 +87,26 @@ a, a:hover, a:active, a:focus {
   gap: 140px 2.9%;
 }
 
-.prd_basic {
+#products_wrap .prd_basic {
   display: inline-block;
   width: 100%;
   font-size: 0;
   text-align: left;
 }
 
-.prd_basic.col3 > li {
+#products_wrap .prd_basic.col3 > li {
   width: 33.33%;
   padding: 0;
 }
 
-.prd_basic > li {
+#products_wrap .prd_basic > li {
   display: inline-block;
   padding-bottom: 10px;
   text-align: center;
   vertical-align: top;
 }
 
-.prd_basic .box {
+#products_wrap .prd_basic .box {
   position: relative;
   width: 600px;
   height: 850px;
@@ -115,7 +115,7 @@ a, a:hover, a:active, a:focus {
   border: 1px solid #eee;
 }
 
-.prd_basic .box .img {
+#products_wrap .prd_basic .box .img {
   overflow: hidden;
   position: relative;
   z-index: 1;
@@ -124,11 +124,11 @@ a, a:hover, a:active, a:focus {
   text-align: center;
 }
 
-.prd_basic .box .img .prdimg {
+#products_wrap .prd_basic .box .img .prdimg {
   transition: all .3s ease;
 }
 
-.prd_basic .box .img .prdimg img {
+#products_wrap .prd_basic .box .img .prdimg img {
   width: 550px;
   height: 550px;
   position: relative;
@@ -138,36 +138,37 @@ img {
   vertical-align: top;
 }
 
-.prd_basic .box .img .soldout {
+#products_wrap .prd_basic .box .img .soldout {
   display: none;
 }
 
-.prd_basic .box .info {
+#products_wrap .prd_basic .box .info {
   width: 600px;
   padding: 20px 0;
   position: relative;
   left: -10px;
+  top: 30px;
   text-align: center;
 }
 
-.prd_basic .box .name {
+#products_wrap .prd_basic .box .name {
   padding-top: 0;
   color: #000;
   font-size: 14px;
   font-weight: 400;
 }
 
-.prd_basic .box .name > a {
+#products_wrap .prd_basic .box .name > a {
   color: #000;
   font-size: 22px;
   font-weight: 400;
   position: relative;
-  left: -40px;
+  left: 10px;
   width: 600px;
   display: inline-block;
 }
 
-.prd_basic .box .price {
+#products_wrap .prd_basic .box .price {
   padding-top: 7px;
   text-align: center;
   position: relative;
@@ -176,13 +177,13 @@ img {
   min-height: 130px;
 }
 
-.prd_basic .box .price .sellY {
+#products_wrap .prd_basic .box .price .sellY {
   position: relative;
   display: inline-block;
-  right: -25px;
+  right: 12px;
 }
 
-.prd_basic .box .price p {
+#products_wrap .prd_basic .box .price p {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -193,17 +194,17 @@ img {
   word-wrap: break-word;
 }
 
-.prd_basic .box .price p span {
+#products_wrap .prd_basic .box .price p span {
   padding-right: 5px;
 }
 
-.prd_basic .box .price p * {
+#products_wrap .prd_basic .box .price p * {
   color: #000;
   font-size: 17px;
   font-weight: 400;
 }
 
-.prd_basic .box .price .sellY:after {
+#products_wrap .prd_basic .box .price .sellY:after {
   position: absolute;
   top: 41%;
   left: 0;
@@ -213,24 +214,24 @@ img {
   content: '';
 }
 
-.prd_basic .box .price .discount_section {
+#products_wrap .prd_basic .box .price .discount_section {
   display: flex;
   align-items: center;
   justify-content: center;
   column-gap: 10px;
   width: 400px;
   position: relative;
-  right: 100px;
+  right: -260px;
 }
 
-.prd_basic .box .price .per {
+#products_wrap .prd_basic .box .price .per {
   color: #ff0000;
   font-size: 17px;
   position: relative;
   right: 180px;
 }
 
-.prd_basic .box .price p {
+#products_wrap .prd_basic .box .price p {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -241,14 +242,14 @@ img {
   word-wrap: break-word;
 }
 
-.prd_basic .box .price .discountY {
+#products_wrap .prd_basic .box .price .discountY {
   display: inline-block;
   text-align: center;
   position: relative;
   right: 170px;
 }
 
-.prd_basic .box .price .discount {
+#products_wrap .prd_basic .box .price .discount {
   text-align: center;
   position: relative;
 } 
@@ -319,8 +320,6 @@ img {
 /** 검색기능 구현 */
 .search-container {
   position: fixed;
-  /** bottom: 850px;
-  right: 280px; */
   float: right;
   z-index: 999;
   display: flex;
