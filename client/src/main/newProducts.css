@@ -12,18 +12,18 @@
   width: 1920px;
 }
 
-.main_new {
+.newProducts_wrap .main_new {
   margin-top: 170px;
 }
 
-.title_section.tac {
+.newProducts_wrap .title_section.tac {
   text-align: center;
   margin-bottom: 30px;
   position: relative;
   left: 100px;
 }
 
-.main_new h2 {
+.newProducts_wrap .main_new h2 {
   font-size: 33px;
   text-align: center;
   font-family: 'GmarketSansMedium';
@@ -33,7 +33,7 @@
 }
 
 /* 각 슬라이드(상품 카드)의 기본 스타일 */
-.main_new_slide .swiper-slide {
+.newProducts_wrap .main_new_slide .swiper-slide {
   display: flex;
   justify-content: center;
   position: relative;
@@ -59,7 +59,7 @@
   position: relative;
 }
 
-.main_new .prd_basic .box .name > a {
+.newProducts_wrap .main_new .prd_basic .box .name > a {
   color: black;
   font-size: 22px; 
   position: relative;
@@ -67,32 +67,32 @@
   font-family: 'GmarketSansMedium';
 } 
 
-.main_new .prd_basic .info {
+.newProducts_wrap .main_new .prd_basic .info {
   text-align: center;
   font-size: 22px;
   font-family: 'GmarketSansMedium';
 }
 
-.main_new .prd_basic .discount_section .per {
+.newProducts_wrap .main_new .prd_basic .discount_section .per {
   text-align: center;
   padding-left: 220px;
   font-family: 'GmarketSansMedium';
 }
 
-.main_new .prd_basic .discount_section .discount_discountY {
+.newProducts_wrap .main_new .prd_basic .discount_section .discount_discountY {
   margin-left: 10px;
   position: relative;
   right: 185px;
   font-family: 'GmarketSansMedium';
 } 
 
-.prdimg img {
+.newProducts_wrap .prdimg img {
   width: 100%;
   height: 380px;
   object-fit: cover;
 }
 
-.soldout {
+.newProducts_wrap .soldout {
   position: absolute;
   top: 10px;
   left: 10px;
@@ -103,7 +103,7 @@
   font-family: 'GmarketSansMedium';
 }
 
-.main_new .info .name {
+.newProducts_wrap .main_new .info .name {
   font-weight: bold;
   margin-top: 10px;
   position: relative;
@@ -113,7 +113,7 @@
   font-family: 'GmarketSansMedium';
 }
 
-.main_new .price {
+.newProducts_wrap .main_new .price {
   margin-top: 10px;
   margin-left: 50px;
   font-family: 'GmarketSansMedium';
@@ -139,13 +139,13 @@
   font-family: 'GmarketSansMedium';
 }
 
-.main_new .per {
+.newProducts_wrap  .main_new .per {
   color: red;
   position: relative;
   right: 40px;
 }
 
-.main_new .discount_discountY {
+.newProducts_wrap .main_new .discount_discountY {
   position: relative;
   right: 30px;
   font-family: 'GmarketSansMedium';
