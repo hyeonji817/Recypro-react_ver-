@@ -40,7 +40,7 @@ const NewProducts = () => {
         <div className="slide_wrap">  {/** 상품 이미지들을 가로로 여러 개 보여주는 캐러셀 형식으로 구성 */}
           <Swiper
             className="main_new_slide"
-            spaceBetween={5} // 슬라이드 간의 간격 설정 : 54px만큼 띄워짐
+            spaceBetween={0} // 슬라이드 간의 간격 설정 : 54px만큼 띄워짐
             slidesPerView={3} // 한 번에 보이는 슬라이드 개수 : 3개 
             loop={true}   // 슬라이드 반복 가능 
             autoplay={{ delay: 4000, disableOnInteraction: false }}
