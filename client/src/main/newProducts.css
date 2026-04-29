@@ -89,8 +89,12 @@
 } 
 
 .newProducts_wrap .main_new .prd_basic .info {
+  width: 600px;
+  padding: 20px 0;
+  position: relative;
+  left: -10px;
+  top: 30px;
   text-align: center;
-  font-size: 22px;
   font-family: 'GmarketSansMedium';
 }
 
@@ -107,11 +111,11 @@
   font-family: 'GmarketSansMedium';
 } 
 
-.newProducts_wrap .prdimg img {
+/** .newProducts_wrap .prdimg img {
   width: 100%;
   height: 380px;
   object-fit: cover;
-}
+} */
 
 .newProducts_wrap .soldout {
   position: absolute;
@@ -124,26 +128,48 @@
   font-family: 'GmarketSansMedium';
 }
 
-.newProducts_wrap .main_new .info .name {
-  font-weight: bold;
+.newProducts_wrap .prd_basic .main_new .box .info {
+  width: 600px;
+  padding: 20px 0;
+  position: relative;
+  left: -10px;
+  top: 30px;
+  text-align: center;
+}
+
+.newProducts_wrap .main_new .box .info .name {
   margin-top: 10px;
   position: relative;
-  right: 10px;
+  right: -40px;
   font-size: 22px;
   width: 600px;
   font-family: 'GmarketSansMedium';
 }
 
+.newProducts_wrap .prd_basic .box .name > a {
+  color: #000;
+  font-size: 22px;
+  font-weight: 400;
+  position: relative;
+  left: 10px;
+  width: 600px;
+  display: inline-block;
+}
+
 .newProducts_wrap .main_new .price {
-  margin-top: 10px;
-  margin-left: 50px;
-  font-family: 'GmarketSansMedium';
+  padding-top: 2px;
+  text-align: center;
+  position: relative;
+  top: 30px;
+  left: 30px;
+  min-height: 130px;
 }
 
 .newProducts_wrap .main_new .sell_sellY {
-  font-family: 'GmarketSansMedium';
   position: relative;
-  right: 100px;
+  display: inline-block;
+  right: 12px;
+  font-size: 17px;
 }
 
 .newProducts_wrap .main_new .sell_sellY span {
@@ -156,14 +182,15 @@
   justify-content: center;
   column-gap: 10px;
   width: 400px;
-  margin-left: 140px;
+  margin-left: 157px;
   font-family: 'GmarketSansMedium';
+  font-size: 17px;
 }
 
 .newProducts_wrap  .main_new .per {
   color: red;
   position: relative;
-  right: 40px;
+  right: 180px;
 }
 
 .newProducts_wrap .main_new .discount_discountY {
