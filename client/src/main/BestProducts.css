@@ -14,7 +14,7 @@
   box-sizing: border-box;
 }
 
-.main_best {
+.best-products .main_best {
   font-family: 'GmarketSansMedium';
 }
 
@@ -69,7 +69,7 @@
 }
 
 /* 상품 이미지 */
-.prdimg img {
+.best-products .prdimg img {
   width: 450px;
   height: 450px;
   position: relative;
