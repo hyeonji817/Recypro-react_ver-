@@ -8,81 +8,96 @@
 }
 
 .best-products {
-  width: 100%;
-  font-family: 'GmarketSansMedium';
-  padding: 60px 0 100px;
-  box-sizing: border-box;
-}
-
-.best-products .main_best {
+  padding-bottom: 50px;
+  min-height: 500px;
   font-family: 'GmarketSansMedium';
 }
 
 .best-products .main_best {
-  padding: 190px 60px 0;
-  position: relative;
-  top: 220px;
+  margin-top: 170px;
+  width: 1980px;
 }
 
 .best-products .main_best .title_section {
   padding-bottom: 113px;
 }
 
-.best-products .tac {
-  text-align: center !important;
+.best-products .title_section.tac {
+  text-align: center;
+  margin-bottom: 30px;
+  position: relative;
+  left: 100px;
 }
 
-.best-products .title_section > h2 {
-  color: #000;
+.best-products .main_best .title_section > h2 {
   font-size: 33px;
-  font-weight: 400;
-  letter-spacing: 0;
-  line-height: 30px;
-  position: relative;
-  top: 70px;
+  text-align: center;
   font-family: 'GmarketSansMedium';
-}
-
-.best-products .prd_basic.col3 {
-  display: grid;
-  gap: 60px 0px;
-  justify-content: center;
-  height: 600px;
-  padding: 0 20px;
+  color: black;
   position: relative;
-  left: 20px;
+  top: -30px;
 }
 
-.best-products .prd_basic.col3 > li {
+.best-products .main_best .prd_basic.col3 {
+  display: inline-block;
+  width: 100%;
+  font-size: 0;
+  text-align: left;
+  position: relative;
+  left: 160px;
+}
+
+.best-products .main_best .prd_basic.col3 > li {
   width: 100%;
 }
 
 /** 상품 항목 박스 */
-.best-products .prd_basic.col3 .box {
-  width: 100%;
-  max-width: 600px;
+.best-products .main_best .prd_basic.col3 .box {
+  position: relative;
+  width: 600px;
+  height: 850px;
   margin: 0 auto;
-  border: 1px solid #eee;
   padding: 10px;
-  height: 750px;
-  background-color: #fff;
+  border: 1px solid #eee;
+}
+
+.best-products .main_best .prd_basic.col3 .box .img {
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
 }
 
 /* 상품 이미지 */
-.best-products .prdimg img {
-  width: 450px;
-  height: 450px;
-  position: relative;
-  object-fit: cover;
+.best-products .main_best .prd_basic.col3 .box .img .prdimg {
+  transition: all .3s ease;
 }
 
-.best-products .prd_basic .box .name > a {
+.best-products .main_best .prd_basic.col3 .box .img .prdimg img {
+  width: 550px; 
+  height: 550px; 
+  position: relative;
+}
+
+.best-products .main_best .prd_basic.col3 .box .name > a {
   color: black;
   font-size: 22px; 
   position: relative;
   left: -30px;
   font-family: 'GmarketSansMedium';
 } 
+
+.best-products .main_best .prd_basic.col3 .info {
+  width: 600px;
+  padding: 20px 0;
+  position: relative;
+  left: -10px;
+  top: 30px;
+  text-align: center;
+  font-family: 'GmarketSansMedium';
+}
 
 .best-products .info .name {
   font-weight: bold;
@@ -93,19 +108,19 @@
   position: relative;
 }
 
-.best-products .prd_basic > li {
+.best-products .prd_basic.col3 > li {
   display: inline-block;
   padding-bottom: 10px;
   text-align: center;
   vertical-align: top;
 }
 
-.best-products .prd_basic .box .price {
+.best-products .prd_basic.col3 .box .price {
   position: relative;
   top: -60px;
 }
 
-.best-products .prd_basic .box .price .sellY {
+.best-products .prd_basic.col3 .box .price .sellY {
   font-family: 'GmarketSansMedium';
   position: relative;
   display: inline-block;
@@ -113,21 +128,22 @@
   right: 50px;
 }
 
-.best-products .prd_basic .box .price .sellY span { 
+.best-products .prd_basic.col3 .box .price .sellY span { 
   font-family: 'GmarketSansMedium';
 }
 
-.best-products .prd_basic .box .price .discount_section {
-  display: flex;
-  align-items: center;
-  position: relative;
-  top: -7px;
-  justify-content: center;
-  column-gap: 10px;
-  width: 400px;
-  left: -10px;
-  margin-left: 100px;
+.best-products .prd_basic.col3 .box .price .discount_section {
+  text-align: center;
+  padding-left: 220px;
+  font-family: 'GmarketSansMedium';
 }
+
+.best-products .main_best .prd_basic.col3 .discount_section .discount_discountY {
+  margin-left: 10px;
+  position: relative;
+  right: 185px;
+  font-family: 'GmarketSansMedium';
+} 
 
 .best-products .prd_basic .discount_section .per {
   text-align: center;
