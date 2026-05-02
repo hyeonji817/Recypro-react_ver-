@@ -8,164 +8,117 @@
 }
 
 .best-products {
-  padding-bottom: 50px;
+  padding: 80px 0 50px;
   min-height: 500px;
+  position: relative;
+  top: 300px;
   font-family: 'GmarketSansMedium';
 }
 
 .best-products .main_best {
-  margin-top: 170px;
-  width: 1980px;
-}
-
-.best-products .main_best .title_section {
-  padding-bottom: 113px;
-}
-
-.best-products .title_section.tac {
-  text-align: center;
-  margin-bottom: 30px;
-  position: relative;
-  left: 100px;
-}
-
-.best-products .main_best .title_section > h2 {
-  font-size: 33px;
-  text-align: center;
-  font-family: 'GmarketSansMedium';
-  color: black;
-  position: relative;
-  top: -30px;
-}
-
-.best-products .main_best .prd_basic.col3 {
-  display: inline-block;
   width: 100%;
-  font-size: 0;
-  text-align: left;
-  position: relative;
-  left: 160px;
-}
-
-.best-products .main_best .prd_basic.col3 > li {
-  width: 100%;
-}
-
-/** 상품 항목 박스 */
-.best-products .main_best .prd_basic.col3 .box {
-  position: relative;
-  width: 600px;
-  height: 850px;
+  max-width: 1800px;
   margin: 0 auto;
+}
+
+.best-products .title_section {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.best-products .title_section h2 {
+  font-size: 28px;
+  font-weight: 400;
+  color: #000;
+}
+
+/* 상품 리스트 1행 3열 */
+.best-products .prd_basic.col3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  row-gap: 170px;
+  column-gap: 0;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+/* 상품 하나 */
+.best-products .prd_basic.col3 > li {
+  list-style: none;
+  text-align: center;
+}
+
+/* 상품 박스 */
+.best-products .prd_basic.col3 .box {
+  width: 100%;
+  min-height: 680px;
   padding: 10px;
   border: 1px solid #eee;
+  box-sizing: border-box;
 }
 
-.best-products .main_best .prd_basic.col3 .box .img {
-  overflow: hidden;
-  position: relative;
-  z-index: 1;
+/* 이미지 영역 */
+.best-products .prd_basic.col3 .box .img {
   width: 100%;
+  text-align: center;
+  overflow: hidden;
+}
+
+/* 이미지 */
+.best-products .prd_basic.col3 .box .img .prdimg img {
+  width: 100%;
+  max-width: 550px;
+  height: 550px;
+  object-fit: cover;
+  display: block;
   margin: 0 auto;
+}
+
+/* 상품 정보 */
+.best-products .prd_basic.col3 .box .info {
+  padding: 35px 0 20px;
   text-align: center;
 }
 
-/* 상품 이미지 */
-.best-products .main_best .prd_basic.col3 .box .img .prdimg {
-  transition: all .3s ease;
-}
-
-.best-products .main_best .prd_basic.col3 .box .img .prdimg img {
-  width: 550px; 
-  height: 550px; 
-  position: relative;
-}
-
-.best-products .main_best .prd_basic.col3 .box .info {
-  width: 600px;
-  padding: 20px 0;
-  position: relative;
-  left: -10px;
-  top: 30px;
-  text-align: center;
-  font-family: 'GmarketSansMedium';
-}
-
+/* 상품명 */
 .best-products .prd_basic.col3 .box .info .name {
-  margin-top: 10px;
-  position: relative;
-  right: -40px;
-  font-size: 22px;
-  width: 600px;
-  font-family: 'GmarketSansMedium';
+  margin: 0 0 35px;
+  font-size: 18px;
+  font-weight: 500;
 }
 
-.best-products .main_best .prd_basic.col3 .box .name > a {
+.best-products .prd_basic.col3 .box .info .name a {
   color: #000;
-  font-size: 22px;
-  font-weight: 400;
-  position: relative;
-  left: 10px;
-  width: 600px;
-  display: inline-block;
-} 
-
-.best-products .prd_basic.col3 > li {
-  display: inline-block;
-  padding-bottom: 10px;
-  text-align: center;
-  vertical-align: top;
+  text-decoration: none;
 }
 
+/* 가격 */
 .best-products .prd_basic.col3 .box .price {
-  padding-top: 2px;
   text-align: center;
-  position: relative;
-  top: 30px;
-  left: 30px;
-  min-height: 130px;
 }
 
 .best-products .prd_basic.col3 .box .price .sell_sellY {
-  position: relative;
   display: inline-block;
-  right: 12px;
-  font-size: 17px;
+  margin: 0 0 15px;
+  font-size: 14px;
+  text-decoration: line-through;
 }
 
-.best-products .prd_basic.col3 .box .price .sellY span { 
-  font-family: 'GmarketSansMedium';
-}
-
+/* 할인율 + 할인가 */
 .best-products .prd_basic.col3 .box .price .discount_section {
   display: flex;
   align-items: center;
   justify-content: center;
-  column-gap: 10px;
-  width: 400px;
-  margin-left: 157px;
-  font-family: 'GmarketSansMedium';
-  font-size: 17px;
+  gap: 15px;
+  font-size: 15px;
 }
 
-.best-products .main_best .prd_basic.col3 .discount_section .discount_discountY {
-  position: relative;
-  right: 30px;
-  font-family: 'GmarketSansMedium';
-} 
-
-.best-products .prd_basic .discount_section .per {
+.best-products .prd_basic.col3 .box .price .per {
   color: red;
-  position: relative;
-  right: 180px;
+  margin: 0;
 }
 
-.best-products .prd_basic .discount {
-  text-align: center;
-  position: relative;
-  font-family: 'GmarketSansMedium';
-}
-
-.ol, ul, li {
-  list-style: none;
+.best-products .prd_basic.col3 .box .price .discount {
+  margin: 0;
 }

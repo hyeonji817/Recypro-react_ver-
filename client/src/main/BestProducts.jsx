@@ -1,8 +1,5 @@
 import "./BestProducts.css";
-// React : React를 사용하기 위한 기본 모듈 
-// useEffect : 컴포넌트가 렌더링될 때 API 호출 등의 부수효과를 처리 
-// useState : 컴포넌트의 상태 관리를 위해 사용됨. 
-import React, { useEffect, useState } from "react"; 
+import React, { useEffect, useState } from "react";
 
 const BestProducts = () => {
   const [bestProducts, setBestProducts] = useState([]);
@@ -10,62 +7,64 @@ const BestProducts = () => {
   useEffect(() => {
     const fetchBestProducts = async () => {
       try {
-        const res = await fetch("http://localhost:5003/api/best_products");   // best_Product.js (인기상품 페이지 연동 라우터) 페이지 연동
-        const data = await res.json(); 
+        const res = await fetch("http://localhost:5003/api/best_products");
+        const data = await res.json();
         setBestProducts(data);
       } catch (err) {
         console.error("Failed to fetch best products:", err);
       }
     };
+
     fetchBestProducts();
   }, []);
 
   return (
-    <div className="best-products">
+    <section className="best-products">
       <div className="main_best">
         <div className="title_section tac">
           <h2>BEST PRODUCT</h2>
         </div>
+
         <ul className="prd_basic col3">
           {bestProducts.map((item, index) => (
-          <li key={index}>
-            <div className="box ">
-              <div className="img">
-                <div className="prdimg">
-                  <a href={item.href}>
-                    <img 
+            <li key={index}>
+              <div className="box">
+                <div className="img">
+                  <div className="prdimg">
+                    <a href={item.href || "#"}>
+                      <img
                         src={`http://localhost:5003/uploads/${item.filename}`}
-                        alt={item.name}
-                        width="285"
-                        height="380"
+                        alt={item.pname}
                       />
-                  </a>
+                    </a>
+                  </div>
                 </div>
-              </div>
 
-              <div className="info">
-                <p className="name">
-                  <a href={item.href}>
-                    {item.pname}
-                  </a>
-                </p>
-                <div className="price">
-                  <p className="sell_sellY" style={{ textDecoration: "line-through" }}>
-                    <span>KRW</span>
-                    {item.price}
+                <div className="info">
+                  <p className="name">
+                    <a href={item.href || "#"}>{item.pname}</a>
                   </p>
-                  <div className="discount_section" style={{ position: "relative", right: "-22px"}}>
-                    <p className="per">{item.discount_rate}%</p>
-                    <p className="discount discountY">{item.discount_price}원</p>
+
+                  <div className="price">
+                    <p className="sell_sellY" style={{ textDecoration: "line-through" }}>
+                      <span>KRW </span>
+                      {item.price}
+                    </p>
+
+                    <div className="discount_section">
+                      <p className="per">{item.discount_rate}%</p>
+                      <p className="discount discountY">
+                        {item.discount_price}원
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </li>
+            </li>
           ))}
         </ul>
       </div>
-    </div>
+    </section>
   );
 };
 
