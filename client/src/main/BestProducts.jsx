@@ -50,7 +50,7 @@ const BestProducts = () => {
                   </a>
                 </p>
                 <div className="price">
-                  <p className="sell sellY" style={{ textDecoration: "line-through" }}>
+                  <p className="sell_sellY" style={{ textDecoration: "line-through" }}>
                     <span>KRW</span>
                     {item.price}
                   </p>
