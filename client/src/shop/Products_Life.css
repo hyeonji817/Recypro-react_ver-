@@ -280,10 +280,6 @@ img {
   font-size: 20px;
 }
 
-#productsLife_wrap .paging * {
-  vertical-align: middle;
-}
-
 #productsLife_wrap .paging li a {
   display: block;
   color: #838383;
@@ -315,12 +311,6 @@ img {
   vertical-align: top;
 }
 
-#productsLife_wrap #big_section .list_sns > li {
-  display: inline-block;
-  padding: 0 20px;
-  vertical-align: top;
-}
-
 #productsLife_wrap #big_section .list_sns.rola > li.sns_child1 a {
   background: url(https://www.rolarola.com/_skin/rolarola_250402/img/main/sns_youtube.png) no-repeat center;
 }
@@ -330,10 +320,6 @@ img {
   width: 60px;
   height: 60px;
   text-indent: -9999px;
-}
-
-#productsLife_wrap .tac {
-  text-align: center !important;
 }
 
 #productsLife_wrap #big_section .list_sns.rlol > li.sns_child0 a {
