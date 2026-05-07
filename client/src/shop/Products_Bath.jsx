@@ -66,7 +66,7 @@ const Products_Bath = () => {
             </p>
             <div className="price">
               <p className="sell sellY">
-                KRW {item.price}
+                KRW {item.price}원
               </p>
               <div className="discount_section">
                 <p className="per">{item.discount_rate}%</p>

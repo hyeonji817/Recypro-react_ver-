@@ -60,12 +60,12 @@ const Products_Food = () => {
                     </div>
 
 	                  <div className="info">
-                      <p className="name" style={{ position: "relative", right: "10px" }}>
+                      <p className="name">
                         <Link to={detailPath}>{item.pname}</Link>
                       </p>
                       <div className="price">
                         <p className="sell sellY">
-                          {item.price}<span>원</span>
+                          KRW {item.price}<span>원</span>
                         </p>
                         <div className="discount_section">
                           <p className="per">{item.discount_rate}%</p>
