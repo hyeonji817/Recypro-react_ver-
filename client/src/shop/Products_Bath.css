@@ -78,7 +78,7 @@ a, a:hover, a:active, a:focus {
   -webkit-appearance: none;
 }
 
-#productsBath_wrap .prd_basic .col3 {
+#productsBath_wrap .prd_basic.col3 {
   width: auto;
   display: grid;
   justify-content: center;
