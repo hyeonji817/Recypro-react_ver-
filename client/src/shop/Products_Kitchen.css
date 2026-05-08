@@ -39,6 +39,7 @@ ol, ul, li {
 #productsKitchen_wrap #big_section .sub_category li a {
   color: #000;
   font-size: 30px;
+  font-weight: bold;
 }
 
 a, a:hover, a:active, a:focus {
@@ -141,7 +142,7 @@ img {
 }
 
 #productsKitchen_wrap .prd_basic .box .info {
-  width: 510px;
+  width: 600px;
   padding: 20px 0;
   text-align: center;
 }
@@ -153,7 +154,8 @@ img {
   font-weight: 400;
   padding-left: 50px;
   position: relative;
-  left: 50px;
+  left: 20px;
+  top: 30px;
 }
 
 #productsKitchen_wrap .prd_basic .box .name > a {
@@ -168,7 +170,7 @@ img {
   font-size: 0;
   text-align: center;
   position: relative;
-  top: 30px;
+  top: 60px;
   left: 30px;
   min-height: 130px;
 }
@@ -176,6 +178,7 @@ img {
 #productsKitchen_wrap .prd_basic .box .price .sellY {
   position: relative;
   display: inline-block;
+  right: 35px;
 }
 
 #productsKitchen_wrap .prd_basic .box .price p {
@@ -215,7 +218,8 @@ img {
   justify-content: center;
   column-gap: 10px;
   width: 400px;
-  margin-left: 230px;
+  position: relative;
+  right: -240px;
 }
 
 #productsKitchen_wrap .prd_basic .box .price .per {
