@@ -15,7 +15,6 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/autoplay";
 
-
 const Product1 = () => {
   const { productId } = useParams(); 		// 상품명 호출
 	console.log("productId param = ", productId);
@@ -119,21 +118,34 @@ const Product1 = () => {
 
 	// 문자열, JSON 문자열, 배열 어떤 형태여도 배열로 정규화
 	const toArray = (v) => {
-  	if (Array.isArray(v)) return v;
-  	if (v == null) return [];
-  	if (typeof v === "string") {
-    	try {
-      	// JSON 문자열이면
-      	const parsed = JSON.parse(v);
-      	return Array.isArray(parsed) ? parsed : [v.trim()];
-    	} catch {
-      	// 그냥 콤마/슬래시 구분 문자열 등
-      	return v.split(/[,|/]+/).map(s => s.trim()).filter(Boolean);
-    	}
-  	}
-  	// 객체 등 기타 타입은 일단 문자열화
-  	return [String(v)];
+		if (Array.isArray(v)) return v;
+		if (v == null) return [];
+	
+		if (typeof v === "object") {
+			if (Array.isArray(v.color)) return v.color;
+			return Object.values(v).flat().map(String);
+		}
+	
+		if (typeof v === "string") {
+			try {
+				const parsed = JSON.parse(v);
+	
+				if (Array.isArray(parsed)) return parsed;
+				if (parsed && typeof parsed === "object" && Array.isArray(parsed.color)) {
+					return parsed.color;
+				}
+	
+				return [v.trim()];
+			} catch {
+				return v.split(/[,|/]+/).map(s => s.trim()).filter(Boolean);
+			}
+		}
+	
+		return [String(v)];
 	};
+
+	// selectColor 파싱 
+	const colorOptions = toArray(selectColor);
 
 	if (loading) return <div className="Product_wrap">Loading...</div>;
   if (error) return <div className="Product_wrap">{error}</div>;
@@ -149,23 +161,6 @@ const Product1 = () => {
 	const unitBase = Number(discount_price || price || 0);
 	const unitPrice = Math.max(0, unitBase + optionDelta);
 	const totalPrice = unitPrice * qty;	
-
-	// selectColor 파싱 
-	let colorOptions = []; 
-	try {
-		if (selectColor) {
-			// JSON 형식 우선
-			if (selectColor.trim().startsWith("{")) {
-				const obj = JSON.parse(selectColor);
-				colorOptions = Array.isArray(obj.color) ? obj.color : [];
-			} else {
-				// CSV 형식
-				colorOptions = selectColor.split(",").map(s => s.trim()).filter(Boolean);
-			}
-		}
-	} catch (e) {
-		console.warn("selectColor parse error:", e);
-	}
 
 	// 업로드 경로 통일: DB에는 "life/xxx.jpg" 저장했다고 가정
   const mainImg = `http://localhost:5001/uploads/${String(filename).replace(/^\.\//,'')}`;
@@ -217,13 +212,13 @@ const Product1 = () => {
 											<p className="summary">{manufacturer} · {category}</p>	{/** summary end */}
 											<div className="price">
 												<div className="top_price">
-													<span className="consumer consumerY">{price?.toLocalString()} 원</span>		{/** consumer consumerY end */}
+													<span className="consumer consumerY">{Number(price || 0).toLocaleString()} 원 원</span>		{/** consumer consumerY end */}
 													<span className="sell sellY">
-														<strong>{discount_price?.toLocaleString()}</strong>
+														<strong>{Number(discount_price || 0).toLocaleString()}</strong>
 													</span>			{/** sell sellY end */}	
 												</div>		{/** top_price end */}
 												<span className="discount discountY">
-													<strong>{discount_price?.toLocaleString()}</strong>
+													<strong>{Number(discount_price || 0).toLocaleString()}</strong>
 												</span>		{/** discount discountY end */}
 												<span className="per">{discount_rate}%</span>			{/** per end */}
 											</div>		{/** price end */}
@@ -249,7 +244,7 @@ const Product1 = () => {
 														<select
 															name="option1"
 															className="wing_multi_option pno4844 necessary_Y"
-															value={selectColor}
+															value={selectedColor}
 															onChange={(e) => setSelectedColor(e.target.value)}
 														>
 															<option value="">::색상::</option>
