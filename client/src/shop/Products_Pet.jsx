@@ -43,7 +43,6 @@ const Products_Pet = () => {
           <ul className="prd_basic col3">
           {currentItems.map((item) => {
           const detailPath = `/shop/product5/${encodeURIComponent(item.productId)}`;
-
           return (
             <li key={item.productId}>
             <div className="box">
@@ -63,11 +62,11 @@ const Products_Pet = () => {
 
               <div className="info">
                 <p className="name">
-                  <Link to={detailPath}>{item.pname}</Link>
+                  <Link to={detailPath} className="pname">{item.pname}</Link>
                 </p>      {/** name end */}
                 <div className="price">
                   <p className="sell sellY">
-                    {item.price}<span>원</span>  
+                    KRW {item.price}<span>원</span>  
                   </p>      {/** sell sellY end */}  
                   <div className="discount_section">
                     <p className="per">{item.discount_rate}%</p>    {/** per end */}

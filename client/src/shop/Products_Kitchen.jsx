@@ -70,7 +70,6 @@ const Products_Kitchen = () => {
 
                 <div className="info">
                   <p className="name">
-                    {/* ⛔️ <Link to={item.href}> (DB href는 파라미터가 없음) */}
                     <Link to={detailPath}>{item.pname}</Link>
                   </p>    {/** name end */}
                   <div className="price">

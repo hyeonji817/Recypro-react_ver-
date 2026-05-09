@@ -39,6 +39,7 @@ ol, ul, li {
 #productsPet_wrap #big_section .sub_category li a {
   color: #000;
   font-size: 30px;
+  font-weight: bold;
 }
 
 a, a:hover, a:active, a:focus {
@@ -143,7 +144,7 @@ img {
 }
 
 #productsPet_wrap .prd_basic .box .info {
-  width: 510px;
+  width: 600px;
   padding: 20px 0;
   text-align: center;
 }
@@ -155,14 +156,14 @@ img {
   font-weight: 400;
   padding-left: 50px;
   position: relative;
-  left: 50px;
+  left: -35px;
+  top: 30px;
 }
 
-#productsPet_wrap .prd_basic .box .name > a {
+#productsPet_wrap .prd_basic .box .name > .pname {
   color: #000;
   font-size: 22px;
   font-weight: 400;
-  padding-right: 100px;
 }
 
 #productsPet_wrap .prd_basic .box .price {
@@ -178,6 +179,7 @@ img {
 #productsPet_wrap .prd_basic .box .price .sellY {
   position: relative;
   display: inline-block;
+  right: 40px;
 }
 
 #productsPet_wrap .prd_basic .box .price p {
