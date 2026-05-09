@@ -65,7 +65,7 @@ const Products_Office = () => {
                     </p>    {/** name end */}
                     <div className="price">
                       <p className="sell sellY">
-                        {item.price}<span>원</span>
+                        KRW {item.price}<span>원</span>
                       </p>    {/** sell sellY end */}
                       <div className="discount_section">
                         <p className="per">{item.discount_rate}%</p>

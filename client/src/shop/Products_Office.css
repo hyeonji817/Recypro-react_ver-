@@ -39,6 +39,7 @@ ol, ul, li {
 #productsOffice_wrap #big_section .sub_category li a {
   color: #000;
   font-size: 30px;
+  font-weight: bold;
 }
 
 a, a:hover, a:active, a:focus {
@@ -77,7 +78,7 @@ a, a:hover, a:active, a:focus {
   -webkit-appearance: none;
 }
 
-#productsOffice_wrap .prd_basic .col3 {
+#productsOffice_wrap .prd_basic.col3 {
   width: auto;
   display: grid;
   justify-content: center;
@@ -142,7 +143,7 @@ img {
 }
 
 #productsOffice_wrap .prd_basic .box .info {
-  width: 510px;
+  width: 600px;
   padding: 20px 0;
   text-align: center;
 }
@@ -154,7 +155,8 @@ img {
   font-weight: 400;
   padding-left: 50px;
   position: relative;
-  left: 50px;
+  left: 20px;
+  top: 30px;
 }
 
 #productsOffice_wrap .prd_basic .box .name > a {
@@ -169,7 +171,7 @@ img {
   font-size: 0;
   text-align: center;
   position: relative;
-  top: 30px;
+  top: 60px;
   left: 30px;
   min-height: 130px;
 }
@@ -177,6 +179,7 @@ img {
 #productsOffice_wrap .prd_basic .box .price .sellY {
   position: relative;
   display: inline-block;
+  right: 40px;
 }
 
 #productsOffice_wrap .prd_basic .box .price p {
