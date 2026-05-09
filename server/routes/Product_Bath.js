@@ -39,7 +39,8 @@ router.get("/:productId", async (req, res) => {
 
     // (A) 기본 상품 조회 - 상품ID(PK)로 조회하는 경우 
     const productRows = await q(
-      "SELECT * FROM product_bath WHERE productId = ?", 
+      "SELECT * FROM product_bath WHERE pname = ?",
+      [productId]
     );
 
     if (!productRows.length) 
@@ -115,7 +116,10 @@ router.get("/:productId", async (req, res) => {
     // (E) 최종 응답 (항상 JSON)
   } catch (err) {
     console.error("Server error:", err); 
-    return res.status(500).json({ message: "Server error", detail: err.message });
+    return res.json({
+      ...product,
+      optionGroups,
+    });
   }
 });
 

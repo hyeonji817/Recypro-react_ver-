@@ -54,9 +54,9 @@ const Product2 = () => {
 	}, [selected, groups]);
 
   // 필수 옵션이 모두 선택되었는지
-	const requiredSatisfied = groups.every(
-		g => !g.required || selected[g.name]
-	);
+	const requiredSatisfied =
+  selectedColor &&
+  groups.every(g => !g.required || selected[g.name]);
 
 	// 선택한 옵션 라벨을 "색상 : OO / 종류 : OO" 형태로 표시 
 	const selectedLabel = groups 
@@ -240,7 +240,7 @@ const Product2 = () => {
 														<select
 															name="option1"
 															className="wing_multi_option pno4844 necessary_Y"
-															value={selectColor}
+															value={selectedColor}
 															onChange={(e) => {
 																setSelectedColor(e.target.value);
 																setSelected({});
