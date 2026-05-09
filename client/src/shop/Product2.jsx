@@ -2,8 +2,6 @@ import "./Product2.css";
 import React, { useEffect, useState } from "react"; 
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination, EffectFade } from "swiper/modules";
 
 import axios from "axios";
 import Header_loginOK from "../main/Header_loginOK";
@@ -33,7 +31,7 @@ const Product2 = () => {
 		(async () => {
 			try {
 				// 라우터 페이지(Product_Bath.js) 연동 
-				const res = await axios.get(`http://localhost:5001/api/product_bath/${encodeURIComponent(productId)}`, { withCredentials: true });
+				const res = await axios.get(`http://localhost:5003/api/product_bath/${encodeURIComponent(productId)}`, { withCredentials: true });
 				console.log(res.data);	
 				if (mounted) setProduct(prev => ({ ...res.data, optionGroups: res.data?.optionGroups ?? [] }));
 			} catch (err) {
@@ -99,7 +97,7 @@ const Product2 = () => {
 		};
 
 		try {
-			await axios.post("http://localhost:5001/api/cart", payload, { withCredentials: true });
+			await axios.post("http://localhost:5003/api/cart", payload, { withCredentials: true });
 			// 장바구니 페이지로 이동
 			nav("/cart");
 		} catch (e) {
@@ -115,20 +113,29 @@ const Product2 = () => {
 
 	// 문자열, JSON 문자열, 배열 어떤 형태여도 배열로 정규화
 	const toArray = (v) => {
-  	if (Array.isArray(v)) return v;
-  	if (v == null) return [];
-  	if (typeof v === "string") {
-    	try {
-      	// JSON 문자열이면
-      	const parsed = JSON.parse(v);
-      	return Array.isArray(parsed) ? parsed : [v.trim()];
-    	} catch {
-      	// 그냥 콤마/슬래시 구분 문자열 등
-      	return v.split(/[,|/]+/).map(s => s.trim()).filter(Boolean);
-    	}
-  	}
-  	// 객체 등 기타 타입은 일단 문자열화
-  	return [String(v)];
+		if (Array.isArray(v)) return v;
+		if (v == null) return [];
+		if (typeof v === "object") {
+			if (Array.isArray(v.color)) return v.color;
+			return Object.values(v).flat().map(String);
+		}
+	
+		if (typeof v === "string") {
+			try {
+				const parsed = JSON.parse(v);
+	
+				if (Array.isArray(parsed)) return parsed;
+				if (parsed && typeof parsed === "object" && Array.isArray(parsed.color)) {
+					return parsed.color;
+				}
+	
+				return [v.trim()];
+			} catch {
+				return v.split(/[,|/]+/).map(s => s.trim()).filter(Boolean);
+			}
+		}
+	
+		return [String(v)];
 	};
 
 	if (loading) return <div className="Product_wrap">Loading...</div>;
@@ -142,27 +149,13 @@ const Product2 = () => {
 		selectColor, productCount,
   } = product;
 
+	// selectColor 파싱 
+	const colorOptions = toArray(selectColor);
+
 	// 단가(할인가 우선) + 옵션가 
 	const unitBase = Number(discount_price || price || 0);
 	const unitPrice = Math.max(0, unitBase + optionDelta);
 	const totalPrice = unitPrice * qty;
-
-	// selectColor 파싱 
-	let colorOptions = [];
-	try {
-		if (selectColor) {
-			// JSON 형식 우선 
-			if (selectColor.trim().startWith("{")) {
-				const obj = JSON.parse(selectColor);
-				colorOptions = Array.isArray(obj.color) ? obj.color : [];
-			} else {
-				// CSV 형식 
-				colorOptions = selectColor.split(",").map(s => s.trim()).filter(Boolean);
-			}
-		}
-	} catch (e) {
-		console.warn("selectColor parse error:", e);
-	}
 
 	// 업로드 경로 통일: DB에는 "life/xxx.jpg" 저장했다고 가정
   const mainImg = `http://localhost:5003/uploads/${String(filename).replace(/^\.\//,'')}`;
@@ -205,7 +198,7 @@ const Product2 = () => {
 								</div>		{/** related_wrap end */}
 							</div>			{/** prdimg end */}
 
-							{/** 상품 이미지 */}
+							{/** 상품정보 */}
 							<div className="info_scroll">
 								<form name="prdFrm" method="post" style={{ margin: "0px" }} acceptCharset="utf-8">
 									<div className="wrap_prd">
@@ -215,13 +208,13 @@ const Product2 = () => {
 					            <p className="summary">{manufacturer} · {category}</p>
 					            <div className="price">
 						            <div className="top_price">
-							            <span className="consumer consumerY">{price?.toLocaleString()} 원</span>
+							            <span className="consumer consumerY">{Number(price || 0).toLocaleString()} 원</span>
 							            <span className="sell sellY">
-								            <strong>{discount_price?.toLocaleString()}</strong>
+								            <strong>{Number(discount_price || 0).toLocaleString()}</strong>
 							            </span>   {/** sell sellY end */}
 						            </div>    {/** top_price end */}
 						            <span className="discount discountY">
-							            <strong>{discount_price?.toLocaleString()}</strong>
+							            <strong>{Number(discount_price || 0).toLocaleString()}</strong>
 						            </span>   {/** discount discountY end */}
 							          <span className="per">{discount_rate}%</span>
 					            </div>    {/** price end */}
@@ -239,6 +232,7 @@ const Product2 = () => {
                         </div>
                       </div>
 											
+											{/** 상품옵션리스트 - 종류 (데이터가 있을 때만 노출) */}
 											{colorOptions.length > 0 && (
 												<div className="opt_list">
 													<div className="th">종류</div>
@@ -247,9 +241,12 @@ const Product2 = () => {
 															name="option1"
 															className="wing_multi_option pno4844 necessary_Y"
 															value={selectColor}
-															onChange={(e) => setSelectedColor(e.target.value)}
+															onChange={(e) => {
+																setSelectedColor(e.target.value);
+																setSelected({});
+															}}
 														>
-															<option value="">::색상::</option>
+															<option value="">::선택하세요::</option>
 																{colorOptions.map((c) => (
 																	<option key={c} value={c}>{c}</option>
 																))}
@@ -258,27 +255,33 @@ const Product2 = () => {
 												</div>
 											)}
 
-											{/** optionGroups가 있을 때만 노출 */}
-											{(product.optionGroups ?? []).map(group => (
-												<div className="opt_list" key={group.id}>
-													<div className="th">{group.displayName || group.name}</div>
-													<div className="td">
-													<select
-        										value={selected[group.name] || ""}
-        										onChange={(e)=> setSelected(prev => ({ ...prev, [group.name]: e.target.value }))}
-      										>
-        										<option value="">
-          										{group.required ? '선택하세요' : '선택 (옵션 없음 가능)'}
-        										</option>
-        										{group.values.map(v => (
-          									<option key={v.id} value={v.value}>
-            									{v.label}{v.priceDelta ? ` (+${v.priceDelta.toLocaleString()}원)` : ""}
-          									</option>
-        										))}
-      											</select>
-    											</div>
-												</div>
+											{/** 세부 종류: 종류를 선택했을 때만 노출 */}
+											{selectedColor && (product.optionGroups ?? []).map(group => (
+  											<div className="opt_list" key={group.id}>
+    											<div className="th">세부 종류</div>
+    												<div className="td">
+      												<select
+        												value={selected[group.name] || ""}
+        												onChange={(e) =>
+          												setSelected(prev => ({
+            											...prev,
+            											[group.name]: e.target.value
+          												}))
+        												}		
+															>
+        												<option value="">::선택하세요::</option>
+
+        												{group.values.map(v => (
+          											<option key={v.id} value={v.value}>
+            											{v.label}
+            											{v.priceDelta ? ` (+${v.priceDelta.toLocaleString()}원)` : ""}
+          											</option>
+        												))}
+      												</select>
+    												</div>
+  												</div>
 											))}
+
 
 											{/** 수량 */}
 					            <div className="box_qty hidden">

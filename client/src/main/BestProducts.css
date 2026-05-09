@@ -84,7 +84,7 @@
 /* 상품명 */
 .best-products .prd_basic.col3 .box .info .name {
   margin: 0 0 35px;
-  font-size: 18px;
+  font-size: 22px;
   font-weight: 500;
 }
 
@@ -101,7 +101,7 @@
 .best-products .prd_basic.col3 .box .price .sell_sellY {
   display: inline-block;
   margin: 0 0 15px;
-  font-size: 14px;
+  font-size: 17px;
   text-decoration: line-through;
 }
 
@@ -111,7 +111,7 @@
   align-items: center;
   justify-content: center;
   gap: 15px;
-  font-size: 15px;
+  font-size: 17px;
 }
 
 .best-products .prd_basic.col3 .box .price .per {

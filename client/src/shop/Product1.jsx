@@ -225,14 +225,15 @@ const Product1 = () => {
 												<div className="th">수량</div>
 												<div className="td">
 													<select value={qty} onChange={(e) => setQty(Number(e.target.value))}>
-														{Array.from({ length: Math.min(10, numberOfstock || 1) }, (_, i) => i + 1).map(v => (
+														{Array.from({ length: Math.min(10, numberOfstock || 1) }, 
+														(_, i) => i + 1).map(v => (
 															<option key={v} value={v}>{v}</option>
 														))}
 													</select>
 												</div>
 											</div>
 
-											{/** 상품옵션리스트 - 색상 (데이터가 있을 때만 노출) */}
+											{/** 상품옵션리스트 - 종류 (데이터가 있을 때만 노출) */}
 											{colorOptions.length > 0 && (
 												<div className="opt_list">
 													<div className="th">종류</div>
