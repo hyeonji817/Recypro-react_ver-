@@ -11,16 +11,17 @@
 	padding-bottom: 50px;
 	min-height: 500px;
 	font-family: 'GmarketSansMedium';
+	position: relative;
+	top: 100px;
+	left: 50px;
 }
 
 .Product_body .detailPd_body {
 	overflow: visible;
-  /** width: 100%; */
 	width: 1700px;
 	position: relative;
-	top: 170px;
+	top: 220px;
   margin: 0 auto;
-  /** width: 1300px; */
 }
 
 .Product_body #detail {
@@ -312,20 +313,18 @@
 	line-height: 1.4;
 	white-space: nowrap;
 	cursor: pointer;
-	-webkit-appearance: none;
 	transition: all .2s ease;
 }
 
 .Product_body #detail .info_scroll {
 	position: relative;
-	left: 100px;
+	left: 220px;
 	max-width: 450px;
 }
 
 .Product_body #detail .info_scroll form {
 	display: block;
 	position: sticky;
-	position: -webkit-sticky;
 	top: 90px;
 	width: 450px;
 	padding: 0 0 0 6px;

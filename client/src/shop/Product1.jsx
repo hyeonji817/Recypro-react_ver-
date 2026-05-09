@@ -34,7 +34,6 @@ const Product1 = () => {
       try {
 				// 라우터 페이지(Product_Life.js) 연동
         const res = await axios.get(`http://localhost:5003/api/product_life/${encodeURIComponent(productId)}`, { withCredentials: true });
-        // if (mounted) setProduct(res.data);
 				console.log(res.data);
 				if (mounted) setProduct(prev => ({ ...res.data, optionGroups: res.data?.optionGroups ?? [] }));
       } catch (err) {
@@ -118,7 +117,6 @@ const Product1 = () => {
 	const toArray = (v) => {
 		if (Array.isArray(v)) return v;
 		if (v == null) return [];
-	
 		if (typeof v === "object") {
 			if (Array.isArray(v.color)) return v.color;
 			return Object.values(v).flat().map(String);
@@ -210,7 +208,7 @@ const Product1 = () => {
 											<p className="summary">{manufacturer} · {category}</p>	{/** summary end */}
 											<div className="price">
 												<div className="top_price">
-													<span className="consumer consumerY">{Number(price || 0).toLocaleString()} 원 원</span>		{/** consumer consumerY end */}
+													<span className="consumer consumerY">{Number(price || 0).toLocaleString()} 원</span>		{/** consumer consumerY end */}
 													<span className="sell sellY">
 														<strong>{Number(discount_price || 0).toLocaleString()}</strong>
 													</span>			{/** sell sellY end */}	
@@ -243,9 +241,12 @@ const Product1 = () => {
 															name="option1"
 															className="wing_multi_option pno4844 necessary_Y"
 															value={selectedColor}
-															onChange={(e) => setSelectedColor(e.target.value)}
+															onChange={(e) => {
+																setSelectedColor(e.target.value);
+																setSelected({});
+															}}
 														>
-															<option value="">::색상::</option>
+															<option value="">::선택하세요::</option>
 															{colorOptions.map((c) => (
 																<option key={c} value={c}>{c}</option>
 															))}
@@ -254,26 +255,31 @@ const Product1 = () => {
 												</div>
 											)}
 
-											{/** optionGroups가 있을 때만 노출 */}
-											{(product.optionGroups ?? []).map(group => (
-												<div className="opt_list" key={group.id}>
-													<div className="th">{group.displayName || group.name}</div>
-													<div className="td">
-														<select
-															value={selected[group.name] || ""}
-															onChange={(e) => setSelected(prev => ({ ...prev, [group.name]: e.target.value }))}
-														>
-															<option value="">
-																{group.required ? '선택하세요' : '선택 (옵션 없음 가능)'}
-															</option>
-															{group.values.map(v => (
-															<option key={v.id} value={v.value}>
-																{v.label}{v.priceDelta ? ` (+${v.priceDelta.toLocaleString()}원)` : ""}
-															</option>
-															))}
-														</select>
-													</div>
-												</div>
+											{/** 세부 종류: 종류를 선택했을 때만 노출 */}
+											{selectedColor && (product.optionGroups ?? []).map(group => (
+  											<div className="opt_list" key={group.id}>
+    											<div className="th">세부 종류</div>
+    												<div className="td">
+      												<select
+        												value={selected[group.name] || ""}
+        												onChange={(e) =>
+          												setSelected(prev => ({
+            											...prev,
+            											[group.name]: e.target.value
+          												}))
+        												}		
+															>
+        												<option value="">::선택하세요::</option>
+
+        												{group.values.map(v => (
+          											<option key={v.id} value={v.value}>
+            											{v.label}
+            											{v.priceDelta ? ` (+${v.priceDelta.toLocaleString()}원)` : ""}
+          											</option>
+        												))}
+      												</select>
+    												</div>
+  												</div>
 											))}
 
 											{/** 수량 */}
