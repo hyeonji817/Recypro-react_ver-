@@ -2,8 +2,6 @@ import "./Product3.css";
 import React, { useEffect, useState } from "react"; 
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination, EffectFade } from "swiper/modules";
 
 import axios from "axios";
 import Header_loginOK from "../main/Header_loginOK";
@@ -99,7 +97,7 @@ const Product3 = () => {
 		};
 
 		try {
-			await axios.post("http://localhost:5001/api/cart", payload, { withCredentials: true });
+			await axios.post("http://localhost:5003/api/cart", payload, { withCredentials: true });
 			// 장바구니 페이지로 이동
 			nav("/cart");
 		} catch (e) {
@@ -165,11 +163,11 @@ const Product3 = () => {
 	}
 
 	// 업로드 경로 통일: DB에는 "life/xxx.jpg" 저장했다고 가정
-  const mainImg = `http://localhost:5001/uploads/${String(filename).replace(/^\.\//,'')}`;
-	const DescImg = `http://localhost:5001/uploads/${String(img_Desc).replace(/^\.\//,'')}`;
+  const mainImg = `http://localhost:5003/uploads/${String(filename).replace(/^\.\//,'')}`;
+	const DescImg = `http://localhost:5003/uploads/${String(img_Desc).replace(/^\.\//,'')}`;
 
   return (
-    <div className="Product_wrap">
+    <div className="ProductFood_wrap">
       <div className="Product_Header">
         <Header_loginOK />
       </div>
