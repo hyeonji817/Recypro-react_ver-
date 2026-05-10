@@ -32,7 +32,7 @@ router.get("/:productId", async (req, res) => {
 
     // (A) 기본 상품 조회 - 상품ID(PK)로 조회하는 경우 
     const productRows = await q(
-      "SELECT * FRO< product_kitchen WHERE productId = ?",
+      "SELECT * FROM product_kitchen WHERE productId = ?",
       [productId]
     );
 

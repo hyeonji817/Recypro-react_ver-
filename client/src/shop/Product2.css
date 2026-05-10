@@ -7,17 +7,18 @@
   font-style: normal;
 }
 
-.Product_body {  
+.ProductBath_wrap .Product_body {  
 	padding-bottom: 50px;
 	min-height: 500px;
 	font-family: 'GmarketSansMedium';
 }
 
-.Product_body .detailPd_body {
+.ProductBath_wrap .Product_body .detailPd_body {
 	overflow: visible;
 	width: 1700px;
 	position: relative;
-	top: 170px;
+	top: 120px;
+	left: 50px;
   margin: 0 auto;
 }
 

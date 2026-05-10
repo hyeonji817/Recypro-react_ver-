@@ -171,7 +171,7 @@ const Product4 = () => {
 	const DescImg = `http://localhost:5003/uploads/${String(img_Desc).replace(/^\.\//,'')}`;
 
   return (
-    <div className="Product_wrap">
+    <div className="ProductKitchen_wrap">
       <div className="Product_Header">
         <Header_loginOK />
       </div>

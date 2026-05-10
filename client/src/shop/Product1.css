@@ -7,20 +7,19 @@
   font-style: normal;
 }
 
-.Product_body {  
+.ProductLife_wrap .Product_body {  
 	padding-bottom: 50px;
 	min-height: 500px;
 	font-family: 'GmarketSansMedium';
 	position: relative;
-	top: 100px;
-	left: 50px;
 }
 
-.Product_body .detailPd_body {
+.ProductLife_wrap .Product_body .detailPd_body {
 	overflow: visible;
 	width: 1700px;
 	position: relative;
-	top: 220px;
+	top: 120px;
+	left: 50px;
   margin: 0 auto;
 }
 
