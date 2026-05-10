@@ -28,12 +28,28 @@ const Product2 = () => {
 
   useEffect(() => {
 		let mounted = true; 
+
 		(async () => {
 			try {
 				// 라우터 페이지(Product_Bath.js) 연동 
-				const res = await axios.get(`http://localhost:5003/api/product_bath/${encodeURIComponent(productId)}`, { withCredentials: true });
-				console.log(res.data);	
-				if (mounted) setProduct(prev => ({ ...res.data, optionGroups: res.data?.optionGroups ?? [] }));
+				const res = await axios.get(`http://localhost:5003/api/product_bath/${encodeURIComponent(productId)}`, 
+										{ withCredentials: true });
+
+				console.log("Product2 API 응답: ", res.data);	
+
+				// 배열로 오면 첫 번째 상품 꺼내기 
+				const data = Array.isArray(res.data) ? res.data[0] : res.data; 
+
+				if (!data) {
+					throw new Error("상품 데이터 없음"); 
+				}
+
+				if (mounted) {
+					setProduct({
+						...data,
+						optionGroups: data?.optionGroups ?? [],
+					});
+				} 
 			} catch (err) {
 				console.error(err);
 				if (mounted) setError("상품 정보를 불러오지 못했습니다.");
@@ -41,7 +57,9 @@ const Product2 = () => {
 				if (mounted) setLoading(false);
 			}
 		})();
-		return () => { mounted = false; };
+		return () => {
+			 mounted = false;
+		};
 	}, [productId]);
 
   // 현재 옵션들로부터 추가요금 합계 
@@ -162,7 +180,7 @@ const Product2 = () => {
 	const DescImg = `http://localhost:5003/uploads/${String(img_Desc).replace(/^\.\//,'')}`;
 
 	return (
-		<div className="Product_wrap">
+		<div className="ProductBath_wrap">
 			<div className="Product_Header">
 				<Header_loginOK />
 			</div>		{/** Product_Header end */}

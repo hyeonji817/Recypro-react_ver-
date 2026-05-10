@@ -1,7 +1,6 @@
 import express from "express";
 import { db } from "../server.js";    // 서버 DB 연결 
 const router = express.Router();    // 라우터 설정 
-const app = express(); 
 
 /** 콜백 기반 db.query → Promise 래퍼 */
 const q = (sql, params = []) => 
@@ -19,7 +18,7 @@ const GROUP_LABEL = {
   size: "사이즈",
 };
 
-/** 1) 생활상품 목록 (최신 12개) */
+/** 1) 욕실상품 목록 (최신 12개) */
 router.get("/", async (req, res) => {
   try {
     const rows = await q(
@@ -32,77 +31,102 @@ router.get("/", async (req, res) => {
   }
 });
 
-/** 2) 생활상품 상세 + 옵션그룹/옵션값 */
+/** 2) 욕실상품 상세 + 옵션그룹/옵션값 */
 router.get("/:productId", async (req, res) => {
   try {
-    const productId = req.params.productId;   // 클라이언트에서 넘긴 값 
+    const productId = req.params.productId;
 
-    // (A) 기본 상품 조회 - 상품ID(PK)로 조회하는 경우 
+    console.log("받은 productId:", productId);
+
     const productRows = await q(
-      "SELECT * FROM product_bath WHERE pname = ?",
-      [productId]
+      "SELECT * FROM product_bath WHERE pname LIKE ?",
+      [`%${productId}%`]
     );
 
-    if (!productRows.length) 
+    console.log("조회 결과:", productRows);
+
+    if (!productRows.length) {
       return res.status(404).json({ message: "Not found" });
+    }
 
     const product = productRows[0];
 
-    // (B) 옵션 그룹들 - 상품 PK를 저장했다면 productId(PK)로, 상품명 저장했다면 pname으로 조회
     const groups = await q(
-      "SELECT * FROM product_option_group WHERE product_id = ? ORDER BY sort_order, id", 
-      [productId]
+      "SELECT * FROM product_option_group WHERE product_id = ? ORDER BY sort_order, id",
+      [product.productId]
     );
 
-    // (C) 각 그룹의 옵션값 
     const optionGroups = [];
+
     for (const g of groups) {
       const vals = await q(
         "SELECT * FROM product_option_value WHERE group_id = ? ORDER BY sort_order, id",
         [g.id]
       );
+
       optionGroups.push({
         id: g.id,
-        name: g.name,                  // 예: 'color'
-        displayName: g.display_name,   // 예: '종류'
+        name: g.name,
+        displayName: g.display_name,
         required: !!g.required,
         values: vals.map((v) => ({
           id: v.id,
-          label: v.label,              // 예: '아이보리'
-          value: v.value,              // 예: 'ivory'
+          label: v.label,
+          value: v.value,
           priceDelta: v.price_delta || 0,
-          stock: v.stock,              // null이면 공통/무제한 처리
+          stock: v.stock,
         })),
       });
     }
 
-    // (D) selectColor 컬럼 하위호환 처리 
+    // selectColor 컬럼 하위호환 처리
     if ((!groups || groups.length === 0) && product.selectColor) {
-      try { 
+      try {
         let colorArray = [];
-        const raw = String(product.selectColor).trim(); 
-        if (raw.startsWith("[")) {
-          colorArray = JSON.parse(raw);     // ["아이보리", "민트", ...]
-        } else if (raw.startsWith("{")) {
-          const obj = JSON.parse(raw);
-          colorArray = Array.isArray(obj.color) ? obj.color : [];
+
+        // product.selectColor가 이미 객체일 수도 있고, 문자열일 수도 있음
+        const rawValue = product.selectColor;
+
+        if (Array.isArray(rawValue)) {
+          colorArray = rawValue;
+        } else if (typeof rawValue === "object") {
+          if (Array.isArray(rawValue.color)) {
+            colorArray = rawValue.color;
+          } else if (Array.isArray(rawValue.kind)) {
+            colorArray = rawValue.kind;
+          } else {
+            colorArray = Object.values(rawValue).flat();
+          }
         } else {
-          colorArray = raw
-            .split(",")
-            .map((s) => s.trim())
-            .filter(Boolean);
+          const raw = String(rawValue).trim();
+
+          if (raw.startsWith("[")) {
+            colorArray = JSON.parse(raw);
+          } else if (raw.startsWith("{")) {
+            const obj = JSON.parse(raw);
+            colorArray = Array.isArray(obj.color)
+              ? obj.color
+              : Array.isArray(obj.kind)
+              ? obj.kind
+              : Object.values(obj).flat();
+          } else {
+            colorArray = raw
+              .split(",")
+              .map((s) => s.trim())
+              .filter(Boolean);
+          }
         }
 
         if (colorArray.length > 0) {
           optionGroups.push({
             id: "legacy-color",
             name: "color",
-            displayName: "종류", 
-            required: false, 
+            displayName: "종류",
+            required: false,
             values: colorArray.map((c, i) => ({
               id: `legacy-${i}`,
               label: c,
-              value: c, 
+              value: c,
               priceDelta: 0,
               stock: null,
             })),
@@ -113,12 +137,17 @@ router.get("/:productId", async (req, res) => {
       }
     }
 
-    // (E) 최종 응답 (항상 JSON)
-  } catch (err) {
-    console.error("Server error:", err); 
+    // 이게 반드시 있어야 함
     return res.json({
       ...product,
       optionGroups,
+    });
+
+  } catch (err) {
+    console.error("Server error:", err);
+    return res.status(500).json({
+      message: "Server error",
+      detail: err.message,
     });
   }
 });

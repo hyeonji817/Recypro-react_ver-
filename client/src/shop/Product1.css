@@ -316,7 +316,7 @@
 	transition: all .2s ease;
 }
 
-.Product_body #detail .info_scroll {
+.ProductLife_wrap .Product_body #detail .info_scroll {
 	position: relative;
 	left: 220px;
 	max-width: 450px;

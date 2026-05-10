@@ -314,9 +314,9 @@
 	transition: all .2s ease;
 }
 
-.Product_body #detail .info_scroll {
+.ProductBath_wrap .Product_body #detail .info_scroll {
 	position: relative;
-	left: 100px;
+	left: 220px;
 	max-width: 450px;
 }
 
