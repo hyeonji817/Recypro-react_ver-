@@ -130,10 +130,10 @@ const Product5 = () => {
   	return [String(v)];
 	};
 
-	if (loading) return <div className="Product_wrap">Loading...</div>;
-  if (error) return <div className="Product_wrap">{error}</div>;
+	if (loading) return <div className="ProductPet_wrap">Loading...</div>;
+  if (error) return <div className="ProductPet_wrap">{error}</div>;
   if (!product) return null;
-	if (!productId) return <div className="Product_wrap">잘못된 페이지입니다.(상품 ID 없음)</div>;
+	if (!productId) return <div className="ProductPet_wrap">잘못된 페이지입니다.(상품 ID 없음)</div>;
 
 	const {
     pname, price, discount_price, discount_rate,
@@ -168,7 +168,7 @@ const Product5 = () => {
 	const DescImg = `http://localhost:5003/uploads/${String(img_Desc).replace(/^\.\//,'')}`;
 
 	return (
-		<div className="Product_wrap">
+		<div className="ProductPet_wrap">
 			<div className="Product_Header">
 				<Header_loginOK />
 			</div>			{/** Product_Header end */}
