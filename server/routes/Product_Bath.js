@@ -39,7 +39,7 @@ router.get("/:productId", async (req, res) => {
     console.log("받은 productId:", productId);
 
     const productRows = await q(
-      "SELECT * FROM product_bath WHERE pname LIKE ?",
+      "SELECT * FROM product_bath WHERE productId LIKE ?",
       [`%${productId}%`]
     );
 
