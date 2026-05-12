@@ -45,6 +45,8 @@ const Cart = () => {
 		}
 	};
 
+	useEffect(() => { fetchCart(); }, []);
+
 	// 수량변경 이벤트 기능 
 	const updateQty = async (row, nextQty) => {
     if (nextQty < 1) return;
