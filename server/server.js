@@ -89,6 +89,22 @@ pool.getConnection((err, connection) => {
   }
 });
 
+const allowedOrigins = [
+  "http://localhost:5174",
+  "http://127.0.0.1:5174"
+];
+
+app.use(cors({
+  origin: function(origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("CORS 차단"));
+    }
+  },
+  credentials: true
+}));
+
 // ---------------------------------------------------------------------------
 // 인기상품 불러들이기 (해결 원인)
 // __dirname 대체 설정 

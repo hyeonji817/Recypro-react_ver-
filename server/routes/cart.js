@@ -9,8 +9,12 @@ const q = (sql, params=[]) => new Promise((resolve, reject) => {
 
 // 장바구니 목록 조회 (모든 카테고리 공통)
 router.get("/", async (req, res) => {
-  const sessionUser = req.session?.user_id; 
-  if (!sessionUser?.id) return res.status(401).json({ message: "로그인이 필요합니다." });
+  const userId = req.session?.userId; 
+
+  console.log("[GET /api/cart] session:", req.session);
+  console.log("[GET /api/cart] userId:", userId);
+
+  if (!userId?.id) return res.status(401).json({ message: "로그인이 필요합니다." });
 
   try {
     const rows = await q(
@@ -24,11 +28,11 @@ router.get("/", async (req, res) => {
       FROM cart c
       JOIN v_product_catalog v
         ON v.product_table = c.product_table
-       AND v.productId     = c.product_id
+       AND v.productId = c.product_id
       WHERE c.user_id = ?
       ORDER BY c.created_at DESC
       `,
-      [sessionUser.id]
+      [userId]
     );
 
     res.json(rows);
@@ -40,8 +44,14 @@ router.get("/", async (req, res) => {
 
 // 장바구니 담기 
 router.post("/", async (req,res) => {
-  const sessionUser = req.session?.user_id;
-  if (!sessionUser?.id) return res.status(401).json({ message: "로그인이 필요합니다" });
+  const userId = req.session?.userId;
+
+  console.log("[POST /api/cart] session:", req.session);
+  console.log("[POST /api/cart] userId:", userId);
+
+  if (!userId) {
+    return res.status(401).json({ message: "로그인이 필요합니다." });
+  }
 
   const {
     productTable = "product_life",
@@ -64,7 +74,7 @@ router.post("/", async (req,res) => {
     const exist = await q(
       `SELECT * FROM cart 
        WHERE user_id=? AND product_table=? AND product_id=? AND COALESCE(option_label,'') = COALESCE(?, '')`,
-      [sessionUser.id, productTable, productId, optionLabel || ""]
+      [userId, productTable, productId, optionLabel || ""]
     );
 
     if (exist.length) {
@@ -74,12 +84,12 @@ router.post("/", async (req,res) => {
       await q(
         `UPDATE cart SET cart_quantity=?, total_price=?, 
                          options_json=?, option_label=?, unit_price=?, option_delta=?, mileage=? 
-         WHERE cart_id=?`,
+         WHERE cart_id=? AND user_ud = ?`,
         [
           newQty, newTotal,
           JSON.stringify(options || null), optionLabel || null,
           unitPrice || 0, optionDelta || 0, mileage || 0,
-          row.cart_id
+          row.cart_id, userId,
         ]
       );
     } else {
@@ -88,7 +98,7 @@ router.post("/", async (req,res) => {
          (user_id, product_table, product_id, cart_quantity, options_json, option_label, unit_price, option_delta, total_price, mileage)
          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
         [
-          sessionUser.id, productTable, productId, qty,
+          userId, productTable, productId, qty,
           JSON.stringify(options || null), optionLabel || null,
           unitPrice || 0, optionDelta || 0, totalPrice || 0, mileage || 0
         ]
@@ -104,8 +114,8 @@ router.post("/", async (req,res) => {
 
 // 수량 변경 
 router.put("/:cartId/qty", async (req, res) => {
-  const sessionUser = req.session?.user_id;
-  if (!sessionUser?.id) return res.status(401).json({ message: "로그인이 필요합니다." });
+  const userId = req.session?.userId;
+  if (!userId) return res.status(401).json({ message: "로그인이 필요합니다." });
 
   const { cartId } = req.params;
   const { qty, unitPrice } = req.body;    // unitPrice는 동일 옵션이므로 프론트가 함께 전송 
@@ -116,8 +126,9 @@ router.put("/:cartId/qty", async (req, res) => {
     const total = qty * Number(unitPrice || 0);
     await q(
       `UPDATE cart SET cart_quantity=?, total_price=? WHERE cart_id=? AND user_id=?`,
-      [qty, total, cartId, sessionUser.id]
+      [qty, total, cartId, userId]
     );
+
     res.json({ ok: true });
   } catch (e) {
     console.error(e);
@@ -127,11 +138,12 @@ router.put("/:cartId/qty", async (req, res) => {
 
 // 항목 삭제 
 router.delete("/:cartId", async (req, res) => {
-  const sessionUser = req.session?.user_id;
-  if (!sessionUser?.id) return res.status(401).json({ message: "로그인이 필요합니다." });
+  const userId = req.session?.userId;
+  if (!userId) return res.status(401).json({ message: "로그인이 필요합니다." });
 
   try {
-    await q(`DELETE FROM cart WHERE cart_id=? AND user_id=?`, [req.params.cartId, sessionUser.id]);
+    await q(`DELETE FROM cart WHERE cart_id=? AND user_id=?`, 
+      [req.params.cartId, userId]);
     res.json({ ok: true });
   } catch (e) {
     console.error(e);
