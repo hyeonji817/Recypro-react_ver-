@@ -31,8 +31,8 @@ app.use(cookieParser());
 
 // CORS 설정 (프론트와 백 연결하는 징검다리)
 app.use(cors({
-  origin: 'http://127.0.0.1:5174',
-  methods: ['GET', 'POST'],
+  origin: 'http://localhost:5174',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type'],
   credentials: true,
 }));

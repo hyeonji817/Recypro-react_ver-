@@ -14,7 +14,9 @@ router.get("/", async (req, res) => {
   console.log("[GET /api/cart] session:", req.session);
   console.log("[GET /api/cart] userId:", userId);
 
-  if (!userId?.id) return res.status(401).json({ message: "로그인이 필요합니다." });
+  if (!userId) {
+    return res.status(401).json({ message: "로그인이 필요합니다." });
+  }
 
   try {
     const rows = await q(
@@ -46,6 +48,8 @@ router.get("/", async (req, res) => {
 router.post("/", async (req,res) => {
   const userId = req.session?.userId;
 
+  console.log("[POST /api/cart] sessionID:", req.sessionID);
+  console.log("[POST /api/cart] cookie header:", req.headers.cookie);
   console.log("[POST /api/cart] session:", req.session);
   console.log("[POST /api/cart] userId:", userId);
 
@@ -84,7 +88,7 @@ router.post("/", async (req,res) => {
       await q(
         `UPDATE cart SET cart_quantity=?, total_price=?, 
                          options_json=?, option_label=?, unit_price=?, option_delta=?, mileage=? 
-         WHERE cart_id=? AND user_ud = ?`,
+         WHERE cart_id=? AND user_id = ?`,
         [
           newQty, newTotal,
           JSON.stringify(options || null), optionLabel || null,
