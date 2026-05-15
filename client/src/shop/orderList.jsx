@@ -154,7 +154,79 @@ const OrderList = () => {
     }));
   };
 
+  // 주문내역 전송 이벤트 
+  const submitOrder = async () => {
+    try {
+      // 1) 주문 준비(서버 금액 재계산 + PENDING 주문 생성)
+      const payload = {
+        all: sp.get("all")==="1" ? "1" : undefined,
+        cart_ids: sp.get("cart_ids") || undefined,
+        coupon_code: coupon || undefined,
+        buyer,
+        receiver: recv,
+        pay_method: "TOSS",
+        dlv_memo: recv.memo || ""
+      };
+      const { data } = await axios.post(
+        "http://localhost:5003/api/checkout/prepare",
+        payload,
+        { withCredentials: true }
+      );
+
+      // 2) 모의 결제창 열기 
+      setPrepared(data);
+      setMockOpen(true);
+
+      // data: { order_id, pg_order_uid, amount, orderName, successUrl, failUrl }
+
+      /** if (USE_MOCK_PAY) {
+         // 2-1) 모의 결제 승인
+         const { data: ok } = await axios.post(
+          "http://localhost:5101/api/checkout/confirm-mock",
+          { orderId: data.pg_order_uid }, // 또는 { orderId: data.order_id, by: "db" }
+          { withCredentials: true }
+        );
+
+        // 3) 주문완료로 이동 (state도 같이 넘겨서 즉시 표시, 새로고침 대비해 쿼리스트링도 첨부)
+        navigate(`/orderOk?order_id=${data.order_id}`, {
+          state: {
+            order_id: data.order_id,
+            order_no: ok.order_no,
+            // 백엔드가 prepare 시점에 저장해둔 스냅샷을 그대로 쓰도록,
+            // 아래 둘을 서버에서 prepare 응답에 포함시키거나, orderOK에서 재조회하게 둘 수 있음.
+            totals: data.totals,  // prepare에서 함께 보냈다면
+            items: data.items,    // prepare에서 함께 보냈다면
+            buyer: payload.buyer
+          },
+          replace: true
+        });
+        return;
+      }
   
+      // 2) Toss 결제 요청(redirect 방식) (실제 결제)
+      const clientKey = import.meta.env.VITE_TOSS_CLIENT_KEY;
+      const tossPayments = window.TossPayments(clientKey);
+  
+      await tossPayments.requestPayment({
+        method: "CARD", // 또는 "TOSS", "VIRTUAL_ACCOUNT" 등
+        amount: data.amount,
+        orderId: data.pg_order_uid,     // ★ PG용 주문 고유값
+        orderName: data.orderName,      // 예) "리싸이프로 주문 3건"
+        successUrl: data.successUrl,    // 예) http://localhost:5173/pay/success
+        failUrl: data.failUrl,          // 예) http://localhost:5173/pay/fail
+        customerEmail: buyer.email,
+        customerName: buyer.name,
+        customerMobilePhone: buyer.cell?.replaceAll("-", "") || "",
+      }); */
+  
+      // redirect 방식이라 여기 이후 코드는 실행되지 않음.
+    } catch (e) {
+      console.error(e);
+      alert(e?.response?.data?.message || "주문/결제 요청 실패");
+    }
+  };
+
+  if (loading) return <div className="orderList_Wrapper">Loading...</div>;
 
   return (
     <div className="orderList_Wrapper">
