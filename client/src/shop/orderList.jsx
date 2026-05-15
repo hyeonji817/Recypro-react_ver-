@@ -111,8 +111,37 @@ const OrderList = () => {
   };
 
   // 5. 공통 onChange: buyer/recv/기타를 name으로 구분 
-  
-  
+  const onInput = (e) => {
+    const { name, value, type, checked } = e.target;
+    const v = type === "checkbox" ? checked : value;
+
+    // buyer.*
+    if (name.startsWith("buyer_") || name === "sms") {
+      setBuyer((b) => ({
+        ...b,
+        // sms 체크박스도 buyer에 넣고 싶다면: sms: name==="sms" ? v : b.sms
+        [name.replace(/^buyer_/, "")]: v, // buyer_name -> name 등
+      }));
+      return;
+    }
+
+    // recv(배송지).*
+    if (
+      name === "addressee_name" ||
+      name === "addressee_phone" ||
+      name === "addressee_cell" ||
+      name === "addressee_zip" ||
+      name === "addressee_addr1" ||
+      name === "addressee_addr2" ||
+      name === "dlv_memo"
+    ) {
+      setRecv((r) => ({ ...r, [name.replace(/^addressee_/, "").replace("dlv_", "memo")]: v }));
+      return;
+    }
+
+    // 동의 체크박스(reconfirm)는 기존 로직 유지
+  };
+
 
   // 6. "주문인 정보와 동일" 체크 시 값 복사 
 
