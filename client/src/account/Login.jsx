@@ -15,33 +15,32 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     try {
       const response = await fetch("http://localhost:5003/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
-        body: JSON.stringify(formData),   // 입력값을 JSON으로 만듦
+        body: JSON.stringify(formData),
       });
-
-      const data = await response.json();   // 입력값을 JSON으로 변환하여 결과값으로 만든 뒤 저장
-
+  
+      const data = await response.json();
+  
       if (!response.ok) {
-        setErrorMessage(data.message || "로그인 실패");
+        setErrorMessage(data.message || data.error || "로그인 실패");
+        return;
+      }
+  
+      alert("로그인 성공!");
+  
+      if (formData.id === "admin" && formData.password === "1234") {
+        navigate("/login_admin");
       } else {
-        alert(data.message); 
-        localStorage.setItem("token", data.token);
-        alert("로그인 성공!");
-
-        if (formData.id === "admin" && formData.password === "1234") {
-          navigate("/login_admin");
-        } else {
-          navigate("/index");
-        }
+        navigate("/index");
       }
     } catch (err) {
-      console.error("서버 오류:", err); 
-      setErrorMessage("서버 통신 오류"); 
+      console.error("서버 오류:", err);
+      setErrorMessage("서버 통신 오류");
     }
   };
 
@@ -91,7 +90,7 @@ const Login = () => {
                     </div>    {/** fld end */}
 
 						        <div className="savessl">
-							        <input type="checkbox" name="setOpenSSL" id="member_ssl" checked="" />
+							        <input type="checkbox" name="setOpenSSL" id="member_ssl" defaultChecked />
                       <label htmlFor="member_ssl">보안접속</label>
 							        <input type="checkbox" name="id_save" value="Y" id="member_id_save" />
                       <label htmlFor="member_id_save">아이디저장</label>

@@ -6,6 +6,7 @@ import cors from "cors";    // 프론트엔드와 백엔드 간의 통신 허용
 import dotenv from "dotenv"; 
 
 // 라우트 파일 연결 
+import loginRouter from "./routes/login.js";
 import cartRouter from "./routes/cart.js"; 
 import newProductRouter from "./routes/new_Product.js";
 import bestProductRouter from "./routes/best_Product.js";
@@ -37,14 +38,6 @@ app.use(cors({
   credentials: true,
 }));
 
-/** app.use(cors({
-  origin: 'http://localhost:5274',
-  //origin: 'http://localhost:5174',  // Vite 개발 서버의 주소 (프론트엔드 주소)
-  methods: ['GET', 'POST'],   // 허용할 HTTP 메소드 
-  allowedHeaders: ['Content-Type'],   // 허용할 헤더 
-  credentials: true,               // 쿠키 허용
-})); */ 
-
 app.use(session({
   secret: "guswl0817",    // 세션 암호화 키 
   resave: false, 
@@ -58,7 +51,8 @@ app.use(session({
 }));
 
 // 라우트 경로 등록 
-app.use('/api/cart', cartRouter);    // cartRouter 등록하여 로직 실행
+app.use("/login", loginRouter);
+app.use("/api/cart", cartRouter);    // cartRouter 등록하여 로직 실행
 app.use("/api/newProducts", newProductRouter);
 app.use("/api/best_products", bestProductRouter);
 app.use("/api/product_life", ProductLifeRouter);

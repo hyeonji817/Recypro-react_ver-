@@ -88,7 +88,7 @@ function App() {
         <Route path="/main_bottom" element={<Main_Bottom />} />
         <Route path="/bestProducts" element={<BestProducts />} />
 
-        <Route path="/account/Login" element={<Login />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/account/register" element={<Register />} />
         {/** <Route path="/find_id" element={<FindId />} />
         <Route path="/find_pw" element={<FindPw />} /> */}

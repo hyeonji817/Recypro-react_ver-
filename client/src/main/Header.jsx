@@ -53,7 +53,7 @@ const Header = () => {
             </ul>
           </li>
           <li>
-            <Link className="link" to="/account/Login">로그인</Link>
+            <Link className="link" to="/login">로그인</Link>
           </li>
           <li>
             <Link className="link" to="/account/register">회원가입</Link>
