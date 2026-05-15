@@ -318,7 +318,9 @@ const OrderList = () => {
                               <span className="check">
                                 <input type="hidden" id="coupon_stype_1038523" value="1" />
                                 <input type="hidden" name="coupon_pay_type" value="1" />
-                                <input type="radio" name="coupon" id="coupon" value="1038523" />
+                                <input type="radio" name="coupon" id="coupon" value="1038523"
+                                  onChange={(e) => setCoupon(e.target.value)}
+                                />
                               </span>   {/** check end */}
                               <p className="name">[온라인전용] 멤버십_5천 원 할인 쿠폰</p>
                               <p className="content">
@@ -332,7 +334,9 @@ const OrderList = () => {
                               <span className="check">
                                 <input type="hidden" id="coupon_stype_848011" value="1" />
                                 <input type="hidden" name="coupon_pay_type" value="1" />
-                                <input type="radio" name="coupon" id="coupon" value="848011" />
+                                <input type="radio" name="coupon" id="coupon" value="848011" 
+                                  onChange={(e)=>setCoupon(e.target.value)}
+                                />
                               </span>   {/** check end */}
                               <p className="name">[온라인전용] 멤버십_10% 할인 쿠폰</p>
                               <p className="content">
@@ -345,7 +349,9 @@ const OrderList = () => {
 
                             <li>
                               <span className="check">
-                                <input type="radio" id="no_cpn" name="coupon" value="" />
+                                <input type="radio" id="no_cpn" name="coupon" value="" 
+                                  onChange={(e)=>setCoupon("")}
+                                />
                               </span>
                               <p className="name">사용안함</p>
                               <p className="content"></p>
@@ -369,27 +375,61 @@ const OrderList = () => {
                       <tr>
                         <th scope="row"><label htmlFor="order_buyer_name">주문하시는 분</label></th>
                         <td>
-                          <input type="text" name="buyer_name" value="곽현지" id="order_buyer_name" className="form_input" />
+                          <input 
+                            type="text" 
+                            name="buyer_name" 
+                            value={buyer.name}
+                            id="order_buyer_name" 
+                            className="form_input" 
+                            onChange={onInput}
+                          />
                         </td>
                       </tr>
                       <tr>
                         <th scope="row"><label htmlFor="buyer_phone">전화번호</label></th>
                         <td>
-                          <input type="text" name="buyer_phone" id="buyer_phone" value="" className="form_input remove_dash" />
+                          <input 
+                            type="text" 
+                            name="buyer_phone" 
+                            id="buyer_phone" 
+                            value={buyer.phone} 
+                            className="form_input remove_dash" 
+                            onChange={onInput}
+                          />
                         </td>
                       </tr>
                       <tr>
                         <th scope="row"><label htmlFor="buyer_cell">휴대전화번호</label></th>
                         <td>
-                          <input type="text" name="buyer_cell" id="buyer_cell" value="01094398468" className="form_input remove_dash" />
-                          <input type="checkbox" name="sms" id="sms" value="Y" checked="" />
+                          <input 
+                            type="text" 
+                            name="buyer_cell" 
+                            id="buyer_cell" 
+                            value={buyer.cell} 
+                            className="form_input remove_dash" 
+                            onChange={onInput}
+                          />
+                          <input 
+                            type="checkbox" 
+                            name="sms" 
+                            id="sms" 
+                            value="Y" 
+                            onChange={onInput} 
+                          />
                           <label htmlFor="sms" className="msg">주문관련 SMS를 수신합니다.</label>
                         </td>
                       </tr>
                       <tr>
                         <th scope="row"><label htmlFor="order_buyer_email">이메일</label></th>
                         <td>
-                          <input type="text" name="buyer_email" value="narimjoon@naver.com" id="order_buyer_email" className="form_input mail3" />
+                          <input 
+                            type="text" 
+                            name="buyer_email" 
+                            value={buyer.email} 
+                            id="order_buyer_email" 
+                            className="form_input mail3" 
+                            onChange={onInput}
+                          />
                         </td>
                       </tr>
                       {/** 주문서 - 회원주문일때, 회원정보 수정 링크 */}
@@ -437,21 +477,42 @@ const OrderList = () => {
                       <tr>
                         <th scope="row"><label htmlFor="order_addressee_name">받으시는 분</label></th>
                         <td>
-                          <input type="text" name="addressee_name" value="" id="order_addressee_name" className="form_input" />
+                          <input 
+                            type="text" 
+                            name="addressee_name" 
+                            value={recv.name} 
+                            id="order_addressee_name" 
+                            className="form_input" 
+                            onChange={onInput}
+                          />
                         </td>
                       </tr>
 
                       <tr>
                         <th scope="row"><label htmlFor="addressee_phone">전화번호</label></th>
                         <td>
-                          <input type="text" name="addressee_phone" id="addressee_phone" className="form_input remove_dash" />
+                          <input 
+                            type="text" 
+                            name="addressee_phone" 
+                            id="addressee_phone" 
+                            className="form_input remove_dash" 
+                            value={recv.phone}
+                            onChange={onInput}
+                          />
                         </td>
                       </tr>
 
                       <tr>
                         <th scope="row"><label htmlFor="addressee_cell">휴대전화번호</label></th>
                         <td>
-                          <input type="text" name="addressee_cell" id="addressee_cell" className="form_input remove_dash" />
+                          <input 
+                            type="text" 
+                            name="addressee_cell" 
+                            id="addressee_cell" 
+                            className="form_input remove_dash" 
+                            value={recv.cell}
+                            onChange={onInput}
+                          />
                         </td>
                       </tr>
 
@@ -459,12 +520,33 @@ const OrderList = () => {
                         <th scope="row"><label htmlFor="order_addressee_zip">주소</label></th>
                         <td className="address">
                           <p className="zip">
-                            <input type="text" name="addressee_zip" value="" id="order_addressee_zip" className="form_input input_zipcode" />
-                            <span className="box_btn white"><a href="#"> 우편번호 찾기</a></span>
+                            <input 
+                              type="text" 
+                              name="addressee_zip" 
+                              value={recv.zip} 
+                              id="order_addressee_zip" 
+                              className="form_input input_zipcode" 
+                              onChange={onInput}
+                            />
+                            <span className="box_btn white">
+                              <a href="#" className="address_num" onClick={openPostcode}> 우편번호 찾기</a>
+                            </span>
                           </p>    {/** zip end */}
                           <p>
-                            <input type="text" name="addressee_addr1" value="" className="form_input" />
-                            <input type="text" name="addressee_addr2" value="" className="form_input" />
+                            <input 
+                              type="text" 
+                              name="addressee_addr1" 
+                              value={recv.addr1} 
+                              onChange={onInput}
+                              className="form_input" 
+                            />
+                            <input 
+                              type="text" 
+                              name="addressee_addr2" 
+                              value={recv.addr2} 
+                              className="form_input" 
+                              onChange={onInput}
+                            />
                           </p>
                         </td>   {/** address end */}
                       </tr>
@@ -472,7 +554,14 @@ const OrderList = () => {
                       <tr>
                         <th scope="row"><label htmlFor="order_dlv_memo">배송시요청사항</label></th>
                         <td>
-                          <textarea type="text" name="dlv_memo" value="" id="order_dlv_memo" className="form_input block"></textarea>
+                          <textarea 
+                            type="text" 
+                            name="dlv_memo" 
+                            value={recv.memo || ""} 
+                            id="order_dlv_memo" 
+                            className="form_input block" 
+                            onChange={onInput}
+                          />
                         </td>
                       </tr>
                       {/** ADDINFO_DONE */}
