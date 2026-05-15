@@ -54,26 +54,6 @@ const Register = () => {
     }
   };  
 
-  // 폼(input 요소들)의 상태를 변경할 때 사용하는 함수 (원본)
-  {/** const handleChange = (e) => {
-    // 사용자가 변경한 '<input>' 요소의 속성들을 꺼냄 
-    // e.target : 이벤트가 발생한 input 요소 
-    // name : input의 name 속성 
-    // value : 텍스트나 숫자 input에 입력한 값 
-    // type : input의 타입 
-    // checked : 체크박스일 경우 'true' 또는 'false' 
-    const { name, value, type, checked } = e.target;  
-    // formData 상태 객체를 업데이트할 때 기존 값 (prev)을 보존하면서 일부 값만 바꿔주는 방식 
-    // prev : 이전 formData 상태 
-    setFormData((prev) => ({
-      ...prev,
-      // name값을 키로 사용해서 해당 항목의 값을 바꿔줌 
-      // 만약 checkbox라면 checked 값을 'true / false'로 저장 
-      // 아닐 경우 그냥 입력한 value 값 저장 
-      [name]: type === "checkbox" ? checked : value,
-    }));
-  }; */}
-
   const handleSubmit = async (e) => {   // 폼값(데이터값)을 전송하는 이벤트 함수(메소드) 
     e.preventDefault();
 
@@ -103,7 +83,7 @@ const Register = () => {
     <div className="wrapper_register">
       <div className="register">
         <h1 className="logo">
-          <Link to="/home">리싸이프로</Link>
+          <Link to="/home" className="recypro">리싸이프로</Link>
           {/** <a href="../main/Home.jsx">리싸이프로</a> */}
         </h1>
         

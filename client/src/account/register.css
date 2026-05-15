@@ -40,11 +40,11 @@ a:active {
   margin: 0 auto;
 }
 
-.wrapper_register .logo a {
+.wrapper_register .logo .recypro {
   color: black; /* 링크 색상을 검은색으로 */
   text-decoration: none; /* 링크의 밑줄 제거 */
   position: relative;
-  left: 1100px;
+  left: 870px;
   top: 50px;
   font-size: 40px;
 }
