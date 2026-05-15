@@ -44,6 +44,43 @@ const OrderList = () => {
     })();
   }, [sp]);
 
+  // 1. 카카오 우편번호 스크립트 로드 
+  useEffect(() => {
+    // 이미 로드되어 있으면 패스 
+    if (document.getElementById("daum-postcode-script")) return; 
+
+    const script = document.createElement("script"); 
+    script.id = "daum-postcode-script"; 
+    script.src = "//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js";
+    script.async = true; 
+    document.body.appendChild(script); 
+
+    return () => {
+      // 페이지 이동 시 굳이 제거 안 해도 되지만, 깔끔히 정리하고 싶다면:
+      // document.getElementById("daum-postcode-script")?.remove();
+    };
+  }, []);
+
+  // 2. Toss SDK 로드 
+
+
+
+  // 3. 도로명/지번 + 건물명 등 추가 표기 조립 
+
+
+
+  // 4. 우편번호 찾기 열기 
+
+
+
+  // 5. 공통 onChange: buyer/recv/기타를 name으로 구분 
+  
+  
+
+  // 6. "주문인 정보와 동일" 체크 시 값 복사 
+
+
+
   return (
     <div className="orderList_Wrapper">
       <div className="orderList_Header">
