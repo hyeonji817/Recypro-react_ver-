@@ -124,166 +124,260 @@ const Cart = () => {
 								</thead>
 
 								<tbody>
-									{rows.length === 0 ? (
-    									<tr><td colSpan={9} style={{ textAlign: "center" }}>장바구니가 비어 있습니다.</td></tr>
-  									) : (
-    									rows.map((r) => (
-      									<tr key={r.cart_id}>
-        									<td><input type="checkbox" checked={!!checked[r.cart_id]} onChange={()=>toggle(r.cart_id)} /></td>
-        									<td>
-          									<a href="#">
-            									<img src={CDN(r.filename)} width={75} height={100} alt={r.pname} />
-          									</a>
-        									</td>
-       	 									<td className="tal">
-          									<div className="cart_name"><a href="#">{r.pname}</a></div>
-          									<div className="cart_opt">{r.option_label || "-"}</div>
-        									</td>
-        									<td className="tac">{(r.unit_price ?? 0).toLocaleString()} 원</td>
-        									<td className="qty">
-          									<div className="box_qty">
-            									<input
-              									type="text"
-              									value={r.cart_quantity}
-              									readOnly    // 읽기전용 경고 제거
-              									className="form_input"
-            									/>
-            									<div className="btn_ea left">
-              									<a
-                									href="#"
-                									className="ea_down"
-                									onClick={(e)=>{ e.preventDefault(); updateQty(r, r.cart_quantity - 1); }}
-              									/>
-            									</div>
-            									<div className="btn_ea right">
-              									<a
-                									href="#"
-                									className="ea_up"
-                									onClick={(e)=>{ e.preventDefault(); updateQty(r, r.cart_quantity + 1); }}
-              									/>
-            									</div>
-          									</div>
-        									</td>
-        									<td>{(r.option_delta ?? 0).toLocaleString()} 원</td>
-        									<td className="cart_prc is_sale">
-          									<p className="after">{(r.total_price ?? 0).toLocaleString()} 원</p>
-        									</td>
-        									<td>{(r.mileage ?? 0).toLocaleString()} 원</td>
-        									<td className="delete_wish">
-          									<a href="#" onClick={(e)=>{ e.preventDefault(); removeItem(r); }}>
-            									<img src={cart_del} alt="삭제" />
-          									</a>
-          									<a href="#" className="wish_">
-            									<img src={cart_wish} alt="관심상품" />
-          									</a>
-        									</td>
-     	 									</tr>
-    									))
-  									)}
+  								{rows.length === 0 ? (
+    							<tr>
+      							<td colSpan={9} style={{ textAlign: "center" }}>
+        							장바구니가 비어 있습니다.
+      							</td>
+    							</tr>
+  								) : (
+    							rows.map((r) => (
+      						<tr key={r.cart_id}>
+        						<td>
+          						<input
+            						type="checkbox"
+            						checked={!!checked[r.cart_id]}
+            						onChange={() => toggle(r.cart_id)}
+          						/>
+        						</td>
+
+        						<td>
+          						<a href="#">
+            						<img src={CDN(r.filename)} width={75} height={100} alt={r.pname} />
+          						</a>
+        						</td>
+
+        						<td className="tal">
+          						<div className="cart_name">
+            						<a href="#">{r.pname}</a>
+          						</div>
+          						<div className="cart_opt">{r.option_label || "-"}</div>
+        						</td>
+
+        						<td className="tac">{(r.unit_price ?? 0).toLocaleString()} 원</td>
+
+        						<td className="qty">
+          						<div className="box_qty">
+            						<input
+              						type="text"
+              						value={r.cart_quantity}
+              						readOnly
+              						className="form_input"
+            						/>
+
+            						<div className="btn_ea left">
+              						<a
+                						href="#"
+                						className="ea_down"
+                						onClick={(e) => {
+                  						e.preventDefault();
+                  						updateQty(r, r.cart_quantity - 1);
+                						}}
+              						/>
+            						</div>
+
+            						<div className="btn_ea right">
+              						<a
+                						href="#"
+                						className="ea_up"
+                						onClick={(e) => {
+                  						e.preventDefault();
+                  						updateQty(r, r.cart_quantity + 1);
+                						}}
+              						/>
+            						</div>
+          						</div>
+        						</td>
+
+        						<td>{(r.option_delta ?? 0).toLocaleString()} 원</td>
+
+        						<td className="cart_prc is_sale">
+          						<p className="after">{(r.total_price ?? 0).toLocaleString()} 원</p>
+        						</td>
+
+        						<td>{(r.mileage ?? 0).toLocaleString()} 원</td>
+
+        						<td className="delete_wish">
+          						<a
+            						href="#"
+            						onClick={(e) => {
+              						e.preventDefault();
+              						removeItem(r);
+            						}}
+          						>
+            						<img src={cart_del} alt="삭제" />
+          						</a>
+
+          						<a href="#" className="wish_">
+            						<img src={cart_wish} alt="관심상품" />
+          						</a>
+        						</td>
+      						</tr>
+    								))
+  								)}
 								</tbody>
+							</table>			{/** cart_tbl_col prd end */}
 
-								<div className="area_right">
-									<div className="box">
-                  	<table className="tbl_order2">
-                    	<colgroup><col style={{ width: "50%" }} /><col /></colgroup>
-                    	<tbody>
-                      	<tr><th>주문수량 합계:</th><td><span className="total_prd_prc">{totalQty.toLocaleString()}</span> 개</td></tr>
-                      	<tr><th>배송비:</th><td><span className="dlv_prc_cart">0</span> 원</td></tr>
-                      	<tr><th>적립금:</th><td><span className="total_total_milage">{totalMileage.toLocaleString()}</span> 원</td></tr>
-                      	<tr className="total">
-                        	<th>총 결제금액:</th>
-                        	<td className="total">
-                          	<strong><span className="price total_order_price_cartlist">{totalPay.toLocaleString()}</span> 원</strong>
-                        	</td>
-                      	</tr>
-                    	</tbody>
-                  	</table>		{/** tbl_order2 end */}
-                	</div>		{/** box end */}
-								</div>			{/** area_right end */}
+							<div className="cart_summary_wrap">
+  							<div className="area_right">
+    							<div className="box">
+      							<table className="tbl_order2">
+        							<colgroup>
+          							<col style={{ width: "50%" }} />
+          							<col />
+        							</colgroup>
 
-								{/** 장바구니 버튼 */}
-								<div className="area_left">
-									<div className="btn">
-										<div className="left_btn">
-											<span className="box_btn w150 gray3">
-												<a href="#">선택 삭제</a>
-											</span>			{/** box_btn w150 gray3 end */}
-											<span className="box_btn w150 gray3">
-												<a href="#">장바구니 비우기</a>
-											</span>			{/** box_btn w150 gray3 end */}
-											<span className="box_btn w150 gray3">
-												<a href="#">견적서출력</a>
-											</span>			{/** box_btn w150 gray3 end */}
-										</div>			{/** left_btn end */}
-										<div className="right_btn">
-											<span className="box_btn w150 gray3">
-												<a href="#">쇼핑 계속하기</a>
-											</span>			{/** box_btn w150 gray3 end */}
-											<span className="box_btn w150 gray3">
-												<a href="/orderList2" onClick={(e)=>{e.preventDefault(); goOrderSelected();}}>선택상품 주문하기</a>
-											</span>			{/** box_btn w150 gray3 end */}
-											<span className="box_btn w150 gray3">
-												<a href="/orderList" onClick={(e)=>{e.preventDefault(); goOrderAll();}}>전체상품 주문하기</a>	
-											</span>			{/** box_btn w150 gray3 end */}
-										</div>			{/** right_btn end */}
-									</div>			{/** btn end */}
+        							<tbody>
+          							<tr>
+            							<th>주문수량 합계:</th>
+            							<td>
+              							<span className="total_prd_prc">{totalQty.toLocaleString()}</span> 개
+            							</td>
+          							</tr>
 
-									<div className="msg_box">
-										<h4>SHOPPING GUIDE</h4>
-				          	<dl className="msg">
-					          	<dd>- 배송비는 3만원이상 무료배송 적용 됩니다.</dd>
-					          	<dd>- 상품 쿠폰 및 적립금 사용은 [주문서 작성/결제]에서 적용됩니다.</dd>
-					          	<dd>- 장바구니는 접속 종료 후 장바구니는 회원에 한해 7일(168시간)동안 보관됩니다.시간만 보관됩니다. 더 오래 보관 하시려면 관심상품에 담아주세요</dd>
-				          	</dl>	
-									</div>		{/** msg_box end */}
-								</div>			{/** 장바구니 버튼 */}
+          							<tr>
+            							<th>배송비:</th>
+            							<td>
+              							<span className="dlv_prc_cart">0</span> 원
+            							</td>
+          							</tr>
 
-								<div className="pay">
-			          <div>
-		              <div id="naver_checkout_buttons">
-		                <div id="NC_ID_1750057343580394" className="npay_storebtn_bx npay_type_A_1">	
-                      <div id="NPAY_BUTTON_BOX_ID" className="npay_button_box ">		
-                        <div className="npay_button">			
-                          <div className="npay_text">
-                            <span className="npay_blind">NAVER 네이버 ID로 간편구매 네이버페이</span>
-                          </div>				
-                          <table className="npay_btn_list" cellSpacing={0} cellPadding={0}>
-                            <tbody>
-                              <tr>    
-                                <td className="npay_btn_item">        
-                                  <a id="NPAY_BUY_LINK_IDNC_ID_1750057343580394" href="#" className="npay_btn_link npay_btn_pay btn_gray" style={{ boxSizing : "content-box" }} title="새창">
-                                    <span className="npay_blind">네이버페이 구매하기</span>
+          							<tr>
+            							<th>적립금:</th>
+            							<td>
+              							<span className="total_total_milage">
+                							{totalMileage.toLocaleString()}
+              							</span> 원
+            							</td>
+          							</tr>
+
+          							<tr className="total">
+            							<th>총 결제금액:</th>
+            							<td className="total">
+              							<strong>
+                							<span className="price total_order_price_cartlist">
+                  							{totalPay.toLocaleString()}
+                							</span> 원
+              							</strong>
+            							</td>
+          							</tr>
+        							</tbody>
+      							</table>		{/** tbl_order2 end */}
+    							</div>		{/** box end */}
+  							</div>		{/** area_right end */}
+							</div>			{/** cart_summary_wrap end */}
+
+							<div className="cart_button_wrap">
+  							<div className="left_btn">
+    							<span className="box_btn w150 gray3">
+      							<a href="#">선택 삭제</a>
+    							</span>
+
+    							<span className="box_btn w150 gray3">
+      							<a href="#">장바구니 비우기</a>
+    							</span>
+
+    							<span className="box_btn w150 gray3">
+      							<a href="#">견적서출력</a>
+    							</span>
+  							</div>			{/** left_btn end */}
+
+  							<div className="right_btn">
+    							<span className="box_btn w150 gray3">
+      							<a
+        							href="#"
+        							onClick={(e) => {
+          							e.preventDefault();
+          							navigate("/shop");
+        							}}
+      							>
+        							쇼핑 계속하기
+      							</a>
+    							</span>
+
+    							<span className="box_btn w150 gray3">
+      							<a
+        							href="/orderList2"
+        							onClick={(e) => {
+          							e.preventDefault();
+          							goOrderSelected();
+        							}}
+      							>
+        							선택상품 주문하기
+      							</a>
+    							</span>
+
+    							<span className="box_btn w150 gray3">
+      							<a
+        							href="/orderList"
+        							onClick={(e) => {
+          							e.preventDefault();
+          							goOrderAll();
+        							}}
+      							>
+        							전체상품 주문하기
+      							</a>
+    							</span>
+  							</div>		{/** right_btn end */}
+							</div>		{/** cart_button_wrap end */}
+
+							<div className="msg_box">
+  							<h4>SHOPPING GUIDE</h4>
+  							<dl className="msg">
+    							<dd>- 배송비는 3만원이상 무료배송 적용 됩니다.</dd>
+    							<dd>- 상품 쿠폰 및 적립금 사용은 [주문서 작성/결제]에서 적용됩니다.</dd>
+    							<dd>
+      							- 장바구니는 접속 종료 후 회원에 한해 7일(168시간)동안 보관됩니다.
+      								더 오래 보관 하시려면 관심상품에 담아주세요.
+    							</dd>
+  							</dl>
+							</div>		{/** msg_box end */}
+
+							<div className="pay">
+			      		<div>
+		          		<div id="naver_checkout_buttons">
+		          			<div id="NC_ID_1750057343580394" className="npay_storebtn_bx npay_type_A_1">	
+                			<div id="NPAY_BUTTON_BOX_ID" className="npay_button_box ">		
+                  			<div className="npay_button">			
+                      		<div className="npay_text">
+                        		<span className="npay_blind">NAVER 네이버 ID로 간편구매 네이버페이</span>
+                      		</div>				
+                      		<table className="npay_btn_list" cellSpacing={0} cellPadding={0}>
+                        		<tbody>
+                        			<tr>    
+                            		<td className="npay_btn_item">        
+                              		<a id="NPAY_BUY_LINK_IDNC_ID_1750057343580394" href="#" className="npay_btn_link npay_btn_pay btn_gray" style={{ boxSizing : "content-box" }} title="새창">
+                                		<span className="npay_blind">네이버페이 구매하기</span>
 																	</a>    
-                                	</td>
-                              	</tr>
-                            	</tbody>
-                          	</table>		
-                        	</div>		
+                            		</td>
+                          		</tr>
+                        		</tbody>
+                      		</table>		
+                    		</div>		
                         
-                        	<div id="NPAY_EVENT_ID" className="npay_event">			
-                          	<a id="NPAY_PROMOTION_PREV_IDNC_ID_1750057343580394" href="#" className="npay_more npay_more_prev">
-                            	<span className="npay_blind">이전</span>
-                         	 	</a>			
-                          	<p id="NPAY_PROMOTION_IDNC_ID_1750057343580394" className="npay_event_text">
-                            	<strong className="event_title">Npay 10주년</strong>
-                            	<a className="event_link" href="#" target="_blank" title="새창">
-                              	AI가 들려주는 당신만의 소비일기 감상해보세요
-                            	</a>
-                          	</p>			
-                          	<a id="NPAY_PROMOTION_NEXT_IDNC_ID_1750057343580394" href="#" className="npay_more npay_more_next">
-                            	<span className="npay_blind">다음</span>
-                          	</a>		
-                        	</div>	
-                      	</div>
-                    	</div>
-		              	</div>
-		            	</div>
-			          	<div></div>
-		          	</div>
+                    		<div id="NPAY_EVENT_ID" className="npay_event">			
+                      		<a id="NPAY_PROMOTION_PREV_IDNC_ID_1750057343580394" href="#" className="npay_more npay_more_prev">
+                        		<span className="npay_blind">이전</span>
+                      		</a>			
+                      		<p id="NPAY_PROMOTION_IDNC_ID_1750057343580394" className="npay_event_text">
+                        		<strong className="event_title">Npay 10주년</strong>
+                        		<a className="event_link" href="#" target="_blank" title="새창">
+                          		AI가 들려주는 당신만의 소비일기 감상해보세요
+                        		</a>
+                      		</p>			
+                      		<a id="NPAY_PROMOTION_NEXT_IDNC_ID_1750057343580394" href="#" className="npay_more npay_more_next">
+                        		<span className="npay_blind">다음</span>
+                      		</a>		
+                    		</div>	
+                  		</div>
+                		</div>
+		          		</div>
+		        		</div>
+			    			<div></div>
+		    			</div>
 
-								<input type="hidden" name="cart_rows" value="0" />
-              	<input type="hidden" id="partner_data" name="partner_data" value="" />
-							</table>		{/** cart_tbl_col prd end */}
+							<input type="hidden" name="cart_rows" value="0" />
+        			<input type="hidden" id="partner_data" name="partner_data" value="" />
 						</form>
           </div>{/** cart end */}
 		    </div>		{/** cart_body end */}
