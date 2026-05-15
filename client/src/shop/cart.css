@@ -270,6 +270,7 @@ table {
 #cart .area_right {
   margin-top: 30px;
   min-height: 170px;
+  border-bottom: 2px solid #e8e8e8;
 }
 
 #cart .area_right .box {
@@ -285,26 +286,76 @@ table {
   border-top: 2px solid #e8e8e8;
 }
 
-#cart .area_left .btn {
-  font-size: 0;
-}
-
 #cart .area_left .btn > div {
   display: inline-block;
   font-size: 0;
   vertical-align: top;
 }
 
+/* 장바구니 버튼 6개 한 줄 정렬 */
+#cart .cart_button_wrap {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 13px;
+  width: 100%;
+  margin-top: 28px;
+  margin-bottom: 70px;
+}
+
+/* 왼쪽 버튼 3개, 오른쪽 버튼 3개도 한 줄로 */
+#cart .cart_button_wrap .left_btn,
+#cart .cart_button_wrap .right_btn {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  position: static;
+  left: auto;
+  margin: 0;
+}
+
+/* 버튼 간격 중복 제거 */
+#cart .cart_button_wrap .box_btn {
+  display: inline-block;
+  margin-right: 0;
+  text-align: center;
+  vertical-align: top;
+}
+
+/* 버튼 크기 */
+#cart .cart_button_wrap .box_btn.w150 > a {
+  width: 150px;
+  box-sizing: border-box;
+}
+
+/* 버튼 디자인 */
+#cart .cart_button_wrap .box_btn > a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  padding: 0 12px;
+  border: 1px solid #eee;
+  background: #eee;
+  color: #1a1a1a !important;
+  font-size: 14px;
+  font-family: 'GmarketSansMedium';
+  font-weight: normal;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
 #cart .area_left .btn > div.left_btn .box_btn {
   margin-right: 13px;
 }
 
-.box_btn {
+/** .box_btn {
   display: inline-block;
   text-align: center;
   vertical-align: top;
   margin-right: 13px;
-}
+} */
 
 #cart .area_left .btn > div .box_btn * {
   font-size: 14px;
