@@ -269,20 +269,21 @@ const OrderList = () => {
                 </thead>
 
                 <tbody>
-                  <tr>
-                    <td className="img">
-                      <a href="#">
-                        <img src={beepBeep_Toy1} width={52} height={70} />
-                      </a>
-                    </td>
-
-                    <td className="tal"><a href="#">[지구pick] 바잇미 업사이클 봉봉그린 반려동물 삑삑이 장난감</a></td>
-                    <td className="tal"> 종류 : 토끼<br /> <div></div></td>
-                    <td>7,110 원</td>
-                    <td>1</td>
-                    <td>7,110 원</td>
-                    <td>158 원</td>
-                  </tr>
+                  {items.length === 0 ? (
+                    <tr><td colSpan={7} className="tac">주문할 상품이 없습니다.</td></tr>
+                  ) : items.map(it => (
+                    <tr key={it.cart_id}>
+                      <td className="img">
+                        <img src={CDN(it.filename)} width={52} height={70} />
+                      </td>
+                      <td className="tal">{it.pname}</td>
+                      <td className="tal">{it.option_label || "-"}</td>
+                      <td>{it.unit_price.toLocaleString()} 원</td>
+                      <td>{it.quantity}</td>
+                      <td>{it.line_total.toLocaleString()} 원</td>
+                      <td>{it.mileage.toLocaleString()} 원</td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
 
