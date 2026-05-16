@@ -71,7 +71,21 @@ const OrderList2 = () => {
     document.body.appendChild(s);
   }, []);
 
-  
+  // 3. 도로명/지번 + 건물명 등 추가 표기 조립 
+  const buildAddress = (data) => {
+    let addr = data.userSelectedType === "R" ? data.roadAddress : data.jibunAddress; 
+
+    // 도로명 타입일 때 (법정동/건물명 추가)
+    if (data.userSelectedType === "R") {
+      let extras = [];
+      if (data.bname && /[동|로|가]$/g.test(data.bname)) extras.push(data.bname);
+      if (data.buildingName && data.apartment === "Y") extras.push(data.buildingName);
+      if (extras.length > 0) addr += ` (${extras.join(", ")})`;
+    }
+    return addr;
+  };
+
+
 };
 
 export default OrderList2;
