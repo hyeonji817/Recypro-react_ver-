@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"; 
-import { useSearchParamas, useNavigate } from "react-router-dom"; 
+import { useSearchParams, useNavigate } from "react-router-dom"; 
 import "./orderList2.css";
 import axios from "axios"; 
 import Header_loginOK from "../main/Header_loginOK";
@@ -630,7 +630,6 @@ const OrderList2 = () => {
           </div>      {/** order end */}  
         </div>     {/** orderList2_body end */}
       </div>    {/** orderList2_Content end */}
-
       <div className="orderList2_Footer">
         <Footer />
       </div>     {/** orderList2_Footer end */}
