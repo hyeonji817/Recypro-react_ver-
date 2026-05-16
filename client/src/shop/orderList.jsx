@@ -5,24 +5,23 @@ import axios from "axios";
 import Header_loginOK from "../main/Header_loginOK";
 import Footer from "../main/Footer";
 import PaymentModal from "../components/PaymentModal";
-// import beepBeep_Toy1 from "../assets/pet/1. beepBeep_Toy1.jpg";
 
 const CDN = (path) => `http://localhost:5003/uploads/${String(path || "").replace(/^\.\//,'')}`;
 
 const OrderList = () => {
-  const [sp] = useSearchParams(); 
+  const [sp] = useSearchParams();
   const [items, setItems] = useState([]);
   const [tot, setTot] = useState(null);
-  const [loading, setLoading] = useState(true); 
+  const [loading, setLoading] = useState(true);
 
   const [buyer, setBuyer] = useState({ name:"", phone:"", cell:"", email:"" });
-  const [recv, setRecv] = useState({ name:"", phone:"", cell:"", zip:"", addr1:"", addr2:"" });
+  const [recv,  setRecv]  = useState({ name:"", phone:"", cell:"", zip:"", addr1:"", addr2:"" });
   const [coupon, setCoupon] = useState("");
-  const [agreed, setAgreed] = useState(false); 
-  const navigate = useNavigate(); 
-  const USE_MOCK_PAY = true;    // 실제 PG 붙일 때 false 쓰기
-  const [mockOpen, setMockOpen] = useState(false); 
-  const [prepared, setPrepared] = useState(null); 
+  const [agreed, setAgreed] = useState(false);
+  const navigate = useNavigate();
+  const USE_MOCK_PAY = true;    // <- 실제 PG 붙일 땐 false
+  const [mockOpen, setMockOpen] = useState(false);
+  const [prepared, setPrepared] = useState(null); // prepare 응답 저장
 
   useEffect(() => {
     (async () => {
@@ -44,16 +43,16 @@ const OrderList = () => {
     })();
   }, [sp]);
 
-  // 1. 카카오 우편번호 스크립트 로드 
+  // 1) 카카오 우편번호 스크립트 로드
   useEffect(() => {
-    // 이미 로드되어 있으면 패스 
-    if (document.getElementById("daum-postcode-script")) return; 
+    // 이미 로드되어 있으면 패스
+    if (document.getElementById("daum-postcode-script")) return;
 
-    const script = document.createElement("script"); 
-    script.id = "daum-postcode-script"; 
+    const script = document.createElement("script");
+    script.id = "daum-postcode-script";
     script.src = "//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js";
-    script.async = true; 
-    document.body.appendChild(script); 
+    script.async = true;
+    document.body.appendChild(script);
 
     return () => {
       // 페이지 이동 시 굳이 제거 안 해도 되지만, 깔끔히 정리하고 싶다면:
@@ -61,31 +60,32 @@ const OrderList = () => {
     };
   }, []);
 
-  // 2. Toss SDK 로드 
+  // Toss SDK 로드
   useEffect(() => {
-    if (document.getElementById("toss-payments-sdk")) return; 
-    const s = document.createElement("script"); 
+    if (document.getElementById("toss-payments-sdk")) return;
+    const s = document.createElement("script");
     s.id = "toss-payments-sdk";
     s.src = "https://js.tosspayments.com/v1";
-    s.async = true; 
-    document.body.appendChild(s); 
+    s.async = true;
+    document.body.appendChild(s);
   }, []);
 
-  // 3. 도로명/지번 + 건물명 등 추가 표기 조립 
+
+  // 도로명/지번 + 건물명 등 추가 표기 조립
   const buildAddress = (data) => {
     let addr = data.userSelectedType === "R" ? data.roadAddress : data.jibunAddress;
 
     // 도로명 타입일 때 (법정동/건물명 추가)
     if (data.userSelectedType === "R") {
-      let extras = []; 
+      let extras = [];
       if (data.bname && /[동|로|가]$/g.test(data.bname)) extras.push(data.bname);
       if (data.buildingName && data.apartment === "Y") extras.push(data.buildingName);
       if (extras.length > 0) addr += ` (${extras.join(", ")})`;
     }
-    return addr; 
+    return addr;
   };
 
-  // 4. 우편번호 찾기 열기 
+  // 우편번호 찾기 열기
   const openPostcode = (e) => {
     e?.preventDefault?.();
     if (!window.daum || !window.daum.Postcode) {
@@ -110,7 +110,7 @@ const OrderList = () => {
     }).open();
   };
 
-  // 5. 공통 onChange: buyer/recv/기타를 name으로 구분 
+  // 공통 onChange: buyer/recv/기타를 name으로 구분
   const onInput = (e) => {
     const { name, value, type, checked } = e.target;
     const v = type === "checkbox" ? checked : value;
@@ -142,7 +142,7 @@ const OrderList = () => {
     // 동의 체크박스(reconfirm)는 기존 로직 유지
   };
 
-  // 6. "주문인 정보와 동일" 체크 시 값 복사 
+  // “주문인 정보와 동일” 체크 시 값 복사
   const copyBuyerToRecv = (e) => {
     const checked = e.target.checked;
     if (!checked) return; // 체크 해제면 아무 것도 안 함
@@ -154,7 +154,6 @@ const OrderList = () => {
     }));
   };
 
-  // 주문내역 전송 이벤트 
   const submitOrder = async () => {
     try {
       // 1) 주문 준비(서버 금액 재계산 + PENDING 주문 생성)
@@ -180,9 +179,9 @@ const OrderList = () => {
       // data: { order_id, pg_order_uid, amount, orderName, successUrl, failUrl }
 
       /** if (USE_MOCK_PAY) {
-         // 2-1) 모의 결제 승인
+         // 2-A) 모의 결제 승인
          const { data: ok } = await axios.post(
-          "http://localhost:5101/api/checkout/confirm-mock",
+          "http://localhost:5003/api/checkout/confirm-mock",
           { orderId: data.pg_order_uid }, // 또는 { orderId: data.order_id, by: "db" }
           { withCredentials: true }
         );
@@ -212,8 +211,8 @@ const OrderList = () => {
         amount: data.amount,
         orderId: data.pg_order_uid,     // ★ PG용 주문 고유값
         orderName: data.orderName,      // 예) "리싸이프로 주문 3건"
-        successUrl: data.successUrl,    // 예) http://localhost:5173/pay/success
-        failUrl: data.failUrl,          // 예) http://localhost:5173/pay/fail
+        successUrl: data.successUrl,    // 예) http://localhost:5174/pay/success
+        failUrl: data.failUrl,          // 예) http://localhost:5174/pay/fail
         customerEmail: buyer.email,
         customerName: buyer.name,
         customerMobilePhone: buyer.cell?.replaceAll("-", "") || "",
@@ -224,7 +223,7 @@ const OrderList = () => {
       console.error(e);
       alert(e?.response?.data?.message || "주문/결제 요청 실패");
     }
-  };
+  }; 
 
   if (loading) return <div className="orderList_Wrapper">Loading...</div>;
 
@@ -240,7 +239,7 @@ const OrderList = () => {
             <form name="ordFrm" method="post" style={{ margin: "0px" }}>
               <div className="print_receipt">
                 <span>※ 상품의 옵션 및 수량 변경은 상품상세 또는 장바구니에서 가능합니다.  </span>
-                <span className="box_btn small"><a href="#"> 장바구니 가기</a></span>
+                <span className="box_btn small"><a href="/cart"> 장바구니 가기</a></span>
                 <span className="box_btn small white"><a href="#"> 견적서 출력</a></span>
               </div>    {/** print_receipt end */}
 
@@ -318,7 +317,7 @@ const OrderList = () => {
                               <span className="check">
                                 <input type="hidden" id="coupon_stype_1038523" value="1" />
                                 <input type="hidden" name="coupon_pay_type" value="1" />
-                                <input type="radio" name="coupon" id="coupon" value="1038523"
+                                <input type="radio" name="coupon" id="coupon" value="1038523" 
                                   onChange={(e) => setCoupon(e.target.value)}
                                 />
                               </span>   {/** check end */}
@@ -326,7 +325,7 @@ const OrderList = () => {
                               <p className="content">
                                 최소주문금액 : 30,000 원 이상
                                 / 할인액(율) : 5,000원 
-                                / 사용기간 :  ~ 2025-07-31
+                                / 사용기간 :  ~ 2026-07-31
                               </p>    {/** content end */}
                             </li>
 
@@ -342,7 +341,7 @@ const OrderList = () => {
                               <p className="content">
                                 최소주문금액 : 10,000 원 이상
                                 / 할인액(율) : 10% 
-                                / 사용기간 :  ~ 2025-07-31
+                                / 사용기간 :  ~ 2026-07-31
                                 <br />최대할인금액 1,000,000 원
                               </p>    {/** content end */}
                             </li>
@@ -529,7 +528,7 @@ const OrderList = () => {
                               onChange={onInput}
                             />
                             <span className="box_btn white">
-                              <a href="#" className="address_num" onClick={openPostcode}> 우편번호 찾기</a>
+                              <a href="#" className="address_num" onClick={openPostcode}><p>우편번호 찾기</p></a>
                             </span>
                           </p>    {/** zip end */}
                           <p>
@@ -568,191 +567,222 @@ const OrderList = () => {
                     </tbody>
                   </table>
                 </div>    {/** area_left end */}
-              </div>    {/** ord_info end */}
 
-              <div className="area_right">
-                <div className="inner">
-                  <div className="box">
-                    <h3 className="title first">결제 정보</h3>
-                    <table className="tbl_order2">
-                      <caption className="hidden">결제 가격정보</caption>
-                      <colgroup>
-                        <col style={{ width: "60%" }} />
-                        <col />
-                      </colgroup>
+                <div className="area_right">
+                  <div className="inner">
+                    <div className="box">
+                      <h3 className="title first">결제 정보</h3>
+                      <table className="tbl_order2">
+                        <caption className="hidden">결제 가격정보</caption>
+                        <colgroup>
+                          <col style={{ width: "60%" }} />
+                          <col />
+                        </colgroup>
 
-                      <tbody>
-                        <tr>
-                          <th scope="row">상품합계 금액</th>
-                          <td>7,110 원</td>
-                        </tr>
-                        <tr className="total">
-                          <th scope="row">배송비 </th>
-                          <td>
-                            (+) <span id="delivery_prc2">3,000</span> 원
-                          </td>
-                        </tr>   {/** total end */}
-                      </tbody>
-                    </table>
+                        <tbody>
+                          <tr>
+                            <th scope="row">상품합계 금액</th>
+                            <td>{(tot?.subtotal||0).toLocaleString()} 원</td>
+                          </tr>
+                          <tr className="total">
+                            <th scope="row">배송비 </th>
+                            <td>(+) {(tot?.shipping_fee||0).toLocaleString()} 원</td>
+                          </tr>   {/** total end */}
+                        </tbody>
+                      </table>
 
-                    <table className="tbl_order2 sale">
-                      <caption className="hidden">결제 할인정보</caption>
-                      <colgroup>
-                        <col style={{ width: "50%" }} />
-                        <col />
-                      </colgroup>
+                      <table className="tbl_order2 sale">
+                        <caption className="hidden">결제 할인정보</caption>
+                        <colgroup>
+                          <col style={{ width: "50%" }} />
+                          <col />
+                        </colgroup>
 
-                      <tbody>
-                        <tr className="total order_area_total_sale_prc">
-                          <th scope="row">
-                            할인 금액 합계 <a className="i_info p_cursor"></a>
-                          </th>
-                          <td>
-                            (-) <span className="total_sale_prc">0</span> 원
-                            <div id="discount_info" className="view_info">
-                              <div className="order_area_event_prc" style={{ display: "none" }}>
-                                이벤트 할인금액<br />
-                                <span className="order_saleinfo_event_prc">0</span> 원
-                              </div>    {/** order_area_event_prc end */}
-                              <div className="order_area_timesale">
-                                타임세일금액<br />
-                                <span className="order_saleinfo_timesale">0</span> 원
-                              </div>    {/** order_area_timesale end */}
-                              <div className="order_area_member_prc" style={{ display: "none" }}>
-                                회원할인금액<br />
-                                <span className="order_saleinfo_member_prc">0</span> 원
-                              </div>    {/** order_area_member_prc end */}
-                              <div className="order_area_cpn_prc">
-                                쿠폰할인금액<br />
-                                <span className="order_saleinfo_cpn_prc">1,000</span> 원
-                              </div>    {/** order_area_cpn_prc end */}
-                              <div className="order_area_prd_prc" style={{ display: "none" }}>
-                                상품금액별할인금액<br />
-                                <span className="order_saleinfo_prd_prc">0</span> 원
-                              </div>    {/** order_area_prd_prc end */}
-                              <div className="order_area_prdcpn_prc" style={{ display: "none" }}>
-                                상품별쿠폰 할인금액<br />
-                                <span className="order_saleinfo_prdcpn_prc">0</span> 원
-                              </div>    {/** order_area_prdcpn_prc end */}
-                              <div className="order_area_sbscr_prc" style={{ display: "none" }}>
-                                정기배송 할인금액<br />
-                                <span className="order_saleinfo_sbscr_prc">0</span> 원
-                              </div>    {/** order_saleinfo_sbscr_prc end */}
-                            </div>    {/** view_info end */}
-                          </td>
-                        </tr>   {/** total order_area_total_sale_prc end */}
+                        <tbody>
+                          <tr className="total order_area_total_sale_prc">
+                            <th scope="row">
+                              할인 금액 합계 <a className="i_info p_cursor"></a>
+                            </th>
+                            <td>
+                              (-) <span className="total_sale_prc">{(tot?.discount_total||0).toLocaleString()}</span> 원
+                              <div id="discount_info" className="view_info">
+                                <div className="order_area_event_prc" style={{ display: "none" }}>
+                                  이벤트 할인금액<br />
+                                  <span className="order_saleinfo_event_prc">0</span> 원
+                                </div>    
+                                <div className="order_area_timesale">
+                                  타임세일금액<br />
+                                  <span className="order_saleinfo_timesale">0</span> 원
+                                </div>    
+                                <div className="order_area_member_prc" style={{ display: "none" }}>
+                                  회원할인금액<br />
+                                  <span className="order_saleinfo_member_prc">0</span> 원
+                                </div>    
+                                <div className="order_area_cpn_prc">
+                                  쿠폰할인금액<br />
+                                  <span className="order_saleinfo_cpn_prc">1,000</span> 원
+                                </div>    
+                                <div className="order_area_prd_prc" style={{ display: "none" }}>
+                                  상품금액별할인금액<br />
+                                  <span className="order_saleinfo_prd_prc">0</span> 원
+                                </div>   
+                                <div className="order_area_prdcpn_prc" style={{ display: "none" }}>
+                                  상품별쿠폰 할인금액<br />
+                                  <span className="order_saleinfo_prdcpn_prc">0</span> 원
+                                </div>    
+                                <div className="order_area_sbscr_prc" style={{ display: "none" }}>
+                                  정기배송 할인금액<br />
+                                  <span className="order_saleinfo_sbscr_prc">0</span> 원
+                                </div>    
+                              </div>  
+                            </td>
+                          </tr>   {/** total order_area_total_sale_prc end */}
 
-                        <tr className="use_milage_field total_sale">
-                          <th scope="row">적립금 사용</th>
-                          <td>(-) <span className="use_milage_prc">0</span> 원</td>
-                        </tr>
-                        <tr className="use_emoney_field total_sale">
-                          <th scope="row">예치금 사용</th>
-                          <td>(-) <span className="use_emoney_prc">0</span> 원</td>
-                        </tr>   {/** use_emoney_field total_sale end */}
-                      </tbody>
-                    </table>
+                          <tr className="use_milage_field total_sale">
+                            <th scope="row">적립금 사용</th>
+                            <td>(-) <span className="use_milage_prc">0</span> 원</td>
+                          </tr>
+                          <tr className="use_emoney_field total_sale">
+                            <th scope="row">예치금 사용</th>
+                            <td>(-) <span className="use_emoney_prc">0</span> 원</td>
+                          </tr>   {/** use_emoney_field total_sale end */}
+                        </tbody>
+                      </table>
 
-                    <table className="tbl_order2">
-                      <caption className="hidden">결제정보</caption>
-                      <colgroup>
-                        <col style={{ width: "60%" }} />
-                        <col />
-                      </colgroup>
+                      <table className="tbl_order2">
+                        <caption className="hidden">결제정보</caption>
+                        <colgroup>
+                          <col style={{ width: "60%" }} />
+                          <col />
+                        </colgroup>
 
-                      <tbody>
-                        <tr className="total order_area_total_milage">
-                          <th scope="row">
-                            총 적립금 <a className="i_info p_cursor"></a>
-                          </th>
-                          <td>
-                            <span className="total_milage">158</span> 원
-                            <div id="milage_info" className="view_info">
-                              <div className="order_area_prd_milage">
-                                상품 적립금<br />
-                                <span className="order_saleinfo_prd_milage">0</span> 원
-                              </div>    {/** order_area_prd_milage end */}
-                              <div className="order_area_member_milage">
-                                회원 적립금<br />
-                                <span className="order_saleinfo_member_milage">158</span> 원
-                              </div>    {/** order_area_member_milage end */}
-                              <div className="order_area_event_milage">
-                                이벤트 적립금<br />
-                                <span className="order_saleinfo_event_milage">0</span> 원
-                              </div>    {/** order_area_event_milage end */}
-                            </div>    {/** view_info end */}
-                          </td>
-                        </tr>   {/** total order_area_total_milage end */}
+                        <tbody>
+                          <tr className="total order_area_total_milage">
+                            <th scope="row">
+                              총 적립금 <a className="i_info p_cursor"></a>
+                            </th>
+                            <td>
+                              <span className="total_milage">{(tot?.total_mileage||0).toLocaleString()}</span> 원
+                              <div id="milage_info" className="view_info">
+                                <div className="order_area_prd_milage">
+                                  상품 적립금<br />
+                                  <span className="order_saleinfo_prd_milage">0</span> 원
+                                </div>    {/** order_area_prd_milage end */}
+                                <div className="order_area_member_milage">
+                                  회원 적립금<br />
+                                  <span className="order_saleinfo_member_milage">158</span> 원
+                                </div>    {/** order_area_member_milage end */}
+                                <div className="order_area_event_milage">
+                                  이벤트 적립금<br />
+                                  <span className="order_saleinfo_event_milage">0</span> 원
+                                </div>    {/** order_area_event_milage end */}
+                              </div>    {/** view_info end */}
+                            </td>
+                          </tr>   {/** total order_area_total_milage end */}
 
-                        <tr>
-                          <th scope="row">총 결제 금액</th>
-                          <td>
-                            <strong className="total_price">
-                              <span className="order_info_sale_prc">10,110</span> 원
-                            </strong>   {/** total_price end */}
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>    {/** tbl_order2 end */}
+                          <tr>
+                            <th scope="row">총 결제 금액</th>
+                            <td>
+                              <strong className="total_price">
+                                <span className="order_info_sale_prc">{(tot?.total_pay||0).toLocaleString()}</span> 원
+                              </strong>   {/** total_price end */}
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>    {/** tbl_order2 end */}
 
-                    <h3 className="title line">결제수단</h3>
-                    <div className="method">
-                      <div className="">
-                        <label className="pay_label">
-                          <input type="radio" name="pay_type" id="pay_type22" value="22" /> 
-                          <img src="https://x175-engine.mywisa.com/wm_engine_SW/_engine/card.tosspayment/image/tosspayment.png" height={18} />
-                        </label>    {/** pay_label end */}
-                      </div>
-                      <div className="">
-                        <label className="pay_label">
-                          <input type="radio" name="pay_type" id="pay_type17" value="17" /> 
-                          <span id="payco_btn_area">
-                            <img src="https://static-bill.nhnent.com//payco/checkout/img/v2/btn_type/EASYPAY_A1.png" width={103} height={14} style={{ width: "auto", verticalAlign: "middle" }} />
-                          </span>
-                        </label>	  {/** pay_label end */}
-                      </div>
-                      <p className="order_cancel_msg">
-                        * 주문신청 후 <strong className="point_color">3</strong>
-                        일 이내에 입금 확인이 되지 않으면 자동취소 됩니다.
-                      </p>    {/** order_cancel_msg end */}
-                      <div className="event_pay">
-                        <h3>결제프로모션</h3>
-                        <div className="field">
-                          <p className="th">Toss Pay</p>
-                          <p className="td">토스페이 결제 시 10% 추가할인<br />
-                            (결제 전 토스 앱 &gt; 토스페이 &gt; 쿠폰/혜택 받기 &gt; 결제 시 적용)
-                          </p>
-                        </div>    {/** field end */}
-                      </div>    {/** event_pay end */}
+                      <h3 className="title line">결제수단</h3>
+                      <div className="method">
+                        <div className="">
+                          <label className="pay_label">
+                            <input type="radio" name="pay_type" id="pay_type22" value="22" /> 
+                            <img src="https://x175-engine.mywisa.com/wm_engine_SW/_engine/card.tosspayment/image/tosspayment.png" height={18} />
+                          </label>    {/** pay_label end */}
+                        </div>
+                        <div className="">
+                          <label className="pay_label">
+                            <input type="radio" name="pay_type" id="pay_type17" value="17" /> 
+                            <span id="payco_btn_area">
+                              <img src="https://static-bill.nhnent.com//payco/checkout/img/v2/btn_type/EASYPAY_A1.png" width={103} height={14} style={{ width: "auto", verticalAlign: "middle" }} />
+                            </span>
+                          </label>	  {/** pay_label end */}
+                        </div>
+                        <p className="order_cancel_msg">
+                          * 주문신청 후 <strong className="point_color">3</strong>
+                          일 이내에 입금 확인이 되지 않으면 자동취소 됩니다.
+                        </p>    {/** order_cancel_msg end */}
+                        <div className="event_pay">
+                          <h3>결제프로모션</h3>
+                          <div className="field">
+                            <p className="th">Toss Pay</p>
+                            <p className="td">토스페이 결제 시 10% 추가할인<br />
+                              (결제 전 토스 앱 &gt; 토스페이 &gt; 쿠폰/혜택 받기 <br /> &gt; 결제 시 적용)
+                            </p>
+                          </div>    {/** field end */}
+                        </div>    {/** event_pay end */}
         
-                      <div className="reconfirm">
-                        <label>
-                          <input name="reconfirm" id="reconfirm" type="checkbox" value="Y" /> 
-                          결제정보를 확인하였으며,<br />구매진행에 동의합니다.
-                        </label>
-                      </div>    {/** reconfirm end */}
-                      <div id="order1">
-                        <span className="box_btn huge block"><a href="/orderOk">주문하기</a></span>
-                      </div>    {/** order1 end */}
-                    </div>    {/** method end */}
+                        <div className="reconfirm">
+                          <label>
+                            <input 
+                              name="reconfirm" 
+                              id="reconfirm" 
+                              type="checkbox" 
+                              value="Y" checked={agreed}
+                              onChange={
+                                (e)=>setAgreed(e.target.checked)
+                              } 
+                            /> 
+                            결제정보를 확인하였으며,<br />구매진행에 동의합니다.
+                          </label>
+                        </div>    {/** reconfirm end */}
 
-                    <div id="order2">
-                      <p className="total_info">
-                        총 결제 금액 
-                        <strong>
-                          <span className="order_info_sale_prc">29,000</span>
-                        </strong>
-                         원 결제를 합니다.
-                      </p>    {/** total_info end */}
-                      <p className="msg">&apos;결제하기&apos; 버튼을 누르면 결제창으로 연결됩니다.</p>
-                      <span className="box_btn w150 large">
-                        <input type="submit" value="결제하기" />
-                      </span>   {/** box_btn w150 large end */}
-                      <span className="box_btn w150 large white"><a href="#">취소</a></span>
-                    </div>    {/** order2 end */}
-                  </div>    {/** box end */}
-                </div>    {/** inner end */}
-              </div>    {/** area_right end */}
+                      {/* 주문 버튼 (동의 전) */}
+                      {!agreed && (
+                        <div id="order1" className={agreed ? "" : "disabled"}>
+                          <span className="box_btn huge block">
+                            <a
+                              href="/orderOk"
+                              onClick={(e) => {
+                                e.preventDefault();
+                                if (!agreed) {
+                                  alert("결제정보 확인 및 구매진행 동의를 체크해 주세요.");
+                                  return;
+                                }
+                                submitOrder();
+                              }}
+                              aria-disabled={!agreed}
+                            >
+                              주문하기
+                            </a>
+                          </span>
+                        </div>
+                      )}
+
+                      {/**<div id="order1">
+                        <span className="box_btn huge block">
+                          <a href="/orderOk" onClick={(e)=>{e.preventDefault(); submitOrder();}}>주문하기</a>
+                        </span>
+                      </div>*/}   
+                      </div>    {/** method end */}
+
+                      {/* 동의 후 결제 안내 + 결제 버튼 */}
+                      {agreed && (
+                        <div id="order2" className="show">
+                          <p className="total_info">총 결제 금액 <br />
+                            <strong>
+                              <span className="order_info_sale_prc">{(tot?.total_pay||0).toLocaleString()}</span>
+                            </strong> 원 결제를 합니다.
+                          </p>
+                          <p className="msg">‘결제하기’ 버튼을 누르면 <br /> 결제창으로 연결됩니다.</p>
+                          <span className="box_btn w150 large">
+                            <input type="button" value="결제하기" onClick={submitOrder} />
+                          </span>
+                        </div>
+                      )}
+                    </div>    {/** box end */}
+                  </div>    {/** inner end */}
+                </div>    {/** area_right end */}
+              </div>    {/** ord_info end */}
 
               <input type="hidden" name="total_order_price" value="45000" />
               <input type="hidden" name="event_total_prc" value="45000" /> {/** 이벤트할인 2006-05-18 */}
@@ -767,6 +797,44 @@ const OrderList = () => {
       <div className="orderList_Footer">
         <Footer />
       </div>
+
+      {/* ✅ 결제 모달 바인딩은 이 아래에 */}
+      <PaymentModal
+        open={mockOpen}
+        amount={prepared?.amount || tot?.total_pay || 0}
+        orderName={prepared?.orderName || "주문 결제"}
+        buyer={buyer}
+        onClose={() => setMockOpen(false)}
+        onSuccess={async () => {
+          try {
+            // 모의 승인 → PAID 전환
+            const { data: ok } = await axios.post(
+              "http://localhost:5003/api/checkout/confirm-mock",
+              { orderId: prepared.pg_order_uid },
+              { withCredentials: true }
+            );
+
+            // 주문완료 페이지 이동
+            navigate(`/orderOk?order_id=${prepared.order_id}`, {
+              state: {
+                order_id: prepared.order_id,
+                order_no: ok.order_no,
+                totals: prepared.totals,
+                items: prepared.items,
+                buyer,
+              },
+              replace: true,
+            });
+          } catch (e) {
+            console.error(e);
+            alert(e?.response?.data?.message || "모의 결제 승인 실패");
+          }
+        }}
+        onFail={(e) => {
+          console.error(e);
+          alert("결제를 진행할 수 없습니다.");
+        }}
+      />
     </div>
   );
 };

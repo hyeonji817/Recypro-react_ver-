@@ -1,0 +1,105 @@
+/* src/components/PaymentModal.css */
+.pmask{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.45);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:9999
+}
+
+.pmodal{
+  width:min(560px,92vw);
+  background:#fff;
+  border-radius:16px;
+  box-shadow:0 10px 30px rgba(0,0,0,.2);
+  overflow:hidden
+}
+
+.pheader{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:16px 20px;
+  border-bottom:1px solid #eee
+}
+
+.pheader h3{
+  margin:0;
+  font-size:18px
+}
+
+.pclose{
+  border:none;
+  background:transparent;
+  font-size:22px;
+  line-height:1;
+  cursor:pointer
+}
+
+.pbody{
+  padding:16px 20px
+}
+
+.ptitle{
+  color:#666;
+  width:90px
+}
+
+.pline{
+  display:flex;
+  gap:12px;
+  align-items:center;
+  margin-bottom:8px
+}
+
+.psection{
+  margin-top:14px;
+  margin-bottom:8px;
+  font-weight:600
+}
+
+.grid2{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px
+}
+
+.grid2 label{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  font-size:14px
+}
+
+.grid2 input{
+  padding:10px;
+  border:1px solid #ddd;
+  border-radius:10px
+}
+
+.pfooter{
+  display:flex;
+  justify-content:flex-end;
+  gap:8px;
+  padding:14px 20px;
+  border-top:1px solid #eee
+}
+
+.pbtn{
+  padding:10px 14px;
+  border-radius:10px;
+  border:1px solid transparent;
+  cursor:pointer
+}
+
+.pbtn.primary{
+  background:#111;
+  color:#fff
+}
+
+.pbtn.secondary{
+  background:#f5f5f5;
+  color:#333
+}
