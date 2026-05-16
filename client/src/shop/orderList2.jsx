@@ -85,7 +85,32 @@ const OrderList2 = () => {
     return addr;
   };
 
+  // 4. 우편번호 찾기 열기 
+  const openPostcode = (e) => {
+    e?.preventDefault?.();
+    if (!window.daum || !window.daum.Postcode) {
+      alert("우편번호 스크립트를 아직 불러오는 중이에요. 잠시 후 다시 시도해 주세요.");
+      return;
+    }
 
+    new window.daum.Postcode({
+      oncomplete: (data) => {
+        const zonecode = data.zonecode;            // 5자리 우편번호
+        const addr1 = buildAddress(data);          // 도로명/지번 주소(+추가표기)
+        setRecv((r) => ({ ...r, zip: zonecode, addr1, addr2: r.addr2 || "" }));
+
+        // 상세주소로 포커스 이동(사용자 편의)
+        setTimeout(() => {
+          const el = document.querySelector('input[name="addressee_addr2"]');
+          el && el.focus();
+        }, 0);
+      },
+      // 팝업(기본). 바닥에 임베드하고 싶으면 아래처럼 사용:
+      // width: '100%', height: '100%', onresize: (size) => {...}
+    }).open();
+  };
+
+  
 };
 
 export default OrderList2;
