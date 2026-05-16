@@ -189,7 +189,24 @@ const OrderList2 = () => {
         <Header_loginOK />
       </div>     {/** orderList2_Header end */}
 
-      <div className="orderList2_Content"></div>    {/** orderList2_Content end */}
+      <div className="orderList2_Content">
+        <div className="orderList2_body">
+          <h2 className="subtitle" id="subtitle">주문서</h2>      {/** subtitle end */}
+          <div id="order">
+            <form name="ordFrm" method="post" style={{ margin: "0px" }}>
+              <div className="print_receipt">
+                <span>※ 상품의 옵션 및 수량 변경은 상품상세 또는 장바구니에서 가능합니다.  </span>
+                <span className="box_btn small"><a href="#"> 장바구니 가기</a></span>
+                <span className="box_btn small white"><a href="#"> 견적서 출력</a></span>
+              </div>     {/** print_receipt end */}
+
+              {/** 주문상품정보 */}
+              
+
+            </form>     {/** form end */}
+          </div>      {/** order end */}  
+        </div>     {/** orderList2_body end */}
+      </div>    {/** orderList2_Content end */}
 
       <div className="orderList2_Footer">
         <Footer />
