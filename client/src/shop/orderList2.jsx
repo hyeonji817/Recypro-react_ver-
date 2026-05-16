@@ -30,7 +30,7 @@ const OrderList2 = () => {
         const params = {};
         if (sp.get("all") === "1") params.all = 1;
         if (sp.get("cart_ids")) params.cart_ids = sp.get("cart_ids");
-        const { data } = await axios.get("http://localhost:5101/api/checkout/preview", {
+        const { data } = await axios.get("http://localhost:5003/api/checkout/preview", {
           params, withCredentials: true
         });
         setItems(data.items || []);
@@ -42,7 +42,26 @@ const OrderList2 = () => {
         setLoading(false);
       }
     })();
-  }, [sp])
+  }, [sp]);
+
+  // 1. 카카오 우편번호 스크립트 로드 
+  useEffect(() => {
+    // 이미 로드되어 있으면 패스 
+    if (document.getElementById("daum-postcode-script")) return;
+
+    const script = document.createElement("script"); 
+    script.id = "daum-postcode-script";
+    script.src = "//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js";
+    script.async = true; 
+    document.body.appendChild(script);
+
+    return () => {
+      // 페이지 이동 시 굳이 제거 안 해도 되지만, 깔끔히 정리하고 싶다면:
+      // document.getElementById("daum-postcode-script")?.remove();
+    };
+  }, []);
+
+  
 };
 
 export default OrderList2;
