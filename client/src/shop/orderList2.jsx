@@ -620,6 +620,12 @@ const OrderList2 = () => {
                 </div>    {/** inner end */}
               </div>      {/** area_right end */}
 
+              <input type="hidden" name="total_order_price" value="45000" />
+              <input type="hidden" name="event_total_prc" value="45000" /> {/** 이벤트할인 2006-05-18 */}
+              <input type="hidden" name="member_total_prc" value="45000" /> {/** 회원할인 2006-05-18 */}
+              <input type="hidden" name="usable_milage" value="2000" />
+              <input type="hidden" name="delivery_prc" value="2500" /> {/** 배송비 2006-05-16 */}
+              <input type="hidden" name="cart_where" value="" /> {/** 장바구니조건값 2006-05-16 */}
             </form>     {/** form end */}
           </div>      {/** order end */}  
         </div>     {/** orderList2_body end */}
