@@ -184,7 +184,17 @@ const OrderList2 = () => {
   if (loading) return <div className="orderList_Wrapper">Loading...</div>;
 
   return (
+    <div className="orderList2_Wrapper">
+      <div className="orderList2_Header">
+        <Header_loginOK />
+      </div>     {/** orderList2_Header end */}
 
+      <div className="orderList2_Content"></div>    {/** orderList2_Content end */}
+
+      <div className="orderList2_Footer">
+        <Footer />
+      </div>     {/** orderList2_Footer end */}
+    </div>      /** orderList2_Wrapper end */
   );
 };
 
