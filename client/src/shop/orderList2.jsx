@@ -23,6 +23,26 @@ const OrderList2 = () => {
   const USE_MOCK_PAY = true;    // <- 실제 PG 붙일 땐 false
   const [mockOpen, setMockOpen] = useState(false);
   const [prepared, setPrepared] = useState(null); // prepare 응답 저장
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const params = {};
+        if (sp.get("all") === "1") params.all = 1;
+        if (sp.get("cart_ids")) params.cart_ids = sp.get("cart_ids");
+        const { data } = await axios.get("http://localhost:5101/api/checkout/preview", {
+          params, withCredentials: true
+        });
+        setItems(data.items || []);
+        setTot(data.totals || {});
+      } catch (e) {
+        console.error(e);
+        alert(e?.response?.data?.message || "주문서 불러오기 실패");
+      } finally {
+        setLoading(false);
+      }
+    })();
+  }, [sp])
 };
 
 export default OrderList2;
