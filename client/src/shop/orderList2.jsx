@@ -61,6 +61,16 @@ const OrderList2 = () => {
     };
   }, []);
 
+  // 2. Toss SDK 로드 
+  useEffect(() => {
+    if (document.getElementById("toss-payments-sdk")) return; 
+    const s = document.createElement("script");
+    s.id = "toss-payments-sdk";
+    s.src = "https://js.tosspayments.com/v1";
+    s.async = true;
+    document.body.appendChild(s);
+  }, []);
+
   
 };
 
