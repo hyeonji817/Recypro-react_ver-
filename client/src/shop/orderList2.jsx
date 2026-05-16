@@ -142,6 +142,18 @@ const OrderList2 = () => {
     // 동의 체크박스(reconfirm)는 기존 로직 유지
   };
 
+  // 6. '주문인 정보와 동일' 체크 시 값 복사 
+  const copyBuyerToRecv = (e) => {
+    const checked = e.target.checked; 
+    if (!checked) return; 
+    setRecv((r) => ({
+      ...r,
+      name:  buyer.name  || "",
+      phone: buyer.phone || "",
+      cell:  buyer.cell  || "",
+    }));
+  };
+
   
 };
 
