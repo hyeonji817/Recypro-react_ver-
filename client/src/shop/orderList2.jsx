@@ -154,7 +154,38 @@ const OrderList2 = () => {
     }));
   };
 
-  
+  const submitOrder = async () => {
+    try {
+      // 1) 주문 준비(서버 금액 재계산 + PENDING 주문 생성)
+      const payload = {
+        all: sp.get("all")==="1" ? "1" : undefined,
+        cart_ids: sp.get("cart_ids") || undefined,
+        coupon_code: coupon || undefined,
+        buyer,
+        receiver: recv,
+        pay_method: "TOSS",
+        dlv_memo: recv.memo || ""
+      };
+      const { data } = await axios.post(
+        "http://localhost:5003/api/checkout/prepare",
+        payload,
+        { withCredentials: true }
+      );
+
+      // 2) 모의 결제창 열기 
+      setPrepared(data);
+      setMockOpen(true);
+    } catch (e) {
+      console.error(e);
+      alert(e?.response?.data?.message || "주문/결제 요청 실패");
+    }
+  };
+
+  if (loading) return <div className="orderList_Wrapper">Loading...</div>;
+
+  return (
+
+  );
 };
 
 export default OrderList2;
