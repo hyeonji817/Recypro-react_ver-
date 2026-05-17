@@ -91,24 +91,58 @@ async function loadCartSnapshot({ user_id, all, cart_ids }) {
   return {
     items,
     totals: { subtotal, shipping_fee, discount_total, total_pay, total_mileage },
-  };
+  };  
+}
 
-  function applyCoupon (totals, coupon_code) {
-    // 아주 단순 예시: "CPN5K" -> 5,000원, "CPN10P" → 10% (최대 1만원)
-    let discount = 0; 
-    if (!coupon_code) return { ...totals }; 
+function applyCoupon (totals, coupon_code) {
+  // 아주 단순 예시: "CPN5K" -> 5,000원, "CPN10P" → 10% (최대 1만원)
+  let discount = 0; 
+  if (!coupon_code) return { ...totals }; 
 
-    if (coupon_code === "CPN5K") {
-      discount = 5000; 
-    } else if (coupon_code === "CPN10P") {
-      discount = Math.floor((total_mileage.subtotal * 10) / 100);
-      discount = Math.min(discount, 10000);
-    }
+  if (coupon_code === "CPN5K") {
+    discount = 5000; 
+  } else if (coupon_code === "CPN10P") {
+    discount = Math.floor((total_mileage.subtotal * 10) / 100);
+    discount = Math.min(discount, 10000);
+  }
 
-    const discount_total = (totals.discount_total || 0) + discount; 
-    const total_pay = Math.max(0, totals,subtotal + totals.shipping_fee - discount_total);
+  const discount_total = (totals.discount_total || 0) + discount; 
+  const total_pay = Math.max(0, totals,subtotal + totals.shipping_fee - discount_total);
 
-    return { ...totals, discount_total, total_pay };
+  return { ...totals, discount_total, total_pay };
+}
+
+async function getPreview(userId, { all, cart_ids, coupon_code, use_mileage }) {
+  // 1) 카트 행 조회 (기존 /preview 쿼리 그대로 활용)
+  let rows;
+  if (all === "1") {
+    rows = await q(`
+      SELECT c.*, v.pname, v.filename, v.category,
+             COALESCE(v.discount_price, v.price) AS base_price
+        FROM cart c
+        JOIN v_product_catalog v
+          ON v.product_table = c.product_table
+         AND v.productId     = c.product_id
+       WHERE c.user_id = ?
+       ORDER BY c.created_at DESC
+    `, [userId]);
+  } else if (cart_ids) {
+    const ids = String(cart_ids).split(",").map(s => +s).filter(Boolean);
+    if (!ids.length) return { items: [], totals: {} };
+    const placeholders = ids.map(()=>"?").join(",");
+    rows = await q(`
+      SELECT c.*, v.pname, v.filename, v.category,
+             COALESCE(v.discount_price, v.price) AS base_price
+        FROM cart c
+        JOIN v_product_catalog v
+          ON v.product_table = c.product_table
+         AND v.productId     = c.product_id
+       WHERE c.user_id = ?
+         AND c.cart_id IN (${placeholders})
+       ORDER BY c.created_at DESC
+    `, [userId, ...ids]);
+  } else {
+    return { items: [], totals: {} };
   }
 
   
