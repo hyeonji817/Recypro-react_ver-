@@ -80,14 +80,10 @@ const Cart = () => {
         <Header_loginOK />
       </div>
       <div id="cart_Content">   
-		    <div className="cart_body">   {/** 구 클래스명 : cntbody */}
+		    <div className="cart_body"> 
 		      {/** 서브 타이틀 텍스트(일반페이지) 사용자코드 */}
           <h2 className="subtitle">SHOPPING CART</h2>
-		        {/** //서브 타이틀 텍스트(일반페이지) 사용자코드 */}
-		        {/** 서브 타이틀 텍스트(게시판) 사용자코드 */}
-		        {/** //서브 타이틀 텍스트(게시판) 사용자코드 */}
-		        {/** 마이페이지 메뉴 */}
-		        {/** //마이페이지 메뉴 */}
+		      {/** 마이페이지 메뉴 */}
           <div id="cart">
 	          <form name="cartFrm" method="post" style={{ margin: 0 }}>
 							<ul className="cart_step tar">

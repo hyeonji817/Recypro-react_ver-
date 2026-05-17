@@ -105,8 +105,6 @@ const OrderList = () => {
           el && el.focus();
         }, 0);
       },
-      // 팝업(기본). 바닥에 임베드하고 싶으면 아래처럼 사용:
-      // width: '100%', height: '100%', onresize: (size) => {...}
     }).open();
   };
 
