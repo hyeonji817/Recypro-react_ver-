@@ -249,3 +249,20 @@ function calcCouponDiscount({ subtotal, coupon }) {
   return { discount, reason: 'OK' };
 }
 
+// 1. 카트 -> 프리뷰 아이템 조회 (v_product_catalog 뷰 재활용)
+router.get("/preview", async (req, res) => {
+  try {
+    const userId = req.user?.user_id || "guswl0817"; 
+    const preview = await getPreview(userId, {
+      all: req.query.all, 
+      cart_ids: req.query.cart_ids, 
+      coupon_code: req.query.coupon_code, 
+      use_mileage: req.query.use_mileage
+    });
+    res.json(preview);
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({ message: "프리뷰 조회 실패" });
+  }
+});
+
