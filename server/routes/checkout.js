@@ -392,3 +392,71 @@ router.post("/confirm-mock", async (req, res) => {
   }
 });
 
+// 4. 주문 생성 API - POST /api/checkout/submit
+router.post("/submit", async (req, res) => {
+  const conn = db; // 트랜잭션 필요하면 pool.getConnection 사용
+  try {
+    const userId = req.user?.user_id || "guswl0817";
+    const {
+      all, cart_ids, coupon_code,
+      buyer, receiver, pay_method, dlv_memo
+    } = req.body;
+
+    // 1) 프리뷰 로직 재사용(항상 서버 재계산!)
+    // ...위 preview 쿼리와 동일하게 rows 조회
+    // 여기서는 중복을 줄이려고 함수화하는 걸 추천
+
+    // (간결화를 위해 재조회 코드 생략) => items, totals 구했다고 가정
+    const { items, totals } = await getPreviewForSubmit(userId, { all, cart_ids, coupon_code });
+
+    if (items.length === 0) return res.status(400).json({ message: "주문할 상품이 없습니다." });
+
+    // 2) orders/ order_items INSERT (트랜잭션 권장)
+    const orderResult = await q(`
+      INSERT INTO orders
+        (user_id, status, subtotal, discount_total, shipping_fee, total_pay, total_mileage, coupon_code,
+         buyer_name, buyer_phone, buyer_cell, buyer_email,
+         recv_name, recv_phone, recv_cell, recv_zip, recv_addr1, recv_addr2, dlv_memo, pay_method)
+      VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+    `, [
+      userId, 'PENDING',
+      totals.subtotal, totals.discount_total, totals.shipping_fee, totals.total_pay, totals.total_mileage, coupon_code || null,
+      buyer?.name || null, buyer?.phone || null, buyer?.cell || null, buyer?.email || null,
+      receiver?.name || null, receiver?.phone || null, receiver?.cell || null,
+      receiver?.zip || null, receiver?.addr1 || null, receiver?.addr2 || null,
+      dlv_memo || null, pay_method || null
+    ]);
+
+    const orderId = orderResult.insertId;
+
+    // 아이템들 삽입
+    for (const it of items) {
+      await q(`
+        INSERT INTO order_items
+          (order_id, product_table, product_id, pname, filename,
+           options_json, option_label, unit_price, option_delta, quantity, line_total, mileage)
+        VALUES (?,?,?,?,?,?,?,?,?,?,?,?)
+      `, [
+        orderId, it.product_table, it.product_id, it.pname, it.filename || null,
+        JSON.stringify(it.options_json || {}), it.option_label || null,
+        it.unit_price, it.option_delta || 0, it.quantity, it.line_total, it.mileage
+      ]);
+    }
+
+    // 3) 결제 연동 직전: 선택한 카트 비우기(선택)
+    if (all === "1") {
+      await q(`DELETE FROM cart WHERE user_id = ?`, [userId]);
+    } else if (cart_ids) {
+      const ids = cart_ids.split(",").map(s => +s).filter(Boolean);
+      if (ids.length) {
+        const placeholders = ids.map(()=>"?").join(",");
+        await q(`DELETE FROM cart WHERE user_id = ? AND cart_id IN (${placeholders})`, [userId, ...ids]);
+      }
+    }
+
+    res.json({ order_id: orderId, totals, items });
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({ message: "주문 생성 실패" });
+  }
+});
