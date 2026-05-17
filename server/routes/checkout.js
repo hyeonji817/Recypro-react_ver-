@@ -145,5 +145,29 @@ async function getPreview(userId, { all, cart_ids, coupon_code, use_mileage }) {
     return { items: [], totals: {} };
   }
 
+  // 2) 금액/마일리지 계산 (서버 권위)
+  const items = rows.map(r => {
+    const unitPrice = r.unit_price || r.base_price || 0;
+    const qty = r.cart_quantity || 1;
+    const lineTotal = unitPrice * qty;
+    const mileage = Math.floor(unitPrice * MILEAGE_RATE) * qty;
+    return {
+      cart_id: r.cart_id,
+      product_table: r.product_table,
+      product_id: r.product_id,
+      pname: r.pname,
+      filename: r.filename,
+      option_label: r.option_label,
+      unit_price: unitPrice,
+      option_delta: r.option_delta || 0,
+      quantity: qty,
+      line_total: lineTotal,
+      mileage
+    };
+  });
+
+  const subtotal = items.reduce((s,i)=>s+i.line_total, 0);
+  const shipping_fee = (subtotal >= SHIPPING_THRESHOLD || subtotal === 0) ? 0 : SHIPPING_FEE;
+
   
 }
