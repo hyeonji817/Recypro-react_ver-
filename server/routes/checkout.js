@@ -92,4 +92,24 @@ async function loadCartSnapshot({ user_id, all, cart_ids }) {
     items,
     totals: { subtotal, shipping_fee, discount_total, total_pay, total_mileage },
   };
+
+  function applyCoupon (totals, coupon_code) {
+    // 아주 단순 예시: "CPN5K" -> 5,000원, "CPN10P" → 10% (최대 1만원)
+    let discount = 0; 
+    if (!coupon_code) return { ...totals }; 
+
+    if (coupon_code === "CPN5K") {
+      discount = 5000; 
+    } else if (coupon_code === "CPN10P") {
+      discount = Math.floor((total_mileage.subtotal * 10) / 100);
+      discount = Math.min(discount, 10000);
+    }
+
+    const discount_total = (totals.discount_total || 0) + discount; 
+    const total_pay = Math.max(0, totals,subtotal + totals.shipping_fee - discount_total);
+
+    return { ...totals, discount_total, total_pay };
+  }
+
+  
 }
