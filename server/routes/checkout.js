@@ -169,5 +169,24 @@ async function getPreview(userId, { all, cart_ids, coupon_code, use_mileage }) {
   const subtotal = items.reduce((s,i)=>s+i.line_total, 0);
   const shipping_fee = (subtotal >= SHIPPING_THRESHOLD || subtotal === 0) ? 0 : SHIPPING_FEE;
 
+  // 3. 쿠폰 검증/할인 
+  let coupon = null; 
+  if (coupon_code) {
+    const [c] = await q(`SELECT * FROM coupons WHERE code=?`, [coupon_code]);
+    coupon = c || null;
+    // 예시: 1인 1회 제한
+    if (coupon?.per_user_limit === 1) {
+      const [used] = await q(
+        `SELECT COUNT(1) AS c FROM coupon_redemptions WHERE code=? AND user_id=?`,
+        [coupon_code, userId]
+      );
+      if (used.c > 0) coupon = { ...coupon, active: 0 };
+    }
+    if (coupon?.total_limit && coupon.used_count >= coupon.total_limit) {
+      coupon = { ...coupon, active: 0 };
+    }
+  }
+  const { discount: coupon_discount, reason } = calcCouponDiscount({ subtotal, coupon });
+
   
 }
