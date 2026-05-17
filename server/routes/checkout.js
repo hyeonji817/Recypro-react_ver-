@@ -344,3 +344,51 @@ router.post("/prepare", async (req, res) => {
     totals: preview.totals
   });
 });
+
+// 3. 결제 승인(confirm) API (Toss) 
+// --- 모의 결제 승인: 실제 PG 호출 없이 주문을 PAID 처리 --- 
+// --- 모의 결제 승인: PG 없이 주문을 PAID 처리 --- (수정본)
+router.post("/confirm-mock", async (req, res) => {
+  try {
+    const { orderId, by = "pg" } = req.body;
+    // orderId 는 pg_order_uid 또는 order_id 둘 다 허용
+    let ord;
+    if (by === "db") {
+      [ord] = await q(`SELECT * FROM orders WHERE order_id = ?`, [orderId]);
+    } else {
+      [ord] = await q(`SELECT * FROM orders WHERE pg_order_uid = ?`, [orderId]);
+    }
+    if (!ord) return res.status(404).json({ message: "주문을 찾을 수 없습니다." });
+    if (ord.status === "PAID") {
+      // 이미 결제 완료면 현재 스냅샷 반환
+      return res.json({
+        ok:true,
+        order_id: ord.order_id,
+        order_no: ord.order_no
+      });
+    }
+
+    // 주문번호 생성(예: 20251014-AB12C)
+    const ymd = new Date().toISOString().slice(0,10).replace(/-/g, "");
+    const tail = crypto.randomBytes(3).toString("base64").replace(/[+/=]/g,"").slice(0,5).toUpperCase();
+    const order_no = `${ymd}-${tail}`;
+
+    await q(
+      `UPDATE orders 
+        SET status='PAID', paid_at=NOW(), order_no=?
+        WHERE order_id=?`,
+      [order_no, ord.order_id]
+    );
+
+    return res.json({ 
+      ok:true,
+      order_id: ord.order_id, 
+      order_no,
+      message: "MOCK 결제 승인 완료"
+    });
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({ message: "모의 결제 승인 중 오류" });
+  }
+});
+
