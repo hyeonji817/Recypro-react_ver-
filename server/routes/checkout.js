@@ -227,3 +227,25 @@ async function getPreview(userId, { all, cart_ids, coupon_code, use_mileage }) {
   };
 }
 
+// 쿠폰할인 
+function calcCouponDiscount({ subtotal, coupon }) {
+  if (!coupon) return { discount: 0, reason: 'NO_COUPON' };
+  if (coupon.active !== 1) return { discount: 0, reason: 'INACTIVE' };
+
+  const now = Date.now();
+  if (coupon.starts_at && now < +new Date(coupon.starts_at)) return { discount: 0, reason: 'NOT_STARTED' };
+  if (coupon.ends_at   && now > +new Date(coupon.ends_at))   return { discount: 0, reason: 'EXPIRED' };
+
+  if (subtotal < coupon.min_order) return { discount: 0, reason: 'MIN_NOT_MET' };
+
+  let discount = 0;
+  if (coupon.type === 'FIXED') {
+    discount = coupon.value;
+  } else if (coupon.type === 'PERCENT') {
+    discount = Math.floor(subtotal * (coupon.value / 100));
+    if (coupon.max_discount) discount = Math.min(discount, coupon.max_discount);
+  }
+  discount = Math.max(0, Math.min(discount, subtotal)); // 과할인 방지
+  return { discount, reason: 'OK' };
+}
+
