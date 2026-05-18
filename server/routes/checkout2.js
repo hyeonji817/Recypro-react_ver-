@@ -17,3 +17,21 @@ function makeOrderUID(orderId) {
   return `recypro_${orderId}_${rand}`;
 }
 
+function calcTotals(items) {
+  const subtotal = items.reduce((s, it) => s + it.unit_price * it.cart_quantity, 0);
+  const shipping_fee = subtotal === 0 || subtotal >= SHIPPING_THRESHOLD ? 0 : SHIPPING_FEE;
+  const coupon_discount = 0; 
+  const used_mileage = 0; 
+  const discount_total = coupon_discount + used_mileage; 
+  const total_pay = Math.max(subtotal + shipping_fee - discount_total, 0);
+  const total_mileage = items.reduce(
+    (s, it) => s + Math.floor(it.unit_price * it.cart_quantity * MILEAGE_RATE), 0
+  );
+
+  return {
+    subtotal, shipping_fee, coupon_discount, used_mileage,
+    discount_total, total_pay, total_mileage,
+    coupon_code: null, coupon_reason: "NO_COUPON", mileage_balance: 0
+  };
+}
+
