@@ -252,7 +252,12 @@ function calcCouponDiscount({ subtotal, coupon }) {
 // 1. 카트 -> 프리뷰 아이템 조회 (v_product_catalog 뷰 재활용)
 router.get("/preview", async (req, res) => {
   try {
-    const userId = req.user?.user_id || "guswl0817"; 
+    const userId = req.session?.userId;
+
+    if (!userId) {
+      return res.status(401).json({ message: "로그인이 필요합니다." });
+    }
+
     const preview = await getPreview(userId, {
       all: req.query.all, 
       cart_ids: req.query.cart_ids, 
@@ -268,7 +273,12 @@ router.get("/preview", async (req, res) => {
 
 // 2. 주문 
 router.post("/prepare", async (req, res) => {
-  const userId = req.user?.user_id || "guswl0817";
+  const userId = req.session?.userId;
+
+  if (!userId) {
+    return res.status(401).json({ message: "로그인이 필요합니다." });
+  }
+  
   const { all, cart_ids, coupon_code, use_mileage, buyer, receiver, dlv_memo } = req.body;
 
   const preview = await getPreview(userId, { all, cart_ids, coupon_code, use_mileage });
