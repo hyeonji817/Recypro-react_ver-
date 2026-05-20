@@ -470,3 +470,5 @@ router.post("/submit", async (req, res) => {
     res.status(500).json({ message: "주문 생성 실패" });
   }
 });
+
+export default router;
