@@ -102,12 +102,12 @@ function applyCoupon (totals, coupon_code) {
   if (coupon_code === "CPN5K") {
     discount = 5000; 
   } else if (coupon_code === "CPN10P") {
-    discount = Math.floor((total_mileage.subtotal * 10) / 100);
+    discount = Math.floor((totals.subtotal * 10) / 100);
     discount = Math.min(discount, 10000);
   }
 
   const discount_total = (totals.discount_total || 0) + discount; 
-  const total_pay = Math.max(0, totals,subtotal + totals.shipping_fee - discount_total);
+  const total_pay = Math.max(0, totals.subtotal + totals.shipping_fee - discount_total);
 
   return { ...totals, discount_total, total_pay };
 }
@@ -189,13 +189,13 @@ async function getPreview(userId, { all, cart_ids, coupon_code, use_mileage }) {
   const { discount: coupon_discount, reason } = calcCouponDiscount({ subtotal, coupon });
 
   // 4. 적립금 사용 한도 
-  const myBalance = await getMileageBalance(userId); 
+  const myBalance = 0;
   const wantedUse = Math.max(0, parseInt(use_mileage || "0", 10) || 0);
   const afterCoupon = Math.max(0, subtotal - coupon_discount + shipping_fee);
   const mileage_to_use = Math.min(wantedUse, myBalance, afterCoupon);
 
   // 4-2. 적립금 잔액 조회 
-  async function getMileageBalance(userId) {
+  /** async function getMileageBalance(userId) {
     const [row] = await q(
       `SELECT COALESCE(SUM(delta), 0) AS bal
         FROM mileage_ledger
@@ -203,7 +203,7 @@ async function getPreview(userId, { all, cart_ids, coupon_code, use_mileage }) {
       [userId]
     );
     return Number(row?.bal || 0);
-  }
+  } */
 
   // 5. 총 결제금액 (= 실제 결제 요청 금액)
   const discount_total = coupon_discount; // (+ 다른 할인 항목이 있으면 여기 합산)
