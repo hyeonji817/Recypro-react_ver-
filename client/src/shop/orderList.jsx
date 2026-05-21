@@ -302,7 +302,8 @@ const OrderList = () => {
                       <tr>
                         <th scope="row">적립금 사용</th>
                         <td>
-                          <input type="text" name="milage_prc" value="0" className="form_input tar" /> 사용 가능 적립금 : <strong className="own_mileage">2,000</strong> 원
+                          <input type="text" name="milage_prc" value="0" className="form_input tar" /> 
+                          <p className="mileage">사용 가능 적립금 : <strong className="own_mileage">2,000</strong> 원</p>
                         </td>
                       </tr>
         

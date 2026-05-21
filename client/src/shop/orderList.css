@@ -79,6 +79,7 @@
   position: relative;
   top: 30px;
   left: 20px;
+  margin-bottom: 30px;
   width: 1800px;
 }
 
@@ -197,6 +198,8 @@
   width: 100%;
   margin: 0 auto;
   border-top: 1px solid #e0e0e0;
+  position: relative; 
+  left: 10px;
 }
 
 .orderList_Content .tbl_order caption {
@@ -223,6 +226,13 @@
 
 .orderList_Content .tbl_order td .form_input {
   width: 260px;
+}
+
+.orderList_Content .tbl_order td .mileage {
+  display: inline-block;
+  position: relative;
+  left: 40px;
+  top: 3px;
 }
 
 .orderList_Content input[type=text], input[type=email], input[type=password] {
@@ -275,6 +285,8 @@ ol, ul, li {
 
 .orderList_Content #order .coupon_list li .content {
   font-size: 11px;
+  position: relative;
+  top: -17px;
 }
 
 .orderList_Content input[type=radio] {
