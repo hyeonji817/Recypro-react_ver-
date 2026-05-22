@@ -15,6 +15,32 @@ const OrderOK = () => {
 	const [loading, setLoading] = useState(!init);
 	const [error, setError] = useState("");
 
+	useEffect(() => {
+		// 새로고침 등으로 state 없으면 order_id로 재조회 
+		(async () => {
+			if (data) return; 
+			const order_id = sp.get("order_id"); 
+			if (!order_id) {
+				setError("주문 정보가 없습니다."); 
+				setLoading(false); 
+				return;
+			}
+			try {
+				const { data: fetched } = await axios.get(
+          `http://localhost:5003/api/orders/${order_id}`,
+          { withCredentials: true }
+        );
+				setData(fetched);
+				console.log("주문정보: ", order_id);
+			} catch (e) {
+				console.error(e); 
+				setError(e?.response?.data?.message || "주문 정보 조회 실패");
+			} finally {
+				setLoading(false);
+			}
+		})();
+	}, [sp, data]);
+
   return (
     <div className="orderOK_wrapper">
       <div className="orderOK_Header">
