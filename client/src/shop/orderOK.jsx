@@ -1,7 +1,9 @@
 import "./orderOK.css";
 import Header_loginOK from "../main/Header_loginOK";
 import Footer from "../main/Footer";
-import beepBeep_Toy1 from "../assets/pet/1. beepBeep_Toy1.jpg"; 
+import { useLocation, useSearchParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const OrderOK = () => {
   return (
