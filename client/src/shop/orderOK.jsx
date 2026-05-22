@@ -5,7 +5,7 @@ import { useLocation, useSearchParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const CDN = (path) => `http://localhost:5101/uploads/${String(path || "").replace(/^\.\//,'')}`;
+const CDN = (path) => `http://localhost:5003/uploads/${String(path || "").replace(/^\.\//,'')}`;
 
 const OrderOK = () => {
 	const loc = useLocation(); 

@@ -736,26 +736,23 @@ const OrderList = () => {
                         </div>    {/** reconfirm end */}
 
                       {/* 주문 버튼 (동의 전) */}
-                      {!agreed && (
-                        <div id="order1" className={agreed ? "" : "disabled"}>
-                          <span className="box_btn huge block">
-                            <a
-                              href="/orderOk"
-                              onClick={(e) => {
-                                e.preventDefault();
-                                if (!agreed) {
-                                  alert("결제정보 확인 및 구매진행 동의를 체크해 주세요.");
-                                  return;
-                                }
-                                submitOrder();
-                              }}
-                              aria-disabled={!agreed}
-                            >
-                              주문하기
-                            </a>
-                          </span>
-                        </div>
-                      )}
+                      <div id="order1" className={agreed ? "" : "disabled"}>
+                        <span className="box_btn huge block">
+                          <button
+                            type="button"
+                            className="order_submit_btn"
+                            onClick={() => {
+                              if (!agreed) {
+                                alert("결제정보 확인 및 구매진행 동의를 체크해 주세요.");
+                                return;
+                              }
+                              submitOrder();
+                            }}
+                          >
+                            주문하기
+                          </button>
+                        </span>
+                      </div>
 
                       {/**<div id="order1">
                         <span className="box_btn huge block">
