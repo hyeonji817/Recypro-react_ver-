@@ -344,22 +344,44 @@ ol, ul, li {
   -webkit-transition: all 0.3s;
 }
 
+.orderList_Content .tbl_order td #sms {
+  position: relative;
+  top: 10px;
+  left: 10px;
+}
+
 .orderList_Content .tbl_order td .msg {
   color: #999;
   font-size: 11px;
+  position: relative;
+  left: 17px;
+  top: 10px;
 }
+
+.orderList_Content .tbl_order .phone_call .msg 
 
 .orderList_Content .msg {
   position: relative;
-  right: -30px;
+  right: -120px;
 }
 
 .orderList_Content .tbl_order td.edit {
   line-height: 30px;
 }
 
+.orderList_Content .box_btn small {
+  position: relative;
+  left: 10px;
+}
+
 .orderList_Content #order .title_delivery h3.title {
   display: inline-block;
+}
+
+.orderList_Content .title_delivery .msg {
+  position: relative;
+  left: 60px;
+  top: 22px;
 }
 
 .orderList_Content select {
@@ -380,6 +402,10 @@ ol, ul, li {
 
 .orderList_Content .tbl_order td.address p {
   margin-top: 10px;
+}
+
+.orderList_Content .address_num {
+  height: 40px;
 }
 
 .orderList_Content .tbl_order td.address .zip .form_input {

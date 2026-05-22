@@ -396,7 +396,7 @@ const OrderList = () => {
                           />
                         </td>
                       </tr>
-                      <tr>
+                      <tr className="phone_call">
                         <th scope="row"><label htmlFor="buyer_cell">휴대전화번호</label></th>
                         <td>
                           <input 
