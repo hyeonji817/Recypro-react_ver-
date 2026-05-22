@@ -41,6 +41,12 @@ const OrderOK = () => {
 		})();
 	}, [sp, data]);
 
+	if (loading) return <div className="orderOK_wrapper">로딩중...</div>;
+  if (error) return <div className="orderOK_wrapper">에러: {error}</div>;
+  if (!data)   return <div className="orderOK_wrapper">표시할 주문이 없습니다.</div>;
+
+	const { order_no, totals, items, buyer } = data;
+
   return (
     <div className="orderOK_wrapper">
       <div className="orderOK_Header">
