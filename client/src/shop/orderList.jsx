@@ -461,7 +461,7 @@ const OrderList = () => {
                     <tbody>
                       <tr>
                         <th scope="row">기존 배송지</th>
-                        <td>
+                        <td className="delivery_add">
                           <select name="old_addr_sel">
                             <option value="">새로운주소 입력</option>
                             <option value="곽현지&lt;wisamall&gt;&lt;wisamall&gt;01094398468&lt;wisamall&gt;08786&lt;wisamall&gt;서울특별시 관악구 청룡3길 10(봉천동)&lt;wisamall&gt;영빌딩 603호&lt;wisamall&gt;&lt;wisamall&gt;&lt;wisamall&gt;&lt;wisamall&gt;곽현지&lt;wisamall&gt;15760&lt;wisamall&gt;Y" selected="">[기본 배송지] 곽현지 : 서울특별시 관악구 청룡3길 10(봉천동) 영빌딩 603호</option>

@@ -350,6 +350,11 @@ ol, ul, li {
   left: 10px;
 }
 
+.orderList_Content .tbl_order .delivery_add .msg {
+  position: relative;
+  top: -2px;
+}
+
 .orderList_Content .tbl_order td .msg {
   color: #999;
   font-size: 11px;
