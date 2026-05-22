@@ -67,25 +67,25 @@ const OrderOK = () => {
 			          </colgroup>
 
 			          <tbody>
-				          <tr>
+								<tr>
 					          <th scope="row">주문번호</th>
-					          <td><strong>20250709-E6D79</strong></td>
+					          <td><strong>{order_no}</strong></td>
 				          </tr>
 				          <tr>
 					          <th scope="row">총 상품구매금액</th>
-					          <td>7,110 원</td> {/** 상품 총 합계 */}
+					          <td>{(totals?.subtotal||0).toLocaleString()} 원</td> {/** 상품 총 합계 */}
 				          </tr>
 				          <tr>
 					          <th scope="row">배송비</th>
-					          <td>3,000 원</td>
+					          <td>{(totals?.shipping_fee||0).toLocaleString()} 원</td>
 				          </tr>
 				          <tr>
 					          <th scope="row">총 주문금액</th>
-					          <td>10,110 원</td> {/** 배송비 포함 합계 */}
+					          <td>{((totals?.subtotal||0)+(totals?.shipping_fee||0)).toLocaleString()} 원</td> {/** 배송비 포함 합계 */}
 				          </tr>
 				          <tr>
 					          <th scope="row">총 결제금액</th>
-					          <td>10,110 원</td> {/** 실결제금액 */}
+					          <td>{(totals?.total_pay||0).toLocaleString()} 원</td> {/** 실결제금액 */}
 				          </tr>
 			          </tbody>
 		          </table>
