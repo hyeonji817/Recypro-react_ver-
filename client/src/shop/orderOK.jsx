@@ -5,7 +5,16 @@ import { useLocation, useSearchParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
+const CDN = (path) => `http://localhost:5101/uploads/${String(path || "").replace(/^\.\//,'')}`;
+
 const OrderOK = () => {
+	const loc = useLocation(); 
+	const [sp] = useSearchParams(); 
+	const init = loc.state || null;		// paySuccess에서 넘긴 state 
+	const [data, setData] = useState(init); 
+	const [loading, setLoading] = useState(!init);
+	const [error, setError] = useState("");
+
   return (
     <div className="orderOK_wrapper">
       <div className="orderOK_Header">
