@@ -92,8 +92,8 @@ const OrderOK = () => {
 	          </div>    {/** box end */}
 
 	          <div className="info">
-		          <p className="email">
-                고객님의 소중한 주문정보를 <strong>guswl0817@naver.com</strong>로 발송해 드렸습니다.<br />
+							<p className="email">
+                고객님의 소중한 주문정보를 <strong>{buyer?.email || "-"}</strong>로 발송해 드렸습니다.<br />
                 (비회원으로 주문하신 경우 주문 확인시 주문번호가 필요하오니 꼭 메모해 두세요.)
               </p>    {/** email end */}
 		          <form method="post" style={{ margin: "0px" }}>
@@ -123,27 +123,26 @@ const OrderOK = () => {
 	            </thead>
 
 	            <tbody>
-                <tr>
-			            <td>
-                    <a href="#">
-                      <img src={beepBeep_Toy1} width={60} height={80} />
-                    </a>
-                  </td>
-			            <td className="tal">
-                    <a href="#">[지구pick] 바잇미 접이식 실리콘 휴대용 물컵 파스텔 </a><br />
-                    색상 : 그린<br />
-                  </td>   {/** tal end */}
-			            <td>7,110 원<br /></td>
-			            <td>1</td>
-			            <td>10,110 원</td>
-			            <td>158 원</td>
-		            </tr>
-                <tr></tr>
+								{items?.map(it => (
+                  <tr key={it.cart_id}>
+                    <td>
+                      <img src={CDN(it.filename)} width={60} height={80} />
+                    </td>
+                    <td className="tal">
+                      <span>{it.pname}</span><br />
+                      {it.option_label ? <span>{it.option_label}</span> : null}
+                    </td>
+                    <td>{it.unit_price.toLocaleString()} 원</td>
+                    <td>{it.quantity}</td>
+                    <td>{it.line_total.toLocaleString()} 원</td>
+                    <td>{it.mileage.toLocaleString()} 원</td>
+                  </tr>
+                ))}
               </tbody>
             </table>    {/** tbl_col prd end */}
 
 	          <div className="btn">
-		          <span className="box_btn large"><a href="#">주문조회하기</a></span>   {/** box_btn large end */}
+		          <span className="box_btn large"><a href="/mypage/orders">주문조회하기</a></span>   {/** box_btn large end */}
 		          <span className="box_btn large white"><a href="/">쇼핑계속하기</a></span>   {/** box_btn large white end */}
 	          </div>  {/** btn end */}
           </div>    {/** orderfin end */}
