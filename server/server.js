@@ -17,6 +17,9 @@ import ProductKitchenRouter from "./routes/Product_Kitchen.js";
 import ProductPetRouter from "./routes/Product_Pet.js";
 import ProductOfficeRouter from "./routes/Product_Office.js";
 import checkoutRouter from "./routes/checkout.js"; 
+import orderRouter from "./routes/orders.js";
+import subOrderRouter from "./routes/orders2.js";
+
 import mysql from "mysql2";   // MySQL 데이터베이스와의 연결 제공. 
 import path from "path";    // path : 파일 경로 조작을 위한 Node.js 기본 모듈 
 import { fileURLToPath } from "url";
@@ -63,6 +66,8 @@ app.use("/api/product_kitchen", ProductKitchenRouter);
 app.use("/api/product_pet", ProductPetRouter);
 app.use("/api/product_office", ProductOfficeRouter);
 app.use("/api/checkout", checkoutRouter);
+app.use("/api/orders", orderRouter);
+app.use("/api/orders2", subOrderRouter);
 
 // MySQL 연결 설정 (공통) (DB 연결은 단일 세션으로 하면 안되고 pool을 통해 다중 세션 처리할 수 있도록 한다.)
 const pool = mysql.createPool({
