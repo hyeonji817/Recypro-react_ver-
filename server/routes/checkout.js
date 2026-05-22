@@ -469,6 +469,131 @@ router.post("/submit", async (req, res) => {
     console.error(e);
     res.status(500).json({ message: "주문 생성 실패" });
   }
+
+  // 주문처리 후 장바구니 비우기 
+  router.post("/", async (req, res) => {
+    const userId = req.session?.userId;
+  
+    if (!userId) {
+      return res.status(401).json({ message: "로그인이 필요합니다." });
+    }
+  
+    const {
+      cartIds,
+      receiverName,
+      receiverPhone,
+      receiverAddress,
+      totalPrice,
+      paymentMethod
+    } = req.body;
+  
+    if (!cartIds || cartIds.length === 0) {
+      return res.status(400).json({ message: "주문할 상품이 없습니다." });
+    }
+  
+    const conn = await db.promise().getConnection();
+  
+    try {
+      await conn.beginTransaction();
+  
+      // 1. 주문 기본 정보 저장
+      const [orderResult] = await conn.query(
+        `
+        INSERT INTO orders
+        (user_id, receiver_name, receiver_phone, receiver_address, total_price, payment_method)
+        VALUES (?, ?, ?, ?, ?, ?)
+        `,
+        [
+          userId,
+          receiverName,
+          receiverPhone,
+          receiverAddress,
+          totalPrice,
+          paymentMethod
+        ]
+      );
+  
+      const orderId = orderResult.insertId;
+  
+      // 2. 장바구니에서 주문할 상품 조회
+      const [cartRows] = await conn.query(
+        `
+        SELECT *
+        FROM cart
+        WHERE user_id = ?
+          AND cart_id IN (?)
+        `,
+        [userId, cartIds]
+      );
+  
+      if (cartRows.length === 0) {
+        throw new Error("주문할 장바구니 상품이 없습니다.");
+      }
+  
+      // 3. 주문 상세 저장
+      for (const item of cartRows) {
+        await conn.query(
+          `
+          INSERT INTO order_items
+          (
+            order_id,
+            product_table,
+            product_id,
+            pname,
+            filename,
+            options_json,
+            option_label,
+            unit_price,
+            option_delta,
+            quantity,
+            total_price,
+            mileage
+          )
+          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+          `,
+          [
+            orderId,
+            item.product_table,
+            item.product_id,
+            item.pname || "",
+            item.filename || null,
+            item.options_json || null,
+            item.option_label || null,
+            item.unit_price || 0,
+            item.option_delta || 0,
+            item.cart_quantity || 1,
+            item.total_price || 0,
+            item.mileage || 0
+          ]
+        );
+      }
+  
+      // 4. 주문 완료된 장바구니 상품 삭제
+      await conn.query(
+        `
+        DELETE FROM cart
+        WHERE user_id = ?
+          AND cart_id IN (?)
+        `,
+        [userId, cartIds]
+      );
+  
+      await conn.commit();
+  
+      res.json({
+        ok: true,
+        message: "주문이 완료되었습니다.",
+        orderId
+      });
+  
+    } catch (err) {
+      await conn.rollback();
+      console.error(err);
+      res.status(500).json({ message: "주문 처리 중 오류가 발생했습니다." });
+    } finally {
+      conn.release();
+    }
+  });
 });
 
 export default router;
