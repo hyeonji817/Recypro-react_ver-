@@ -225,20 +225,21 @@ const OrderList2 = () => {
                 </thead>
 
                 <tbody>
-                  <tr>
-                    <td className="img">
-                      <a href="#">
-                        <img src={beepBeep_Toy1} width={52} height={70} />
-                      </a>
-                    </td>
-
-                    <td className="tal"><a href="#">[지구pick] 바잇미 업사이클 봉봉그린 반려동물 삑삑이 장난감</a></td>
-                    <td className="tal"> 종류 : 토끼<br /> <div></div></td>
-                    <td>7,110 원</td>
-                    <td>1</td>
-                    <td>7,110 원</td>
-                    <td>158 원</td>
-                  </tr>
+                  {items.length === 0 ? (
+                    <tr><td colSpan={7} className="tac">주문할 상품이 없습니다.</td></tr>
+                  ) : items.map(it => (
+                    <tr key={it.cart_id}>
+                      <td className="img">
+                        <img src={CDN(it.filename)} width={52} height={70} />
+                      </td>
+                      <td className="tal">{it.pname}</td>
+                      <td className="tal">{it.option_label || "-"}</td>
+                      <td>{it.unit_price.toLocaleString()} 원</td>
+                      <td>{it.quantity}</td>
+                      <td>{it.line_total.toLocaleString()} 원</td>
+                      <td>{it.mileage.toLocaleString()} 원</td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
 
@@ -260,7 +261,8 @@ const OrderList2 = () => {
                       <tr>
                         <th scope="row">적립금 사용</th>
                         <td>
-                          <input type="text" name="milage_prc" value="0" className="form_input tar" /> 사용 가능 적립금 : <strong className="own_mileage">2,000</strong> 원
+                          <input type="text" name="milage_prc" value="0" className="form_input tar" /> 
+                          <p className="mileage">사용 가능 적립금 : <strong className="own_mileage">2,000</strong> 원</p>
                         </td>
                       </tr>
         
@@ -273,7 +275,9 @@ const OrderList2 = () => {
                               <span className="check">
                                 <input type="hidden" id="coupon_stype_1038523" value="1" />
                                 <input type="hidden" name="coupon_pay_type" value="1" />
-                                <input type="radio" name="coupon" id="coupon" value="1038523" />
+                                <input type="radio" name="coupon" id="coupon" value="1038523" 
+                                  onChange={(e) => setCoupon(e.target.value)}
+                                />
                               </span>   {/** check end */}
                               <p className="name">[온라인전용] 멤버십_5천 원 할인 쿠폰</p>
                               <p className="content">
@@ -287,7 +291,9 @@ const OrderList2 = () => {
                               <span className="check">
                                 <input type="hidden" id="coupon_stype_848011" value="1" />
                                 <input type="hidden" name="coupon_pay_type" value="1" />
-                                <input type="radio" name="coupon" id="coupon" value="848011" />
+                                <input type="radio" name="coupon" id="coupon" value="848011" 
+                                  onChange={(e)=>setCoupon(e.target.value)}
+                                />
                               </span>   {/** check end */}
                               <p className="name">[온라인전용] 멤버십_10% 할인 쿠폰</p>
                               <p className="content">
@@ -300,7 +306,9 @@ const OrderList2 = () => {
 
                             <li>
                               <span className="check">
-                                <input type="radio" id="no_cpn" name="coupon" value="" />
+                                <input type="radio" id="no_cpn" name="coupon" value="" 
+                                  onChange={(e)=>setCoupon("")}
+                                />
                               </span>
                               <p className="name">사용안함</p>
                               <p className="content"></p>
@@ -324,27 +332,61 @@ const OrderList2 = () => {
                       <tr>
                         <th scope="row"><label htmlFor="order_buyer_name">주문하시는 분</label></th>
                         <td>
-                          <input type="text" name="buyer_name" value="곽현지" id="order_buyer_name" className="form_input" />
+                          <input 
+                            type="text" 
+                            name="buyer_name" 
+                            value={buyer.name}
+                            id="order_buyer_name" 
+                            className="form_input" 
+                            onChange={onInput}
+                          />
                         </td>
                       </tr>
                       <tr>
                         <th scope="row"><label htmlFor="buyer_phone">전화번호</label></th>
                         <td>
-                          <input type="text" name="buyer_phone" id="buyer_phone" value="" className="form_input remove_dash" />
+                          <input 
+                            type="text" 
+                            name="buyer_phone" 
+                            id="buyer_phone" 
+                            value={buyer.phone} 
+                            className="form_input remove_dash" 
+                            onChange={onInput}
+                          />
                         </td>
                       </tr>
-                      <tr>
+                      <tr className="phone_call"> 
                         <th scope="row"><label htmlFor="buyer_cell">휴대전화번호</label></th>
                         <td>
-                          <input type="text" name="buyer_cell" id="buyer_cell" value="01094398468" className="form_input remove_dash" />
-                          <input type="checkbox" name="sms" id="sms" value="Y" checked="" />
+                          <input 
+                            type="text" 
+                            name="buyer_cell" 
+                            id="buyer_cell" 
+                            value={buyer.cell} 
+                            className="form_input remove_dash" 
+                            onChange={onInput}
+                          />
+                          <input 
+                            type="checkbox" 
+                            name="sms" 
+                            id="sms" 
+                            value="Y" 
+                            onChange={onInput} 
+                          />
                           <label htmlFor="sms" className="msg">주문관련 SMS를 수신합니다.</label>
                         </td>
                       </tr>
                       <tr>
                         <th scope="row"><label htmlFor="order_buyer_email">이메일</label></th>
                         <td>
-                          <input type="text" name="buyer_email" value="narimjoon@naver.com" id="order_buyer_email" className="form_input mail3" />
+                          <input 
+                            type="text" 
+                            name="buyer_email" 
+                            value={buyer.email} 
+                            id="order_buyer_email" 
+                            className="form_input mail3" 
+                            onChange={onInput}
+                          />
                         </td>
                       </tr>
                       {/** 주문서 - 회원주문일때, 회원정보 수정 링크 */}
@@ -392,21 +434,42 @@ const OrderList2 = () => {
                       <tr>
                         <th scope="row"><label htmlFor="order_addressee_name">받으시는 분</label></th>
                         <td>
-                          <input type="text" name="addressee_name" value="" id="order_addressee_name" className="form_input" />
+                          <input 
+                            type="text" 
+                            name="addressee_name" 
+                            value={recv.name} 
+                            id="order_addressee_name" 
+                            className="form_input" 
+                            onChange={onInput}
+                          />
                         </td>
                       </tr>
 
                       <tr>
                         <th scope="row"><label htmlFor="addressee_phone">전화번호</label></th>
                         <td>
-                          <input type="text" name="addressee_phone" id="addressee_phone" className="form_input remove_dash" />
+                          <input 
+                            type="text" 
+                            name="addressee_phone" 
+                            id="addressee_phone" 
+                            className="form_input remove_dash" 
+                            value={recv.phone}
+                            onChange={onInput}
+                          />
                         </td>
                       </tr>
 
                       <tr>
                         <th scope="row"><label htmlFor="addressee_cell">휴대전화번호</label></th>
                         <td>
-                          <input type="text" name="addressee_cell" id="addressee_cell" className="form_input remove_dash" />
+                          <input 
+                            type="text" 
+                            name="addressee_cell" 
+                            id="addressee_cell" 
+                            className="form_input remove_dash" 
+                            value={recv.cell}
+                            onChange={onInput}
+                          />
                         </td>
                       </tr>
 
@@ -414,12 +477,33 @@ const OrderList2 = () => {
                         <th scope="row"><label htmlFor="order_addressee_zip">주소</label></th>
                         <td className="address">
                           <p className="zip">
-                            <input type="text" name="addressee_zip" value="" id="order_addressee_zip" className="form_input input_zipcode" />
-                            <span className="box_btn white"><a href="#"> 우편번호 찾기</a></span>
+                            <input 
+                              type="text" 
+                              name="addressee_zip" 
+                              value={recv.zip} 
+                              id="order_addressee_zip" 
+                              className="form_input input_zipcode" 
+                              onChange={onInput}
+                            />
+                            <span className="box_btn white">
+                              <a href="#" className="address_num" onClick={openPostcode}><p>우편번호 찾기</p></a>
+                            </span>
                           </p>    {/** zip end */}
                           <p>
-                            <input type="text" name="addressee_addr1" value="" className="form_input" />
-                            <input type="text" name="addressee_addr2" value="" className="form_input" />
+                            <input 
+                              type="text" 
+                              name="addressee_addr1" 
+                              value={recv.addr1} 
+                              onChange={onInput}
+                              className="form_input" 
+                            />
+                            <input 
+                              type="text" 
+                              name="addressee_addr2" 
+                              value={recv.addr2} 
+                              className="form_input" 
+                              onChange={onInput}
+                            />
                           </p>
                         </td>   {/** address end */}
                       </tr>
@@ -427,7 +511,14 @@ const OrderList2 = () => {
                       <tr>
                         <th scope="row"><label htmlFor="order_dlv_memo">배송시요청사항</label></th>
                         <td>
-                          <textarea type="text" name="dlv_memo" value="" id="order_dlv_memo" className="form_input block"></textarea>
+                          <textarea 
+                            type="text" 
+                            name="dlv_memo" 
+                            value={recv.memo || ""} 
+                            id="order_dlv_memo" 
+                            className="form_input block" 
+                            onChange={onInput}
+                          />
                         </td>
                       </tr>
                       {/** ADDINFO_DONE */}
@@ -450,12 +541,12 @@ const OrderList2 = () => {
                       <tbody>
                         <tr>
                           <th scope="row">상품합계 금액</th>
-                          <td>7,110 원</td>
+                          <td>{(tot?.subtotal||0).toLocaleString()} 원</td>
                         </tr>
                         <tr className="total">
                           <th scope="row">배송비 </th>
                           <td>
-                            (+) <span id="delivery_prc2">3,000</span> 원
+                            (+) {(tot?.shipping_fee||0).toLocaleString()} 원
                           </td>
                         </tr>   {/** total end */}
                       </tbody>
@@ -474,7 +565,7 @@ const OrderList2 = () => {
                             할인 금액 합계 <a className="i_info p_cursor"></a>
                           </th>
                           <td>
-                            (-) <span className="total_sale_prc">0</span> 원
+                            (-) <span className="total_sale_prc">{(tot?.discount_total||0).toLocaleString()}</span> 원
                             <div id="discount_info" className="view_info">
                               <div className="order_area_event_prc" style={{ display: "none" }}>
                                 이벤트 할인금액<br />
@@ -532,7 +623,7 @@ const OrderList2 = () => {
                             총 적립금 <a className="i_info p_cursor"></a>
                           </th>
                           <td>
-                            <span className="total_milage">158</span> 원
+                            <span className="total_milage">{(tot?.total_mileage||0).toLocaleString()}</span> 원
                             <div id="milage_info" className="view_info">
                               <div className="order_area_prd_milage">
                                 상품 적립금<br />
@@ -554,7 +645,7 @@ const OrderList2 = () => {
                           <th scope="row">총 결제 금액</th>
                           <td>
                             <strong className="total_price">
-                              <span className="order_info_sale_prc">10,110</span> 원
+                              <span className="order_info_sale_prc">{(tot?.total_pay||0).toLocaleString()}</span> 원
                             </strong>   {/** total_price end */}
                           </td>
                         </tr>
@@ -593,29 +684,53 @@ const OrderList2 = () => {
         
                       <div className="reconfirm">
                         <label>
-                          <input name="reconfirm" id="reconfirm" type="checkbox" value="Y" /> 
+                          <input 
+                            name="reconfirm" 
+                            id="reconfirm" 
+                            type="checkbox" 
+                            value="Y" checked={agreed}
+                            onChange={
+                              (e)=>setAgreed(e.target.checked)
+                            } 
+                          /> 
                           결제정보를 확인하였으며,<br />구매진행에 동의합니다.
                         </label>
                       </div>    {/** reconfirm end */}
-                      <div id="order1">
-                        <span className="box_btn huge block"><a href="/orderOk">주문하기</a></span>
-                      </div>    {/** order1 end */}
+
+                      {/* 주문 버튼 (동의 전) */}
+                      <div id="order1" className={agreed ? "" : "disabled"}>
+                        <span className="box_btn huge block">
+                          <button
+                            type="button"
+                            className="order_submit_btn"
+                            onClick={() => {
+                              if (!agreed) {
+                                alert("결제정보 확인 및 구매진행 동의를 체크해 주세요.");
+                                return;
+                              }
+                              submitOrder();
+                            }}
+                          >
+                            주문하기
+                          </button>
+                        </span>
+                      </div>    {/** #order1 end */}
                     </div>    {/** method end */}
 
-                    <div id="order2">
-                      <p className="total_info">
-                        총 결제 금액 
-                        <strong>
-                          <span className="order_info_sale_prc">29,000</span>
-                        </strong>
-                         원 결제를 합니다.
-                      </p>    {/** total_info end */}
-                      <p className="msg">&apos;결제하기&apos; 버튼을 누르면 결제창으로 연결됩니다.</p>
-                      <span className="box_btn w150 large">
-                        <input type="submit" value="결제하기" />
-                      </span>   {/** box_btn w150 large end */}
-                      <span className="box_btn w150 large white"><a href="#">취소</a></span>
-                    </div>    {/** order2 end */}
+                    {/* 동의 후 결제 안내 + 결제 버튼 */}
+                    {agreed && (
+                      <div id="order2" className="show">
+                        <p className="total_info">총 결제 금액 <br />
+                          <strong>
+                            <span className="order_info_sale_prc">{(tot?.total_pay||0).toLocaleString()}</span>
+                          </strong> 원 결제를 합니다.
+                        </p>
+                        <p className="msg">‘결제하기’ 버튼을 누르면 <br /> 결제창으로 연결됩니다.</p>
+                        <span className="box_btn w150 large">
+                          <input type="button" value="결제하기" onClick={submitOrder} />
+                        </span>
+                      </div>
+                    )}
                   </div>    {/** box end */}
                 </div>    {/** inner end */}
               </div>      {/** area_right end */}
@@ -633,6 +748,44 @@ const OrderList2 = () => {
       <div className="orderList2_Footer">
         <Footer />
       </div>     {/** orderList2_Footer end */}
+
+      {/* 결제 모달 바인딩 영역 */}
+      <PaymentModal
+        open={mockOpen}
+        amount={prepared?.amount || tot?.total_pay || 0}
+        orderName={prepared?.orderName || "주문 결제"}
+        buyer={buyer}
+        onClose={() => setMockOpen(false)}
+        onSuccess={async () => {
+          try {
+            // 모의 승인 → PAID 전환
+            const { data: ok } = await axios.post(
+              "http://localhost:5003/api/checkout/confirm-mock",
+              { orderId: prepared.pg_order_uid },
+              { withCredentials: true }
+            );
+
+            // 주문완료 페이지 이동
+            navigate(`/orderOk?order_id=${prepared.order_id}`, {
+              state: {
+                order_id: prepared.order_id,
+                order_no: ok.order_no,
+                totals: prepared.totals,
+                items: prepared.items,
+                buyer,
+              },
+              replace: true,
+            });
+          } catch (e) {
+            console.error(e);
+            alert(e?.response?.data?.message || "모의 결제 승인 실패");
+          }
+        }}
+        onFail={(e) => {
+          console.error(e);
+          alert("결제를 진행할 수 없습니다.");
+        }}
+      />
     </div>      /** orderList2_Wrapper end */
   );
 };

@@ -13,7 +13,7 @@
   font-family: 'GmarketSansMedium';
 }
 
-.orderList2_Content .orderList2_body {
+.orderList2_Content .orderList_body {
   overflow: hidden;
   width: 1700px;
   height: auto;
@@ -79,6 +79,7 @@
   position: relative;
   top: 30px;
   left: 20px;
+  margin-bottom: 30px;
   width: 1800px;
 }
 
@@ -186,6 +187,10 @@
 
 .orderList2_Content h3.title {
   padding: 30px 0 20px;
+  position: relative;
+  top: 30px;
+  left: 22px;
+  margin-bottom: 40px;
 }
 
 .orderList2_Content .tbl_order {
@@ -193,6 +198,8 @@
   width: 100%;
   margin: 0 auto;
   border-top: 1px solid #e0e0e0;
+  position: relative; 
+  left: 10px;
 }
 
 .orderList2_Content .tbl_order caption {
@@ -219,6 +226,13 @@
 
 .orderList2_Content .tbl_order td .form_input {
   width: 260px;
+}
+
+.orderList2_Content .tbl_order td .mileage {
+  display: inline-block;
+  position: relative;
+  left: 40px;
+  top: 3px;
 }
 
 .orderList2_Content input[type=text], input[type=email], input[type=password] {
@@ -271,6 +285,8 @@ ol, ul, li {
 
 .orderList2_Content #order .coupon_list li .content {
   font-size: 11px;
+  position: relative;
+  top: -17px;
 }
 
 .orderList2_Content input[type=radio] {
@@ -328,22 +344,49 @@ ol, ul, li {
   -webkit-transition: all 0.3s;
 }
 
+.orderList2_Content .tbl_order td #sms {
+  position: relative;
+  top: 10px;
+  left: 10px;
+}
+
+.orderList2_Content .tbl_order .delivery_add .msg {
+  position: relative;
+  top: -2px;
+}
+
 .orderList2_Content .tbl_order td .msg {
   color: #999;
   font-size: 11px;
+  position: relative;
+  left: 17px;
+  top: 10px;
 }
+
+.orderList2_Content .tbl_order .phone_call .msg 
 
 .orderList2_Content .msg {
   position: relative;
-  right: -30px;
+  right: -120px;
 }
 
 .orderList2_Content .tbl_order td.edit {
   line-height: 30px;
 }
 
+.orderList2_Content .box_btn small {
+  position: relative;
+  left: 10px;
+}
+
 .orderList2_Content #order .title_delivery h3.title {
   display: inline-block;
+}
+
+.orderList2_Content .title_delivery .msg {
+  position: relative;
+  left: 60px;
+  top: 22px;
 }
 
 .orderList2_Content select {
@@ -366,6 +409,10 @@ ol, ul, li {
   margin-top: 10px;
 }
 
+.orderList2_Content .address_num {
+  height: 40px;
+}
+
 .orderList2_Content .tbl_order td.address .zip .form_input {
   width: 158px;
 }
@@ -385,7 +432,6 @@ ol, ul, li {
 .orderList2_Content #order .ord_info > .area_right .inner {
   float: right;
   position: sticky;
-  position: -webkit-sticky;
   top: 30px;
 }
 
@@ -400,7 +446,7 @@ ol, ul, li {
 }
 
 .orderList2_Content h3.title {
-  padding: 50px 40px 30px 0;
+  padding: 30px 0 20px;
 }
 
 .orderList2_Content .tbl_order2 {
@@ -587,4 +633,20 @@ ol, ul, li {
 .orderList2_Content #order #order2 .msg {
   padding: 23px 0;
   color: #888;
+}
+
+.orderList2_Content .order_submit_btn {
+  width: 100%;
+  height: 57px;
+  border: none;
+  background: #666;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.orderList2_Content #order1.disabled .order_submit_btn {
+  opacity: 0.6;
+  cursor: pointer;
 }
