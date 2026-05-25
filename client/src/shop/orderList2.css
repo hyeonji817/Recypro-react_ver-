@@ -185,7 +185,7 @@
   display: flex;
 }
 
-.orderList2_Content h3.title {
+.orderList2_Content .area_left h3.title {
   padding: 30px 0 20px;
   position: relative;
   top: 30px;
@@ -445,8 +445,10 @@ ol, ul, li {
   padding-top: 0;
 }
 
-.orderList2_Content h3.title {
+.orderList2_Content .area_right h3.title {
   padding: 30px 0 20px;
+  top: 30px;
+  margin-bottom: 40px;
 }
 
 .orderList2_Content .tbl_order2 {

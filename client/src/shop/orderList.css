@@ -185,7 +185,7 @@
   display: flex;
 }
 
-.orderList_Content h3.title {
+.orderList_Content .area_left h3.title {
   padding: 30px 0 20px;
   position: relative;
   top: 30px;
@@ -432,7 +432,6 @@ ol, ul, li {
 .orderList_Content #order .ord_info > .area_right .inner {
   float: right;
   position: sticky;
-  position: -webkit-sticky;
   top: 30px;
 }
 
@@ -442,18 +441,24 @@ ol, ul, li {
   background: #f8f8f8;
 }
 
-.orderList_Content h3.title.first {
-  padding-top: 0;
+.orderList_Content .area_right h3.title {
+  padding: 30px 0 20px;
+  top: 30px;
+  margin-bottom: 40px;
 }
 
-.orderList_Content h3.title {
-  padding: 30px 0 20px;
+.orderList_Content h3.title.first {
+  padding-top: 0;
 }
 
 .orderList_Content .tbl_order2 {
   table-layout: fixed;
   width: 100%;
   margin: 0 auto;
+}
+
+.orderList_Content .tbl_order2 .hidden {
+  margin-right: 20px;
 }
 
 .orderList_Content .tbl_order2 caption {
