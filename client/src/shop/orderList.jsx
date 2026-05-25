@@ -753,15 +753,9 @@ const OrderList = () => {
                           </button>
                         </span>
                       </div>
+                    </div>    {/** method end */}
 
-                      {/**<div id="order1">
-                        <span className="box_btn huge block">
-                          <a href="/orderOk" onClick={(e)=>{e.preventDefault(); submitOrder();}}>주문하기</a>
-                        </span>
-                      </div>*/}   
-                      </div>    {/** method end */}
-
-                      {/* 동의 후 결제 안내 + 결제 버튼 */}
+                    {/* 동의 후 결제 안내 + 결제 버튼 */}
                       {agreed && (
                         <div id="order2" className="show">
                           <p className="total_info">총 결제 금액 <br />

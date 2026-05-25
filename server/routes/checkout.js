@@ -355,6 +355,30 @@ router.post("/prepare", async (req, res) => {
   });
 });
 
+// 2-2. 장바구니 비우기
+async function clearOrderCartItems(ord) {
+  const items = JSON.parse(ord.items_json || "[]"); 
+
+  const cartIds = [
+    ...new Set(
+      items
+        .map((it) => Number(it.cart_id))
+        .filter(Boolean)
+    )
+  ];
+
+  if (!cartIds.length) return; 
+
+  await q(
+    `
+    DELETE FROM cart
+    WHERE user_id = ?
+    AND cart_id IN (${cartIds.map(() => "?").join(",")})
+    `,
+  [ord.user_id, ...cartIds]
+  );
+}
+
 // 3. 결제 승인(confirm) API (Toss) 
 // --- 모의 결제 승인: 실제 PG 호출 없이 주문을 PAID 처리 --- 
 // --- 모의 결제 승인: PG 없이 주문을 PAID 처리 --- (수정본)
@@ -368,11 +392,14 @@ router.post("/confirm-mock", async (req, res) => {
     } else {
       [ord] = await q(`SELECT * FROM orders WHERE pg_order_uid = ?`, [orderId]);
     }
+
     if (!ord) return res.status(404).json({ message: "주문을 찾을 수 없습니다." });
     if (ord.status === "PAID") {
+      await clearOrderCartItems(ord); 
+
       // 이미 결제 완료면 현재 스냅샷 반환
       return res.json({
-        ok:true,
+        ok: true,
         order_id: ord.order_id,
         order_no: ord.order_no
       });
@@ -380,7 +407,11 @@ router.post("/confirm-mock", async (req, res) => {
 
     // 주문번호 생성(예: 20251014-AB12C)
     const ymd = new Date().toISOString().slice(0,10).replace(/-/g, "");
-    const tail = crypto.randomBytes(3).toString("base64").replace(/[+/=]/g,"").slice(0,5).toUpperCase();
+    const tail = crypto.randomBytes(3)
+      .toString("base64")
+      .replace(/[+/=]/g,"")
+      .slice(0,5)
+      .toUpperCase();
     const order_no = `${ymd}-${tail}`;
 
     await q(
@@ -389,6 +420,9 @@ router.post("/confirm-mock", async (req, res) => {
         WHERE order_id=?`,
       [order_no, ord.order_id]
     );
+
+    // 결제 완료된 장바구니 상품 삭제 
+    await clearOrderCartItems(ord);
 
     return res.json({ 
       ok:true,
