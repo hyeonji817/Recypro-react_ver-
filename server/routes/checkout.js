@@ -356,8 +356,27 @@ router.post("/prepare", async (req, res) => {
 });
 
 // 2-2. 장바구니 비우기
+function parseJsonMaybe(value, fallback) {
+  if (!value) return fallback; 
+
+  // 이미 배열/객체면 그대로 사용 
+  if (typeof value === "object") return value; 
+
+  // 문자열일 때만 JSON.parse 
+  if (typeof value === "string") {
+    try {
+      return JSON.parse(value);
+    } catch (e) {
+      console.error("JSON parse 실패:", value);
+      return fallback;
+    }
+  }
+
+  return fallback;
+}
+
 async function clearOrderCartItems(ord) {
-  const items = JSON.parse(ord.items_json || "[]"); 
+  const items = parseJsonMaybe(ord.items_json, []);
 
   const cartIds = [
     ...new Set(
@@ -367,15 +386,18 @@ async function clearOrderCartItems(ord) {
     )
   ];
 
-  if (!cartIds.length) return; 
+  console.log("[clearOrderCartItems] user_id:", ord.user_id);
+  console.log("[clearOrderCartItems] cartIds:", cartIds);
+
+  if (!cartIds.length) return;
 
   await q(
     `
     DELETE FROM cart
     WHERE user_id = ?
-    AND cart_id IN (${cartIds.map(() => "?").join(",")})
+      AND cart_id IN (${cartIds.map(() => "?").join(",")})
     `,
-  [ord.user_id, ...cartIds]
+    [ord.user_id, ...cartIds]
   );
 }
 
