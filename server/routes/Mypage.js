@@ -1,10 +1,139 @@
 import express from "express"; 
 import { db } from "../server.js"; 
+
 const router = express.Router(); 
 const app = express(); 
 
+const q = (sql, params = []) =>
+  new Promise((resolve, reject) => {
+    db.query(sql, params, (err, rows) => (err ? reject(err) : resolve(rows)));
+  });
+
+function getSessionUserId(req) {
+  return req.session?.user?.id || req.session?.userId;
+}
+
+// 로그인 사용자 정보 
+router.get("/", (req, res) => {
+  const userId = getSessionUserId(req); 
+
+  if (!userId) {
+    return res.status(401).json({ message: "로그인이 필요합니다." });
+  }
+
+  res.json({
+    id: userId, 
+    name: req.session?.user?.name || "",
+    grade: req.session?.user?.grade || "MEMBER",
+  }); 
+});
+
+// 마이페이지 요약 
+router.get("/summary", async (req, res) => {
+  try {
+    const userId = getSessionUserId(req);
+
+    if (!userId) {
+      return res.status(401).json({ message: "로그인이 필요합니다." });
+    }
+
+    const [[orderSummary], [mileageSummary], [wishSummary]] = await Promise.all([
+      q(
+        `
+        SELECT
+          COUNT(*) AS orderCount,
+          COALESCE(SUM(total_pay), 0) AS orderTotal
+        FROM orders
+        WHERE user_id = ?
+          AND status = 'PAID'
+        `,
+        [userId]
+      ),
+      q(
+        `
+        SELECT COALESCE(SUM(delta), 0) AS mileage
+        FROM mileage_ledger
+        WHERE user_id = ?
+        `,
+        [userId]
+      ),
+      q(
+        `
+        SELECT COUNT(*) AS wishCount
+        FROM wishlist
+        WHERE user_id = ?
+        `,
+        [userId]
+      ).catch(() => [{ wishCount: 0 }]),
+    ]);
+
+    res.json({
+      user: {
+        id: userId,
+        name: req.session?.user?.name || userId,
+        grade: req.session?.user?.grade || "MEMBER",
+      },
+      counts: {
+        orders: Number(orderSummary?.orderCount || 0),
+        wishlist: Number(wishSummary?.wishCount || 0),
+        coupons: 0,
+        qa: 0,
+        reviews: 0,
+      },
+      money: {
+        mileage: Number(mileageSummary?.mileage || 0),
+        deposits: 0,
+        specialMileage: 0,
+        points: 0,
+      },
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "마이페이지 요약 조회 실패" });
+  }
+}); 
+
+// 마이페이지 주문내역 
+router.get("/orders", async (req, res) => {
+  try {
+    const userId = getSessionUserId(req);
+
+    if (!userId) {
+      return res.status(401).json({ message: "로그인이 필요합니다." });
+    }
+
+    const rows = await q(
+      `
+      SELECT
+        order_id,
+        order_no,
+        status,
+        total_pay,
+        total_mileage,
+        created_at,
+        paid_at,
+        items_json
+      FROM orders
+      WHERE user_id = ?
+      ORDER BY created_at DESC
+      `,
+      [userId]
+    );
+
+    res.json(
+      rows.map((row) => ({
+        ...row,
+        items: JSON.parse(row.items_json || "[]"),
+      }))
+    );
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "주문내역 조회 실패" });
+  }
+});
+
 // 마이페이지 정보 가져오기 
-router.get("/:id", (req, res) => {
+/** router.get("/:id", (req, res) => {
   const userId = req.params.id; 
   const query = "SELECT * FROM mypage WHERE id = ?"; 
 
@@ -14,10 +143,10 @@ router.get("/:id", (req, res) => {
 
     res.json(results[0]);
   });
-});
+}); */
 
 // 새로 저장 (없을 경우) or 수정 
-router.post("/", (req, res) => {
+/** router.post("/", (req, res) => {
   const {
     id, couponCount, mileage, point,
     mp_order, wishList, coupon,
@@ -58,6 +187,6 @@ router.post("/", (req, res) => {
       res.status(401).json({ message: "Not logged in" });
     }
   });  
-});
+}); */
 
 export default router;
