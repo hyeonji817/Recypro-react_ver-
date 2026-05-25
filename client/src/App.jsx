@@ -45,6 +45,7 @@ import OrderOK from "./shop/orderOK";
 import Pd_write from "./shop/Product_write";
 import Product_Review from "./shop/Product_Review";
 import Mypage from "./mypage/Mypage";
+import Mypage_Orders from "./mypage/mypage_orders"; 
 
 import Customer_main from "./customer/Customer_main";
 import Customer_notice from "./customer/customer_notice";
@@ -125,6 +126,7 @@ function App() {
         <Route path="/pd_write" element={<Pd_write />} />
         <Route path="/shop/Product_Review" element={<Product_Review />} />
         <Route path="/mypage" element={<Mypage />} />
+        <Route path="/orders" element={<Mypage_Orders />} />
 
         <Route path="/customer_main" element={<Customer_main />} />
         <Route path="/customer_notice" element={<Customer_notice />} />
