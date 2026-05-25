@@ -5,7 +5,7 @@ const LogoutAction = () => {
   const navigate = useNavigate(); 
 
   useEffect(() => {
-    fetch("http://localhost:5001/logout", {   // 서버 페이지(server.js)에 있는 logout API에게 값 전달 
+    fetch("http://localhost:5003/logout", {   // 서버 페이지(server.js)에 있는 logout API에게 값 전달 
       method: "POST",
       credentials: "include",   // 세션 쿠키를 포함 
     }).then((res) => {
