@@ -18,11 +18,44 @@ const formatDate = (value) => {
 const CDN = (path) =>
   `http://localhost:5003/uploads/${String(path || "").replace(/^\.\//, "")}`;
 
-const mp_Orders = () => {
+const Mp_Orders = () => {
   const [summary, setSummary] = useState(null);
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    const fetchMypageOrders = async () => {
+      try {
+        setLoading(true);
+        setError("");
+
+        const [summaryRes, ordersRes] = await Promise.all([
+          axios.get("http://localhost:5003/api/mypage/summary", {
+            withCredentials: true,
+          }),
+          axios.get("http://localhost:5003/api/mypage/orders", {
+            withCredentials: true,
+          }),
+        ]);
+
+        setSummary(summaryRes.data);
+        setOrders(ordersRes.data || []);
+      } catch (err) {
+        console.error(err);
+
+        if (err.response?.status === 401) {
+          setError("로그인이 필요합니다.");
+        } else {
+          setError("주문내역을 불러오지 못했습니다.");
+        }
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchMypageOrders();
+  }, []);
 
   return (
     <div className="mpOrders_wrapper">
@@ -37,15 +70,28 @@ const mp_Orders = () => {
           <div className="mpOrders_top">
             <div className="customer_section">
               <div className="name">
-                <strong>곽현지</strong>님은 MEMBER
+                <strong>{summary?.user?.name || summary?.user?.id || "회원"}</strong>님은{" "}
+                {summary?.user?.grade || "MEMBER"}
               </div>      {/** name end */}
 
               <a href="/edit" className="my_edit">정보 수정하기</a>
 
               <ul className="point_section">
-                <li><a href="/mypage/coupon_down_list.php"><strong>쿠폰</strong> 6 장</a></li>
-			          <li><a href="/mypage/milage.php"><strong>적립금</strong> 3,030 원</a></li>
-			          <li><a href="/mypage/emoney.php"><strong>포인트</strong> 0 P</a></li>
+                <li>
+                  <a href="/mypage/coupon_down_list.php">
+                    <strong>쿠폰</strong> {summary?.counts?.coupons || 0} 장
+                  </a>
+                </li>
+                <li>
+                  <a href="/mypage/milage.php">
+                    <strong>적립금</strong> {formatWon(summary?.money?.mileage)} 원
+                  </a>
+                </li>
+                <li>
+                  <a href="/mypage/emoney.php">
+                    <strong>포인트</strong> {formatWon(summary?.money?.points)} P
+                  </a>
+                </li>
               </ul>     {/** point_section end */}
 
               <ul className="mpOrders_tab">
@@ -68,6 +114,88 @@ const mp_Orders = () => {
 
             <div className="search"></div>      {/** search end */}
 
+            {loading && (
+            <p className="title_count tar">주문내역을 불러오는 중입니다.</p>
+            )}
+
+            {error && (
+            <p className="title_count tar">{error}</p>
+            )}
+
+            {!loading && !error && orders.length === 0 && (
+            <div className="order_empty">
+              주문내역이 없습니다.
+            </div>
+            )}
+
+            {!loading && !error && orders.length > 0 && (
+            <table className="mpOrders_table">
+              <thead>
+                <tr>
+                  <th>주문일자</th>
+                  <th>주문번호</th>
+                  <th>상품정보</th>
+                  <th>결제금액</th>
+                  <th>주문상태</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                {orders.map((order) => {
+                  const firstItem = order.items?.[0];
+                  const itemCount = order.items?.length || 0;
+
+                  return (
+                    <tr key={order.order_id}>
+                      <td>{formatDate(order.paid_at || order.created_at)}</td>
+
+                      <td>
+                        <a href={`/orders/${order.order_id}`} className="order_no">
+                          {order.order_no || order.order_id}
+                        </a>
+                      </td>
+
+                      <td>
+                        <div className="order_product">
+                        {firstItem?.filename && (
+                          <img
+                            src={CDN(firstItem.filename)}
+                            alt={firstItem.pname}
+                            className="order_thumb"
+                          />
+                        )}
+
+                        <div className="order_product_info">
+                          <strong>
+                            {firstItem?.pname || "상품 정보 없음"}
+                            {itemCount > 1 && ` 외 ${itemCount - 1}건`}
+                          </strong>
+
+                          {firstItem?.option_label && (
+                          <p>{firstItem.option_label}</p>
+                          )}
+
+                          <p>
+                            수량 {firstItem?.quantity || 1}개 / 적립금{" "}
+                            {formatWon(order.total_mileage)}원
+                          </p>
+                        </div>
+                      </div>
+                    </td>
+
+                    <td>
+                      <strong>{formatWon(order.total_pay)}원</strong>
+                    </td>
+
+                    <td>
+                      {order.status === "PAID" ? "결제완료" : order.status}
+                    </td>
+                  </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          )}
           </div>     {/** order_list end */}
         </div>     {/** mpOrders_body end */}
       </div>    {/** mpOrders_Content end */}
@@ -79,4 +207,4 @@ const mp_Orders = () => {
   );
 };
 
-export default mp_Orders;
+export default Mp_Orders;
