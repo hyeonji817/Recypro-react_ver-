@@ -94,6 +94,7 @@ router.get("/summary", async (req, res) => {
 }); 
 
 // 마이페이지 주문내역 
+// 마이페이지 주문내역
 router.get("/orders", async (req, res) => {
   try {
     const userId = getSessionUserId(req);
@@ -105,27 +106,75 @@ router.get("/orders", async (req, res) => {
     const rows = await q(
       `
       SELECT
-        order_id,
-        order_no,
-        status,
-        total_pay,
-        total_mileage,
-        created_at,
-        paid_at,
-        items_json
-      FROM orders
-      WHERE user_id = ?
-      ORDER BY created_at DESC
+        o.order_id,
+        o.order_no,
+        o.status,
+        o.subtotal,
+        o.shipping_fee,
+        o.discount_total,
+        o.total_pay,
+        o.total_mileage,
+        o.created_at,
+        o.paid_at,
+        o.pay_method,
+
+        oi.order_item_id,
+        oi.product_table,
+        oi.product_id,
+        oi.pname,
+        oi.filename,
+        oi.option_label,
+        oi.unit_price,
+        oi.quantity,
+        oi.line_total,
+        oi.mileage
+      FROM orders o
+      LEFT JOIN order_items oi
+        ON oi.order_id = o.order_id
+      WHERE o.user_id = ?
+        AND o.status = 'PAID'
+      ORDER BY o.paid_at DESC, o.order_id DESC, oi.order_item_id ASC
       `,
       [userId]
     );
 
-    res.json(
-      rows.map((row) => ({
-        ...row,
-        items: JSON.parse(row.items_json || "[]"),
-      }))
-    );
+    const grouped = {};
+
+    rows.forEach((row) => {
+      if (!grouped[row.order_id]) {
+        grouped[row.order_id] = {
+          order_id: row.order_id,
+          order_no: row.order_no,
+          status: row.status,
+          subtotal: row.subtotal,
+          shipping_fee: row.shipping_fee,
+          discount_total: row.discount_total,
+          total_pay: row.total_pay,
+          total_mileage: row.total_mileage,
+          created_at: row.created_at,
+          paid_at: row.paid_at,
+          pay_method: row.pay_method,
+          items: [],
+        };
+      }
+
+      if (row.order_item_id) {
+        grouped[row.order_id].items.push({
+          order_item_id: row.order_item_id,
+          product_table: row.product_table,
+          product_id: row.product_id,
+          pname: row.pname,
+          filename: row.filename,
+          option_label: row.option_label,
+          unit_price: row.unit_price,
+          quantity: row.quantity,
+          line_total: row.line_total,
+          mileage: row.mileage,
+        });
+      }
+    });
+
+    res.json(Object.values(grouped));
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "주문내역 조회 실패" });

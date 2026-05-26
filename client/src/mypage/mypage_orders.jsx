@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 import "./mypage_orders.css";
 import Header_loginOK from "../main/Header_loginOK";
 import Footer from "../main/Footer";
