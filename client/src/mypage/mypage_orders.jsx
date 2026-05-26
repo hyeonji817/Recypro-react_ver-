@@ -6,7 +6,23 @@ import Footer from "../main/Footer";
 
 const formatWon = (value) => Number(value || 0).toLocaleString();
 
+const formatDate = (value) => {
+  if (!value) return "-";
+  return new Date(value).toLocaleDateString("ko-KR", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  });
+};
+
+const CDN = (path) =>
+  `http://localhost:5003/uploads/${String(path || "").replace(/^\.\//, "")}`;
+
 const mp_Orders = () => {
+  const [summary, setSummary] = useState(null);
+  const [orders, setOrders] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
   return (
     <div className="mpOrders_wrapper">
