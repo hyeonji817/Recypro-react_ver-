@@ -67,24 +67,24 @@ ol, ul, li {
   font-size: 22px;
 }
 
-.mpOrders_top .my_page_tab {
+.mpOrders_top .mpOrders_tab {
   padding: 104px 0 144px;
   font-size: 0;
 }
 
-.mpOrders_top .my_page_tab > li {
+.mpOrders_top .mpOrders_tab > li {
   display: inline-block;
   padding: 0 34px;
   vertical-align: top;
 }
 
-.mpOrders_top .my_page_tab > li .tab_title {
+.mpOrders_top .mpOrders_tab > li .tab_title {
   display: block;
   color: #828282;
   font-size: 17px;
 }
 
-.mpOrders_top .my_page_tab > li .tab_sub {
+.mpOrders_top .mpOrders_tab > li .tab_sub {
   display: block;
   color: #000;
   font-size: 14px;
