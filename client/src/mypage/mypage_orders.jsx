@@ -109,94 +109,98 @@ const Mp_Orders = () => {
           </div>      {/** mpOrders_top end */}
 
           <div id="order_list">
-            <h3 className="title first">주문내역</h3>     {/** title first end */}
-            <p className="title_count tar">주문번호를 클릭하시면 주문정보를 확인할 수 있습니다.</p>   {/** title_count tar end */}
+	          <h3 className="title first">주문내역</h3>
+	          <p className="title_count tar">주문번호를 클릭하시면 주문정보를 확인할 수 있습니다.</p>
+	
+            <div className="search">
+	            <div className="date">
+                <span className="box_btn gray ">
+                  <input type="button" value="오늘" />
+                </span>     {/** box_btn gray  end */}
+		            <span className="box_btn gray ">
+                  <input type="button" value="1개월" />
+                </span>     {/** box_btn gray  end */}
+		            <span className="box_btn gray ">
+                  <input type="button" value="3개월" />
+                </span>     {/** box_btn gray  end */}
+		            <span className="box_btn gray ">
+                  <input type="button" value="6개월" />
+                </span>     {/** box_btn gray  end */}
+		            <span className="box_btn gray ">
+                  <input type="button" value="1년" />
+                </span>     {/** box_btn gray  end */}
+		            <span className="box_btn gray on">
+                  <input type="button" value="전체" />
+                </span>     {/** box_btn gray on end */}
+	            </div>      {/** date end */}
 
-            <div className="search"></div>      {/** search end */}
+	            <div className="date_input">
+		            <input type="text" id="start_date" name="start_date" value="" className="form_input datepicker hasDatepicker" /> ~ <input type="text" id="finish_date" name="finish_date" value="" className="form_input datepicker hasDatepicker" />
+	            </div>    {/** date_input end */}
+	            <span className="box_btn">
+                <input type="button" name="date_list" value="주문조회" />
+              </span>     {/** box_btn end */}
+            </div>      {/** search end */}
+	
+            <table className="tbl_col">
+	            <caption className="hidden">주문내역</caption>
+	            <colgroup>
+		            <col style={{ width: "15%" }} />
+		            <col />
+		            <col style={{ width: "12%" }} />
+		            <col style={{ width: "12%" }} />
+		            <col style= {{ width: "12%" }} />
+	            </colgroup>
 
-            {loading && (
-            <p className="title_count tar">주문내역을 불러오는 중입니다.</p>
-            )}
-
-            {error && (
-            <p className="title_count tar">{error}</p>
-            )}
-
-            {!loading && !error && orders.length === 0 && (
-            <div className="order_empty">
-              주문내역이 없습니다.
-            </div>
-            )}
-
-            {!loading && !error && orders.length > 0 && (
-            <table className="mpOrders_table">
-              <thead>
+	            <thead>
+		            <tr>
+			            <th scope="col">주문번호</th>
+			            <th scope="col">상품명</th>
+			            <th scope="col">주문금액</th>
+			            <th scope="col">실 결제금액</th>
+			            <th scope="col">상태</th>
+		            </tr>
+	            </thead>
+	            <tbody>
                 <tr>
-                  <th>주문일자</th>
-                  <th>주문번호</th>
-                  <th>상품정보</th>
-                  <th>결제금액</th>
-                  <th>주문상태</th>
-                </tr>
-              </thead>
-
-              <tbody>
-                {orders.map((order) => {
-                  const firstItem = order.items?.[0];
-                  const itemCount = order.items?.length || 0;
-
-                  return (
-                    <tr key={order.order_id}>
-                      <td>{formatDate(order.paid_at || order.created_at)}</td>
-
-                      <td>
-                        <a href={`/orders/${order.order_id}`} className="order_no">
-                          {order.order_no || order.order_id}
-                        </a>
-                      </td>
-
-                      <td>
-                        <div className="order_product">
-                        {firstItem?.filename && (
-                          <img
-                            src={CDN(firstItem.filename)}
-                            alt={firstItem.pname}
-                            className="order_thumb"
-                          />
-                        )}
-
-                        <div className="order_product_info">
-                          <strong>
-                            {firstItem?.pname || "상품 정보 없음"}
-                            {itemCount > 1 && ` 외 ${itemCount - 1}건`}
-                          </strong>
-
-                          {firstItem?.option_label && (
-                          <p>{firstItem.option_label}</p>
-                          )}
-
-                          <p>
-                            수량 {firstItem?.quantity || 1}개 / 적립금{" "}
-                            {formatWon(order.total_mileage)}원
-                          </p>
-                        </div>
-                      </div>
-                    </td>
-
-                    <td>
-                      <strong>{formatWon(order.total_pay)}원</strong>
-                    </td>
-
-                    <td>
-                      {order.status === "PAID" ? "결제완료" : order.status}
-                    </td>
-                  </tr>
-                  );
-                })}
-              </tbody>
+			            <td className="order_number">
+                    <a href="#">20260430-0F8A9</a><br />
+                    2026/04/30
+                  </td>     {/** order_number end */}
+			            <td className="tal">BASIC LINEN CARDIGAN PINK</td>
+			            <td>69,000 원</td>
+			            <td>55,210 원</td>
+			            <td>
+				            입금완료
+			            </td>
+		            </tr>
+		            <tr>
+			            <td className="order_number">
+                    <a href="#">20250828-ABB83</a><br />
+                    2025/08/28
+                  </td>     {/** order_number end */}
+			            <td className="tal">CASHMERE BLENDED BASIC CARDIGAN LIGHT BLUE</td>
+			            <td>129,000 원</td>
+			            <td>93,200 원</td>
+			            <td>
+				            배송완료
+			            </td>
+		            </tr>
+		            <tr>
+			            <td className="order_number">
+                    <a href="#">20250709-E6D79</a><br />
+                    2025/07/09
+                  </td>
+			            <td className="tal">HEART FRIENDS PUPPY T-SHIRT WHITE</td>
+			            <td>47,500 원</td>
+			            <td>29,000 원</td>
+			            <td>
+				            배송완료
+			            </td>
+		            </tr>
+	            </tbody>
             </table>
-          )}
-          </div>     {/** order_list end */}
+          </div>      {/** order_list end */}
         </div>     {/** mpOrders_body end */}
       </div>    {/** mpOrders_Content end */}
 

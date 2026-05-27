@@ -105,6 +105,7 @@ ol, ul, li {
   height: 0;
   color: #999;
   font-size: 11px;
+  right: 10px;
 }
 
 .mpOrders_wrapper .tar {
@@ -191,6 +192,8 @@ ol, ul, li {
 .mpOrders_wrapper .tbl_col {
   table-layout: fixed;
   clear: both;
+  position: relative;
+  left: -10px;
   width: 100%;
   border-collapse: collapse;
 }
