@@ -30,12 +30,6 @@ dotenv.config();
 const app = express();
 const port = 5003;    // 프론트엔드에서 호출할 포트와 일치해야 한다.   
 
-// JSON 형식의 요청을 처리하기 위한 미들웨어
-// JSON 형식의 요청 본문을 읽고 사용할 수 있도록 설정. 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));  
-app.use(cookieParser());
-
 // CORS 설정 (프론트와 백 연결하는 징검다리)
 app.use(cors({
   origin: 'http://localhost:5174',
@@ -43,6 +37,12 @@ app.use(cors({
   allowedHeaders: ['Content-Type'],
   credentials: true,
 }));
+
+// JSON 형식의 요청을 처리하기 위한 미들웨어
+// JSON 형식의 요청 본문을 읽고 사용할 수 있도록 설정. 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));  
+app.use(cookieParser());
 
 app.use(session({
   secret: "guswl0817",    // 세션 암호화 키 

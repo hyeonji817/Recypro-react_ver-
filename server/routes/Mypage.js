@@ -133,7 +133,9 @@ router.get("/orders", async (req, res) => {
         ON oi.order_id = o.order_id
       WHERE o.user_id = ?
         AND o.status = 'PAID'
-      ORDER BY o.paid_at DESC, o.order_id DESC, oi.order_item_id ASC
+      ORDER BY COALESCE(o.paid_at, o.created_at) DESC,
+        o.order_id DESC,
+        oi.order_item_id ASC
       `,
       [userId]
     );
@@ -146,11 +148,11 @@ router.get("/orders", async (req, res) => {
           order_id: row.order_id,
           order_no: row.order_no,
           status: row.status,
-          subtotal: row.subtotal,
-          shipping_fee: row.shipping_fee,
-          discount_total: row.discount_total,
-          total_pay: row.total_pay,
-          total_mileage: row.total_mileage,
+          subtotal: Number(row.subtotal || 0),
+          shipping_fee: Number(row.shipping_fee || 0),
+          discount_total: Number(row.discount_total || 0),
+          total_pay: Number(row.total_pay || 0),
+          total_mileage: Number(row.total_mileage || 0),
           created_at: row.created_at,
           paid_at: row.paid_at,
           pay_method: row.pay_method,
@@ -166,10 +168,10 @@ router.get("/orders", async (req, res) => {
           pname: row.pname,
           filename: row.filename,
           option_label: row.option_label,
-          unit_price: row.unit_price,
-          quantity: row.quantity,
-          line_total: row.line_total,
-          mileage: row.mileage,
+          unit_price: Number(row.unit_price || 0),
+          quantity: Number(row.quantity || 0),
+          line_total: Number(row.line_total || 0),
+          mileage: Number(row.mileage || 0),
         });
       }
     });

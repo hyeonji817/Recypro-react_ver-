@@ -135,7 +135,21 @@ const Mp_Orders = () => {
 	            </div>      {/** date end */}
 
 	            <div className="date_input">
-		            <input type="text" id="start_date" name="start_date" value="" className="form_input datepicker hasDatepicker" /> ~ <input type="text" id="finish_date" name="finish_date" value="" className="form_input datepicker hasDatepicker" />
+                <input
+                  type="text"
+                  id="start_date"
+                  name="start_date"
+                  defaultValue=""
+                  className="form_input datepicker hasDatepicker"
+                />
+                ~
+                <input
+                  type="text"
+                  id="finish_date"
+                  name="finish_date"
+                  defaultValue=""
+                  className="form_input datepicker hasDatepicker"
+                />
 	            </div>    {/** date_input end */}
 	            <span className="box_btn">
                 <input type="button" name="date_list" value="주문조회" />
@@ -162,43 +176,62 @@ const Mp_Orders = () => {
 		            </tr>
 	            </thead>
 	            <tbody>
+                {loading ? (
                 <tr>
-			            <td className="order_number">
-                    <a href="#">20260430-0F8A9</a><br />
-                    2026/04/30
-                  </td>     {/** order_number end */}
-			            <td className="tal">BASIC LINEN CARDIGAN PINK</td>
-			            <td>69,000 원</td>
-			            <td>55,210 원</td>
-			            <td>
-				            입금완료
-			            </td>
-		            </tr>
-		            <tr>
-			            <td className="order_number">
-                    <a href="#">20250828-ABB83</a><br />
-                    2025/08/28
-                  </td>     {/** order_number end */}
-			            <td className="tal">CASHMERE BLENDED BASIC CARDIGAN LIGHT BLUE</td>
-			            <td>129,000 원</td>
-			            <td>93,200 원</td>
-			            <td>
-				            배송완료
-			            </td>
-		            </tr>
-		            <tr>
-			            <td className="order_number">
-                    <a href="#">20250709-E6D79</a><br />
-                    2025/07/09
-                  </td>
-			            <td className="tal">HEART FRIENDS PUPPY T-SHIRT WHITE</td>
-			            <td>47,500 원</td>
-			            <td>29,000 원</td>
-			            <td>
-				            배송완료
-			            </td>
-		            </tr>
-	            </tbody>
+                  <td colSpan="5">주문내역을 불러오는 중입니다.</td>
+                </tr>
+                ) : error ? (
+                <tr>
+                  <td colSpan="5">{error}</td>
+                </tr>
+                ) : orders.length === 0 ? (
+                <tr>
+                  <td colSpan="5">주문내역이 없습니다.</td>
+                </tr>
+                ) : (
+                orders.map((order) => {
+                  const firstItem = order.items?.[0];
+                  const productName = firstItem
+                    ? order.items.length > 1
+                    ? `${firstItem.pname} 외 ${order.items.length - 1}건`
+                    : firstItem.pname
+                    : "상품 정보 없음";
+
+                  return (
+                    <tr key={order.order_id}>
+                      <td className="order_number">
+                        <a href={`/orderOk?order_id=${order.order_id}`}>
+                          {order.order_no || order.order_id}
+                        </a>
+                        <br />
+                        {formatDate(order.paid_at || order.created_at)}
+                      </td>
+
+                      <td className="tal">
+                        {firstItem?.filename && (
+                        <img
+                          src={CDN(firstItem.filename)}
+                          alt={productName}
+                          style={{
+                            width: "50px",
+                            height: "50px",
+                            objectFit: "cover",
+                            marginRight: "10px",
+                            verticalAlign: "middle",
+                          }}
+                        />
+                        )}
+                        {productName}
+                      </td>
+
+                      <td>{formatWon(order.subtotal)} 원</td>
+                      <td>{formatWon(order.total_pay)} 원</td>
+                      <td>{order.status === "PAID" ? "결제완료" : order.status}</td>
+                    </tr>
+                  );
+                })
+              )}
+              </tbody>
             </table>
           </div>      {/** order_list end */}
         </div>     {/** mpOrders_body end */}
