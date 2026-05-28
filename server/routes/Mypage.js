@@ -183,6 +183,79 @@ router.get("/orders", async (req, res) => {
   }
 });
 
+// 주문 상세 조회
+router.get("/orders/:orderId", async (req, res) => {
+  try {
+    const userId = getSessionUserId(req);
+    const { orderId } = req.params;
+
+    if (!userId) {
+      return res.status(401).json({ message: "로그인이 필요합니다." });
+    }
+
+    const [order] = await q(
+      `
+      SELECT
+        order_id,
+        order_no,
+        user_id,
+        status,
+        subtotal,
+        shipping_fee,
+        discount_total,
+        total_pay,
+        total_mileage,
+        pay_method,
+        buyer_json,
+        receiver_json,
+        created_at,
+        paid_at
+      FROM orders
+      WHERE order_id = ?
+        AND user_id = ?
+      `,
+      [orderId, userId]
+    );
+
+    if (!order) {
+      return res.status(404).json({ message: "주문 정보를 찾을 수 없습니다." });
+    }
+
+    const items = await q(
+      `
+      SELECT
+        order_item_id,
+        order_id,
+        product_table,
+        product_id,
+        pname,
+        filename,
+        options_json,
+        option_label,
+        unit_price,
+        option_delta,
+        quantity,
+        line_total,
+        mileage
+      FROM order_items
+      WHERE order_id = ?
+      ORDER BY order_item_id ASC
+      `,
+      [orderId]
+    );
+
+    res.json({
+      ...order,
+      buyer: JSON.parse(order.buyer_json || "{}"),
+      receiver: JSON.parse(order.receiver_json || "{}"),
+      items,
+    });
+  } catch (err) {
+    console.error("[GET /api/mypage/orders/:orderId]", err);
+    res.status(500).json({ message: "주문 상세 조회 실패" });
+  }
+});
+
 // 마이페이지 정보 가져오기 
 /** router.get("/:id", (req, res) => {
   const userId = req.params.id; 
