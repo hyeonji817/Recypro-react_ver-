@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import "./mypage_orders.css";
 import Header_loginOK from "../main/Header_loginOK";
@@ -200,9 +201,9 @@ const Mp_Orders = () => {
                   return (
                     <tr key={order.order_id}>
                       <td className="order_number">
-                        <a href={`/orderOk?order_id=${order.order_id}`}>
+                        <Link to={`/orderOk?order_id=${order.order_id}`}>
                           {order.order_no || order.order_id}
-                        </a>
+                        </Link>
                         <br />
                         {formatDate(order.paid_at || order.created_at)}
                       </td>
