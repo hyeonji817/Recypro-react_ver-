@@ -93,6 +93,22 @@ const Mp_OrderDetail = () => {
                 <a href="#">계산서출력</a>  
               </span>   {/** box_btn small white end */}  
             </p>   {/** title_count tar end */}
+
+            <table className="tbl_col prd">
+              <caption className="hidden">주문상품</caption>  
+              <colgroup>
+                <col style={{ width: "100px" }} />
+		            <col />
+		            <col style={{ width: "15%" }} />
+		            <col style={{ width: "12%" }} />
+		            <col style={{ width: "5%" }} />
+		            <col style={{ width: "12%" }} />
+		            <col style={{ width: "10%" }} />
+		            <col style={{ width: "10%" }} />
+		            <col style={{ width: "10%" }} />
+              </colgroup>
+            </table>     {/** tbl_col prd end */}
+
           </div>    {/** order_detail end */}
 
         </div>     {/** mpOrder_Detail_body end */}  
