@@ -85,6 +85,16 @@ const Mp_OrderDetail = () => {
 
             </div>      {/** customer_section end */}  
           </div>    {/** mpOrder_Detail_top end */}  
+
+          <div className="order_detail">
+            <h3 className="title first">주문번호 : 20260430-0F8A9</h3>  
+            <p className="title_count tar">
+              <span className="box_btn small white">
+                <a href="#">계산서출력</a>  
+              </span>   {/** box_btn small white end */}  
+            </p>   {/** title_count tar end */}
+          </div>    {/** order_detail end */}
+
         </div>     {/** mpOrder_Detail_body end */}  
       </div>    {/** mpOrder_Detail_Content end */}
 
