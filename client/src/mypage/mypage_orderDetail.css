@@ -298,7 +298,9 @@ colgroup {
 
 .mpOrder_Detail_wrapper #order_detail .area_right {
   float: right;
-  margin-top: 30px;
+  margin-bottom: 100px; 
+  position: relative;
+  top: 100px;
 }
 
 .mpOrder_Detail_wrapper #order_detail .area_right .box {

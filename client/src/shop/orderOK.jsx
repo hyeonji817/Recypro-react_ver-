@@ -27,10 +27,19 @@ const OrderOK = () => {
 			}
 			try {
 				const { data: fetched } = await axios.get(
-          `http://localhost:5003/api/orders/${order_id}`,
-          { withCredentials: true }
-        );
-				setData(fetched);
+					`http://localhost:5003/api/mypage/orders/${order_id}`,
+					{ withCredentials: true }
+				);
+				setData({
+					...fetched,
+					totals: fetched.totals || {
+						subtotal: fetched.subtotal,
+						shipping_fee: fetched.shipping_fee,
+						discount_total: fetched.discount_total,
+						total_pay: fetched.total_pay,
+						total_mileage: fetched.total_mileage,
+					},
+				});
 				console.log("주문정보: ", order_id);
 			} catch (e) {
 				console.error(e); 

@@ -201,7 +201,7 @@ const Mp_Orders = () => {
                   return (
                     <tr key={order.order_id}>
                       <td className="order_number">
-                        <Link to={`/orderOk?order_id=${order.order_id}`}>
+                        <Link to={`/mypage/orders/${order.order_id}`}>
                           {order.order_no || order.order_id}
                         </Link>
                         <br />

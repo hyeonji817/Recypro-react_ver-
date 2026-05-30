@@ -48,7 +48,7 @@ const payMethodText = (method) => {
 };
 
 const Mp_OrderDetail = () => {
-  const { orderId } = useParams(); 
+  const { order_id } = useParams(); 
   const navigate = useNavigate(); 
 
   const [order, setOrder] = useState(null); 
@@ -62,7 +62,7 @@ const Mp_OrderDetail = () => {
         setLoading(true); 
 
         const [orderRes, summaryRes] = await Promise.all([
-          axios.get(`${API}/api/mypage/orders/${orderId}`, {
+          axios.get(`${API}/api/mypage/orders/${order_id}`, {
             withCredentials: true,
           }),
           axios.get(`${API}/api/mypage/summary`, {
@@ -83,7 +83,7 @@ const Mp_OrderDetail = () => {
     };
 
     fetchOrderDetail();
-  }, [orderId]);
+  }, [order_id]);
 
   if (loading) {
     return <div>주문 정보를 불러오는 중입니다...</div>;
