@@ -1,8 +1,62 @@
 import "./mypage_orderDetail.css";
+import { useEffect, useState } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
 import Header_loginOK from "../main/Header_loginOK";
 import Footer from "../main/Footer";
 
+const API = "http://localhost:5003"; 
+
+const formatWon = (value) => Number(value || 0).toLocaleString(); 
+const formatDate = (value) => {
+  if (!value) return "-";
+  return new Date(value).toLocaleDateString("ko-KR");
+};
+
+const imgUrl = (path) => {
+  if (!path) return "https://www.rolarola.com/_image/_default/prd/noimg3.gif";
+  if (String(path).startsWith("http")) return path;
+  return `${API}/uploads/${String(path).replace(/^\.\//, "")}`;
+};
+
+const statusText = (status) => {
+  switch (status) {
+    case "PAID":
+      return "결제완료";
+    case "PENDING":
+      return "결제대기";
+    case "CANCELLED":
+      return "주문취소";
+    case "FAILED":
+      return "결제실패";
+    default:
+      return status || "-";
+  }
+};
+
+const payMethodText = (method) => {
+  switch (method) {
+    case "TOSS":
+      return "토스결제";
+    case "CARD":
+      return "카드결제";
+    case "BANK":
+      return "무통장입금";
+    default:
+      return method || "-";
+  }
+};
+
 const Mp_OrderDetail = () => {
+  const { orderId } = useParams(); 
+  const navigate = useNavigate(); 
+
+  const [order, setOrder] = useState(null); 
+  const [summary, setSummary] = useState(null); 
+  const [loading, setLoading] = useState(true); 
+  const [error, setError] = useState("");
+
+  
 
   return (
     <div className="mpOrder_Detail_wrapper">
