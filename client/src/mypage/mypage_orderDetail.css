@@ -260,9 +260,11 @@ colgroup {
   padding: 4px 8px;
 }
 
-.mpOrder_Detail_wrapper #order_detail .area_left {
+.mpOrder_Detail_wrapper .order_detail .area_left {
   float: left;
-  width: 63%;
+  width: 100%;
+  position: relative;
+  top: 50px;
 }
 
 .mpOrder_Detail_wrapper .tbl_order {
