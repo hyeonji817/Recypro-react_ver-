@@ -121,7 +121,63 @@ const Mp_OrderDetail = () => {
                 </tr>
               </thead>
 
-              <tbody></tbody>
+              <tbody>
+                <tr>
+			            <td className="img">
+                    <a href="#">
+                      <img src="https://rolarola.wisacdn.com/_data/product/202503/19/decd0b2b8a2a1feb7a436ca0c942e65d.jpg" width="52" height="70" barder="0" />
+                    </a>
+                  </td>     {/** img end */}
+			            <td className="tal"><a href="#">BASIC LINEN CARDIGAN PINK</a></td>
+			            <td> 색상:핑크<br />사이즈:FREE  <div></div></td>
+			            <td>69,000 원</td>
+			            <td>1</td>
+			            <td>69,000 원</td>
+			            <td><img src="https://www.rolarola.com/_skin/rolarola_250716/img/shop/milage.gif" alt="적립금" /> 1,100 원</td>
+			            <td>
+				            배송완료
+					          <br />
+                    <span className="box_btn small white btn_delivery">
+                      <a href="#" target="_blank">배송조회</a>
+                    </span>
+                    <br />
+                    <a href="#" target="_blank">CJ대한통운<br />511753548344</a>
+			            </td>
+			            <td>
+                    <span className="box_btn">
+                      <a href="#" className="crema-new-review-link crema-applied" data-product-code="5214" data-install-method="hardcoded" data-observed-install="false" data-applied-widgets="[&quot;.crema-new-review-link&quot;]">후기작성</a>
+                    </span>
+                  </td>
+		            </tr>
+
+		            <tr>
+			            <td className="img">
+                    <a href="#">
+                      <img src="https://www.rolarola.com/_image/_default/prd/noimg3.gif" width="70" height="70" border="0" />
+                    </a>
+                  </td>     {/** img end */}
+			            <td className="tal"><a href="#">(사은품) 장원영 포토카드</a></td>   {/** tal end */}
+			            <td> 멀티 ／ FREE  <div></div></td>
+			            <td>0 원</td>
+			            <td>1</td>
+			            <td>0 원</td>
+			            <td><img src="https://www.rolarola.com/_skin/rolarola_250716/img/shop/milage.gif" alt="적립금" /> 0 원</td>
+			            <td>
+				            배송완료
+					          <br />
+                    <span className="box_btn small white btn_delivery">
+                      <a href="#" target="_blank">배송조회</a>
+                    </span>
+                    <br />
+                    <a href="#" target="_blank">CJ대한통운<br />511753548344</a>
+			            </td>
+			            <td>
+                    <span className="box_btn">
+                      <a href="#" className="crema-new-review-link crema-applied" data-product-code="6351" data-install-method="hardcoded" data-observed-install="false" data-applied-widgets="[&quot;.crema-new-review-link&quot;]">후기작성</a>
+                    </span>
+                  </td>
+		            </tr>
+              </tbody>
             </table>     {/** tbl_col prd end */}
 
           </div>    {/** order_detail end */}
