@@ -113,12 +113,30 @@ const Mp_OrderDetail = () => {
 
           <div className="mpOrder_Detail_top">
             <div className="customer_section">
-              <div className="name"><strong>곽현지</strong>님은 MEMBER</div>
-              <a href="#" className="my_edit">정보 수정하기</a>
+              <div className="name">
+                <strong>{summary?.user?.name || buyer.name || "회원"}</strong>님은{" "}
+                {summary?.user?.grade || "MEMBER"}
+              </div>    {/** name end */}
+
+              <a href="#" className="my_edit">정보 수정하기</a>   {/** my_edit end */}
+
               <ul className="point_section">
-                <li><a href="#"><strong>쿠폰</strong> 5 장</a></li>
-                <li><a href="#"><strong>적립금</strong> 1,600 원</a></li>
-                <li><a href="#"><strong>포인트</strong> 0 P</a></li>  
+                <li>
+                  <a href="#">
+                    <strong>쿠폰</strong> {summary?.counts?.coupons || 0} 장
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <strong>적립금</strong>{" "}
+                    {formatWon(summary?.money?.mileage || 0)} 원
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <strong>포인트</strong> {formatWon(summary?.money?.points || 0)} P
+                  </a>
+                </li>  
               </ul>       {/** point_section end */}  
 
               <ul className="mpOrder_Detail_tab">
@@ -137,7 +155,8 @@ const Mp_OrderDetail = () => {
           </div>    {/** mpOrder_Detail_top end */}  
 
           <div className="order_detail" id="order_detail">
-            <h3 className="title first">주문번호 : 20260430-0F8A9</h3>  
+            <h3 className="title first">주문번호 : {order.order_no || order.order_id}</h3>  
+            
             <p className="title_count tar">
               <span className="box_btn small white">
                 <a href="#">계산서출력</a>  
@@ -172,61 +191,59 @@ const Mp_OrderDetail = () => {
               </thead>
 
               <tbody>
-                <tr>
-			            <td className="img">
-                    <a href="#">
-                      <img src="https://rolarola.wisacdn.com/_data/product/202503/19/decd0b2b8a2a1feb7a436ca0c942e65d.jpg" width="52" height="70" border="0" />
-                    </a>
-                  </td>     {/** img end */}
-			            <td className="tal"><a href="#">BASIC LINEN CARDIGAN PINK</a></td>
-			            <td> 색상:핑크<br />사이즈:FREE  <div></div></td>
-			            <td>69,000 원</td>
-			            <td>1</td>
-			            <td>69,000 원</td>
-			            <td><img src="https://www.rolarola.com/_skin/rolarola_250716/img/shop/milage.gif" alt="적립금" /> 1,100 원</td>
-			            <td>
-				            배송완료
-					          <br />
-                    <span className="box_btn small white btn_delivery">
-                      <a href="#" target="_blank">배송조회</a>
-                    </span>
-                    <br />
-                    <a href="#" target="_blank">CJ대한통운<br />511753548344</a>
-			            </td>
-			            <td>
-                    <span className="box_btn">
-                      <a href="#" className="crema-new-review-link crema-applied" data-product-code="5214" data-install-method="hardcoded" data-observed-install="false" data-applied-widgets="[&quot;.crema-new-review-link&quot;]">후기작성</a>
-                    </span>
-                  </td>
-		            </tr>
+                {items.length > 0 ? (
+                  items.map((item) => (
+                    <tr key={item.order_item_id}>
+                      <td className="img">
+                        <Link to={`/product/${encodeURIComponent(item.product_id)}`}>
+                          <img
+                            src={imgUrl(item.filename)}
+                            width="70"
+                            height="70"
+                            alt={item.pname}
+                          />
+                        </Link>
+                      </td>
 
-		            <tr>
-			            <td className="img">
-                    <a href="#">
-                      <img src="https://www.rolarola.com/_image/_default/prd/noimg3.gif" width="70" height="70" border="0" />
-                    </a>
-                  </td>     {/** img end */}
-			            <td className="tal"><a href="#">(사은품) 장원영 포토카드</a></td>   {/** tal end */}
-			            <td> 멀티 ／ FREE  <div></div></td>
-			            <td>0 원</td>
-			            <td>1</td>
-			            <td>0 원</td>
-			            <td><img src="https://www.rolarola.com/_skin/rolarola_250716/img/shop/milage.gif" alt="적립금" /> 0 원</td>
-			            <td>
-				            배송완료
-					          <br />
-                    <span className="box_btn small white btn_delivery">
-                      <a href="#" target="_blank">배송조회</a>
-                    </span>
-                    <br />
-                    <a href="#" target="_blank">CJ대한통운<br />511753548344</a>
-			            </td>
-			            <td>
-                    <span className="box_btn">
-                      <a href="#" className="crema-new-review-link crema-applied" data-product-code="6351" data-install-method="hardcoded" data-observed-install="false" data-applied-widgets="[&quot;.crema-new-review-link&quot;]">후기작성</a>
-                    </span>
-                  </td>
-		            </tr>
+                      <td className="tal">
+                        <Link to={`/product/${encodeURIComponent(item.product_id)}`}>
+                          {item.pname}
+                        </Link>
+                      </td>
+
+                      <td>
+                        {item.option_label || "-"}
+                        <div></div>
+                      </td>
+
+                      <td>{formatWon(item.unit_price)} 원</td>
+                      <td>{item.quantity}</td>
+                      <td>{formatWon(item.line_total)} 원</td>
+
+                      <td>
+                        {formatWon(item.mileage)} 원
+                      </td>
+
+                      <td>
+                        {statusText(order.status)}
+                        <br />
+                        <span className="box_btn small white btn_delivery">
+                          <a href="#">배송조회</a>
+                        </span>
+                      </td>
+
+                      <td>
+                        <span className="box_btn">
+                          <a href="#">후기작성</a>
+                        </span>
+                      </td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td colSpan={9}>주문 상품이 없습니다.</td>
+                  </tr>
+                )}
               </tbody>
             </table>     {/** tbl_col prd end */}
 
@@ -242,19 +259,19 @@ const Mp_OrderDetail = () => {
                 <tbody>
                   <tr>
                     <th scope="row">주문일자</th>
-                    <td>2026/04/30</td>
+                    <td>{formatDate(order.paid_at || order.created_at)}</td>
                   </tr>
                   <tr>
                     <th scope="row">주문하시는 분</th>
-                    <td>곽현지</td>
+                    <td>{buyer.name || "-"}</td>
                   </tr>
                   <tr>
                     <th scope="row">전화번호</th>
-                    <td></td>
+                    <td>{buyer.phone || "-"}</td>
                   </tr>
                   <tr>
                     <th scope="row">휴대전화번호</th>
-                    <td>01094398468</td>
+                    <td>{buyer.cell || "-"}</td>
                   </tr>
                 </tbody>
               </table>     {/** tbl_order end */}
@@ -269,23 +286,27 @@ const Mp_OrderDetail = () => {
                 <tbody>
                   <tr>
                     <th scope="row">받으시는 분</th>
-                    <td>곽현지</td>
+                    <td>{receiver.name || "-"}</td>
                   </tr>
                   <tr>
                     <th scope="row">전화번호</th>
-                    <td>0515178468</td>
+                    <td>{receiver.phone || "-"}</td>
                   </tr>
                   <tr>
                     <th scope="row">휴대전화번호</th>
-                    <td>01094938468</td>
+                    <td>{receiver.cell || "-"}</td>
                   </tr>
                   <tr>
                     <th scope="row">주소</th>
-                    <td>[08786]<br />서울 관악구 청룡3길 10 영빌딩 603호</td>
+                    <td>
+                      [{receiver.zip || "-"}]
+                      <br />
+                      {receiver.addr1 || ""} {receiver.addr2 || ""}
+                    </td>
                   </tr>
                   <tr>
                     <th scope="row">배송시요청사항</th>
-                    <td className="break">문 앞에 놔 주세요</td>  
+                    <td className="break">{order.dlv_memo || "-"}</td>  
                   </tr>  
                 </tbody>  
               </table>       {/** tbl_order end */}
@@ -304,29 +325,32 @@ const Mp_OrderDetail = () => {
                   <tbody>
                     <tr>
                       <th scope="row">상품합계금액</th>
-                      <td>69,000 원</td>
+                      <td>{formatWon(order.subtotal)} 원</td>
                     </tr>
                     <tr>
                       <th scope="row">배송비</th>
-                      <td>0 원</td>
+                      <td>{formatWon(order.shipping_fee)} 원</td>
                     </tr>
                     <tr>
                       <th scope="row">적립금 결제</th>
-                      <td>- 6,890 원</td>
+                      <td>- {formatWon(order.used_mileage)} 원</td>
                     </tr>
                     <tr>
                       <th scope="row">쿠폰할인 금액</th>
-                      <td>- 6900 원 ([온라인전용] 멤버십_10% 할인 쿠폰)</td>
+                      <td>- {formatWon(order.discount_total)} 원</td>
                     </tr>
                     <tr className="total_row">
-                      <th scope="row" className="total">총 결제금액액</th>
+                      <th scope="row" className="total">총 결제금액</th>
                       <td className="total">
-                        <strong className="total_price">55,210</strong> 원
+                        <strong className="total_price">
+                          {formatWon(order.total_pay)}
+                        </strong>{" "}
+                        원
                       </td>     {/** total end */}
                     </tr>   {/** total_row end */}
                     <tr className="total_row">
                       <th scope="row">총 적립금</th>
-                      <td>1,100 원</td>  
+                      <td>{formatWon(order.total_mileage)} 원</td>  
                     </tr>       {/** total_row end */}  
                   </tbody>  
                 </table>      {/** tbl_order2 end */}  
@@ -341,15 +365,18 @@ const Mp_OrderDetail = () => {
                   <tbody>
                     <tr>
                       <th scope="row">결제방법</th>
-                      <td>토스계좌결제</td>
+                      <td>{payMethodText(order.pay_method)}</td>
                     </tr>
                     <tr>
                       <th scope="row">거래정보</th>
-	                    <td>tosspay (1) <strong>[<a href="#">결제영수증</a>]</strong></td>
+	                    <td>
+                        {order.pg_provider || order.pay_method || "-"}{" "}
+                        <strong>[<a href="#">결제영수증</a>]</strong>
+                      </td>
                     </tr>
                     <tr>
                       <th scope="row">입금일자</th>
-                      <td>2026/04/30</td>
+                      <td>{formatDate(order.paid_at)}</td>
                     </tr>
                   </tbody>
                 </table>      {/** tbl_order2 end */}
@@ -379,68 +406,8 @@ const Mp_OrderDetail = () => {
                 </thead>
                 <tbody>
                   <tr>
-                    <td>1</td>
-			              <td>완료</td>
-			              <td>주문 변경</td>
-			              <td className="tal">
-                      <a href="#"><b>주소지 변경 요청드립니다</b></a> 
-                      <img src="https://www.rolarola.com/_skin/rolarola_250716/img/shop/file.gif" border="0" alt="첨부파일" />
-                    </td>
-			              <td>2026/05/02</td>
+                    <td colSpan={5}>등록된 주문 문의가 없습니다.</td>
                   </tr>
-                  <tr>
-                    <td colSpan={5} className="none_style">
-				              <div id="revQna18010" className="cnt_hidden">
-					              <p className="qna_subject">문의내용</p>
-					              <div className="qna_cnt">
-						              <div>제가 주소를 잘못 입력했는데, 주소지를 &rsquo;서울시 관악구 청룡3길 10 영빌딩 603호&rsquo;로 변경 부탁드립니다.&nbsp;</div>
-						              <div>
-                            <img src="https://www.rolarola.com/_data/qna/202605/02/eea5e7511418bcddab9b7704880de4ab.png" border="0" id="cs_img18010_1" />
-                          </div>
-						              <div></div>
-					              </div>      {/** qna_cnt end */}
-					              <p className="qna_subject">답변내용</p>
-					              <div className="qna_cnt"><div>    {/** qna_cnt end */}
-                        <span style={{ fontSize: "12px" }}>곽현지 고객님 안녕하세요,</span>
-                      </div>
-                      <div>
-                        <span style={{ fontSize: "12px" }}>로라로라 매니저 백승미입니다.&nbsp;</span>
-                      </div>
-                      <div>
-                        <span style={{ fontSize: "12px" }}><br /></span>
-                      </div>
-                      <div>
-                        <span style={{ fontSize: "12px" }}>주문번호 : 20260501-6C36D</span>
-                      </div>
-                      <div>
-                        <span style={{ fontSize: "12px" }}>변경주소 : 서울 관악구 청룡3길 10
-                          <span style={{ whiteSpace:"pre" }}></span>
-                          영빌딩 603호
-                        </span>
-                      </div>
-                      <div>
-                        <span style={{ fontSize: "12px" }}><br /></span>
-                      </div>
-                      <div>
-                        <span style={{ fontSize: "12px" }}>요청하신 정보로 변경해 드렸습니다.</span>
-                      </div>
-                      <div>
-                        <span style={{ fontSize: "12px" }}>마이페이지 주문 내역에서 확인해 주시기 바랍니다.&nbsp;</span>
-                      </div>
-                      <div>
-                        <span style={{ fontSize: "12px" }}><br /></span>
-                      </div>
-                      <div>
-                        <span style={{ fontSize: "12px" }}>기타 궁금한 내용은 언제든 문의해 주시고요,</span>
-                      </div>
-                      <div>
-                        <span style={{ fontSize: "12px" }}>앞으로도 로라로라에 많은 관심 부탁드립니다. 감사합니다.&nbsp;</span>
-                      </div>
-                    </div>
-				          </div>
-			          </td>
-  
-                  </tr>  
                 </tbody>  
               </table>     {/** tbl_col end */}  
 
@@ -458,7 +425,9 @@ const Mp_OrderDetail = () => {
                   <a href="#">반품신청</a>
                 </span>
 			          <span className="box_btn fr">
-                  <a href="#">주문목록</a>    
+                  <button type="button" onClick={() => navigate("/orders")}>
+                    주문목록
+                  </button>    
                 </span>
               </div>     {/** btn end */}
             </div>      {/** #counsel end */}
