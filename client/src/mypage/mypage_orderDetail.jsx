@@ -107,6 +107,21 @@ const Mp_OrderDetail = () => {
 		            <col style={{ width: "10%" }} />
 		            <col style={{ width: "10%" }} />
               </colgroup>
+
+              <thead>
+                <tr>
+                  <th scope="col" colSpan={2}>상품명</th>
+			            <th scope="col">옵션</th>
+			            <th scope="col">가격</th>
+			            <th scope="col">수량</th>
+			            <th scope="col">총 금액</th>
+			            <th scope="col">적립금</th>
+			            <th scope="col">상태</th>
+			            <th scope="col">후기작성</th>
+                </tr>
+              </thead>
+
+              <tbody></tbody>
             </table>     {/** tbl_col prd end */}
 
           </div>    {/** order_detail end */}
