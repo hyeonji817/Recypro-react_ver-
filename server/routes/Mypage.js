@@ -205,9 +205,14 @@ router.get("/orders/:orderId", async (req, res) => {
         discount_total,
         total_pay,
         total_mileage,
+        coupon_code,
+        coupon_discount,
+        used_mileage,
         pay_method,
+        pg_provider,
         buyer_json,
         receiver_json,
+        dlv_memo,
         created_at,
         paid_at
       FROM orders
@@ -246,9 +251,23 @@ router.get("/orders/:orderId", async (req, res) => {
 
     res.json({
       ...order,
+      subtotal: Number(order.subtotal || 0),
+      shipping_fee: Number(order.shipping_fee || 0),
+      discount_total: Number(order.discount_total || 0),
+      total_pay: Number(order.total_pay || 0),
+      total_mileage: Number(order.total_mileage || 0),
+      coupon_discount: Number(order.coupon_discount || 0),
+      used_mileage: Number(order.used_mileage || 0),
       buyer: JSON.parse(order.buyer_json || "{}"),
       receiver: JSON.parse(order.receiver_json || "{}"),
-      items,
+      items: items.map((item) => ({
+        ...item,
+        unit_price: Number(item.unit_price || 0),
+        option_delta: Number(item.option_delta || 0),
+        quantity: Number(item.quantity || 0),
+        line_total: Number(item.line_total || 0),
+        mileage: Number(item.mileage || 0),
+      })),
     });
   } catch (err) {
     console.error("[GET /api/mypage/orders/:orderId]", err);
