@@ -128,7 +128,8 @@ function App() {
         <Route path="/shop/Product_Review" element={<Product_Review />} />
         <Route path="/mypage" element={<Mypage />} />
         <Route path="/orders" element={<Mypage_Orders />} />
-        <Route path="/order/:orderId" element={<Mypage_OrderDetail />} />
+        <Route path="/order_detail" element={<Mypage_OrderDetail />} />
+        {/** <Route path="/order/:orderId" element={<Mypage_OrderDetail />} /> */}
 
         <Route path="/customer_main" element={<Customer_main />} />
         <Route path="/customer_notice" element={<Customer_notice />} />

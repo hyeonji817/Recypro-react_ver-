@@ -39,7 +39,7 @@ const Mp_OrderDetail = () => {
             </div>      {/** customer_section end */}  
           </div>    {/** mpOrder_Detail_top end */}  
 
-          <div className="order_detail">
+          <div className="order_detail" id="order_detail">
             <h3 className="title first">주문번호 : 20260430-0F8A9</h3>  
             <p className="title_count tar">
               <span className="box_btn small white">
@@ -149,7 +149,7 @@ const Mp_OrderDetail = () => {
                   </tr>
                   <tr>
                     <th scope="row">주문하시는 분</th>
-                    <td>곽현지지</td>
+                    <td>곽현지</td>
                   </tr>
                   <tr>
                     <th scope="row">전화번호</th>

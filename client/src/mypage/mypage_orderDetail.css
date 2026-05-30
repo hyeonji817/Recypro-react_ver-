@@ -97,6 +97,7 @@ ol, ul, li {
 
 .mpOrder_Detail_wrapper h3.title.first {
   padding-top: 0;
+  font-size: 17px;
 }
 
 .mpOrder_Detail_wrapper .title_count {
@@ -156,6 +157,8 @@ ol, ul, li {
   clear: both;
   width: 100%;
   border-collapse: collapse;
+  position: relative;
+  left: 0px;
 }
 
 .mpOrder_Detail_wrapper .tbl_col caption {
