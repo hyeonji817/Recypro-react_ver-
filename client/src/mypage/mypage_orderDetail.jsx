@@ -215,7 +215,28 @@ const Mp_OrderDetail = () => {
                   <col style={{ width: "20%" }} />
                   <col />
                 </colgroup>
-                <tbody></tbody>  
+                <tbody>
+                  <tr>
+                    <th scope="row">받으시는 분</th>
+                    <td>곽현지</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">전화번호</th>
+                    <td>0515178468</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">휴대전화번호</th>
+                    <td>01094938468</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">주소</th>
+                    <td>[08786]<br />서울 관악구 청룡3길 10 영빌딩 603호</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">배송시요청사항</th>
+                    <td className="break">문 앞에 놔 주세요</td>  
+                  </tr>  
+                </tbody>  
               </table>       {/** tbl_order end */}
             </div>     {/** area_left end */}
 
