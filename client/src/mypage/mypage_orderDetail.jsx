@@ -24,6 +24,65 @@ const Mp_OrderDetail = () => {
                 <li><a href="#"><strong>포인트</strong> 0 P</a></li>  
               </ul>       {/** point_section end */}  
 
+              <ul className="my_page_tab">
+                <li>
+                  <a href="#">
+                    ORDER<br />
+                    <strong className="tab_sub">주문내역</strong>  
+                  </a>  
+                </li>  
+                <li>
+                  <a href="#">
+                    WISH LIST <br />
+                    <strong className="tab_sub">관심상품</strong>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    COUPON <br />
+                    <strong className="tab_sub">쿠폰</strong>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    MILEAGE<br />
+                    <strong className="tab_sub">적립금</strong>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    DEPOSITS<br />
+                    <strong className="tab_sub"></strong>
+                  </a>
+                  <a href="#" className="tab_sub">예치금</a>
+                </li>
+                <li>
+                  <a href="#" className="tab_title">
+                    SECRET MILEAGE<br />
+                    <strong className="tab_sub"></strong>
+                  </a>
+                  <a href="#" className="tab_sub">스페셜 적립금</a>
+                </li>
+                <li>
+                  <a href="#" className="tab_title">
+                    Q&amp;A<br />
+                    <strong className="tab_sub">내 상품문의</strong>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="tab_title">
+                    MYBOARD <br />
+                    <strong className="tab_sub">내 상품평</strong>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="tab_title">
+                    WITHDRAW <br />
+                    <strong className="tab_sub">회원 탈퇴</strong>
+                  </a>
+                </li>
+              </ul>     {/** my_page_tab end */}
+
             </div>      {/** customer_section end */}  
           </div>    {/** mpOrder_Detail_top end */}  
         </div>     {/** mpOrder_Detail_body end */}  
