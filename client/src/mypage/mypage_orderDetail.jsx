@@ -180,6 +180,7 @@ const Mp_OrderDetail = () => {
               </tbody>
             </table>     {/** tbl_col prd end */}
 
+            {/** 주문자 정보 및 배송지 정보 */}
             <div className="area_left">
               <h3 className="title">주문자 정보</h3>
               <table className="tbl_order">
@@ -239,6 +240,48 @@ const Mp_OrderDetail = () => {
                 </tbody>  
               </table>       {/** tbl_order end */}
             </div>     {/** area_left end */}
+
+            {/** 결제정보 및 결제수단 정보 */}
+            <div className="area_right">
+              <div className="box">
+                <h3 className="title first">결제 정보</h3>     {/** title first end */}
+                <table className="tbl_order2">
+                  <caption className="hidden">결제 정보</caption>      {/** hidden end */}
+                  <colgroup>
+                    <col style={{ width: "50%"}} />
+                    <col />
+                  </colgroup>
+                  <tbody>
+                    <tr>
+                      <th scope="row">상품합계금액</th>
+                      <td>69,000 원</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">배송비</th>
+                      <td>0 원</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">적립금 결제</th>
+                      <td>- 6,890 원</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">쿠폰할인 금액</th>
+                      <td>- 6900 원 ([온라인전용] 멤버십_10% 할인 쿠폰)</td>
+                    </tr>
+                    <tr className="total_row">
+                      <th scope="row" className="total">총 결제금액액</th>
+                      <td className="total">
+                        <strong className="total_price">55,210</strong> 원
+                      </td>     {/** total end */}
+                    </tr>   {/** total_row end */}
+                    <tr className="total_row">
+                      <th scope="row">총 적립금</th>
+                      <td>1,100 원</td>  
+                    </tr>       {/** total_row end */}  
+                  </tbody>  
+                </table>      {/** tbl_order2 end */}  
+              </div>     {/** box end */}  
+            </div>    {/** area_right end */}
 
           </div>    {/** order_detail end */}
 
