@@ -180,6 +180,45 @@ const Mp_OrderDetail = () => {
               </tbody>
             </table>     {/** tbl_col prd end */}
 
+            <div className="area_left">
+              <h3 className="title">주문자 정보</h3>
+              <table className="tbl_order">
+                <caption className="hidden">주문자 정보</caption>
+                <colgroup>
+                  <col style={{ width: "20%" }} />
+                  <col />
+                </colgroup>  
+                <tbody>
+                  <tr>
+                    <th scope="row">주문일자</th>
+                    <td>2026/04/30</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">주문하시는 분</th>
+                    <td>곽현지지</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">전화번호</th>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">휴대전화번호</th>
+                    <td>01094398468</td>
+                  </tr>
+                </tbody>
+              </table>     {/** tbl_order end */}
+              
+              <h3 className="title">배송지 정보</h3>      {/** title end */}
+              <table className="tbl_order">
+                <caption className="hidden">배송지 정보</caption>   {/** hidden end */}
+                <colgroup>
+                  <col style={{ width: "20%" }} />
+                  <col />
+                </colgroup>
+                <tbody></tbody>  
+              </table>       {/** tbl_order end */}
+            </div>     {/** area_left end */}
+
           </div>    {/** order_detail end */}
 
         </div>     {/** mpOrder_Detail_body end */}  
