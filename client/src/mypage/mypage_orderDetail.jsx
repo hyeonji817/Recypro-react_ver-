@@ -280,6 +280,29 @@ const Mp_OrderDetail = () => {
                     </tr>       {/** total_row end */}  
                   </tbody>  
                 </table>      {/** tbl_order2 end */}  
+
+                <h3 className="title line">결제수단 정보</h3>      {/** title line end */}
+                <table className="tbl_order2">
+                  <caption className="hidden">결제수단 정보</caption>
+                  <colgroup>
+                    <col style={{ width: "25%" }} />
+                    <col />
+                  </colgroup>  
+                  <tbody>
+                    <tr>
+                      <th scope="row">결제방법</th>
+                      <td>토스계좌결제</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">거래정보</th>
+	                    <td>tosspay (1) <strong>[<a href="#">결제영수증</a>]</strong></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">입금일자</th>
+                      <td>2026/04/30</td>
+                    </tr>
+                  </tbody>
+                </table>      {/** tbl_order2 end */}
               </div>     {/** box end */}  
             </div>    {/** area_right end */}
 
