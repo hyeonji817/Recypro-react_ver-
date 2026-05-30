@@ -56,7 +56,50 @@ const Mp_OrderDetail = () => {
   const [loading, setLoading] = useState(true); 
   const [error, setError] = useState("");
 
-  
+  useEffect(() => {
+    const fetchOrderDetail = async () => {
+      try {
+        setLoading(true); 
+
+        const [orderRes, summaryRes] = await Promise.all([
+          axios.get(`${API}/api/mypage/orders/${orderId}`, {
+            withCredentials: true,
+          }),
+          axios.get(`${API}/api/mypage/summary`, {
+            withCredentials: true,
+          }),
+        ]);
+
+        setOrder(orderRes.data);
+        setSummary(summaryRes.data);
+      } catch (err) {
+        console.error(err); 
+        setError(
+          err.response?.data?.message || "주문 상세 정보를 불러오지 못했습니다."
+        );
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchOrderDetail();
+  }, [orderId]);
+
+  if (loading) {
+    return <div>주문 정보를 불러오는 중입니다...</div>;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
+  }
+
+  if (!order) {
+    return <div>주문 정보가 없습니다.</div>;
+  }
+
+  const buyer = order.buyer || {};
+  const receiver = order.receiver || {};
+  const items = order.items || [];
 
   return (
     <div className="mpOrder_Detail_wrapper">
