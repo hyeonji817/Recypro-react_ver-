@@ -125,7 +125,7 @@ const Mp_OrderDetail = () => {
                 <tr>
 			            <td className="img">
                     <a href="#">
-                      <img src="https://rolarola.wisacdn.com/_data/product/202503/19/decd0b2b8a2a1feb7a436ca0c942e65d.jpg" width="52" height="70" barder="0" />
+                      <img src="https://rolarola.wisacdn.com/_data/product/202503/19/decd0b2b8a2a1feb7a436ca0c942e65d.jpg" width="52" height="70" border="0" />
                     </a>
                   </td>     {/** img end */}
 			            <td className="tal"><a href="#">BASIC LINEN CARDIGAN PINK</a></td>
@@ -305,6 +305,113 @@ const Mp_OrderDetail = () => {
                 </table>      {/** tbl_order2 end */}
               </div>     {/** box end */}  
             </div>    {/** area_right end */}
+
+            {/** 주문 1:1 문의 */}
+            <div id="counsel">
+              <h3 className="title">주문 1:1문의</h3>
+              <table className="tbl_col">
+                <caption className="hidden">1:1문의내역</caption>
+                <colgroup>
+                  <col style={{ width: "10%" }} />
+                  <col style={{ width: "10%" }} />
+                  <col style={{ width: "10%" }} />
+                  <col />
+                  <col style={{ width: "10%" }} />
+                </colgroup>
+                <thead>
+                  <tr>
+                    <th scope="col">번호</th>
+                    <th scope="col">답변</th>
+                    <th scope="col">분류</th>
+                    <th scope="col">제목</th>
+                    <th scope="col">작성일</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+			              <td>완료</td>
+			              <td>주문 변경</td>
+			              <td className="tal">
+                      <a href="#"><b>주소지 변경 요청드립니다</b></a> 
+                      <img src="https://www.rolarola.com/_skin/rolarola_250716/img/shop/file.gif" border="0" alt="첨부파일" />
+                    </td>
+			              <td>2026/05/02</td>
+                  </tr>
+                  <tr>
+                    <td colSpan={5} className="none_style">
+				              <div id="revQna18010" className="cnt_hidden">
+					              <p className="qna_subject">문의내용</p>
+					              <div className="qna_cnt">
+						              <div>제가 주소를 잘못 입력했는데, 주소지를 &rsquo;서울시 관악구 청룡3길 10 영빌딩 603호&rsquo;로 변경 부탁드립니다.&nbsp;</div>
+						              <div>
+                            <img src="https://www.rolarola.com/_data/qna/202605/02/eea5e7511418bcddab9b7704880de4ab.png" border="0" id="cs_img18010_1" />
+                          </div>
+						              <div></div>
+					              </div>      {/** qna_cnt end */}
+					              <p className="qna_subject">답변내용</p>
+					              <div className="qna_cnt"><div>    {/** qna_cnt end */}
+                        <span style={{ fontSize: "12px" }}>곽현지 고객님 안녕하세요,</span>
+                      </div>
+                      <div>
+                        <span style={{ fontSize: "12px" }}>로라로라 매니저 백승미입니다.&nbsp;</span>
+                      </div>
+                      <div>
+                        <span style={{ fontSize: "12px" }}><br /></span>
+                      </div>
+                      <div>
+                        <span style={{ fontSize: "12px" }}>주문번호 : 20260501-6C36D</span>
+                      </div>
+                      <div>
+                        <span style={{ fontSize: "12px" }}>변경주소 : 서울 관악구 청룡3길 10
+                          <span style={{ whiteSpace:"pre" }}></span>
+                          영빌딩 603호
+                        </span>
+                      </div>
+                      <div>
+                        <span style={{ fontSize: "12px" }}><br /></span>
+                      </div>
+                      <div>
+                        <span style={{ fontSize: "12px" }}>요청하신 정보로 변경해 드렸습니다.</span>
+                      </div>
+                      <div>
+                        <span style={{ fontSize: "12px" }}>마이페이지 주문 내역에서 확인해 주시기 바랍니다.&nbsp;</span>
+                      </div>
+                      <div>
+                        <span style={{ fontSize: "12px" }}><br /></span>
+                      </div>
+                      <div>
+                        <span style={{ fontSize: "12px" }}>기타 궁금한 내용은 언제든 문의해 주시고요,</span>
+                      </div>
+                      <div>
+                        <span style={{ fontSize: "12px" }}>앞으로도 로라로라에 많은 관심 부탁드립니다. 감사합니다.&nbsp;</span>
+                      </div>
+                    </div>
+				          </div>
+			          </td>
+  
+                  </tr>  
+                </tbody>  
+              </table>     {/** tbl_col end */}  
+
+              <div className="btn">
+                <span className="box_btn white">
+                  <a href="#">주문문의</a>
+                </span>
+			          <span className="box_btn white">
+                  <a href="#">주문변경</a>
+                </span>
+			          <span className="box_btn white">
+                  <a href="#">취소/환불신청</a>
+                </span> 
+			          <span className="box_btn white">
+                  <a href="#">반품신청</a>
+                </span>
+			          <span className="box_btn fr">
+                  <a href="#">주문목록</a>    
+                </span>
+              </div>     {/** btn end */}
+            </div>      {/** #counsel end */}
 
           </div>    {/** order_detail end */}
 
