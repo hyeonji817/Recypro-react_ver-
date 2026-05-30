@@ -192,7 +192,7 @@ colgroup {
   border-top: 0;
   border-bottom: 2px solid #e8e8e8;
   color: #000;
-  font-size: 12px;
+  font-size: 17px;
   letter-spacing: -0.03rem;
 }
 
@@ -209,7 +209,7 @@ colgroup {
   padding: 20px 0;
   border: none;
   color: #1a1a1a;
-  font-size: 13px;
+  font-size: 15px;
 }
 
 .mpOrder_Detail_wrapper .tbl_col > tbody > tr > td {
