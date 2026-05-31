@@ -59,8 +59,50 @@ const Mp_OrderRequest = () => {
 
                 <div>주문번호 : 20260430-0F8A9</div>
                 <div>주문상품 : BASIC LINEN CARDIGAN PINK</div>
+
+                <div>
+                  <label htmlFor="counsel_title">제목</label>
+                  <input type="text" name="title" id="counsel_title" className="form_input block" placeholder="제목" />
+                </div>
+
+                <div className="content">
+                  <label htmlFor="counsel_cnt">문의내용</label>
+				          <textarea 
+                    name="content" 
+                    id="counsel_cnt" 
+                    className="form_input block" 
+                    placeholder="문의내용" 
+                    style={{ display: "none" }}
+                  />
+                  <iframe 
+                    className="editorFrm" 
+                    id="editorFrm" 
+                    src="#" 
+                    style={{ width: "100%", height: "406px" }}
+                  >
+                  </iframe>
+
+                </div>     {/** content end */}
+                <div>
+                  <label htmlFor="counsel_file1">첨부파일 1</label>
+				          <input type="file" name="upfile1" id="counsel_file1" className="form_input block" />
+                </div>
+
+                <div>
+                  <label htmlFor="counsel_file2">첨부파일 2</label>
+				          <input 
+                    type="file" 
+                    name="upfile2" 
+                    id="counsel_file2" 
+                    className="form_input block"
+                  />
+                </div>
               </fieldset>
 
+              <div className="btn">
+                <span className="box_btn large w150"><input type="submit" value="확인" /></span>
+                <span className="box_btn large w150 white"><a href="/">취소</a></span>
+              </div>     {/** btn end */}
             </form>
 
           </div>      {/** order_request end */}
