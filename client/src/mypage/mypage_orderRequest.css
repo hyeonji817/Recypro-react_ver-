@@ -41,7 +41,8 @@ ol, ul, li {
   text-align: center; 
 }
 
-.mpOrder_Request_top .customer_section .name strong, .mypage_top .customer_section .name {
+.mpOrder_Request_top .customer_section .name strong, 
+.mypage_top .customer_section .name {
   color: #000;
   font-size: 27px;
 }
@@ -62,7 +63,8 @@ ol, ul, li {
   vertical-align: top;
 }
 
-.mpOrder_Request_top .point_section > li > a, .mpOrders_top .point_section > li > a strong {
+.mpOrder_Request_top .point_section > li > a, 
+.mpOrders_top .point_section > li > a strong {
   color: #000;
   font-size: 22px;
 }
