@@ -47,6 +47,7 @@ import Product_Review from "./shop/Product_Review";
 import Mypage from "./mypage/Mypage";
 import Mypage_Orders from "./mypage/mypage_orders"; 
 import Mypage_OrderDetail from "./mypage/mypage_orderDetail";
+import Mypage_OrderRequest from "./mypage/mypage_orderRequest";
 
 import Customer_main from "./customer/Customer_main";
 import Customer_notice from "./customer/customer_notice";
@@ -129,7 +130,7 @@ function App() {
         <Route path="/mypage" element={<Mypage />} />
         <Route path="/orders" element={<Mypage_Orders />} />
         <Route path="/mypage/orders/:order_id" element={<Mypage_OrderDetail />} />
-        {/** <Route path="/order/:orderId" element={<Mypage_OrderDetail />} /> */}
+        <Route path="/mypage/orders/order_request" element={<Mypage_OrderRequest />} /> 
 
         <Route path="/customer_main" element={<Customer_main />} />
         <Route path="/customer_notice" element={<Customer_notice />} />
