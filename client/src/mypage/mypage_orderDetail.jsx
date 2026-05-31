@@ -413,7 +413,7 @@ const Mp_OrderDetail = () => {
 
               <div className="btn">
                 <span className="box_btn white">
-                  <a href="#">주문문의</a>
+                  <a href="/order_request">주문문의</a>
                 </span>
 			          <span className="box_btn white">
                   <a href="#">주문변경</a>

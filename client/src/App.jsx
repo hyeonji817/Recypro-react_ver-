@@ -130,7 +130,7 @@ function App() {
         <Route path="/mypage" element={<Mypage />} />
         <Route path="/orders" element={<Mypage_Orders />} />
         <Route path="/mypage/orders/:order_id" element={<Mypage_OrderDetail />} />
-        <Route path="/mypage/orders/order_request" element={<Mypage_OrderRequest />} /> 
+        <Route path="/order_request" element={<Mypage_OrderRequest />} /> 
 
         <Route path="/customer_main" element={<Customer_main />} />
         <Route path="/customer_notice" element={<Customer_notice />} />
