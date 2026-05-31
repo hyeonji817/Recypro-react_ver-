@@ -41,7 +41,7 @@ const Mp_OrderRequest = () => {
           </div>     {/** mpOrder_Request_top end */}  
 
           <div className="order_request" id="counsel_write">
-            <form method="post" encType="multipart/form-data" style={{ margin: "0px", textAlign: "center" }}>
+            <form method="post" encType="multipart/form-data">
               <input type="hidden" name="exec_file" value="" />
               <input type="hidden" name="ono" value="" />
               <input type="hidden" name="cate1" value="1" />
@@ -62,25 +62,23 @@ const Mp_OrderRequest = () => {
 
                 <div>
                   <label htmlFor="counsel_title">제목</label>
-                  <input type="text" name="title" id="counsel_title" className="form_input block" placeholder="제목" />
+                  <input
+                    type="text"
+                    name="title"
+                    id="counsel_title"
+                    className="form_input block"
+                    placeholder="제목"
+                  />
                 </div>
 
                 <div className="content">
                   <label htmlFor="counsel_cnt">문의내용</label>
-				          <textarea 
-                    name="content" 
-                    id="counsel_cnt" 
-                    className="form_input block" 
-                    placeholder="문의내용" 
-                    style={{ display: "none" }}
+				          <textarea
+                    name="content"
+                    id="counsel_cnt"
+                    className="form_input block counsel_textarea"
+                    placeholder="문의내용을 입력하세요."
                   />
-                  <iframe 
-                    className="editorFrm" 
-                    id="editorFrm" 
-                    src="#" 
-                    style={{ width: "100%", height: "406px" }}
-                  >
-                  </iframe>
 
                 </div>     {/** content end */}
                 <div>
