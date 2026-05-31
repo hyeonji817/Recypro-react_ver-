@@ -413,7 +413,9 @@ const Mp_OrderDetail = () => {
 
               <div className="btn">
                 <span className="box_btn white">
-                  <a href="/order_request">주문문의</a>
+                  <button onClick={() => navigate(`/mypage/order-request/${order.order_id}`)}>
+                    주문문의
+                  </button>
                 </span>
 			          <span className="box_btn white">
                   <a href="#">주문변경</a>
