@@ -37,10 +37,34 @@ const Mp_OrderRequest = () => {
                 <li><a href="#" className="tab_title">MYBOARD<br /><strong className="tab_sub">내 상품평</strong></a></li>
                 <li><a href="/withdraw" className="tab_title">WITHDRAW<br /><strong className="tab_sub">회원 탈퇴</strong></a></li>
               </ul>   {/** opOrder_Request_tab end */}
-
             </div>    {/** customer_section end */}
-
           </div>     {/** mpOrder_Request_top end */}  
+
+          <div className="order_request" id="counsel_write">
+            <form method="post" encType="multipart/form-data" style={{ margin: "0px", textAlign: "center" }}>
+              <input type="hidden" name="exec_file" value="" />
+              <input type="hidden" name="ono" value="" />
+              <input type="hidden" name="cate1" value="1" />
+              <input type="hidden" name="cate2" value="2" />
+              <input type="hidden" name="sbscr" value="N" />
+              <input type="hidden" name="editor_code" value="" />
+
+              <fieldset>
+                <legend className="hidden">1:1문의 작성하기</legend>
+                <div>
+                  주문 문의 
+                  <input type="hidden" name="cate1" value="1" />
+                  <input type="hidden" name="cate2" value="2" />
+                </div>
+
+                <div>주문번호 : 20260430-0F8A9</div>
+                <div>주문상품 : BASIC LINEN CARDIGAN PINK</div>
+              </fieldset>
+
+            </form>
+
+          </div>      {/** order_request end */}
+
         </div>      {/** mpOrder_Request_body end */}  
       </div>     {/** mpOrder_Request_Content end */}
 
