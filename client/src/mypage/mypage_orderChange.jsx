@@ -107,9 +107,53 @@ const Mp_OrderChange = () => {
                   </a>
                 </li>  
               </ul>      {/** mpOrder_Change_tab end */}
-
             </div>    {/** customer_section end */}  
           </div>    {/** mpOrder_Change_top end */}
+
+          <div id="counsel_write">
+            <form method="post" action="" encType="multipart/form-data" style={{ margin: "0px", textAlign: "center" }}>
+              <input type="hidden" name="exec_file" value="" />
+              <input type="hidden" name="ono" value="" />
+              <input type="hidden" name="cate1" value="1" />
+              <input type="hidden" name="cate2" value="1" />
+              <input type="hidden" name="sbscr" value="N" />
+              <input type="hidden" name="editor_code" value="" />
+
+		          <fieldset>
+			          <legend className="hidden">1:1문의 작성하기</legend>
+			          <div>주문 변경
+                  <input type="hidden" name="cate1" value="1" />
+                  <input type="hidden" name="cate2" value="1" />
+                </div>
+			          <div>주문번호 : 20250828-ABB83</div>
+                <div>주문상품 : CASHMERE BLENDED BASIC CARDIGAN LIGHT BLUE</div>
+			
+			          <div>
+				          <label htmlFor="counsel_title">제목</label>
+				          <input type="text" name="title" id="counsel_title" className="form_input block" placeholder="제목" />
+			          </div>
+			          <div className="content">
+				          <label htmlFor="counsel_cnt">문의내용</label>
+				          <textarea name="content" id="counsel_cnt" className="form_input block" placeholder="문의내용" style={{ display: "none" }}></textarea>
+                  {/** <iframe class="editorFrm" id="editorFrm" frameborder="0" scrolling="no" src="/main/exec.php?exec_file=smartEditor/SmartEditor2Skin.php&amp;editor_code=counsel_temp_1756558247&amp;contentId=counsel_cnt&amp;neko_gr=counsel&amp;urlfix=Y" style="width: 100%; height: 406px;"></iframe> */}
+			          </div>
+			          <div>
+				          <label htmlFor="counsel_file1">첨부파일 1</label>
+				          <input type="file" name="upfile1" id="counsel_file1" className="form_input block" />
+			          </div>
+			          <div>
+				          <label htmlFor="counsel_file2">첨부파일 2</label>
+				          <input type="file" name="upfile2" id="counsel_file2" className="form_input block" />
+			          </div>	
+		          </fieldset>
+
+		          <div className="btn">
+			          <span className="box_btn large w150"><input type="submit" value="확인" /></span>
+			          <span className="box_btn large w150 white"><a href="/">취소</a></span>
+		          </div>
+	          </form>
+    
+          </div>      {/** #counsel_write end */}
         </div>     {/** mpOrder_Change_body end */}  
       </div>    {/** mpOrder_Change_Content end */}
 
