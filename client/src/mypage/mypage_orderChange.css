@@ -93,5 +93,180 @@ ol, ul, li {
   font-weight: 700; 
 }
 
+.mpOrder_Change_wrapper #counsel_write {
+  width: 100%;
+  margin: 20px 0;
+  background: #f5f5f5;
+  text-align: center;
+}
 
+.mpOrder_Change_wrapper #counsel_write > form {
+  display: inline-block;
+  width: 72%;
+  margin: 0 auto;
+  padding: 40px 0;
+  text-align: left;
+}
 
+.mpOrder_Change_wrapper input[type="hidden" i] {
+  display: none !important;
+}
+
+.mpOrder_Change_wrapper input:not([type="image" i], [type="range" i], [type="checkbox" i], [type="radio" i]) {
+  overflow-clip-margin: 0px !important;
+  overflow: clip !important;
+}
+
+.mpOrder_Change_wrapper input[type="hidden" i] {
+  appearance: none;
+  background-color: initial;
+  cursor: default;
+  padding: initial;
+  border: initial;
+}
+
+.mpOrder_Change_wrapper .hidden {
+  visibility: hidden;
+  overflow: hidden;
+  width: 0 !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-size: 0;
+  line-height: 0;
+}
+
+.mpOrder_Change_wrapper #counsel_write fieldset > div {
+  position: relative;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.mpOrder_Change_wrapper #counsel_write fieldset > div > label {
+  display: none;
+}
+
+.mpOrder_Change_wrapper .form_input.block {
+  width: 100% !important;
+}
+
+.mpOrder_Change_wrapper input[type=text], input[type=email], input[type=password] {
+  vertical-align: top;
+}
+
+.mpOrder_Change_wrapper .form_input {
+  height: 40px;
+  padding: 4px 10px;
+  border: 1px solid #dcdcdc;
+  background: #fff;
+  color: #666;
+  font-family: 'LibreBodoni', 'Pretendard', sans-serif;
+  font-size: 12px;
+  transition: all .3s ease;
+}
+
+.mpOrder_Change_wrapper #counsel_write fieldset > div.content {
+  background-color: #fff;
+}
+
+.mpOrder_Change_wrapper #counsel_write fieldset > div > label {
+  display: none;
+}
+
+.mpOrder_Change_wrapper #counsel_write fieldset textarea {
+  height: 250px;
+}
+
+.mpOrder_Change_wrapper .form_input.block {
+  width: 100% !important;
+}
+
+.mpOrder_Change_wrapper
+
+.mpOrder_Change_wrapper
+
+.mpOrder_Change_wrapper
+
+.mpOrder_Change_wrapper
+
+.mpOrder_Change_wrapper
+
+.mpOrder_Change_wrapper
+
+.mpOrder_Change_wrapper
+
+.mpOrder_Change_wrapper
+
+.mpOrder_Change_wrapper
+
+.mpOrder_Change_wrapper
+
+.mpOrder_Change_wrapper
+
+.mpOrder_Change_wrapper
+
+.mpOrder_Change_wrapper
+
+.mpOrder_Change_wrapper
+
+.mpOrder_Change_wrapper
+
+.mpOrder_Change_wrapper
+
+.mpOrder_Change_wrapper
+
+.mpOrder_Change_wrapper
+
+.mpOrder_Change_wrapper
+
+.mpOrder_Change_wrapper
+
+.mpOrder_Change_wrapper
+
+.mpOrder_Change_wrapper
+
+.mpOrder_Change_wrapper
+
+.mpOrder_Change_wrapper
+
+.mpOrder_Change_wrapper
+
+.mpOrder_Change_wrapper
+
+.mpOrder_Change_wrapper
+
+.mpOrder_Change_wrapper
+
+.mpOrder_Change_wrapper
+
+.mpOrder_Change_wrapper
+
+.mpOrder_Change_wrapper
+
+.mpOrder_Change_wrapper
+
+.mpOrder_Change_wrapper
+
+.mpOrder_Change_wrapper
+
+.mpOrder_Change_wrapper
+
+.mpOrder_Change_wrapper
+
+.mpOrder_Change_wrapper
+
+.mpOrder_Change_wrapper
+
+.mpOrder_Change_wrapper
+
+.mpOrder_Change_wrapper
+
+.mpOrder_Change_wrapper
+
+.mpOrder_Change_wrapper
+
+.mpOrder_Change_wrapper
+
+.mpOrder_Change_wrapper
+
+.mpOrder_Change_wrapper
