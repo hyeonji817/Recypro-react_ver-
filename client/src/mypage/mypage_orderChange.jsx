@@ -46,6 +46,50 @@ const Mp_OrderChange = () => {
 
     fetchOrder(); 
   }, [order_id, navigate]);
+  
+  const handleSubmit = async (e) => {
+    e.preventDefault(); 
+
+    if (!title.trim()) {
+      alert("제목을 입력해주세요.");
+      return;
+    }
+
+    if (!content.trim()) {
+      alert("문의내용을 입력해주세요.");
+      return; 
+    }
+
+    try {
+      setSubmitting(true); 
+
+      const formData = new FormData(); 
+      formData.append("order_id", order.order_id);
+      formData.append("title", title);
+      formData.append("content", content); 
+
+      if (upfile1) formData.append("upfile1", upfile1);
+      if (upfile2) formData.append("upfile2", upfile2);
+
+      await axios.post("http://localhost:5003/api/mypage/order-change",
+        formData,
+        {
+          withCredentials: true,
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      alert("주문변경 신청이 접수되었습니다.");
+      navigate("/orders");
+    } catch (err) {
+      console.error(err); 
+      alert(err.response?.data?.message || "주문변경 신청에 실패했습니다.");
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
   return (
     <div className="mpOrder_Change_wrapper">
