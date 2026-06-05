@@ -19,6 +19,34 @@ const Mp_OrderChange = () => {
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
 
+  useEffect(() => {
+    const fetchOrder = async () => {
+      try {
+        const res = await axios.get(
+          `http://localhost:5003/api/mypage/order-change/${order_id}`,
+          { withCredentials: true }
+        );
+
+        setOrder(res.data);
+      } catch (err) {
+        console.error(err);
+
+        if (err.response?.status === 401) {
+          alert("로그인이 필요합니다.");
+          navigate("/login");
+          return; 
+        }
+
+        alert(err.response?.data?.message || "주문 정보를 불러오지 못했습니다.");
+        navigate("/orders");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchOrder(); 
+  }, [order_id, navigate]);
+
   return (
     <div className="mpOrder_Change_wrapper">
       <div className="mpOrder_Change_Header">
