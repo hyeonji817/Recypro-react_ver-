@@ -32,7 +32,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 // 주문변경 페이지 진입 시 주문 정보 조회
-router.get("/:orderId", async (req, res) => {
+router.get("/:order_id", async (req, res) => {
   try {
     const userId = getSessionUserId(req);
     const { orderId } = req.params;
@@ -81,9 +81,12 @@ router.get("/:orderId", async (req, res) => {
       items,
     });
   } catch (err) {
-    console.error("[GET /api/mypage/order-change/:orderId]", err);
+    console.error("[GET /api/mypage/order-change/:order_id]", err);
     res.status(500).json({ message: "주문변경 정보 조회 실패" });
   }
+  console.log("[GET 주문변경 조회] req.params:", req.params);
+  console.log("[GET 주문변경 조회] session:", req.session);
+  console.log("[GET 주문변경 조회] userId:", userId);
 });
 
 // 주문변경 신청 저장

@@ -71,6 +71,12 @@ const Mp_OrderChange = () => {
       if (upfile1) formData.append("upfile1", upfile1);
       if (upfile2) formData.append("upfile2", upfile2);
 
+      console.log("[OrderChange] order_id:", order_id);
+      console.log(
+        "[OrderChange] 요청 URL:",
+        `http://localhost:5003/api/mypage/order-change/${order_id}`
+      );
+
       await axios.post("http://localhost:5003/api/mypage/order-change",
         formData,
         {
@@ -223,7 +229,11 @@ const Mp_OrderChange = () => {
           </div>    {/** mpOrder_Change_top end */}
 
           <div id="counsel_write">
-            <form method="post" action="" encType="multipart/form-data" style={{ margin: "0px", textAlign: "center" }}>
+          <form
+            onSubmit={handleSubmit}
+            encType="multipart/form-data"
+            style={{ margin: "0px", textAlign: "center" }}
+          >
               <input type="hidden" name="order_id" value={order?.order_id || ""} />
 
 		          <fieldset>
