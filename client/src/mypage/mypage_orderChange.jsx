@@ -91,6 +91,27 @@ const Mp_OrderChange = () => {
     }
   };
 
+  if (loading) {
+    return (
+      <div className="mpOrder_Change_wrapper">
+        <div className="mpOrder_Change_Header">
+          <Header_loginOK />
+        </div>
+        <div className="mpOrder_Change_Content">
+          <div className="mpOrder_Change_body">
+            <h2 className="subtitle">MY PAGE</h2>
+            <p>주문 정보를 불러오는 중입니다.</p>
+          </div>
+        </div>
+        <div className="mpOrder_Change_Footer">
+          <Footer />
+        </div>
+      </div>
+    );
+  }
+
+  
+
   return (
     <div className="mpOrder_Change_wrapper">
       <div className="mpOrder_Change_Header">
