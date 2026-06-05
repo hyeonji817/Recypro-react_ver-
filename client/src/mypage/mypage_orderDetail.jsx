@@ -418,7 +418,7 @@ const Mp_OrderDetail = () => {
                   </button>
                 </span>
 			          <span className="box_btn white">
-                  <a href="/mypage/order-change">주문변경</a>
+                  <Link to={`/mypage/order-change/${order.order_id}`}>주문변경</Link>
                 </span>
 			          <span className="box_btn white">
                   <a href="#">취소/환불신청</a>

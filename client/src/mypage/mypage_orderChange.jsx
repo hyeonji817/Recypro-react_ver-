@@ -1,6 +1,9 @@
 import "./mypage_orderChange.css"; 
 import Header_loginOK from "../main/Header_loginOK";
 import Footer from "../main/Footer";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
 
 const Mp_OrderChange = () => {
 
