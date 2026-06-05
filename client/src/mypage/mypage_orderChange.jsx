@@ -6,6 +6,18 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
 const Mp_OrderChange = () => {
+  const { order_id } = useParams();
+  const navigate = useNavigate(); 
+  
+  const [order, setOrder] = useState(null); 
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState(""); 
+
+  const [upfile1, setUpfile1] = useState(null);
+  const [upfile2, setUpfile2] = useState(null);
+  
+  const [loading, setLoading] = useState(true);
+  const [submitting, setSubmitting] = useState(false);
 
   return (
     <div className="mpOrder_Change_wrapper">
