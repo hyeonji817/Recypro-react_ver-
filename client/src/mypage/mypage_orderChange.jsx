@@ -110,7 +110,11 @@ const Mp_OrderChange = () => {
     );
   }
 
-  
+  const productNames = 
+  order?.items?.map((item) => {
+    const option = item.option_label ? ` (${item.option_label})` : "";
+    return `${item.pname}${option} / ${item.quantity}개`;
+  }) || [];
 
   return (
     <div className="mpOrder_Change_wrapper">
@@ -125,7 +129,7 @@ const Mp_OrderChange = () => {
           <div className="mpOrder_Change_top">
             <div className="customer_section">
               <div className="name">
-                <strong>곽현지</strong>님은 MEMBER  
+                <strong>{order?.user_id}</strong>님은 MEMBER  
               </div>      {/** name end */}
 
               <a href="#" className="my_edit">
@@ -220,44 +224,71 @@ const Mp_OrderChange = () => {
 
           <div id="counsel_write">
             <form method="post" action="" encType="multipart/form-data" style={{ margin: "0px", textAlign: "center" }}>
-              <input type="hidden" name="exec_file" value="" />
-              <input type="hidden" name="ono" value="" />
-              <input type="hidden" name="cate1" value="1" />
-              <input type="hidden" name="cate2" value="1" />
-              <input type="hidden" name="sbscr" value="N" />
-              <input type="hidden" name="editor_code" value="" />
+              <input type="hidden" name="order_id" value={order?.order_id || ""} />
 
 		          <fieldset>
 			          <legend className="hidden">1:1문의 작성하기</legend>
-			          <div>주문 변경
-                  <input type="hidden" name="cate1" value="1" />
-                  <input type="hidden" name="cate2" value="1" />
-                </div>
-			          <div>주문번호 : 20250828-ABB83</div>
-                <div>주문상품 : CASHMERE BLENDED BASIC CARDIGAN LIGHT BLUE</div>
+			          <div>주문 변경</div>
+			          <div>주문번호 : {order?.order_no || order?.order_id}</div>
+                <div>주문상품 : {productNames.length > 0 ? productNames.join(", ") : "-"}</div>
 			
 			          <div>
 				          <label htmlFor="counsel_title">제목</label>
-				          <input type="text" name="title" id="counsel_title" className="form_input block" placeholder="제목" />
+				          <input
+                    type="text"
+                    name="title"
+                    id="counsel_title"
+                    className="form_input block"
+                    placeholder="제목"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                  />
 			          </div>
 			          <div className="content">
 				          <label htmlFor="counsel_cnt">문의내용</label>
-				          <textarea name="content" id="counsel_cnt" className="form_input block" placeholder="문의내용" style={{ display: "none" }}></textarea>
-                  {/** <iframe class="editorFrm" id="editorFrm" frameborder="0" scrolling="no" src="/main/exec.php?exec_file=smartEditor/SmartEditor2Skin.php&amp;editor_code=counsel_temp_1756558247&amp;contentId=counsel_cnt&amp;neko_gr=counsel&amp;urlfix=Y" style="width: 100%; height: 406px;"></iframe> */}
+				          <textarea
+                    name="content"
+                    id="counsel_cnt"
+                    className="form_input block"
+                    placeholder="문의내용"
+                    value={content}
+                    onChange={(e) => setContent(e.target.value)}
+                  />
 			          </div>
 			          <div>
 				          <label htmlFor="counsel_file1">첨부파일 1</label>
-				          <input type="file" name="upfile1" id="counsel_file1" className="form_input block" />
+				          <input
+                    type="file"
+                    name="upfile1"
+                    id="counsel_file1"
+                    className="form_input block"
+                    onChange={(e) => setUpfile1(e.target.files[0])}
+                  />
 			          </div>
 			          <div>
 				          <label htmlFor="counsel_file2">첨부파일 2</label>
-				          <input type="file" name="upfile2" id="counsel_file2" className="form_input block" />
+				          <input
+                    type="file"
+                    name="upfile2"
+                    id="counsel_file2"
+                    className="form_input block"
+                    onChange={(e) => setUpfile2(e.target.files[0])}
+                  />
 			          </div>	
 		          </fieldset>
 
 		          <div className="btn">
-			          <span className="box_btn large w150"><input type="submit" value="확인" /></span>
-			          <span className="box_btn large w150 white"><a href="/">취소</a></span>
+                <span className="box_btn large w150">
+                  <input
+                    type="submit"
+                    value={submitting ? "처리중..." : "확인"}
+                    disabled={submitting}
+                  />
+                </span>
+
+                <span className="box_btn large w150 white">
+                  <a href="/orders">취소</a>
+                </span>
 		          </div>
 	          </form>
     
