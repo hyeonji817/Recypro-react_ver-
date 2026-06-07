@@ -20,7 +20,17 @@ const Mp_CancelRefund = () => {
 
               <a href="#" className="my_edit">정보 수정하기</a>    {/** my_edit end */}
 
-              <ul className="point_section"></ul>     {/** point_section end */} 
+              <ul className="point_section">
+                <li>
+                  <a href="#"><strong>쿠폰</strong> 0 장</a>
+                </li>
+                <li>
+                  <a href="#"><strong>적립금</strong> 0 원</a>
+                </li>
+                <li>
+                  <a href="#"><strong>포인트</strong> 0 P</a>  
+                </li>  
+              </ul>     {/** point_section end */} 
 
               <ul className="mpCancel_Refund_tab"></ul>     {/** mpCancel_Refund_tab end */}
             </div>    {/** customer_section end */}  
