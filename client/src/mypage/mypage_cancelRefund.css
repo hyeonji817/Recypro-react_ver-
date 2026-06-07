@@ -92,3 +92,190 @@ ol, ul, li {
   font-size: 14px; 
   font-weight: 700;
 }
+
+.mpCancel_Refund_wrapper #counsel_write {
+  width: 100%;
+  margin: 20px 0;
+  background: #f5f5f5;
+  text-align: center;
+}
+
+.mpCancel_Refund_wrapper #counsel_write > form {
+  display: inline-block;
+  width: 72%;
+  margin: 0 auto;
+  padding: 40px 0;
+  text-align: left;
+}
+
+.mpCancel_Refund_wrapper .hidden {
+  visibility: hidden;
+  overflow: hidden;
+  width: 0 !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-size: 0;
+  line-height: 0;
+}
+
+.mpCancel_Refund_wrapper #counsel_write fieldset > div {
+  position: relative;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.mpCancel_Refund_wrapper #counsel_write fieldset > table {
+  margin-bottom: -1px;
+}
+
+.mpCancel_Refund_wrapper .tbl_col.prd {
+  border-bottom: 2px solid #e8e8e8;
+}
+
+.mpCancel_Refund_wrapper .tbl_col {
+  table-layout: fixed;
+  clear: both;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.mpCancel_Refund_wrapper table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.mpCancel_Refund_wrapper .tbl_col caption {
+  padding-bottom: 20px;
+  font-weight: bold;
+  text-align: left;
+}
+
+.mpCancel_Refund_wrapper .tbl_col.prd > thead > tr > th {
+  border-top: 0;
+  border-bottom: 2px solid #e8e8e8;
+  color: #000;
+  font-size: 12px;
+  letter-spacing: -0.03rem;
+}
+
+.mpCancel_Refund_wrapper .tbl_col > thead > tr > th {
+  padding: 15px 0;
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.mpCancel_Refund_wrapper .tbl_col.prd > tbody > tr > td {
+  padding: 20px 0;
+  border: none;
+  color: #1a1a1a;
+  font-size: 13px;
+}
+
+.mpCancel_Refund_wrapper .tbl_col > tbody > tr > td {
+  padding: 15px 0;
+  border-bottom: 1px solid #e0e0e0;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.mpCancel_Refund_wrapper input[type=checkbox]:checked {
+  background-image: url(https://www.rolarola.com/_skin/rolarola_250716/img/common/checkbox_on.png);
+}
+
+.mpCancel_Refund_wrapper .tbl_col > tbody > tr > td * {
+  color: #666;
+}
+
+.mpCancel_Refund_wrapper input[type=checkbox] {
+  width: 23px;
+  height: 22px;
+  margin: 0 6px 0 0;
+  outline: 0;
+  border-radius: 0;
+  border: 0;
+  background: no-repeat left center / 23px 22px;
+  background-image: url(https://www.rolarola.com/_skin/rolarola_250716/img/common/checkbox.png);
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  vertical-align: middle;
+  transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+}
+
+.mpCancel_Refund_wrapper .tbl_col.prd > tbody > tr > td img {
+  vertical-align: middle;
+}
+
+.mpCancel_Refund_wrapper .tbl_col > tbody > tr > td.img img {
+  width: 100px;
+  height: auto;
+}
+
+.mpCancel_Refund_wrapper .tbl_col > tbody > tr > td img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+
+.mpCancel_Refund_wrapper .tbl_col > tbody > tr > td * {
+  color: #666;
+}
+
+.mpCancel_Refund_wrapper .tbl_col > tbody > tr > td.tal {
+  padding-left: 15px !important;
+}
+
+.mpCancel_Refund_wrapper .tal {
+  text-align: left !important;
+}
+
+.mpCancel_Refund_wrapper .tbl_col > tbody > tr > td.img img {
+  width: 100px;
+  height: auto;
+}
+
+.mpCancel_Refund_wrapper .tbl_col > tbody > tr > td.tal {
+  padding-left: 15px !important;
+}
+
+.mpCancel_Refund_wrapper .form_input.block {
+  width: 100% !important;
+}
+
+.mpCancel_Refund_wrapper input[type=text], input[type=email], input[type=password] {
+  vertical-align: top;
+}
+
+.mpCancel_Refund_wrapper .form_input {
+  height: 40px;
+  padding: 4px 10px;
+  border: 1px solid #dcdcdc;
+  background: #fff;
+  color: #666;
+  font-family: 'LibreBodoni', 'Pretendard', sans-serif;
+  font-size: 12px;
+  transition: all .3s ease;
+}
+
+.mpCancel_Refund_wrapper #counsel_write fieldset > div.content {
+  background-color: #fff;
+}
+
+.mpCancel_Refund_wrapper #counsel_write fieldset textarea {
+  height: 250px;
+}
+
+
+.mpCancel_Refund_wrapper .form_input.block {
+  width: 100% !important;
+}
+
+.mpCancel_Refund_wrapper textarea.form_input {
+  height: auto;
+}
+

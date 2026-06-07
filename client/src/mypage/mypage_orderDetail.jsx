@@ -421,7 +421,7 @@ const Mp_OrderDetail = () => {
                   <Link to={`/mypage/order-change/${order.order_id}`}>주문변경</Link>
                 </span>
 			          <span className="box_btn white">
-                  <a href="#">취소/환불신청</a>
+                  <Link to={`/mypage/cancel-refund`}>취소/환불신청</Link>
                 </span> 
 			          <span className="box_btn white">
                   <a href="#">반품신청</a>
