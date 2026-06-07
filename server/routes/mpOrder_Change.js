@@ -32,10 +32,17 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 // 주문변경 페이지 진입 시 주문 정보 조회
+// 주문변경 페이지 진입 시 주문 정보 조회
 router.get("/:order_id", async (req, res) => {
   try {
     const userId = getSessionUserId(req);
-    const { orderId } = req.params;
+    const { order_id } = req.params;
+
+    console.log("[GET /api/mypage/order-change/:order_id]");
+    console.log("req.params:", req.params);
+    console.log("session:", req.session);
+    console.log("userId:", userId);
+    console.log("order_id:", order_id);
 
     if (!userId) {
       return res.status(401).json({ message: "로그인이 필요합니다." });
@@ -55,8 +62,10 @@ router.get("/:order_id", async (req, res) => {
         AND user_id = ?
         AND status = 'PAID'
       `,
-      [orderId, userId]
+      [order_id, userId]
     );
+
+    console.log("found order:", order);
 
     if (!order) {
       return res.status(404).json({ message: "주문 정보를 찾을 수 없습니다." });
@@ -73,20 +82,26 @@ router.get("/:order_id", async (req, res) => {
       WHERE order_id = ?
       ORDER BY order_item_id ASC
       `,
-      [orderId]
+      [order_id]
     );
 
+    console.log("found items:", items);
+
     res.json({
-      ...order,
-      items,
+      user: {
+        id: userId,
+        name: req.session?.user?.name || userId,
+        grade: req.session?.user?.grade || "MEMBER",
+      },
+      order: {
+        ...order,
+        items,
+      },
     });
   } catch (err) {
     console.error("[GET /api/mypage/order-change/:order_id]", err);
     res.status(500).json({ message: "주문변경 정보 조회 실패" });
   }
-  console.log("[GET 주문변경 조회] req.params:", req.params);
-  console.log("[GET 주문변경 조회] session:", req.session);
-  console.log("[GET 주문변경 조회] userId:", userId);
 });
 
 // 주문변경 신청 저장
