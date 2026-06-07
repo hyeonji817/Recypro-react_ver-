@@ -100,7 +100,93 @@ const Mp_CancelRefund = () => {
             </div>    {/** customer_section end */}  
           </div>     {/** mpCancel_Refund_top end */}
 
-          
+          <div id="counsel_write">
+            <form method="post" action="https://www.rolarola.com/main/exec.php" target="hidden1777793953" encType="multipart/form-data" onSubmit="" style={{ margin: "0px", textAlign: "center" }}>
+              <input type="hidden" name="exec_file" value="mypage/counsel.exe.php" />
+              <input type="hidden" name="ono" value="20260430-0F8A9" />
+              <input type="hidden" name="cate1" value="2" />
+              <input type="hidden" name="cate2" value="14" />
+              <input type="hidden" name="sbscr" value="N" />
+              <input type="hidden" name="editor_code" value="counsel_temp_1777793953 " />
+
+		          <fieldset>
+			          <legend className="hidden">1:1문의 작성하기</legend>
+			          <div>환불 신청
+                  <input type="hidden" name="cate1" value="2" />
+                  <input type="hidden" name="cate2" value="14" />
+                </div>
+			          <div>주문번호 : 20260430-0F8A9</div>
+                <div>주문상품 : BASIC LINEN CARDIGAN PINK</div>
+			
+                <table className="tbl_col prd">
+	                <caption className="hidden">상품선택</caption>
+	                <colgroup>
+		                <col style={{ width: "40px"}} /> 
+		                <col style={{ width: "100px" }} />
+		                <col />
+		                <col style={{ width: "5%" }} />
+		                <col style={{ width: "12%" }} />
+		                <col style={{ width: "12%" }} />
+		                <col style={{ width: "10%" }} />
+	                </colgroup>
+	          
+                  <thead>
+		                <tr>
+			                <th></th>
+			                <th colSpan="2">상품명</th>
+			                <th>수량</th>
+			                <th>주문금액</th>
+			                <th>결제금액</th>
+			                <th>상태</th>
+		                </tr>
+	                </thead>
+
+	                <tbody>
+                    <tr>
+			                <td><input type="checkbox" name="repay_no[]" value="1209249" checked="" /></td>
+			                <td className="img"><img src="https://rolarola.wisacdn.com/_data/product/202503/19/decd0b2b8a2a1feb7a436ca0c942e65d.jpg" alt="BASIC LINEN CARDIGAN PINK" /></td>
+			                <td className="tal">BASIC LINEN CARDIGAN PINK<br />색상 : 핑크 / 사이즈 : FREE</td>
+			                <td>1</td>
+			                <td>69,000 원</td>
+			                <td>62,100 원</td>
+			                <td>입금완료</td>
+		                </tr>
+		                <tr>
+			                <td><input type="checkbox" name="repay_no[]" value="1209250" checked="" /></td>
+			                <td className="img"><img src="https://www.rolarola.com/_image/_default/prd/noimg3.gif" alt="(사은품) 26썸머 장원영 포토카드" /></td>
+			                <td className="tal">(사은품) 26썸머 장원영 포토카드<br />멀티 ／ FREE</td>
+			                <td>1</td>
+			                <td>0 원</td>
+			                <td>0 원</td>
+			                <td>입금완료</td>
+		                </tr>
+	                </tbody>
+                </table>
+			
+			          <div>
+				          <label htmlFor="counsel_title">제목</label>
+				          <input type="text" name="title" id="counsel_title" className="form_input block" placeholder="제목" />
+			          </div>
+			          <div className="content">
+				          <label htmlFor="counsel_cnt">문의내용</label>
+				          <textarea name="content" id="counsel_cnt" className="form_input block" placeholder="문의내용" style={{ display: "none" }}></textarea>
+			          </div>
+			          <div>
+				          <label htmlFor="counsel_file1">첨부파일 1</label>
+				          <input type="file" name="upfile1" id="counsel_file1" className="form_input block" />
+			          </div>
+			          <div>
+				          <label htmlFor="counsel_file2">첨부파일 2</label>
+				          <input type="file" name="upfile2" id="counsel_file2" className="form_input block" />
+			          </div>	
+		          </fieldset>
+
+		          <div className="btn">
+			          <span className="box_btn large w150"><input type="submit" value="확인" /></span>
+			          <span className="box_btn large w150 white"><a href="/">취소</a></span>
+		          </div>
+	          </form>
+          </div>        {/** #counsel_write end */}
         </div>      {/** mpCancel_Refund_body end */}  
       </div>     {/** mpCancel_Refund_Content end */}
 
