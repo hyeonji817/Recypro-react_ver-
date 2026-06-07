@@ -62,7 +62,7 @@ const Mp_OrderDetail = () => {
         setLoading(true); 
 
         const [orderRes, summaryRes] = await Promise.all([
-          axios.get(`${API}/api/orders/${order_id}`, {
+          axios.get(`${API}/api/mypage/orders/${order_id}`, {
             withCredentials: true,
           }),
           axios.get(`${API}/api/mypage/summary`, {

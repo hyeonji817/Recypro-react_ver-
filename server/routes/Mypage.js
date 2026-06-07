@@ -203,10 +203,10 @@ router.get("/orders", async (req, res) => {
 });
 
 // 주문 상세 조회
-router.get("/orders/:orderId", async (req, res) => {
+router.get("/orders/:order_id", async (req, res) => {
   try {
     const userId = getSessionUserId(req);
-    const { orderId } = req.params;
+    const { order_id } = req.params;
 
     if (!userId) {
       return res.status(401).json({ message: "로그인이 필요합니다." });
@@ -238,7 +238,7 @@ router.get("/orders/:orderId", async (req, res) => {
       WHERE order_id = ?
         AND user_id = ?
       `,
-      [orderId, userId]
+      [order_id, userId]
     );
 
     if (!order) {
@@ -265,7 +265,7 @@ router.get("/orders/:orderId", async (req, res) => {
       WHERE order_id = ?
       ORDER BY order_item_id ASC
       `,
-      [orderId]
+      [order_id]
     );
 
     res.json({
@@ -292,7 +292,7 @@ router.get("/orders/:orderId", async (req, res) => {
       })),
     });
   } catch (err) {
-    console.error("[GET /api/mypage/orders/:orderId]", err);
+    console.error("[GET /api/orders/:order_id]", err);
     res.status(500).json({ message: "주문 상세 조회 실패" });
   }
 });
