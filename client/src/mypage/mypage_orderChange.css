@@ -170,6 +170,11 @@ ol, ul, li {
   background-color: #fff;
 }
 
+.mpOrder_Change_wrapper #counsel_write fieldset > div.content .counsel_cnt {
+  position: relative;
+  top: -10px;
+}
+
 .mpOrder_Change_wrapper #counsel_write fieldset > div > label {
   display: none;
 }

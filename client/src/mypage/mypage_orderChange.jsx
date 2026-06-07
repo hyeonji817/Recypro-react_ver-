@@ -255,7 +255,7 @@ const Mp_OrderChange = () => {
                   />
 			          </div>
 			          <div className="content">
-				          <label htmlFor="counsel_cnt">문의내용</label>
+				          <label htmlFor="counsel_cnt" className="counsel_cnt">문의내용</label>
 				          <textarea
                     name="content"
                     id="counsel_cnt"
