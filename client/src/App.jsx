@@ -134,7 +134,7 @@ function App() {
         <Route path="/mypage/orders/:order_id" element={<Mypage_OrderDetail />} />
         <Route path="/mypage/order-request/:order_id" element={<Mypage_OrderRequest />} /> 
         <Route path="/mypage/order-change/:order_id" element={<Mypage_OrderChange />} />
-        <Route path="/mypage/cancel-refund" element={<Mypage_CancelRefund />} />
+        <Route path="/mypage/cancel-refund/:order_id" element={<Mypage_CancelRefund />} />
 
         <Route path="/customer_main" element={<Customer_main />} />
         <Route path="/customer_notice" element={<Customer_notice />} />
