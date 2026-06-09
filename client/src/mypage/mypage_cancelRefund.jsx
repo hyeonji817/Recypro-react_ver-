@@ -5,6 +5,19 @@ import axios from "axios";
 import Header_loginOK from "../main/Header_loginOK";
 import Footer from "../main/Footer";
 
+const API = "http://localhost:5003";
+const formatWon = (value) => Number(value || 0).toLocaleString();
+const imgUrl = (path) => {
+  if (!path) return "https://www.rolarola.com/_image/_default/prd/noimg3.gif";
+  if (String(path).startsWith("http")) return path;
+  return `${API}/uploads/${String(path).replace(/^\.\//, "")}`;
+};
+const typeText = (type) => {
+  if (type === "RETURN") return "반품 신청";
+  if (type === "REFUND") return "환불 신청";
+  return "주문취소 신청";
+};
+
 const Mp_CancelRefund = () => {
 
   return (
