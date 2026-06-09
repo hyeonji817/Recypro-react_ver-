@@ -19,6 +19,24 @@ const typeText = (type) => {
 };
 
 const Mp_CancelRefund = () => {
+  const { order_id } = useParams();
+  const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
+
+  const requestType = searchParams.get("type") || "CANCEL";
+
+  const [order, setOrder] = useState(null);
+  const [items, setItems] = useState([]);
+  const [summary, setSummary] = useState(null);
+
+  const [selected, setSelected] = useState({});
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+  const [file1, setFile1] = useState(null);
+  const [file2, setFile2] = useState(null);
+
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
   return (
     <div className="mpCancel_Refund_wrapper">
