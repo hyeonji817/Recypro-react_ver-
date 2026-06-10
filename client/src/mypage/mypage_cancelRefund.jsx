@@ -38,6 +38,43 @@ const Mp_CancelRefund = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
+  // 조회 API 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+
+        const [cancelRes, summaryRes] = await Promise.all([
+          axios.get(`${API}/api/mpCancel_Refund/${order_id}`, {
+            withCredentials: true,
+          }),
+          axios.get(`${API}/api/mypage/summary`, {
+            withCredentials: true,
+          }),
+        ]);
+
+        setOrder(cancelRes.data.order);
+        setItems(cancelRes.data.items || []);
+        setSummary(summaryRes.data);
+
+        const checkedMap = {};
+        (cancelRes.data.items || []).forEach((item) => {
+          checkedMap[item.order_item_id] = true;
+        });
+        setSelected(checkedMap);
+      } catch (err) {
+        console.error("[취소/반품 조회 실패]", err);
+        setError(
+          err.response?.data?.message || "취소/반품 신청 정보를 불러오지 못했습니다."
+        );
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [order_id]);
+
   return (
     <div className="mpCancel_Refund_wrapper">
       <div className="mpCancel_Refund_Header">
