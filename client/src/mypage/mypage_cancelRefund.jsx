@@ -75,6 +75,14 @@ const Mp_CancelRefund = () => {
     fetchData();
   }, [order_id]);
 
+  // 체크박스 제어함수 
+  const toggleItem = (orderItemId) => {
+    setSelected((prev) => ({
+      ...prev,
+      [orderItemId]: !prev[orderItemId],
+    }));
+  };
+
   return (
     <div className="mpCancel_Refund_wrapper">
       <div className="mpCancel_Refund_Header">
