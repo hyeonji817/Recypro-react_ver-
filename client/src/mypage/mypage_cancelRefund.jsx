@@ -83,6 +83,57 @@ const Mp_CancelRefund = () => {
     }));
   };
 
+  // 신청접수 함수 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const selectedItems = Object.entries(selected)
+      .filter(([, checked]) => checked)
+      .map(([id]) => id);
+
+    if (selectedItems.length === 0) {
+      alert("신청할 상품을 선택해주세요.");
+      return;
+    }
+
+    if (!title.trim()) {
+      alert("제목을 입력해주세요.");
+      return;
+    }
+
+    const formData = new FormData();
+
+    formData.append("request_type", requestType);
+    formData.append("title", title);
+    formData.append("content", content);
+
+    selectedItems.forEach((id) => {
+      formData.append("selected_items", id);
+    });
+
+    if (file1) formData.append("upfile1", file1);
+    if (file2) formData.append("upfile2", file2);
+
+    try {
+      const res = await axios.post(
+        `${API}/api/mpCancel_Refund/${order_id}`,
+        formData,
+        {
+          withCredentials: true,
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      alert(res.data.message || "신청이 접수되었습니다.");
+      navigate(`/mypage/orders/${order_id}`);
+    } catch (err) {
+      console.error("[취소/반품 신청 실패]", err);
+      alert(err.response?.data?.message || "신청 저장에 실패했습니다.");
+    }
+  };
+
   return (
     <div className="mpCancel_Refund_wrapper">
       <div className="mpCancel_Refund_Header">
