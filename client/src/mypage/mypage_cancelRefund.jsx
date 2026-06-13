@@ -362,9 +362,16 @@ const Mp_CancelRefund = () => {
 		          </fieldset>
 
 		          <div className="btn">
-			          <span className="box_btn large w150"><input type="submit" value="확인" /></span>
-			          <span className="box_btn large w150 white"><a href="/">취소</a></span>
-		          </div>
+                <span className="box_btn large w150">
+                  <input type="submit" value="확인" />
+                </span>
+
+                <span className="box_btn large w150 white">
+                  <button type="button" onClick={() => navigate(`/mypage/orders/${order_id}`)}>
+                    취소
+                  </button>
+                </span>
+              </div>
 	          </form>
           </div>        {/** #counsel_write end */}
         </div>      {/** mpCancel_Refund_body end */}  
