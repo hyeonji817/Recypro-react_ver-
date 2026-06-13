@@ -314,28 +314,51 @@ const Mp_CancelRefund = () => {
                 </table>
 			
 			          <div>
-				          <label htmlFor="counsel_title">제목</label>
-				          <input type="text" name="title" id="counsel_title" className="form_input block" placeholder="제목" />
-			          </div>
-			          <div className="content">
-				          <label htmlFor="counsel_cnt">문의내용</label>
-				          <textarea
+                  <label htmlFor="counsel_title">제목</label>
+                  <input
+                    type="text"
+                    name="title"
+                    id="counsel_title"
+                    className="form_input block"
+                    placeholder="제목"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                  />
+                </div>
+
+                <div className="content">
+                  <label htmlFor="counsel_cnt">문의내용</label>
+                  <textarea
                     name="content"
                     id="counsel_cnt"
                     className="form_input block"
                     placeholder="문의내용"
                     value={content}
                     onChange={(e) => setContent(e.target.value)}
-                  ></textarea>
-			          </div>
-			          <div>
-				          <label htmlFor="counsel_file1">첨부파일 1</label>
-				          <input type="file" name="upfile1" id="counsel_file1" className="form_input block" />
-			          </div>
-			          <div>
-				          <label htmlFor="counsel_file2">첨부파일 2</label>
-				          <input type="file" name="upfile2" id="counsel_file2" className="form_input block" />
-			          </div>	
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="counsel_file1">첨부파일 1</label>
+                  <input
+                    type="file"
+                    name="upfile1"
+                    id="counsel_file1"
+                    className="form_input block"
+                    onChange={(e) => setFile1(e.target.files?.[0] || null)}
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="counsel_file2">첨부파일 2</label>
+                  <input
+                    type="file"
+                    name="upfile2"
+                    id="counsel_file2"
+                    className="form_input block"
+                    onChange={(e) => setFile2(e.target.files?.[0] || null)}
+                  />
+                </div>
 		          </fieldset>
 
 		          <div className="btn">
