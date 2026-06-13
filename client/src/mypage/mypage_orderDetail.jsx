@@ -427,9 +427,9 @@ const Mp_OrderDetail = () => {
                     취소/환불신청
                   </Link>
                 </span> 
-			          <span className="box_btn white">
+			          {/** <span className="box_btn white">
                   <a href="#">반품신청</a>
-                </span>
+                </span> */}
 			          <span className="box_btn fr">
                   <button type="button" onClick={() => navigate("/orders")}>
                     주문목록
