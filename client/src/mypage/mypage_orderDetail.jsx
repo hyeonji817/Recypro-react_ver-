@@ -248,140 +248,142 @@ const Mp_OrderDetail = () => {
             </table>     {/** tbl_col prd end */}
 
             {/** 주문자 정보 및 배송지 정보 */}
-            <div className="area_left">
-              <h3 className="title">주문자 정보</h3>
-              <table className="tbl_order">
-                <caption className="hidden">주문자 정보</caption>
-                <colgroup>
-                  <col style={{ width: "20%" }} />
-                  <col />
-                </colgroup>  
-                <tbody>
-                  <tr>
-                    <th scope="row">주문일자</th>
-                    <td>{formatDate(order.paid_at || order.created_at)}</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">주문하시는 분</th>
-                    <td>{buyer.name || "-"}</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">전화번호</th>
-                    <td>{buyer.phone || "-"}</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">휴대전화번호</th>
-                    <td>{buyer.cell || "-"}</td>
-                  </tr>
-                </tbody>
-              </table>     {/** tbl_order end */}
-              
-              <h3 className="title">배송지 정보</h3>      {/** title end */}
-              <table className="tbl_order">
-                <caption className="hidden">배송지 정보</caption>   {/** hidden end */}
-                <colgroup>
-                  <col style={{ width: "20%" }} />
-                  <col />
-                </colgroup>
-                <tbody>
-                  <tr>
-                    <th scope="row">받으시는 분</th>
-                    <td>{receiver.name || "-"}</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">전화번호</th>
-                    <td>{receiver.phone || "-"}</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">휴대전화번호</th>
-                    <td>{receiver.cell || "-"}</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">주소</th>
-                    <td>
-                      [{receiver.zip || "-"}]
-                      <br />
-                      {receiver.addr1 || ""} {receiver.addr2 || ""}
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">배송시요청사항</th>
-                    <td className="break">{order.dlv_memo || "-"}</td>  
-                  </tr>  
-                </tbody>  
-              </table>       {/** tbl_order end */}
-            </div>     {/** area_left end */}
-
-            {/** 결제정보 및 결제수단 정보 */}
-            <div className="area_right">
-              <div className="box">
-                <h3 className="title first">결제 정보</h3>     {/** title first end */}
-                <table className="tbl_order2">
-                  <caption className="hidden">결제 정보</caption>      {/** hidden end */}
+            <div className="order_info_layout">
+              <div className="area_left">
+                <h3 className="title">주문자 정보</h3>
+                <table className="tbl_order">
+                  <caption className="hidden">주문자 정보</caption>
                   <colgroup>
-                    <col style={{ width: "50%"}} />
-                    <col />
-                  </colgroup>
-                  <tbody>
-                    <tr>
-                      <th scope="row">상품합계금액</th>
-                      <td>{formatWon(order.subtotal)} 원</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">배송비</th>
-                      <td>{formatWon(order.shipping_fee)} 원</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">적립금 결제</th>
-                      <td>- {formatWon(order.used_mileage)} 원</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">쿠폰할인 금액</th>
-                      <td>- {formatWon(order.discount_total)} 원</td>
-                    </tr>
-                    <tr className="total_row">
-                      <th scope="row" className="total">총 결제금액</th>
-                      <td className="total">
-                        <strong className="total_price">
-                          {formatWon(order.total_pay)}
-                        </strong>{" "}
-                        원
-                      </td>     {/** total end */}
-                    </tr>   {/** total_row end */}
-                    <tr className="total_row">
-                      <th scope="row">총 적립금</th>
-                      <td>{formatWon(order.total_mileage)} 원</td>  
-                    </tr>       {/** total_row end */}  
-                  </tbody>  
-                </table>      {/** tbl_order2 end */}  
-
-                <h3 className="title line">결제수단 정보</h3>      {/** title line end */}
-                <table className="tbl_order2">
-                  <caption className="hidden">결제수단 정보</caption>
-                  <colgroup>
-                    <col style={{ width: "25%" }} />
+                    <col style={{ width: "20%" }} />
                     <col />
                   </colgroup>  
                   <tbody>
                     <tr>
-                      <th scope="row">결제방법</th>
-                      <td>{payMethodText(order.pay_method)}</td>
+                      <th scope="row">주문일자</th>
+                      <td>{formatDate(order.paid_at || order.created_at)}</td>
                     </tr>
                     <tr>
-                      <th scope="row">거래정보</th>
-	                    <td>
-                        {order.pg_provider || order.pay_method || "-"}{" "}
-                        <strong>[<a href="#">결제영수증</a>]</strong>
+                      <th scope="row">주문하시는 분</th>
+                      <td>{buyer.name || "-"}</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">전화번호</th>
+                      <td>{buyer.phone || "-"}</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">휴대전화번호</th>
+                      <td>{buyer.cell || "-"}</td>
+                    </tr>
+                  </tbody>
+                </table>     {/** tbl_order end */}
+              
+                <h3 className="title">배송지 정보</h3>      {/** title end */}
+                <table className="tbl_order">
+                  <caption className="hidden">배송지 정보</caption>   {/** hidden end */}
+                  <colgroup>
+                    <col style={{ width: "20%" }} />
+                    <col />
+                  </colgroup>
+                  <tbody>
+                    <tr>
+                      <th scope="row">받으시는 분</th>
+                      <td>{receiver.name || "-"}</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">전화번호</th>
+                      <td>{receiver.phone || "-"}</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">휴대전화번호</th>
+                      <td>{receiver.cell || "-"}</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">주소</th>
+                      <td>
+                        [{receiver.zip || "-"}]
+                        <br />
+                        {receiver.addr1 || ""} {receiver.addr2 || ""}
                       </td>
                     </tr>
                     <tr>
-                      <th scope="row">입금일자</th>
-                      <td>{formatDate(order.paid_at)}</td>
-                    </tr>
-                  </tbody>
-                </table>      {/** tbl_order2 end */}
-              </div>     {/** box end */}  
-            </div>    {/** area_right end */}
+                      <th scope="row">배송시요청사항</th>
+                      <td className="break">{order.dlv_memo || "-"}</td>  
+                    </tr>  
+                  </tbody>  
+                </table>       {/** tbl_order end */}
+              </div>     {/** area_left end */}
+
+              {/** 결제정보 및 결제수단 정보 */}
+              <div className="area_right">
+                <div className="box">
+                  <h3 className="title first">결제 정보</h3>     {/** title first end */}
+                  <table className="tbl_order2">
+                    <caption className="hidden">결제 정보</caption>      {/** hidden end */}
+                    <colgroup>
+                      <col style={{ width: "50%"}} />
+                      <col />
+                    </colgroup>
+                    <tbody>
+                      <tr>
+                        <th scope="row">상품합계금액</th>
+                        <td>{formatWon(order.subtotal)} 원</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">배송비</th>
+                        <td>{formatWon(order.shipping_fee)} 원</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">적립금 결제</th>
+                        <td>- {formatWon(order.used_mileage)} 원</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">쿠폰할인 금액</th>
+                        <td>- {formatWon(order.discount_total)} 원</td>
+                      </tr>
+                      <tr className="total_row">
+                        <th scope="row" className="total">총 결제금액</th>
+                        <td className="total">
+                          <strong className="total_price">
+                            {formatWon(order.total_pay)}
+                          </strong>{" "}
+                          원
+                        </td>     {/** total end */}
+                      </tr>   {/** total_row end */}
+                      <tr className="total_row">
+                        <th scope="row">총 적립금</th>
+                        <td>{formatWon(order.total_mileage)} 원</td>  
+                      </tr>       {/** total_row end */}  
+                    </tbody>  
+                  </table>      {/** tbl_order2 end */}  
+
+                  <h3 className="title line">결제수단 정보</h3>      {/** title line end */}
+                  <table className="tbl_order2">
+                    <caption className="hidden">결제수단 정보</caption>
+                    <colgroup>
+                      <col style={{ width: "25%" }} />
+                      <col />
+                    </colgroup>  
+                    <tbody>
+                      <tr>
+                        <th scope="row">결제방법</th>
+                        <td>{payMethodText(order.pay_method)}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">거래정보</th>
+	                      <td>
+                          {order.pg_provider || order.pay_method || "-"}{" "}
+                          <strong>[<a href="#">결제영수증</a>]</strong>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">입금일자</th>
+                        <td>{formatDate(order.paid_at)}</td>
+                      </tr>
+                    </tbody>
+                  </table>      {/** tbl_order2 end */}
+                </div>     {/** box end */}  
+              </div>    {/** area_right end */}
+            </div>      {/** order_info_layout end */}
 
             {/** 주문 1:1 문의 */}
             <div id="counsel">

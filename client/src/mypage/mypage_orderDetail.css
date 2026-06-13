@@ -7,6 +7,26 @@
   font-style: normal;
 }
 
+@media screen and (max-width: 1200px) {
+  .mpOrder_Detail_wrapper #order_detail .order_info_layout {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .mpOrder_Detail_wrapper #order_detail .area_left {
+    width: 100%;
+  }
+
+  .mpOrder_Detail_wrapper #order_detail .area_right {
+    width: 100%;
+    flex: none;
+  }
+
+  .mpOrder_Detail_wrapper #order_detail .area_right .box {
+    width: 100%;
+  }
+}
+
 .mpOrder_Detail_Content {
   min-height: 500px; 
   margin-top: 170px; 
@@ -260,11 +280,21 @@ colgroup {
   padding: 4px 8px;
 }
 
-.mpOrder_Detail_wrapper .order_detail .area_left {
-  float: left;
-  width: 100%;
-  position: relative;
-  top: 50px;
+/* 주문자/배송지 정보 + 결제 박스 가로 배치 */
+.mpOrder_Detail_wrapper #order_detail .order_info_layout {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 80px;
+  margin-top: 50px;
+}
+
+/* 왼쪽 주문자/배송지 표 */
+.mpOrder_Detail_wrapper #order_detail .area_left {
+  float: none;
+  width: calc(100% - 440px);
+  position: static;
+  top: auto;
 }
 
 .mpOrder_Detail_wrapper .tbl_order {
@@ -296,17 +326,21 @@ colgroup {
   text-align: left;
 }
 
+/* 오른쪽 결제 영수증 박스 */
 .mpOrder_Detail_wrapper #order_detail .area_right {
-  float: right;
-  margin-bottom: 100px; 
-  position: relative;
-  top: 100px;
+  float: none;
+  flex: 0 0 360px;
+  margin-bottom: 0;
+  margin-top: 85px;
+  position: static;
+  top: auto;
 }
 
 .mpOrder_Detail_wrapper #order_detail .area_right .box {
   width: 360px;
   padding: 40px;
   background: #f8f8f8;
+  box-sizing: border-box;
 }
 
 .mpOrder_Detail_wrapper .tbl_order2 {
