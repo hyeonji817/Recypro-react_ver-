@@ -231,7 +231,11 @@ const Mp_CancelRefund = () => {
           </div>     {/** mpCancel_Refund_top end */}
 
           <div id="counsel_write">
-            <form method="post" action="https://www.rolarola.com/main/exec.php" target="hidden1777793953" encType="multipart/form-data" onSubmit="" style={{ margin: "0px", textAlign: "center" }}>
+            <form
+              onSubmit={handleSubmit}
+              encType="multipart/form-data"
+              style={{ margin: "0px", textAlign: "center" }}
+            >
               <input type="hidden" name="exec_file" value="mypage/counsel.exe.php" />
               <input type="hidden" name="ono" value="20260430-0F8A9" />
               <input type="hidden" name="cate1" value="2" />
@@ -272,25 +276,41 @@ const Mp_CancelRefund = () => {
 	                </thead>
 
 	                <tbody>
-                    <tr>
-			                <td><input type="checkbox" name="repay_no[]" value="1209249" checked="" /></td>
-			                <td className="img"><img src="https://rolarola.wisacdn.com/_data/product/202503/19/decd0b2b8a2a1feb7a436ca0c942e65d.jpg" alt="BASIC LINEN CARDIGAN PINK" /></td>
-			                <td className="tal">BASIC LINEN CARDIGAN PINK<br />색상 : 핑크 / 사이즈 : FREE</td>
-			                <td>1</td>
-			                <td>69,000 원</td>
-			                <td>62,100 원</td>
-			                <td>입금완료</td>
-		                </tr>
-		                <tr>
-			                <td><input type="checkbox" name="repay_no[]" value="1209250" checked="" /></td>
-			                <td className="img"><img src="https://www.rolarola.com/_image/_default/prd/noimg3.gif" alt="(사은품) 26썸머 장원영 포토카드" /></td>
-			                <td className="tal">(사은품) 26썸머 장원영 포토카드<br />멀티 ／ FREE</td>
-			                <td>1</td>
-			                <td>0 원</td>
-			                <td>0 원</td>
-			                <td>입금완료</td>
-		                </tr>
-	                </tbody>
+                    {items.length > 0 ? (
+                      items.map((item) => (
+                        <tr key={item.order_item_id}>
+                          <td>
+                            <input
+                              type="checkbox"
+                              name="selected_items"
+                              value={item.order_item_id}
+                              checked={!!selected[item.order_item_id]}
+                              onChange={() => toggleItem(item.order_item_id)}
+                            />
+                          </td>
+
+                          <td className="img">
+                            <img src={imgUrl(item.filename)} alt={item.pname} />
+                          </td>
+
+                          <td className="tal">
+                            {item.pname}
+                            <br />
+                            {item.option_label || "-"}
+                          </td>
+
+                          <td>{item.quantity}</td>
+                          <td>{formatWon(item.unit_price)} 원</td>
+                          <td>{formatWon(item.line_total)} 원</td>
+                          <td>{order?.status === "PAID" ? "결제완료" : order?.status}</td>
+                        </tr>
+                      ))
+                    ) : (
+                      <tr>
+                        <td colSpan={7}>신청 가능한 주문상품이 없습니다.</td>
+                      </tr>
+                    )}
+                  </tbody>
                 </table>
 			
 			          <div>
@@ -299,7 +319,14 @@ const Mp_CancelRefund = () => {
 			          </div>
 			          <div className="content">
 				          <label htmlFor="counsel_cnt">문의내용</label>
-				          <textarea name="content" id="counsel_cnt" className="form_input block" placeholder="문의내용" style={{ display: "none" }}></textarea>
+				          <textarea
+                    name="content"
+                    id="counsel_cnt"
+                    className="form_input block"
+                    placeholder="문의내용"
+                    value={content}
+                    onChange={(e) => setContent(e.target.value)}
+                  ></textarea>
 			          </div>
 			          <div>
 				          <label htmlFor="counsel_file1">첨부파일 1</label>
