@@ -25,6 +25,11 @@ const Product1 = () => {
 	const [selectedColor, setSelectedColor] = useState("");
 	// 계산 상태
 	const [qty, setQty] = useState(1);		// 수량 
+	// 찜하기 기능 상태 
+	const PRODUCT_TABLE = "product_life"; 
+	const [isWished, setIsWished] = useState(false); 
+	const [wishLoading, setWishLoading] = useState(false); 
+
 	// Product1 컴포넌트 내부 (state 선언들 아래 아무 곳)
 	const groups = React.useMemo(() => product?.optionGroups ?? [], [product]);
 

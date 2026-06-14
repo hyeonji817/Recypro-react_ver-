@@ -24,6 +24,10 @@ const Product3 = () => {
 	const [selected, setSelected] = useState({});		// 객체로 선언
 	const [selectedColor, setSelectedColor] = useState("");
 	const [qty, setQty] = useState(1);		// 계산 상태, 수량
+	// 찜하기 기능 상태 
+	const PRODUCT_TABLE = "product_food"; 
+	const [isWished, setIsWished] = useState(false); 
+	const [wishLoading, setWishLoading] = useState(false); 
 	const groups = React.useMemo(() => product?.optionGroups ?? [], [product]);		// Product3 컴포넌트 내부 (state 선언들 아래 아무 곳에 배치하기)
 
 	useEffect(() => {

@@ -24,6 +24,10 @@ const Product6 = () => {
   const [selected, setSelected] = useState({});   // 선택항목 관련 데이터를 보관하는 상태 보관소 
   const [selectedColor, setSelectedColor] = useState("");     // 선택할 종류 및 색상
   const [qty, setQty] = useState(1);        // 계산상태, 수량 
+  // 찜하기 기능 상태 
+  const PRODUCT_TABLE = "product_office"; 
+  const [isWished, setIsWished] = useState(false); 
+  const [wishLoading, setWishLoading] = useState(false); 
   const groups = React.useMemo(() => product?.optionGroups ?? [], [product]);   
   console.log("productId param = ", productId);
   console.log("[Product6] productId = ", productId);

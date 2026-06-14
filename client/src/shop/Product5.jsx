@@ -26,6 +26,10 @@ const Product5 = () => {
 	const [selected, setSelected] = useState({});		// 객체로 선언
 	const [selectedColor, setSelectedColor] = useState("");
 	const [qty, setQty] = useState(1);		// 계산 상태, 수량
+	// 찜하기 기능 상태 
+	const PRODUCT_TABLE = "product_pet"; 
+	const [isWished, setIsWished] = useState(false); 
+	const [wishLoading, setWishLoading] = useState(false);
 	const groups = React.useMemo(() => product?.optionGroups ?? [], [product]);		// Product5 컴포넌트 내부
 
 	useEffect(() => {
