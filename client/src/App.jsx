@@ -116,12 +116,12 @@ function App() {
         <Route path="/shop/Products_Pet" element={<ProductsPet />} />
         
         <Route path="/product/:id" element={<Product />} />
-        <Route path="/shop/product1/:productId" element={<Product1 />} />
-        <Route path="/shop/product2/:productId" element={<Product2 />} />
-        <Route path="/shop/product3/:productId" element={<Product3 />} />
-        <Route path="/shop/product4/:productId" element={<Product4 />} />
-        <Route path="/shop/product5/:productId" element={<Product5 />} />
-        <Route path="/shop/product6/:productId" element={<Product6 />} />
+        <Route path="/product_life/:productId" element={<Product1 />} />
+        <Route path="/product_bath/:productId" element={<Product2 />} />
+        <Route path="/product_food/:productId" element={<Product3 />} />
+        <Route path="/product_kitchen/:productId" element={<Product4 />} />
+        <Route path="/product_pet/:productId" element={<Product5 />} />
+        <Route path="/product_office/:productId" element={<Product6 />} />
 
         <Route path="/orderList" element={<OrderList />} />
         <Route path="/orderOk" element={<OrderOK />} />
