@@ -141,6 +141,39 @@ const Product1 = () => {
 		}
 	};
 
+	// 찜하기 함수 추가 
+	const handleToggleWish = async () => {
+		if (wishLoading) return;
+	
+		try {
+			setWishLoading(true);
+	
+			const res = await axios.post(
+				"http://localhost:5003/api/mypage/wish/toggle",
+				{
+					productTable: PRODUCT_TABLE,
+					productId,
+				},
+				{ withCredentials: true }
+			);
+	
+			setIsWished(Boolean(res.data.wished));
+			alert(res.data.message);
+		} catch (err) {
+			console.error("[찜하기 실패]", err);
+	
+			if (err?.response?.status === 401) {
+				alert("로그인이 필요합니다.");
+				nav("/account/login");
+				return;
+			}
+	
+			alert("관심상품 처리 중 오류가 발생했습니다.");
+		} finally {
+			setWishLoading(false);
+		}
+	};
+
 	// 문자열, JSON 문자열, 배열 어떤 형태여도 배열로 정규화
 	const toArray = (v) => {
 		if (Array.isArray(v)) return v;
