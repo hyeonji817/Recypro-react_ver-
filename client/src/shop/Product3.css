@@ -636,6 +636,20 @@ ol, ul, li {
 	padding: 0 4px;
 }
 
+/** 찜하기 버튼 */ 
+.Product_body .box_btn.wishBtn a {
+  display: block;
+  background: #fff;
+  color: #111;
+  border: 1px solid #111;
+  text-align: center;
+}
+
+.Product_body .box_btn.wishBtn.on a {
+  background: #111;
+  color: #fff;
+}
+
 .Product_body #detail .wrap_prd .info > .btn {
 	display: flex;
 	justify-content: start;
