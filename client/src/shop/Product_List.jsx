@@ -46,7 +46,7 @@ const Product_List = () => {
 		        <div className="box ">
 	            <div className="img">
 		            <div className="prdimg">
-                  <Link to={`/shop/product1/${encodeURIComponent(item.productId)}`}>
+                  <Link to={`/product_life/${encodeURIComponent(item.productId)}`}>
                     <img 
                       src={`http://localhost:5003/uploads/${String(item.filename).replace(/^\.\//,'')}`} 
                       alt={item.pname}
@@ -59,7 +59,7 @@ const Product_List = () => {
 
 	            <div className="info">
 		            <p className="name">
-                  <Link to={`/shop/product1/${encodeURIComponent(item.productId)}`}>{item.pname}</Link>
+                  <Link to={`/product_life/${encodeURIComponent(item.productId)}`}>{item.pname}</Link>
                 </p>    {/** name end */}
 		            <div className="price">
 			            <p className="sell sellY">
