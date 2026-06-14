@@ -41,7 +41,7 @@ const Products_Bath = () => {
       {/** 상품정렬 */}
       <ul className="prd_basic col3">
       {currentItems.map((item) => {
-      const detailPath = `/shop/product2/${encodeURIComponent(item.productId)}`;
+      const detailPath = `/product_bath/${encodeURIComponent(item.productId)}`;
       return (
         <li key={item.productId}>
         <div className="box">

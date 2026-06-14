@@ -42,7 +42,7 @@ const Products_Office = () => {
 	        {/** 상품정렬 */}
           <ul className="prd_basic col3">
           {currentItems.map((item) => {
-            const detailPath = `/shop/product6/${encodeURIComponent(item.productId)}`;
+            const detailPath = `/product_office/${encodeURIComponent(item.productId)}`;
             return (
               <li key={item.productId}>
                 <div className="box">

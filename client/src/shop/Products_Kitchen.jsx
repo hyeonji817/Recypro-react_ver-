@@ -44,13 +44,13 @@ const Products_Kitchen = () => {
             <li><Link to="/shop/products3">식품</Link></li>
             <li><Link to="/shop/products4">주방</Link></li>
             <li><Link to="/shop/products5">반려동물</Link></li>
-            <li><Link to="/shop/products5">사무</Link></li>
+            <li><Link to="/shop/products6">사무</Link></li>
           </ul>
 
           {/** 상품정렬 */}
         <ul className="prd_basic col3">
         {currentItems.map((item) => {
-          const detailPath = `/shop/product4/${encodeURIComponent(item.productId)}`;
+          const detailPath = `/product_kitchen/${encodeURIComponent(item.productId)}`;
           return (
             <li key={item.productId}>
               <div className="box">
