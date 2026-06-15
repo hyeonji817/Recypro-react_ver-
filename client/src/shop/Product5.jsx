@@ -49,6 +49,29 @@ const Product5 = () => {
 		return () => { mounted = false; }
 	}, [productId]);
 
+	// 찜 여부 확인 
+	useEffect(() => {
+		if (!productId) return;
+	
+		const checkWish = async () => {
+			try {
+				const res = await axios.get("http://localhost:5003/api/mypage/wish/check", {
+					params: {
+						productTable: PRODUCT_TABLE,
+						productId,
+					},
+					withCredentials: true,
+				});
+	
+				setIsWished(Boolean(res.data.wished));
+			} catch (err) {
+				console.error("[찜 여부 확인 실패]", err);
+			}
+		};
+	
+		checkWish();
+	}, [productId]);
+
 	// 현재 옵션들로부터 추가요금 합계 
 	const optionDelta = React.useMemo(() => {
 		return groups.reduce((sum, g) => {
