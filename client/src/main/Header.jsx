@@ -31,7 +31,22 @@ const Header = () => {
             <Link className="link" to="/shop/Products">상품</Link>
             <ul className="submenu">
               <li>
-                <Link className="link" to="/cart">장바구니</Link>
+                <Link className="link" to="/shop/Products1">생활</Link>
+              </li>
+              <li>
+                <Link className="link" to="/shop/Products2">욕실</Link>
+              </li>
+              <li>
+                <Link className="link" to="/shop/Products3">식품</Link>
+              </li>
+              <li>
+                <Link className="link" to="/shop/Products4">주방</Link>
+              </li>
+              <li>
+                <Link className="link" to="/shop/Products5">반려동물</Link>
+              </li>
+              <li>
+                <Link className="link" to="/shop/Products6">사무</Link>
               </li>
               <li>
                 <Link className="link" to="/shop/Product_Review">리뷰</Link>
