@@ -64,9 +64,6 @@ const Header_loginOK = () => {
               <li>
                 <Link className="link" to="/shop/Products6">사무</Link>
               </li>
-              <li>
-                <Link className="link" to="/shop/Product_Review">리뷰</Link>
-              </li>
             </ul>
           </li>
           <li>
@@ -91,6 +88,9 @@ const Header_loginOK = () => {
               </li>
               <li>
                 <Link className="link" to="/mypage">마이페이지</Link>
+              </li>
+              <li>
+                <Link className="link" to="/shop/Product_Review">리뷰</Link>
               </li>
               <li>
                 <Link className="link" to="/logoutAction">로그아웃</Link>

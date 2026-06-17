@@ -54,6 +54,10 @@ const Header_admin = () => {
                 <a className="link" href="#">마이페이지</a>
               </li>
               <li>
+                <a className="link" href="#">리뷰</a>
+                {/** <Link className="link" to="/shop/Product_Review">리뷰</Link> */}
+              </li>
+              <li>
                 <a className="link" href="#">로그아웃</a>
               </li>
             </ul>

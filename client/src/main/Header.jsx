@@ -48,9 +48,6 @@ const Header = () => {
               <li>
                 <Link className="link" to="/shop/Products6">사무</Link>
               </li>
-              <li>
-                <Link className="link" to="/shop/Product_Review">리뷰</Link>
-              </li>
             </ul>
           </li>
           <li>
