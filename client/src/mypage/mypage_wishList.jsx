@@ -33,6 +33,30 @@ const Mp_WishList = () => {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  // 관심상품 조회 
+  const fetchWishItems = async () => {
+    try {
+      const res = await axios.get("http://localhost:5003/api/mypage/wish", {
+        withCredentials: true,
+      });
+
+      console.log("[관심상품 목록]", res.data);
+      setItems(Array.isArray(res.data) ? res.data : []);
+    } catch (err) {
+      console.error("[관심상품 조회 실패]", err);
+
+      if (err?.response?.status === 401) {
+        alert("로그인이 필요합니다.");
+        nav("/account/login");
+        return;
+      }
+
+      alert("관심상품 목록을 불러오지 못했습니다.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="mpWishList_wrapper">
       <div className="mpWishList_Header">
