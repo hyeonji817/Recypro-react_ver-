@@ -5,7 +5,33 @@ import { useNavigate } from "react-router-dom";
 import Header_loginOK from "../main/Header_loginOK";
 import Footer from "../main/Footer";
 
+const formatWon = (value) => Number(value || 0).toLocaleString();
+
+const getDetailPath = (productTable, productId) => {
+  const encodedId = encodeURIComponent(productId);
+
+  switch (productTable) {
+    case "product_life":
+      return `/product_life/${encodedId}`;
+    case "product_bath":
+      return `/product_bath/${encodedId}`;
+    case "product_food":
+      return `/product_food/${encodedId}`;
+    case "product_kitchen":
+      return `/product_kitchen/${encodedId}`;
+    case "product_pet":
+      return `/product_pet/${encodedId}`;
+    case "product_office":
+      return `/product_office/${encodedId}`;
+    default:
+      return `/product/${encodedId}`;
+  }
+};
+
 const Mp_WishList = () => {
+  const nav = useNavigate();
+  const [items, setItems] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   return (
     <div className="mpWishList_wrapper">
