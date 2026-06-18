@@ -1,4 +1,7 @@
 import "./mypage_wishList.css"; 
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import Header_loginOK from "../main/Header_loginOK";
 import Footer from "../main/Footer";
 
@@ -100,7 +103,11 @@ const Mp_WishList = () => {
             </div>     {/** customer_section end */}  
           </div>    {/**  mpWishList_top end */}  
 
+          <div className="wishList_section">
+            <h3>관심상품</h3>  
 
+
+          </div>      {/** wishList_section end */}
         </div>     {/** mpWishList_body end */}
       </div>    {/** mpWishList_Content end */}
 
