@@ -1,0 +1,95 @@
+@charset "UTF-8";
+
+@font-face {
+  font-family: 'GmarketSansMedium';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.mpWishList_Content {
+  min-height: 500px; 
+  margin-top: 170px; 
+}
+
+.mpWishList_Content .mpWishList_body {
+  overflow: hidden; 
+  width: 1700px; 
+  margin: 0 auto; 
+  font-family: 'GmarketSansMedium';
+}
+
+h2.subtitle {
+  padding: 64px 0 60px;
+  color: #1a1a1a;
+  font-size: 40px;
+  font-weight: 700;
+  letter-spacing: 0.1rem;
+  text-align: center;
+}
+
+a, a:hover, a:active, a:focus {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+ol, ul, li {
+  list-style: none;
+}
+
+.mpWishList_top {
+  text-align: center;
+}
+
+.mpWishList_top .customer_section .name strong, 
+.mypage_top .customer_section .name {
+  color: #000;
+  font-size: 27px;
+}
+
+.mpWishList_top .customer_section .my_edit {
+  color: #828282;
+  font-size: 22px;
+}
+
+.mpWishList_top .point_section {
+  padding-top: 25px; 
+  font-size: 0; 
+}
+
+.mpWishList_top .point_section > li {
+  display: inline-block;
+  padding: 0 18px;
+  vertical-align: top;
+}
+
+.mpWishList_top .point_section > li > a, 
+.mpWishList_top .point_section > li > a strong {
+  color: #000;
+  font-size: 22px;
+}
+
+.mpWishList_top .mpWishList_tab {
+  padding: 104px 0 144px; 
+  font-size: 0;
+}
+
+.mpWishList_top .mpWishList_tab > li {
+  display: inline-block; 
+  padding: 0 34px; 
+  vertical-align: top; 
+}
+
+.mpWishList_top .mpWishList_tab > li .tab_title {
+  display: block;
+  color: #828282;
+  font-size: 17px;
+}
+
+.mpWishList_top .mpWishList_tab > li .tab_sub {
+  display: block; 
+  color: #000; 
+  font-size: 14px; 
+  font-weight: 700;
+}
+
