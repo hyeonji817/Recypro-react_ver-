@@ -33,7 +33,7 @@ const Mp_WishList = () => {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // 관심상품 조회 
+  // 관심상품(위시리스트) 조회 
   const fetchWishItems = async () => {
     try {
       const res = await axios.get("http://localhost:5003/api/mypage/wish", {
@@ -54,6 +54,33 @@ const Mp_WishList = () => {
       alert("관심상품 목록을 불러오지 못했습니다.");
     } finally {
       setLoading(false);
+    }
+  };
+
+  // 관심상품(위시리스트) 조회 
+  useEffect(() => {
+    fetchWishItems();
+  }, []);
+
+  // 관심상품(위시리스트) 삭제 
+  const handleRemove = async (productTable, productId) => {
+    if (!window.confirm("관심상품에서 삭제할까요?")) return;
+
+    try {
+      await axios.delete(
+        `http://localhost:5003/api/mypage/wish/${productTable}/${encodeURIComponent(productId)}`,
+        { withCredentials: true }
+      );
+
+      setItems((prev) =>
+        prev.filter(
+          (item) =>
+            !(item.product_table === productTable && item.product_id === productId)
+        )
+      );
+    } catch (err) {
+      console.error("[관심상품 삭제 실패]", err);
+      alert("관심상품 삭제 중 오류가 발생했습니다.");
     }
   };
 
@@ -156,7 +183,70 @@ const Mp_WishList = () => {
           <div className="wishList_section">
             <h3>관심상품</h3>  
 
+            {loading ? (
+              <p className="empty_text">관심상품을 불러오는 중입니다.</p>
+            ) : items.length === 0 ? (
+              <p className="empty_text">관심상품에 등록된 상품이 없습니다.</p>
+            ) : (
+              <div className="wishList_grid">
+                {items.map((item) => {
+                  const imgSrc = `http://localhost:5003/uploads/${String(
+                    item.filename || ""
+                  ).replace(/^\.\//, "")}`;
 
+                  const detailPath = getDetailPath(
+                    item.product_table,
+                    item.product_id
+                  );
+
+                  return (
+                    <div className="wishList_card" key={item.wish_id}>
+                      <div
+                        className="thumb"
+                        onClick={() => nav(detailPath)}
+                      >
+                        <img src={imgSrc} alt={item.pname} />
+                      </div>
+
+                      <div className="info">
+                        <p className="category">{item.category}</p>
+                        <p
+                          className="pname"
+                          onClick={() => nav(detailPath)}
+                        >
+                          {item.pname}
+                        </p>
+
+                        <div className="price">
+                          {Number(item.discount_price || 0) > 0 ? (
+                            <>
+                              <span className="origin">
+                                {formatWon(item.price)}원
+                              </span>
+                              <strong>
+                                {formatWon(item.discount_price)}원
+                              </strong>
+                            </>
+                          ) : (
+                            <strong>{formatWon(item.price)}원</strong>
+                          )}
+                        </div>
+
+                        <button
+                          type="button"
+                          className="remove_btn"
+                          onClick={() =>
+                            handleRemove(item.product_table, item.product_id)
+                          }
+                        >
+                          삭제
+                        </button>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
           </div>      {/** wishList_section end */}
         </div>     {/** mpWishList_body end */}
       </div>    {/** mpWishList_Content end */}
