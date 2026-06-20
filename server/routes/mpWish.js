@@ -32,6 +32,7 @@ function isAllowedTable(productTable) {
 }
 
 // 관심상품 목록 조회
+// 관심상품 목록 조회
 router.get("/", async (req, res) => {
   try {
     const userId = getSessionUserId(req);
@@ -57,8 +58,10 @@ router.get("/", async (req, res) => {
         p.category
       FROM wish_products w
       JOIN v_product_catalog p
-        ON p.product_table = w.product_table
-       AND p.productId = w.product_id
+        ON p.product_table COLLATE utf8mb4_0900_ai_ci
+         = w.product_table COLLATE utf8mb4_0900_ai_ci
+       AND p.productId COLLATE utf8mb4_0900_ai_ci
+         = w.product_id COLLATE utf8mb4_0900_ai_ci
       WHERE w.user_id = ?
       ORDER BY w.created_at DESC
       `,
@@ -68,7 +71,10 @@ router.get("/", async (req, res) => {
     res.json(rows);
   } catch (err) {
     console.error("[GET /api/mypage/wish]", err);
-    res.status(500).json({ message: "관심상품 목록 조회 실패" });
+    res.status(500).json({
+      message: "관심상품 목록 조회 실패",
+      error: err.message,
+    });
   }
 });
 
