@@ -171,7 +171,7 @@ const Mp_CancelRefund = () => {
                   </a>
                 </li>
                 <li>
-                  <a href="/wishlist" className="tab_title">
+                  <a href="/mypage_wishList" className="tab_title">
                     WISH LIST
                     <br />
                     <strong className="tab_sub">관심상품</strong>

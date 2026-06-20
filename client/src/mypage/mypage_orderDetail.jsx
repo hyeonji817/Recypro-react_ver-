@@ -141,7 +141,7 @@ const Mp_OrderDetail = () => {
 
               <ul className="mpOrder_Detail_tab">
                 <li><a href="/orders" className="tab_title">ORDER<br /><strong className="tab_sub">주문내역</strong></a></li>
-                <li><a href="/wishlist" className="tab_title">WISH LIST<br /><strong className="tab_sub">관심상품</strong></a></li>
+                <li><a href="/mypage_wishList" className="tab_title">WISH LIST<br /><strong className="tab_sub">관심상품</strong></a></li>
                 <li><a href="/coupons" className="tab_title">COUPON<br /><strong className="tab_sub">쿠폰</strong></a></li>
                 <li><a href="/mileage" className="tab_title">MILEAGE<br /><strong className="tab_sub">적립금</strong></a></li>
                 <li><a href="/deposits" className="tab_title">DEPOSITS<br /><strong className="tab_sub">예치금</strong></a></li>
