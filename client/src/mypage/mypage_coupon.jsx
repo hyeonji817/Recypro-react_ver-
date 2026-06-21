@@ -10,7 +10,15 @@ const Mp_Coupon = () => {
         <Header_loginOK />  
       </div>     {/** mpCoupon_Header end */}
 
-      <div className="mpCoupon_Content"></div>    {/** mpCoupon_Content end */}
+      <div className="mpCoupon_Content">
+        <div className="mpCoupon_body">
+          <h2 className="subtitle">MY PAGE</h2>       {/** subtitle end */}
+
+          <div className="mpCoupon_top"></div>      {/** mpCoupon_top end */}  
+
+          <div className="coupon" id="coupon"></div>    {/** coupon end */}
+        </div>       {/** mpCoupon_body end */}  
+      </div>    {/** mpCoupon_Content end */}
 
       <div className="mpCoupon_Footer">
         <Footer />  
