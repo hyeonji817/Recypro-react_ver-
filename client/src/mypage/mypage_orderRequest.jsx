@@ -203,7 +203,7 @@ const Mp_OrderRequest = () => {
                   </a>
                 </li>
                 <li>
-                  <a href="/coupons" className="tab_title">
+                  <a href="/mypage_coupon" className="tab_title">
                     COUPON
                     <br />
                     <strong className="tab_sub">쿠폰</strong>
