@@ -32,7 +32,6 @@ function isAllowedTable(productTable) {
 }
 
 // 관심상품 목록 조회
-// 관심상품 목록 조회
 router.get("/", async (req, res) => {
   try {
     const userId = getSessionUserId(req);
@@ -58,10 +57,8 @@ router.get("/", async (req, res) => {
         p.category
       FROM wish_products w
       JOIN v_product_catalog p
-        ON p.product_table COLLATE utf8mb4_0900_ai_ci
-         = w.product_table COLLATE utf8mb4_0900_ai_ci
-       AND p.productId COLLATE utf8mb4_0900_ai_ci
-         = w.product_id COLLATE utf8mb4_0900_ai_ci
+        ON CONVERT(p.product_table USING utf8mb4) = CONVERT(w.product_table USING utf8mb4)
+       AND CONVERT(p.productId USING utf8mb4) = CONVERT(w.product_id USING utf8mb4)
       WHERE w.user_id = ?
       ORDER BY w.created_at DESC
       `,
