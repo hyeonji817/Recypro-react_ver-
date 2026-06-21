@@ -94,7 +94,194 @@ const Mp_Coupon = () => {
             </div>    {/** customer_section end */}
           </div>      {/** mpCoupon_top end */}  
 
-          <div className="coupon" id="coupon"></div>    {/** coupon end */}
+          <div className="coupon" id="coupon">
+            <h3 className="title">쿠폰내역</h3>     
+            <div className="box_mp">
+              <p className="have">총 사용가능한 쿠폰<span>6</span></p>      {/** have end */}  
+            </div>    {/** box_mp end */}
+
+            <table className="tbl_col">
+              <caption className="hidden">쿠폰내역</caption>
+              <colgroup>
+                <col style={{ width: "8%" }} />
+                <col />
+                <col style={{ width: "10%" }} />
+                <col style={{ width: "10%" }} />
+                <col style={{ width: "10%" }} />
+                <col style={{ width: "10%" }} />
+                <col style={{ width: "10%" }} />
+              </colgroup>
+
+              <thead>
+                <tr>
+                  <th scope="col">번호</th>
+                  <th scope="col">쿠폰명</th>
+                  <th scope="col">할인금액(%)</th>
+                  <th scope="col">제한금액</th>
+                  <th scope="col">발급일</th>
+                  <th scope="col">제한일</th>
+                  <th scope="col">사용일</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr>
+                  <td>15</td>
+                  <td className="tal">생일쿠폰(1만 원)_MEMBER</td>
+                  <td>10,000  원</td>
+                  <td>10,000  원</td>
+                  <td>2025-08-07</td>
+                  <td>2025-09-06</td>
+                  <td><a href="#">2025-08-28</a></td>
+                </tr>
+
+                <tr>
+                  <td>14</td>
+                  <td className="tal">생일쿠폰</td>
+                  <td>5,000  원</td>
+                  <td>50,000  원</td>
+                  <td>2025-08-07</td>
+                  <td>2025-09-21</td>
+                  <td>미사용</td>
+                </tr>
+
+                <tr>
+                  <td>13</td>
+                  <td className="tal">[오프라인전용] 멤버십_5천 원 할인 쿠폰</td>
+                  <td>5,000  원</td>
+                  <td>30,000  원</td>
+                  <td>2025-08-01</td>
+                  <td>2025-08-31</td>
+                  <td>미사용</td>
+                </tr>
+
+                <tr>
+                  <td>12</td>
+                  <td className="tal">[온라인전용] 멤버십_5천 원 할인 쿠폰</td>
+                  <td>5,000  원</td>
+                  <td>30,000  원</td>
+                  <td>2025-08-01</td>
+                  <td>2025-08-31</td>
+                  <td>미사용</td>
+                </tr>
+
+                <tr>
+                  <td>11</td>
+                  <td className="tal">[오프라인전용] 멤버십_10% 할인 쿠폰</td>
+                  <td>10 %</td>
+                  <td>10,000  원</td>
+                  <td>2025-08-01</td>
+                  <td>2025-08-31</td>
+                  <td>미사용</td>
+                </tr>
+
+                <tr>
+                  <td>10</td>
+                  <td className="tal">[온라인전용] 멤버십_10% 할인 쿠폰</td>
+                  <td>10 %</td>
+                  <td>10,000  원</td>
+                  <td>2025-08-01</td>
+                  <td>2025-08-31</td>
+                  <td>미사용</td>
+                </tr>
+
+                <tr>
+                  <td>9</td>
+                  <td className="tal">[온라인전용] 멤버십_5천 원 할인 쿠폰</td>
+                  <td>5,000  원</td>
+                  <td>30,000  원</td>
+                  <td>2025-07-01</td>
+                  <td>2025-07-31</td>
+                  <td><a href="#">2025-07-09</a></td>
+                </tr>
+
+                <tr>
+                  <td>8</td>
+                  <td className="tal">[오프라인전용] 멤버십_10% 할인 쿠폰</td>
+                  <td>10 %</td>
+                  <td>10,000  원</td>
+                  <td>2025-07-01</td>
+                  <td>2025-07-31</td>
+                  <td>미사용</td>
+                </tr>
+
+                <tr>
+                  <td>7</td>
+                  <td className="tal">[오프라인전용] 멤버십_5천 원 할인 쿠폰</td>
+                  <td>5,000  원</td>
+                  <td>30,000  원</td>
+                  <td>2025-07-01</td>
+                  <td>2025-07-31</td>
+                  <td>미사용</td>
+                </tr>
+
+                <tr>
+                  <td>6</td>
+                  <td className="tal">[온라인전용] 멤버십_10% 할인 쿠폰</td>
+                  <td>10 %</td>
+                  <td>10,000  원</td>
+                  <td>2025-07-01</td>
+                  <td>2025-07-31</td>
+                  <td>미사용</td>
+                </tr>
+
+                <tr>
+                  <td>5</td>
+                  <td className="tal">[오프라인전용] 멤버십_5천 원 할인 쿠폰</td>
+                  <td>5,000  원</td>
+                  <td>30,000  원</td>
+                  <td>2025-05-26</td>
+                  <td>2025-06-30</td>
+                  <td>미사용</td>
+                </tr>
+
+                <tr>
+                  <td>4</td>
+                  <td className="tal">[온라인전용] 멤버십_5천 원 할인 쿠폰</td>
+                  <td>5,000  원</td>
+                  <td>2025-05-26</td>
+                  <td>2025-06-30</td>
+                  <td>미사용</td>
+                </tr>
+
+                <tr>
+                  <td>3</td>
+                  <td className="tal">[오프라인전용] 멤버십_10% 할인 쿠폰</td>
+                  <td>10 %</td>
+                  <td>10,000  원</td>
+                  <td>2025-05-26</td>
+                  <td>2025-06-30</td>
+                  <td>미사용</td>
+                </tr>
+
+                <tr>
+                  <td>2</td>
+                  <td className="tal">[온라인전용] 멤버십_10% 할인 쿠폰</td>
+                  <td>10 %</td>
+                  <td>10,000  원</td>
+                  <td>2025-05-26</td>
+                  <td>2025-06-30</td>
+                  <td>미사용</td>
+                </tr>
+
+                <tr>
+                  <td>1</td>
+                  <td className="tal"> [APP 전용] 다운로드 10% 쿠폰</td>
+                  <td>10 %</td>
+                  <td>30,000  원</td>
+                  <td>2025-05-14</td>
+                  <td>무제한</td>
+                  <td>미사용</td>
+                </tr>
+              </tbody>
+            </table>     {/** tbl_col end */}
+
+            <ul className="paging">
+              <li></li>
+              <li><strong>1</strong></li>
+              <li></li>  
+            </ul>      {/** paging end */}
+          </div>    {/** coupon end */}
         </div>       {/** mpCoupon_body end */}  
       </div>    {/** mpCoupon_Content end */}
 

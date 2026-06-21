@@ -12,3 +12,201 @@
   min-height: 500px; 
   margin-top: 170px; 
 }
+
+.mpCancel_Refund_Content .mpCoupon_body {
+  overflow: hidden; 
+  width: 1700px; 
+  margin: 0 auto; 
+  font-family: 'GmarketSansMedium';
+}
+
+h2.subtitle {
+  padding: 64px 0 60px;
+  color: #1a1a1a;
+  font-size: 40px;
+  font-weight: 700;
+  letter-spacing: 0.1rem;
+  text-align: center;
+}
+
+a, a:hover, a:active, a:focus {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+ol, ul, li {
+  list-style: none;
+}
+
+.mpCoupon_top {
+  text-align: center;
+}
+
+.mpCoupon_top .customer_section .name strong, 
+.mypage_top .customer_section .name {
+  color: #000;
+  font-size: 27px;
+}
+
+.mpCoupon_top .customer_section .my_edit {
+  color: #828282;
+  font-size: 22px;
+}
+
+.mpCoupon_top .point_section {
+  padding-top: 25px; 
+  font-size: 0; 
+}
+
+.mpCoupon_top .point_section > li {
+  display: inline-block;
+  padding: 0 18px;
+  vertical-align: top;
+}
+
+.mpCoupon_top .point_section > li > a, 
+.mpOrders_top .point_section > li > a strong {
+  color: #000;
+  font-size: 22px;
+}
+
+.mpCoupon_top .mpCoupon_tab {
+  padding: 104px 0 144px; 
+  font-size: 0;
+}
+
+.mpCoupon_top .mpCoupon_tab > li {
+  display: inline-block; 
+  padding: 0 34px; 
+  vertical-align: top; 
+}
+
+.mpCoupon_top .mpCoupon_tab > li .tab_title {
+  display: block;
+  color: #828282;
+  font-size: 17px;
+}
+
+.mpCoupon_top .mpCoupon_tab > li .tab_sub {
+  display: block; 
+  color: #000; 
+  font-size: 14px; 
+  font-weight: 700;
+}
+
+.mpCoupon_wrapper #coupon h3.title:first-child {
+  padding-top: 0;
+}
+
+.mpCoupon_wrapper h3.title {
+  padding: 30px 0 20px;
+}
+
+.mpCoupon_wrapper .box_mp {
+  margin-bottom: 30px;
+  padding: 30px;
+  background: #f8f8f8;
+  text-align: center;
+  line-height: 35px;
+}
+
+.mpCoupon_wrapper .box_mp .have {
+  color: #666;
+}
+
+.mpCoupon_wrapper .box_mp .have span {
+  display: block;
+  padding-top: 5px;
+  color: #333;
+  font-family: 'LibreBodoni', 'Pretendard', sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.mpCoupon_wrapper .tbl_col {
+  table-layout: fixed;
+  clear: both;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.mpCoupon_wrapper table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.mpCoupon_wrapper .tbl_col caption {
+  padding-bottom: 20px;
+  font-weight: bold;
+  text-align: left;
+}
+
+.mpCoupon_wrapper .hidden {
+  visibility: hidden;
+  overflow: hidden;
+  width: 0 !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-size: 0;
+  line-height: 0;
+}
+
+.mpCoupon_wrapper .tbl_col > thead > tr > th {
+  padding: 15px 0;
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.mpCoupon_wrapper .tbl_col > tbody > tr > td {
+  padding: 15px 0;
+  border-bottom: 1px solid #e0e0e0;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.mpCoupon_wrapper .tbl_col > tbody > tr > td.tal {
+  padding-left: 15px !important;
+}
+
+.mpCoupon_wrapper .tbl_col > tbody > tr > td * {
+  color: #666;
+}
+
+a, a:hover, a:active, a:focus {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+ol, ul, li {
+  list-style: none;
+}
+
+.mpCoupon_wrapper .paging {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  font-size: 0;
+  text-align: center;
+}
+
+.mpCoupon_wrapper .paging li {
+  display: inline;
+  padding: 0 10px;
+  color: #9e9e9e;
+  vertical-align: middle;
+}
+
+.mpCoupon_wrapper .paging * {
+  vertical-align: middle;
+}
+
+.mpCoupon_wrapper .paging li strong {
+  display: inline-block;
+  color: #000;
+  font-size: 20px;
+}
