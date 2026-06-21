@@ -31,6 +31,10 @@ const formatUsedAt = (coupon) => {
 };
 
 const Mp_Coupon = () => {
+  const [coupons, setCoupons] = useState([]);
+  const [summary, setSummary] = useState({ total: 0, available: 0 });
+  const [user, setUser] = useState({ user_id: "", grade: "MEMBER" });
+  const [loading, setLoading] = useState(true);
 
   return (
     <div className="mpCoupon_wrapper">
