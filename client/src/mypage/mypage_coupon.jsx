@@ -4,6 +4,32 @@ import axios from "axios";
 import Header_loginOK from "../main/Header_loginOK";
 import Footer from "../main/Footer";
 
+const API = "http://localhost:5003";
+
+const formatWon = (value) => Number(value || 0).toLocaleString();     // 가격 표시 
+
+// 할인율 
+const formatDiscount = (coupon) => {
+  if (coupon.discount_type === "PERCENT") {
+    return `${coupon.discount_value} %`;
+  }
+
+  return `${formatWon(coupon.discount_value)} 원`;
+};
+
+// 한도금액 
+const formatLimit = (coupon) => {
+  if (!coupon.min_order_amount) return "-";
+  return `${formatWon(coupon.min_order_amount)} 원`;
+};
+
+// 쿠폰 사용유무 
+const formatUsedAt = (coupon) => {
+  if (coupon.used_at) return coupon.used_at;
+  if (coupon.status === "EXPIRED") return "기간만료";
+  return "미사용";
+};
+
 const Mp_Coupon = () => {
 
   return (
