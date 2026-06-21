@@ -1,4 +1,6 @@
 import "./mypage_coupon.css"; 
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import Header_loginOK from "../main/Header_loginOK";
 import Footer from "../main/Footer";
 
