@@ -22,6 +22,7 @@ const OrderList = () => {
   const USE_MOCK_PAY = true;    // <- 실제 PG 붙일 땐 false
   const [mockOpen, setMockOpen] = useState(false);
   const [prepared, setPrepared] = useState(null); // prepare 응답 저장
+  const [availableCoupons, setAvailableCoupons] = useState([]);     // 쿠폰 
 
   useEffect(() => {
     (async () => {
@@ -69,6 +70,28 @@ const OrderList = () => {
     s.async = true;
     document.body.appendChild(s);
   }, []);
+
+  // 사용가능한 쿠폰 조회 
+  useEffect(() => {
+    if (!tot?.subtotal) return;
+  
+    const fetchAvailableCoupons = async () => {
+      try {
+        const { data } = await axios.get("http://localhost:5003/api/mpCoupon/available", {
+          params: {
+            subtotal: tot.subtotal,
+          },
+          withCredentials: true,
+        });
+  
+        setAvailableCoupons(data.coupons || []);
+      } catch (err) {
+        console.error("[사용 가능 쿠폰 조회 실패]", err);
+      }
+    };
+  
+    fetchAvailableCoupons();
+  }, [tot?.subtotal]);
 
 
   // 도로명/지번 + 건물명 등 추가 표기 조립
@@ -311,44 +334,61 @@ const OrderList = () => {
                       <tr>
                         <th scope="row">전체상품 쿠폰</th>
                         <td>
-                          <ul className="coupon_list">
+                        <ul className="coupon_list">
+                          {availableCoupons.length === 0 ? (
                             <li>
-                              <span className="check">
-                                <input type="hidden" id="coupon_stype_1038523" value="1" />
-                                <input type="hidden" name="coupon_pay_type" value="1" />
-                                <input type="radio" name="coupon" id="coupon" value="1038523" 
-                                  onChange={(e) => setCoupon(e.target.value)}
-                                />
-                              </span>   {/** check end */}
-                              <p className="name">[온라인전용] 멤버십_5천 원 할인 쿠폰</p>
-                              <p className="content">
-                                최소주문금액 : 30,000 원 이상
-                                / 할인액(율) : 5,000원 
-                                / 사용기간 :  ~ 2026-07-31
-                              </p>    {/** content end */}
+                              <p className="name">사용 가능한 쿠폰이 없습니다.</p>
+                              <p className="content"></p>
                             </li>
+                          ) : (
+                            availableCoupons.map((cp) => (
+                              <li key={cp.user_coupon_id}>
+                                <span className="check">
+                                  <input
+                                    type="radio"
+                                    name="coupon"
+                                    value={cp.coupon_code}
+                                    disabled={!cp.usable}
+                                    onChange={(e) => setCoupon(e.target.value)}
+                                  />
+                                </span>
+
+                                <p className="name">{cp.coupon_name}</p>
+
+                                <p className="content">
+                                  최소주문금액 : {Number(cp.min_order_amount || 0).toLocaleString()} 원 이상
+                                  {" / "}
+                                  할인액(율) :{" "}
+                                  {cp.discount_type === "PERCENT"
+                                    ? `${cp.discount_value}%`
+                                    : `${Number(cp.discount_value || 0).toLocaleString()}원`}
+                                  {" / "}
+                                  사용기간 : ~ {cp.expired_at || "무제한"}
+                                  {cp.max_discount_amount ? (
+                                    <>
+                                      <br />
+                                      최대할인금액 {Number(cp.max_discount_amount).toLocaleString()} 원
+                                    </>
+                                  ) : null}
+                                  {!cp.usable ? (
+                                    <>
+                                      <br />
+                                      최소주문금액 조건 미충족
+                                    </>
+                                  ) : null}
+                                </p>
+                              </li>
+                            ))
+                          )}
 
                             <li>
                               <span className="check">
-                                <input type="hidden" id="coupon_stype_848011" value="1" />
-                                <input type="hidden" name="coupon_pay_type" value="1" />
-                                <input type="radio" name="coupon" id="coupon" value="848011" 
-                                  onChange={(e)=>setCoupon(e.target.value)}
-                                />
-                              </span>   {/** check end */}
-                              <p className="name">[온라인전용] 멤버십_10% 할인 쿠폰</p>
-                              <p className="content">
-                                최소주문금액 : 10,000 원 이상
-                                / 할인액(율) : 10% 
-                                / 사용기간 :  ~ 2026-07-31
-                                <br />최대할인금액 1,000,000 원
-                              </p>    {/** content end */}
-                            </li>
-
-                            <li>
-                              <span className="check">
-                                <input type="radio" id="no_cpn" name="coupon" value="" 
-                                  onChange={(e)=>setCoupon("")}
+                                <input
+                                  type="radio"
+                                  id="no_cpn"
+                                  name="coupon"
+                                  value=""
+                                  onChange={() => setCoupon("")}
                                 />
                               </span>
                               <p className="name">사용안함</p>

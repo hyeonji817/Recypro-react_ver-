@@ -13,7 +13,7 @@
   font-family: 'GmarketSansMedium';
 }
 
-.mpCancel_Refund_Content .mpCoupon_body {
+.mpCoupon_Content .mpCoupon_body {
   overflow: hidden; 
   width: 1700px; 
   margin: 0 auto; 
@@ -97,7 +97,7 @@ ol, ul, li {
 .mpCoupon_wrapper #coupon h3.title:first-child {
   padding-top: 0;
   position: relative;
-  left: 350px;
+  left: 170px;
   font-family: 'GmarketSansMedium';
 }
 
@@ -111,8 +111,8 @@ ol, ul, li {
   background: #f8f8f8;
   text-align: center;
   line-height: 35px;
-  width: 1300px;
-  margin-left: 350px;
+  width: 1500px;
+  margin-left: 150px;
   margin-bottom: 60px;
 }
 
@@ -130,11 +130,11 @@ ol, ul, li {
 }
 
 .mpCoupon_wrapper .tbl_col {
-  table-layout: fixed;
   clear: both;
   width: 1300px;
+  position: relative;
+  right: 400px;
   border-collapse: collapse;
-  margin-right: 30px;
 }
 
 .mpCoupon_wrapper table {

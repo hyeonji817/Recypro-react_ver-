@@ -36,28 +36,64 @@ const Mp_Coupon = () => {
   const [user, setUser] = useState({ user_id: "", grade: "MEMBER" });
   const [loading, setLoading] = useState(true);
 
+  // 쿠폰 조회
+  useEffect(() => {
+    const fetchCoupons = async () => {
+      try {
+        const { data } = await axios.get(`${API}/api/mpCoupon`, {
+          withCredentials: true,
+        });
+
+        setCoupons(data.coupons || []);
+        setSummary(data.summary || { total: 0, available: 0 });
+        setUser(data.user || { user_id: "", grade: "MEMBER" });
+      } catch (err) {
+        console.error("[쿠폰 조회 실패]", err);
+        alert(err?.response?.data?.message || "쿠폰 내역을 불러오지 못했습니다.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCoupons();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="mpCoupon_wrapper">
+        <Header_loginOK />
+        <div className="mpCoupon_Content">
+          <div className="mpCoupon_body">Loading...</div>
+        </div>
+        <Footer />
+      </div>
+    );
+  }
+
   return (
     <div className="mpCoupon_wrapper">
       <div className="mpCoupon_Header">
-        <Header_loginOK />  
-      </div>     {/** mpCoupon_Header end */}
+        <Header_loginOK />
+      </div>
 
       <div className="mpCoupon_Content">
         <div className="mpCoupon_body">
-          <h2 className="subtitle">MY PAGE</h2>       {/** subtitle end */}
+          <h2 className="subtitle">MY PAGE</h2>
 
           <div className="mpCoupon_top">
             <div className="customer_section">
-              <div className="name"><strong>곽현지</strong>님은 MEMBER</div>      {/** name end */}  
+              <div className="name">
+                <strong>{user.user_id}</strong>님은 {user.grade || "MEMBER"}
+              </div>
 
-              <a href="#" className="my_edit">정보 수정하기</a>     {/** my_edit end */}
+              <a href="#" className="my_edit">정보 수정하기</a>
 
               <ul className="point_section">
-                <li><a href="#"><strong>쿠폰</strong> 0 장</a></li>
+                <li><a href="#"><strong>쿠폰</strong> {summary.available} 장</a></li>
                 <li><a href="#"><strong>적립금</strong> 0 원</a></li>
-                <li><a href="#"><strong>포인트</strong> 0 P</a></li>  
-              </ul>     {/** point_section end */}
-              
+                <li><a href="#"><strong>포인트</strong> 0 P</a></li>
+              </ul>
+
               <ul className="mpCoupon_tab">
                 <li>
                   <a href="/orders" className="tab_title">
@@ -74,7 +110,7 @@ const Mp_Coupon = () => {
                   </a>
                 </li>
                 <li>
-                  <a href="/coupons" className="tab_title">
+                  <a href="/mypage_coupon" className="tab_title">
                     COUPON
                     <br />
                     <strong className="tab_sub">쿠폰</strong>
@@ -121,16 +157,20 @@ const Mp_Coupon = () => {
                     <br />
                     <strong className="tab_sub">회원 탈퇴</strong>
                   </a>
-                </li>      
-              </ul>      {/** mpCoupon_tab end */}
-            </div>    {/** customer_section end */}
-          </div>      {/** mpCoupon_top end */}  
+                </li>
+              </ul>
+            </div>
+          </div>
 
           <div className="coupon" id="coupon">
-            <h3 className="title">쿠폰내역</h3>     
+            <h3 className="title">쿠폰내역</h3>
+
             <div className="box_mp">
-              <p className="have">총 사용가능한 쿠폰<span>6</span></p>      {/** have end */}  
-            </div>    {/** box_mp end */}
+              <p className="have">
+                총 사용가능한 쿠폰
+                <span>{summary.available}</span>
+              </p>
+            </div>
 
             <table className="tbl_col">
               <caption className="hidden">쿠폰내역</caption>
@@ -157,170 +197,39 @@ const Mp_Coupon = () => {
               </thead>
 
               <tbody>
-                <tr>
-                  <td>15</td>
-                  <td className="tal">생일쿠폰(1만 원)_MEMBER</td>
-                  <td>10,000  원</td>
-                  <td>10,000  원</td>
-                  <td>2025-08-07</td>
-                  <td>2025-09-06</td>
-                  <td><a href="#">2025-08-28</a></td>
-                </tr>
-
-                <tr>
-                  <td>14</td>
-                  <td className="tal">생일쿠폰</td>
-                  <td>5,000  원</td>
-                  <td>50,000  원</td>
-                  <td>2025-08-07</td>
-                  <td>2025-09-21</td>
-                  <td>미사용</td>
-                </tr>
-
-                <tr>
-                  <td>13</td>
-                  <td className="tal">[오프라인전용] 멤버십_5천 원 할인 쿠폰</td>
-                  <td>5,000  원</td>
-                  <td>30,000  원</td>
-                  <td>2025-08-01</td>
-                  <td>2025-08-31</td>
-                  <td>미사용</td>
-                </tr>
-
-                <tr>
-                  <td>12</td>
-                  <td className="tal">[온라인전용] 멤버십_5천 원 할인 쿠폰</td>
-                  <td>5,000  원</td>
-                  <td>30,000  원</td>
-                  <td>2025-08-01</td>
-                  <td>2025-08-31</td>
-                  <td>미사용</td>
-                </tr>
-
-                <tr>
-                  <td>11</td>
-                  <td className="tal">[오프라인전용] 멤버십_10% 할인 쿠폰</td>
-                  <td>10 %</td>
-                  <td>10,000  원</td>
-                  <td>2025-08-01</td>
-                  <td>2025-08-31</td>
-                  <td>미사용</td>
-                </tr>
-
-                <tr>
-                  <td>10</td>
-                  <td className="tal">[온라인전용] 멤버십_10% 할인 쿠폰</td>
-                  <td>10 %</td>
-                  <td>10,000  원</td>
-                  <td>2025-08-01</td>
-                  <td>2025-08-31</td>
-                  <td>미사용</td>
-                </tr>
-
-                <tr>
-                  <td>9</td>
-                  <td className="tal">[온라인전용] 멤버십_5천 원 할인 쿠폰</td>
-                  <td>5,000  원</td>
-                  <td>30,000  원</td>
-                  <td>2025-07-01</td>
-                  <td>2025-07-31</td>
-                  <td><a href="#">2025-07-09</a></td>
-                </tr>
-
-                <tr>
-                  <td>8</td>
-                  <td className="tal">[오프라인전용] 멤버십_10% 할인 쿠폰</td>
-                  <td>10 %</td>
-                  <td>10,000  원</td>
-                  <td>2025-07-01</td>
-                  <td>2025-07-31</td>
-                  <td>미사용</td>
-                </tr>
-
-                <tr>
-                  <td>7</td>
-                  <td className="tal">[오프라인전용] 멤버십_5천 원 할인 쿠폰</td>
-                  <td>5,000  원</td>
-                  <td>30,000  원</td>
-                  <td>2025-07-01</td>
-                  <td>2025-07-31</td>
-                  <td>미사용</td>
-                </tr>
-
-                <tr>
-                  <td>6</td>
-                  <td className="tal">[온라인전용] 멤버십_10% 할인 쿠폰</td>
-                  <td>10 %</td>
-                  <td>10,000  원</td>
-                  <td>2025-07-01</td>
-                  <td>2025-07-31</td>
-                  <td>미사용</td>
-                </tr>
-
-                <tr>
-                  <td>5</td>
-                  <td className="tal">[오프라인전용] 멤버십_5천 원 할인 쿠폰</td>
-                  <td>5,000  원</td>
-                  <td>30,000  원</td>
-                  <td>2025-05-26</td>
-                  <td>2025-06-30</td>
-                  <td>미사용</td>
-                </tr>
-
-                <tr>
-                  <td>4</td>
-                  <td className="tal">[온라인전용] 멤버십_5천 원 할인 쿠폰</td>
-                  <td>5,000  원</td>
-                  <td>2025-05-26</td>
-                  <td>2025-06-30</td>
-                  <td>미사용</td>
-                </tr>
-
-                <tr>
-                  <td>3</td>
-                  <td className="tal">[오프라인전용] 멤버십_10% 할인 쿠폰</td>
-                  <td>10 %</td>
-                  <td>10,000  원</td>
-                  <td>2025-05-26</td>
-                  <td>2025-06-30</td>
-                  <td>미사용</td>
-                </tr>
-
-                <tr>
-                  <td>2</td>
-                  <td className="tal">[온라인전용] 멤버십_10% 할인 쿠폰</td>
-                  <td>10 %</td>
-                  <td>10,000  원</td>
-                  <td>2025-05-26</td>
-                  <td>2025-06-30</td>
-                  <td>미사용</td>
-                </tr>
-
-                <tr>
-                  <td>1</td>
-                  <td className="tal"> [APP 전용] 다운로드 10% 쿠폰</td>
-                  <td>10 %</td>
-                  <td>30,000  원</td>
-                  <td>2025-05-14</td>
-                  <td>무제한</td>
-                  <td>미사용</td>
-                </tr>
+                {coupons.length === 0 ? (
+                  <tr>
+                    <td colSpan={7}>보유한 쿠폰이 없습니다.</td>
+                  </tr>
+                ) : (
+                  coupons.map((coupon) => (
+                    <tr key={coupon.user_coupon_id}>
+                      <td>{coupon.no}</td>
+                      <td className="tal">{coupon.coupon_name}</td>
+                      <td>{formatDiscount(coupon)}</td>
+                      <td>{formatLimit(coupon)}</td>
+                      <td>{coupon.issued_at || "-"}</td>
+                      <td>{coupon.expired_at || "무제한"}</td>
+                      <td>{formatUsedAt(coupon)}</td>
+                    </tr>
+                  ))
+                )}
               </tbody>
-            </table>     {/** tbl_col end */}
+            </table>
 
             <ul className="paging">
               <li></li>
               <li><strong>1</strong></li>
-              <li></li>  
-            </ul>      {/** paging end */}
-          </div>    {/** coupon end */}
-        </div>       {/** mpCoupon_body end */}  
-      </div>    {/** mpCoupon_Content end */}
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </div>
 
       <div className="mpCoupon_Footer">
-        <Footer />  
-      </div>     {/** mpCoupon_Footer end */}
-    </div>        /** mpCoupon_wrapper end */
+        <Footer />
+      </div>
+    </div>
   );
 };
 

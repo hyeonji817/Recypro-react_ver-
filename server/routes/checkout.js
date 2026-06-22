@@ -112,6 +112,69 @@ function applyCoupon (totals, coupon_code) {
   return { ...totals, discount_total, total_pay };
 }
 
+// 쿠폰 검증 
+async function getUsableCoupon(userId, couponCode, subtotal) {
+  if (!couponCode) return null;
+
+  const rows = await q(
+    `
+    SELECT
+      uc.user_coupon_id,
+      uc.used_at,
+      uc.expired_at,
+      c.coupon_id,
+      c.coupon_code,
+      c.coupon_name,
+      c.discount_type,
+      c.discount_value,
+      c.min_order_amount,
+      c.max_discount_amount
+    FROM user_coupons uc
+    JOIN coupons c ON c.coupon_id = uc.coupon_id
+    WHERE uc.user_id = ?
+      AND c.coupon_code = ?
+      AND uc.used_at IS NULL
+      AND c.is_active = 1
+      AND (uc.expired_at IS NULL OR uc.expired_at >= NOW())
+    LIMIT 1
+    `,
+    [userId, couponCode]
+  );
+
+  const coupon = rows[0];
+
+  if (!coupon) {
+    throw new Error("사용할 수 없는 쿠폰입니다.");
+  }
+
+  if (subtotal < Number(coupon.min_order_amount || 0)) {
+    throw new Error("쿠폰 최소주문금액 조건을 만족하지 않습니다.");
+  }
+
+  return coupon;
+}
+
+function calcCouponDiscount(coupon, subtotal) {
+  if (!coupon) return 0;
+
+  if (coupon.discount_type === "AMOUNT") {
+    return Math.min(Number(coupon.discount_value || 0), subtotal);
+  }
+
+  if (coupon.discount_type === "PERCENT") {
+    const raw = Math.floor(subtotal * (Number(coupon.discount_value || 0) / 100));
+    const maxDiscount = coupon.max_discount_amount;
+
+    if (maxDiscount == null) {
+      return Math.min(raw, subtotal);
+    }
+
+    return Math.min(raw, Number(maxDiscount), subtotal);
+  }
+
+  return 0;
+}
+
 async function getPreview(userId, { all, cart_ids, coupon_code, use_mileage }) {
   // 1) 카트 행 조회 (기존 /preview 쿼리 그대로 활용)
   let rows;
