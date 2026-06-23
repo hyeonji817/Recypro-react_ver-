@@ -176,8 +176,9 @@ function calcCouponDiscount(coupon, subtotal) {
 }
 
 async function getPreview(userId, { all, cart_ids, coupon_code, use_mileage }) {
-  // 1) 카트 행 조회 (기존 /preview 쿼리 그대로 활용)
+  // 1) 카트 행 조회
   let rows;
+
   if (all === "1") {
     rows = await q(`
       SELECT c.*, v.pname, v.filename, v.category,
@@ -190,9 +191,17 @@ async function getPreview(userId, { all, cart_ids, coupon_code, use_mileage }) {
        ORDER BY c.created_at DESC
     `, [userId]);
   } else if (cart_ids) {
-    const ids = String(cart_ids).split(",").map(s => +s).filter(Boolean);
-    if (!ids.length) return { items: [], totals: {} };
-    const placeholders = ids.map(()=>"?").join(",");
+    const ids = String(cart_ids)
+      .split(",")
+      .map((s) => Number(s))
+      .filter(Boolean);
+
+    if (!ids.length) {
+      return { items: [], totals: {} };
+    }
+
+    const placeholders = ids.map(() => "?").join(",");
+
     rows = await q(`
       SELECT c.*, v.pname, v.filename, v.category,
              COALESCE(v.discount_price, v.price) AS base_price
@@ -208,12 +217,25 @@ async function getPreview(userId, { all, cart_ids, coupon_code, use_mileage }) {
     return { items: [], totals: {} };
   }
 
-  // 2) 금액/마일리지 계산 (서버 권위)
-  const items = rows.map(r => {
-    const unitPrice = r.unit_price || r.base_price || 0;
-    const qty = r.cart_quantity || 1;
+  // 2) 상품 금액 / 적립금 계산
+  const items = rows.map((r) => {
+    const unitPrice = Number(r.unit_price || r.base_price || 0);
+    const qty = Number(r.cart_quantity || 1);
     const lineTotal = unitPrice * qty;
     const mileage = Math.floor(unitPrice * MILEAGE_RATE) * qty;
+
+    let optionsJson = {};
+
+    try {
+      if (typeof r.options_json === "string") {
+        optionsJson = JSON.parse(r.options_json || "{}");
+      } else if (r.options_json && typeof r.options_json === "object") {
+        optionsJson = r.options_json;
+      }
+    } catch (err) {
+      optionsJson = {};
+    }
+
     return {
       cart_id: r.cart_id,
       product_table: r.product_table,
@@ -221,72 +243,161 @@ async function getPreview(userId, { all, cart_ids, coupon_code, use_mileage }) {
       pname: r.pname,
       filename: r.filename,
       option_label: r.option_label,
+      options_json: optionsJson,
       unit_price: unitPrice,
-      option_delta: r.option_delta || 0,
+      option_delta: Number(r.option_delta || 0),
       quantity: qty,
       line_total: lineTotal,
-      mileage
+      mileage,
     };
   });
 
-  const subtotal = items.reduce((s,i)=>s+i.line_total, 0);
-  const shipping_fee = (subtotal >= SHIPPING_THRESHOLD || subtotal === 0) ? 0 : SHIPPING_FEE;
+  const subtotal = items.reduce((sum, item) => {
+    return sum + Number(item.line_total || 0);
+  }, 0);
 
-  // 3. 쿠폰 검증/할인 
-  let coupon = null; 
-  if (coupon_code) {
-    const [c] = await q(`SELECT * FROM coupons WHERE code=?`, [coupon_code]);
-    coupon = c || null;
-    // 예시: 1인 1회 제한
-    if (coupon?.per_user_limit === 1) {
-      const [used] = await q(
-        `SELECT COUNT(1) AS c FROM coupon_redemptions WHERE code=? AND user_id=?`,
-        [coupon_code, userId]
-      );
-      if (used.c > 0) coupon = { ...coupon, active: 0 };
-    }
-    if (coupon?.total_limit && coupon.used_count >= coupon.total_limit) {
-      coupon = { ...coupon, active: 0 };
+  const shipping_fee =
+    subtotal >= SHIPPING_THRESHOLD || subtotal === 0 ? 0 : SHIPPING_FEE;
+
+  const total_mileage = items.reduce((sum, item) => {
+    return sum + Number(item.mileage || 0);
+  }, 0);
+
+  // 3) 쿠폰 검증 / 할인 계산
+  let usableCoupon = null;
+  let coupon_discount = 0;
+  let coupon_reason = "";
+
+  const couponCode = coupon_code || null;
+
+  if (couponCode) {
+    const couponRows = await q(
+      `
+      SELECT
+        uc.user_coupon_id,
+        uc.user_id,
+        uc.issued_at,
+        uc.expired_at,
+        uc.used_at,
+        uc.order_id,
+
+        c.coupon_id,
+        c.coupon_code,
+        c.coupon_name,
+        c.discount_type,
+        c.discount_value,
+        c.min_order_amount,
+        c.max_discount_amount,
+        c.target_type,
+        c.is_active
+      FROM user_coupons uc
+      JOIN coupons c ON c.coupon_id = uc.coupon_id
+      WHERE uc.user_id = ?
+        AND c.coupon_code = ?
+        AND uc.used_at IS NULL
+        AND c.is_active = 1
+        AND (uc.expired_at IS NULL OR uc.expired_at >= NOW())
+      LIMIT 1
+      `,
+      [userId, couponCode]
+    );
+
+    usableCoupon = couponRows[0] || null;
+
+    if (!usableCoupon) {
+      coupon_reason = "사용할 수 없는 쿠폰입니다.";
+    } else if (subtotal < Number(usableCoupon.min_order_amount || 0)) {
+      coupon_reason = "쿠폰 최소주문금액 조건을 만족하지 않습니다.";
+      usableCoupon = null;
+    } else {
+      if (usableCoupon.discount_type === "AMOUNT") {
+        coupon_discount = Number(usableCoupon.discount_value || 0);
+      }
+
+      if (usableCoupon.discount_type === "PERCENT") {
+        const rawDiscount = Math.floor(
+          subtotal * (Number(usableCoupon.discount_value || 0) / 100)
+        );
+
+        if (usableCoupon.max_discount_amount == null) {
+          coupon_discount = rawDiscount;
+        } else {
+          coupon_discount = Math.min(
+            rawDiscount,
+            Number(usableCoupon.max_discount_amount || 0)
+          );
+        }
+      }
+
+      // 할인금액이 상품합계보다 커지는 것 방지
+      coupon_discount = Math.min(coupon_discount, subtotal);
+
+      coupon_reason = "쿠폰 적용 가능";
     }
   }
-  const { discount: coupon_discount, reason } = calcCouponDiscount({ subtotal, coupon });
 
-  // 4. 적립금 사용 한도 
-  const myBalance = 0;
-  const wantedUse = Math.max(0, parseInt(use_mileage || "0", 10) || 0);
-  const afterCoupon = Math.max(0, subtotal - coupon_discount + shipping_fee);
-  const mileage_to_use = Math.min(wantedUse, myBalance, afterCoupon);
+  // 4) 적립금 잔액 조회
+  let myBalance = 0;
 
-  // 4-2. 적립금 잔액 조회 
-  /** async function getMileageBalance(userId) {
-    const [row] = await q(
-      `SELECT COALESCE(SUM(delta), 0) AS bal
+  try {
+    const [mileageRow] = await q(
+      `
+      SELECT COALESCE(SUM(delta), 0) AS bal
         FROM mileage_ledger
-        WHERE user_id = ?`,
+       WHERE user_id = ?
+      `,
       [userId]
     );
-    return Number(row?.bal || 0);
-  } */
 
-  // 5. 총 결제금액 (= 실제 결제 요청 금액)
-  const discount_total = coupon_discount; // (+ 다른 할인 항목이 있으면 여기 합산)
-  const total_pay = Math.max(0, subtotal + shipping_fee - discount_total - mileage_to_use);
-  const total_mileage = items.reduce((s,i)=>s+i.mileage, 0);
+    myBalance = Number(mileageRow?.bal || 0);
+  } catch (err) {
+    console.warn("[getPreview] mileage_ledger 조회 실패:", err.message);
+    myBalance = 0;
+  }
+
+  // 5) 적립금 사용 한도 계산
+  const wantedUse = Math.max(
+    0,
+    parseInt(use_mileage || "0", 10) || 0
+  );
+
+  const afterCoupon = Math.max(
+    0,
+    subtotal + shipping_fee - coupon_discount
+  );
+
+  const mileage_to_use = Math.min(
+    wantedUse,
+    myBalance,
+    afterCoupon
+  );
+
+  // 6) 최종 결제 금액 계산
+  const discount_total = coupon_discount;
+
+  const total_pay = Math.max(
+    0,
+    subtotal + shipping_fee - discount_total - mileage_to_use
+  );
 
   return {
     items,
     totals: {
       subtotal,
       shipping_fee,
-      coupon_code: coupon_code || null,
+
+      coupon_code: usableCoupon?.coupon_code || null,
+      user_coupon_id: usableCoupon?.user_coupon_id || null,
       coupon_discount,
-      coupon_reason: reason,
+      coupon_reason,
+
       used_mileage: mileage_to_use,
       mileage_balance: myBalance,
-      discount_total, // 가독성용
+
+      discount_total,
       total_pay,
-      total_mileage
-    }
+      total_mileage,
+    },
   };
 }
 
