@@ -18,7 +18,7 @@ const MILEAGE_RATE = 0.05;
 // 공통 헬퍼: 주문 UID 
 function makeOrderUID(orderId) {
   const rand = crypto.randomBytes(9).toString("base64").replace(/[+/]/g, "_");
-  return `recypro_test_${orderId}_${Date.now()}_${rand}`;
+  return `recypro_${orderId}_${Date.now()}_${rand}`;
 }
 
 // 장바구니 -> 주문 미리보기/재계산 공통 함수(간단 예시)
@@ -442,10 +442,10 @@ router.post("/prepare", async (req, res) => {
   const orderResult = await q(`
     INSERT INTO orders
       (user_id, status, subtotal, discount_total, shipping_fee, total_pay, total_mileage,
-       coupon_code, coupon_discount, used_mileage,
+       coupon_code, user_coupon_id, coupon_discount, used_mileage,
        buyer_name, buyer_phone, buyer_cell, buyer_email,
        recv_name, recv_phone, recv_cell, recv_zip, recv_addr1, recv_addr2, dlv_memo, pay_method, pg_provider)
-    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
   `, [
     userId, 'PENDING',
     o.subtotal, o.discount_total, o.shipping_fee, o.total_pay, o.total_mileage,
