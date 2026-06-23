@@ -154,27 +154,6 @@ async function getUsableCoupon(userId, couponCode, subtotal) {
   return coupon;
 }
 
-function calcCouponDiscount(coupon, subtotal) {
-  if (!coupon) return 0;
-
-  if (coupon.discount_type === "AMOUNT") {
-    return Math.min(Number(coupon.discount_value || 0), subtotal);
-  }
-
-  if (coupon.discount_type === "PERCENT") {
-    const raw = Math.floor(subtotal * (Number(coupon.discount_value || 0) / 100));
-    const maxDiscount = coupon.max_discount_amount;
-
-    if (maxDiscount == null) {
-      return Math.min(raw, subtotal);
-    }
-
-    return Math.min(raw, Number(maxDiscount), subtotal);
-  }
-
-  return 0;
-}
-
 async function getPreview(userId, { all, cart_ids, coupon_code, use_mileage }) {
   // 1) 카트 행 조회
   let rows;
