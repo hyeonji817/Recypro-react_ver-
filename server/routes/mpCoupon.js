@@ -122,7 +122,7 @@ router.get("/", async (req, res) => {
 // 주문서에서 사용 가능한 쿠폰 조회
 router.get("/available", async (req, res) => {
   try {
-    const userId = getSessionUserId(req);
+    const userId = req.session?.userId;
 
     if (!userId) {
       return res.status(401).json({ message: "로그인이 필요합니다." });
@@ -134,7 +134,7 @@ router.get("/available", async (req, res) => {
       `
       SELECT
         uc.user_coupon_id,
-        uc.issued_at,
+        uc.used_at,
         uc.expired_at,
         c.coupon_id,
         c.coupon_code,
@@ -143,42 +143,44 @@ router.get("/available", async (req, res) => {
         c.discount_value,
         c.min_order_amount,
         c.max_discount_amount,
-        c.target_type
+        c.is_active
       FROM user_coupons uc
       JOIN coupons c ON c.coupon_id = uc.coupon_id
       WHERE uc.user_id = ?
-        AND uc.used_at IS NULL
-        AND c.is_active = 1
-        AND (uc.expired_at IS NULL OR uc.expired_at >= NOW())
-      ORDER BY uc.user_coupon_id DESC
+      ORDER BY uc.issued_at DESC
       `,
       [userId]
     );
 
-    const coupons = rows.map((r) => {
-      const discountAmount = calcDiscount(r, subtotal);
+    const coupons = rows.map((cp) => {
+      let usable = true;
+      let reason = "사용 가능";
+
+      if (cp.used_at) {
+        usable = false;
+        reason = "이미 사용한 쿠폰입니다.";
+      } else if (!cp.is_active) {
+        usable = false;
+        reason = "비활성화된 쿠폰입니다.";
+      } else if (cp.expired_at && new Date(cp.expired_at) < new Date()) {
+        usable = false;
+        reason = "기간이 만료된 쿠폰입니다.";
+      } else if (subtotal < Number(cp.min_order_amount || 0)) {
+        usable = false;
+        reason = "최소주문금액 조건 미충족";
+      }
 
       return {
-        user_coupon_id: r.user_coupon_id,
-        coupon_id: r.coupon_id,
-        coupon_code: r.coupon_code,
-        coupon_name: r.coupon_name,
-        discount_type: r.discount_type,
-        discount_value: r.discount_value,
-        min_order_amount: r.min_order_amount,
-        max_discount_amount: r.max_discount_amount,
-        target_type: r.target_type,
-        issued_at: formatDate(r.issued_at),
-        expired_at: formatDate(r.expired_at),
-        discount_amount: discountAmount,
-        usable: subtotal >= Number(r.min_order_amount || 0),
+        ...cp,
+        usable,
+        reason,
       };
     });
 
     res.json({ coupons });
   } catch (err) {
     console.error("[GET /api/mpCoupon/available]", err);
-    res.status(500).json({ message: "사용 가능 쿠폰 조회 실패" });
+    res.status(500).json({ message: "쿠폰 조회 실패" });
   }
 });
 
