@@ -24,6 +24,24 @@ const OrderList = () => {
   const [prepared, setPrepared] = useState(null); // prepare 응답 저장
   const [availableCoupons, setAvailableCoupons] = useState([]);     // 쿠폰 
 
+  const fetchPreview = async (nextCoupon = coupon, nextMileage = 0) => {
+    const params = {};
+  
+    if (sp.get("all") === "1") params.all = "1";
+    if (sp.get("cart_ids")) params.cart_ids = sp.get("cart_ids");
+  
+    if (nextCoupon) params.coupon_code = nextCoupon;
+    if (nextMileage) params.use_mileage = nextMileage;
+  
+    const { data } = await axios.get("http://localhost:5003/api/checkout/preview", {
+      params,
+      withCredentials: true,
+    });
+  
+    setItems(data.items || []);
+    setTot(data.totals || {});
+  };
+
   useEffect(() => {
     (async () => {
       try {
@@ -349,7 +367,18 @@ const OrderList = () => {
                                     name="coupon"
                                     value={cp.coupon_code}
                                     disabled={!cp.usable}
-                                    onChange={(e) => setCoupon(e.target.value)}
+                                    checked={coupon === cp.coupon_code}
+                                    onChange={async (e) => {
+                                      const nextCoupon = e.target.value;
+                                      setCoupon(nextCoupon);
+
+                                      try {
+                                        await fetchPreview(nextCoupon, 0);
+                                      } catch (err) {
+                                        console.error("[쿠폰 적용 preview 실패]", err);
+                                        alert(err?.response?.data?.message || "쿠폰 적용 실패");
+                                      }
+                                    }}
                                   />
                                 </span>
 
