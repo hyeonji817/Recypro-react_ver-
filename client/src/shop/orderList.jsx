@@ -417,7 +417,17 @@ const OrderList = () => {
                                   id="no_cpn"
                                   name="coupon"
                                   value=""
-                                  onChange={() => setCoupon("")}
+                                  checked={coupon === ""}
+                                  onChange={async () => {
+                                    setCoupon("");
+
+                                    try {
+                                      await fetchPreview("", 0);
+                                    } catch (err) {
+                                      console.error("[쿠폰 해제 preview 실패]", err);
+                                      alert("쿠폰 해제 실패");
+                                    }
+                                  }}
                                 />
                               </span>
                               <p className="name">사용안함</p>
