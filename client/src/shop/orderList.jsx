@@ -688,7 +688,9 @@ const OrderList = () => {
                                 </div>    
                                 <div className="order_area_cpn_prc">
                                   쿠폰할인금액<br />
-                                  <span className="order_saleinfo_cpn_prc">1,000</span> 원
+                                  <span className="order_saleinfo_cpn_prc">
+                                    {(tot?.coupon_discount || 0).toLocaleString()}
+                                  </span> 원
                                 </div>    
                                 <div className="order_area_prd_prc" style={{ display: "none" }}>
                                   상품금액별할인금액<br />
