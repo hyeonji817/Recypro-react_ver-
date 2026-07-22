@@ -89,25 +89,49 @@ const OrderList = () => {
     document.body.appendChild(s);
   }, []);
 
-  // 사용가능한 쿠폰 조회 
+  // 사용 가능한 쿠폰 조회
   useEffect(() => {
-    if (!tot?.subtotal) return;
-  
+    const subtotal = Number(tot?.subtotal || 0);
+
+    if (subtotal <= 0) {
+      setAvailableCoupons([]);
+      return;
+    }
+
     const fetchAvailableCoupons = async () => {
       try {
-        const { data } = await axios.get("http://localhost:5003/api/mpCoupon/available", {
-          params: {
-            subtotal: tot.subtotal,
-          },
-          withCredentials: true,
+        console.log("[쿠폰 조회 요청]", {
+          subtotal,
         });
-  
-        setAvailableCoupons(data.coupons || []);
+
+        const response = await axios.get(
+          "http://localhost:5003/api/mpCoupon/available",
+          {
+            params: {
+              subtotal,
+            },
+            withCredentials: true,
+          }
+        );
+
+        console.log("[쿠폰 조회 응답 전체]", response.data);
+        console.log("[쿠폰 목록]", response.data?.coupons);
+
+        const coupons = Array.isArray(response.data?.coupons)
+          ? response.data.coupons
+          : [];
+
+        setAvailableCoupons(coupons);
       } catch (err) {
-        console.error("[사용 가능 쿠폰 조회 실패]", err);
+        console.error("[사용 가능 쿠폰 조회 실패]", {
+          status: err?.response?.status,
+          data: err?.response?.data,
+          message: err?.message,
+        });
+
+        setAvailableCoupons([]);
       }
     };
-  
     fetchAvailableCoupons();
   }, [tot?.subtotal]);
 
