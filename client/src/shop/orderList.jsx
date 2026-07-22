@@ -217,6 +217,42 @@ const OrderList = () => {
     }));
   };
 
+  // 기간 출력 함수 
+  const formatDate = (value) => {
+    if (!value) return "";
+  
+    const date = new Date(value);
+  
+    if (Number.isNaN(date.getTime())) {
+      return String(value).slice(0, 10);
+    }
+  
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+  
+    return `${year}-${month}-${day}`;
+  };
+  
+  const formatCouponPeriod = (coupon) => {
+    const start = formatDate(
+      coupon.started_at ||
+        coupon.start_at ||
+        coupon.valid_from
+    );
+  
+    const end = formatDate(
+      coupon.expired_at ||
+        coupon.end_at ||
+        coupon.valid_until
+    );
+  
+    if (start && end) return `${start} ~ ${end}`;
+    if (end) return `~ ${end}`;
+  
+    return "무제한";
+  };
+
   const submitOrder = async () => {
     try {
       // 1) 주문 준비(서버 금액 재계산 + PENDING 주문 생성)
@@ -375,79 +411,133 @@ const OrderList = () => {
                       {/** 쿠폰사용 */}  
                       <tr>
                         <th scope="row">전체상품 쿠폰</th>
+
                         <td>
-                        <ul className="coupon_list">
-                        {availableCoupons.length === 0 ? (
-                          <li>
-                            <p className="name">보유한 쿠폰이 없습니다.</p>
-                            <p className="content"></p>
-                          </li>
-                        ) : (
-                          availableCoupons.map((cp) => (
-                            <li key={cp.user_coupon_id} className={!cp.usable ? "disabled_coupon" : ""}>
-                              <span className="check">
-                                <input
-                                  type="radio"
-                                  name="coupon"
-                                  value={cp.coupon_code}
-                                  disabled={!cp.usable}
-                                  checked={coupon === cp.coupon_code}
-                                  onChange={async (e) => {
-                                    const nextCoupon = e.target.value;
-                                    setCoupon(nextCoupon);
-                                    await fetchPreview(nextCoupon, 0);
-                                  }}
-                                />
-                              </span>
+                          <ul className="coupon_list">
+                            {availableCoupons.length === 0 ? (
+                              <li className="coupon_empty">
+                                <p className="name">보유한 쿠폰이 없습니다.</p>
+                              </li>
+                            ) : (
+                              availableCoupons.map((cp) => {
+                                const isSelected = coupon === cp.coupon_code;
+                                const isUsable = cp.usable !== false;
 
-                              <p className="name">{cp.coupon_name}</p>
+                                return (
+                                  <li
+                                    key={cp.user_coupon_id || cp.coupon_code}
+                                    className={`coupon_item ${
+                                      !isUsable ? "disabled_coupon" : ""
+                                    }`}
+                                  >
+                                    <label className="coupon_label">
+                                      <span className="check">
+                                        <input
+                                          type="radio"
+                                          name="coupon"
+                                          value={cp.coupon_code}
+                                          disabled={!isUsable}
+                                          checked={isSelected}
+                                          onChange={async () => {
+                                            if (!isUsable) return;
 
-                              <p className="content">
-                                최소주문금액 : {Number(cp.min_order_amount || 0).toLocaleString()} 원 이상
-                                {" / "}
-                                할인액(율) :{" "}
-                                {cp.discount_type === "PERCENT"
-                                  ? `${cp.discount_value}%`
-                                  : `${Number(cp.discount_value || 0).toLocaleString()}원`}
-                                {" / "}
-                                사용기간 : ~ {cp.expired_at || "무제한"}
+                                            try {
+                                              const nextCoupon = cp.coupon_code;
 
-                                {cp.max_discount_amount ? (
-                                  <>
-                                    <br />
-                                    최대할인금액 {Number(cp.max_discount_amount).toLocaleString()} 원
-                                  </>
-                                ) : null}
+                                              console.log("[쿠폰 선택]", nextCoupon);
 
-                                {!cp.usable ? (
-                                  <>
-                                    <br />
-                                    <strong className="coupon_reason">{cp.reason}</strong>
-                                  </>
-                                ) : null}
-                              </p>
+                                              setCoupon(nextCoupon);
+                                              await fetchPreview(nextCoupon, 0);
+                                            } catch (err) {
+                                              console.error("[쿠폰 적용 실패]", err);
+
+                                              setCoupon("");
+                                              alert(
+                                                err?.response?.data?.message ||
+                                                  "쿠폰을 적용하지 못했습니다."
+                                              );
+                                            }
+                                          }}
+                                        />
+                                      </span>
+
+                                      <span className="coupon_text">
+                                        <strong className="name">
+                                          {cp.coupon_name || cp.coupon_code}
+                                        </strong>
+
+                                        <span className="content">
+                                          최소주문금액:{" "}
+                                          {Number(cp.min_order_amount || 0).toLocaleString()}원 이상
+                                          {" / "}
+
+                                          할인액(율):{" "}
+                                          {cp.discount_type === "PERCENT"
+                                            ? `${Number(cp.discount_value || 0)}%`
+                                            : `${Number(
+                                                cp.discount_value || 0
+                                              ).toLocaleString()}원`}
+                                          {" / "}
+
+                                          사용기간: {formatCouponPeriod(cp)}
+
+                                          {Number(cp.max_discount_amount || 0) > 0 && (
+                                            <>
+                                              <br />
+                                              최대할인금액:{" "}
+                                              {Number(
+                                                cp.max_discount_amount
+                                              ).toLocaleString()}
+                                              원
+                                            </>
+                                          )}
+
+                                          {!isUsable && cp.reason && (
+                                            <>
+                                              <br />
+                                              <strong className="coupon_reason">
+                                                {cp.reason}
+                                              </strong>
+                                            </>
+                                          )}
+                                        </span>
+                                      </span>
+                                    </label>
+                                  </li>
+                                );
+                              })
+                            )}
+
+                            <li className="coupon_item no_coupon">
+                              <label className="coupon_label">
+                                <span className="check">
+                                  <input
+                                    type="radio"
+                                    id="no_cpn"
+                                    name="coupon"
+                                    value=""
+                                    checked={coupon === ""}
+                                    onChange={async () => {
+                                      try {
+                                        setCoupon("");
+                                        await fetchPreview("", 0);
+                                      } catch (err) {
+                                        console.error("[쿠폰 해제 실패]", err);
+                                        alert(
+                                          err?.response?.data?.message ||
+                                            "쿠폰 적용을 해제하지 못했습니다."
+                                        );
+                                      }
+                                    }}
+                                  />
+                                </span>
+
+                                <span className="coupon_text">
+                                  <strong className="name">사용안함</strong>
+                                </span>
+                              </label>
                             </li>
-                          ))
-                        )}
-
-                        <li>
-                          <span className="check">
-                            <input
-                              type="radio"
-                              id="no_cpn"
-                              name="coupon"
-                              value=""
-                              checked={coupon === ""}
-                              onChange={async () => {
-                                setCoupon("");
-                                await fetchPreview("", 0);
-                              }}
-                            />
-                          </span>
-                          <p className="name">사용안함</p>
-                          <p className="content"></p>
-                        </li>
-                      </ul>   {/** coupon_list end */}
+                          </ul>
                         </td>
                       </tr>
                       {/** // 쿠폰사용 */}
