@@ -405,22 +405,35 @@ function calcCouponDiscount({ subtotal, coupon }) {
 // 1. 카트 -> 프리뷰 아이템 조회 (v_product_catalog 뷰 재활용)
 router.get("/preview", async (req, res) => {
   try {
-    const userId = req.session?.userId;
+    const userId =
+      req.session?.user?.id ||
+      req.session?.userId;
+
+    console.log("[GET /api/checkout/preview]", {
+      userId,
+      query: req.query,
+    });
 
     if (!userId) {
-      return res.status(401).json({ message: "로그인이 필요합니다." });
+      return res.status(401).json({
+        message: "로그인이 필요합니다.",
+      });
     }
 
     const preview = await getPreview(userId, {
-      all: req.query.all, 
-      cart_ids: req.query.cart_ids, 
-      coupon_code: req.query.coupon_code, 
-      use_mileage: req.query.use_mileage
+      all: req.query.all,
+      cart_ids: req.query.cart_ids,
+      coupon_code: req.query.coupon_code,
+      use_mileage: req.query.use_mileage,
     });
-    res.json(preview);
-  } catch (e) {
-    console.error(e);
-    res.status(500).json({ message: "프리뷰 조회 실패" });
+
+    return res.json(preview);
+  } catch (err) {
+    console.error("[GET /api/checkout/preview]", err);
+
+    return res.status(500).json({
+      message: err.message || "프리뷰 조회 실패",
+    });
   }
 });
 
