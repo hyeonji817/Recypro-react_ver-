@@ -22,7 +22,9 @@ const OrderList = () => {
   const USE_MOCK_PAY = true;    // <- 실제 PG 붙일 땐 false
   const [mockOpen, setMockOpen] = useState(false);
   const [prepared, setPrepared] = useState(null); // prepare 응답 저장
-  const [availableCoupons, setAvailableCoupons] = useState([]);     // 쿠폰 
+  const [availableCoupons, setAvailableCoupons] = useState([]);     // 쿠폰
+  const [couponLoading, setCouponLoading] = useState(false);
+  const [couponError, setCouponError] = useState("");
 
   const fetchPreview = async (nextCoupon = coupon, nextMileage = 0) => {
     const params = {};
@@ -92,19 +94,22 @@ const OrderList = () => {
   // 사용 가능한 쿠폰 조회
   useEffect(() => {
     const subtotal = Number(tot?.subtotal || 0);
-
+  
     if (subtotal <= 0) {
       setAvailableCoupons([]);
       return;
     }
-
+  
     const fetchAvailableCoupons = async () => {
+      setCouponLoading(true);
+      setCouponError("");
+  
       try {
         console.log("[쿠폰 조회 요청]", {
           subtotal,
         });
-
-        const response = await axios.get(
+  
+        const { data } = await axios.get(
           "http://localhost:5003/api/mpCoupon/available",
           {
             params: {
@@ -113,25 +118,31 @@ const OrderList = () => {
             withCredentials: true,
           }
         );
-
-        console.log("[쿠폰 조회 응답 전체]", response.data);
-        console.log("[쿠폰 목록]", response.data?.coupons);
-
-        const coupons = Array.isArray(response.data?.coupons)
-          ? response.data.coupons
-          : [];
-
-        setAvailableCoupons(coupons);
+  
+        console.log("[쿠폰 조회 응답]", data);
+  
+        setAvailableCoupons(
+          Array.isArray(data?.coupons)
+            ? data.coupons
+            : []
+        );
       } catch (err) {
         console.error("[사용 가능 쿠폰 조회 실패]", {
           status: err?.response?.status,
           data: err?.response?.data,
           message: err?.message,
         });
-
+  
         setAvailableCoupons([]);
+        setCouponError(
+          err?.response?.data?.message ||
+            "쿠폰을 불러오지 못했습니다."
+        );
+      } finally {
+        setCouponLoading(false);
       }
     };
+  
     fetchAvailableCoupons();
   }, [tot?.subtotal]);
 
