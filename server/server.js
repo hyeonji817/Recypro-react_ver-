@@ -79,7 +79,7 @@ app.use("/api/mypage", mypageRouter);
 app.use("/api/mpOrder_Request", mpOrderRequestRouter);
 app.use("/api/mypage/order-change", mpOrderChangeRouter);
 app.use("/api/mypage/wish", mpWishRouter);
-app.use("/api/mypage/coupon", mpCouponRouter);
+app.use("/api/mpCoupon", mpCouponRouter);
 
 // MySQL 연결 설정 (공통) (DB 연결은 단일 세션으로 하면 안되고 pool을 통해 다중 세션 처리할 수 있도록 한다.)
 const pool = mysql.createPool({
