@@ -751,6 +751,31 @@ router.post("/confirm-mock", async (req, res) => {
       });
     }
 
+    if (ord.user_coupon_id) {
+      const couponUpdate = await q(
+        `
+        UPDATE user_coupons
+        SET
+          used_at = NOW(),
+          order_id = ?
+        WHERE user_coupon_id = ?
+          AND user_id = ?
+          AND used_at IS NULL
+        `,
+        [
+          ord.order_id,
+          ord.user_coupon_id,
+          ord.user_id,
+        ]
+      );
+    
+      if (couponUpdate.affectedRows !== 1) {
+        throw new Error(
+          "쿠폰 사용 처리에 실패했습니다. 이미 사용된 쿠폰일 수 있습니다."
+        );
+      }
+    }
+
     // 주문번호 생성(예: 20251014-AB12C)
     const ymd = new Date().toISOString().slice(0,10).replace(/-/g, "");
     const tail = crypto.randomBytes(3)
