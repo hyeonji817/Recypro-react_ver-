@@ -439,86 +439,244 @@ router.get("/preview", async (req, res) => {
 
 // 2. 주문 
 router.post("/prepare", async (req, res) => {
-  const userId = req.session?.userId;
+  try {
+    const userId =
+      req.session?.user?.id ||
+      req.session?.userId;
 
-  if (!userId) {
-    return res.status(401).json({ message: "로그인이 필요합니다." });
+    if (!userId) {
+      return res.status(401).json({
+        message: "로그인이 필요합니다.",
+      });
+    }
+
+    const {
+      all,
+      cart_ids,
+      coupon_code,
+      use_mileage,
+      buyer = {},
+      receiver = {},
+      dlv_memo = "",
+      pay_method = "TOSS",
+    } = req.body || {};
+
+    console.log("[POST /api/checkout/prepare]", {
+      userId,
+      all,
+      cart_ids,
+      coupon_code,
+      use_mileage,
+    });
+
+    // 서버에서 반드시 다시 계산
+    const preview = await getPreview(userId, {
+      all,
+      cart_ids,
+      coupon_code,
+      use_mileage,
+    });
+
+    if (!preview.items.length) {
+      return res.status(400).json({
+        message: "주문할 상품이 없습니다.",
+      });
+    }
+
+    const totals = preview.totals;
+
+    // 프론트가 쿠폰을 보냈는데 서버 검증 후 적용되지 않았다면 주문 중단
+    if (
+      coupon_code &&
+      totals.coupon_code !== coupon_code
+    ) {
+      return res.status(400).json({
+        message:
+          totals.coupon_reason ||
+          "선택한 쿠폰을 사용할 수 없습니다.",
+      });
+    }
+
+    const orderResult = await q(
+      `
+      INSERT INTO orders
+      (
+        user_id,
+        status,
+
+        subtotal,
+        discount_total,
+        shipping_fee,
+        total_pay,
+        total_mileage,
+
+        coupon_code,
+        user_coupon_id,
+        coupon_discount,
+        used_mileage,
+
+        buyer_name,
+        buyer_phone,
+        buyer_cell,
+        buyer_email,
+
+        recv_name,
+        recv_phone,
+        recv_cell,
+        recv_zip,
+        recv_addr1,
+        recv_addr2,
+
+        dlv_memo,
+        pay_method,
+        pg_provider
+      )
+      VALUES
+      (
+        ?, ?,
+        ?, ?, ?, ?, ?,
+        ?, ?, ?, ?,
+        ?, ?, ?, ?,
+        ?, ?, ?, ?, ?, ?,
+        ?, ?, ?
+      )
+      `,
+      [
+        userId,
+        "PENDING",
+
+        totals.subtotal,
+        totals.discount_total,
+        totals.shipping_fee,
+        totals.total_pay,
+        totals.total_mileage,
+
+        totals.coupon_code,
+        totals.user_coupon_id,
+        totals.coupon_discount,
+        totals.used_mileage,
+
+        buyer.name || null,
+        buyer.phone || null,
+        buyer.cell || null,
+        buyer.email || null,
+
+        receiver.name || null,
+        receiver.phone || null,
+        receiver.cell || null,
+        receiver.zip || null,
+        receiver.addr1 || null,
+        receiver.addr2 || null,
+
+        dlv_memo || null,
+        pay_method,
+        "MOCK",
+      ]
+    );
+
+    const orderId = orderResult.insertId;
+
+    for (const item of preview.items) {
+      await q(
+        `
+        INSERT INTO order_items
+        (
+          order_id,
+          product_table,
+          product_id,
+          pname,
+          filename,
+          options_json,
+          option_label,
+          unit_price,
+          option_delta,
+          quantity,
+          line_total,
+          mileage
+        )
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        `,
+        [
+          orderId,
+          item.product_table,
+          item.product_id,
+          item.pname,
+          item.filename || null,
+          JSON.stringify(item.options_json || {}),
+          item.option_label || null,
+          item.unit_price,
+          item.option_delta || 0,
+          item.quantity,
+          item.line_total,
+          item.mileage,
+        ]
+      );
+    }
+
+    const totalsSnapshot = {
+      ...totals,
+      cartIds: preview.items
+        .map((item) => Number(item.cart_id))
+        .filter(Boolean),
+    };
+
+    await q(
+      `
+      UPDATE orders
+      SET
+        buyer_json = ?,
+        receiver_json = ?,
+        items_json = ?,
+        totals_json = ?
+      WHERE order_id = ?
+      `,
+      [
+        JSON.stringify(buyer),
+        JSON.stringify(receiver),
+        JSON.stringify(preview.items),
+        JSON.stringify(totalsSnapshot),
+        orderId,
+      ]
+    );
+
+    const pgOrderUID = makeOrderUID(orderId);
+
+    await q(
+      `
+      UPDATE orders
+      SET pg_order_uid = ?
+      WHERE order_id = ?
+      `,
+      [pgOrderUID, orderId]
+    );
+
+    const firstItemName =
+      preview.items[0]?.pname || "주문 상품";
+
+    const orderName =
+      preview.items.length === 1
+        ? firstItemName
+        : `${firstItemName} 외 ${preview.items.length - 1}건`;
+
+    return res.json({
+      order_id: orderId,
+      pg_order_uid: pgOrderUID,
+      amount: totals.total_pay,
+      orderName,
+      successUrl: `${process.env.WEB_ORIGIN}/pay/success`,
+      failUrl: `${process.env.WEB_ORIGIN}/pay/fail`,
+      items: preview.items,
+      totals,
+      buyer,
+      receiver,
+    });
+  } catch (err) {
+    console.error("[POST /api/checkout/prepare]", err);
+
+    return res.status(500).json({
+      message: err.message || "주문 준비 중 오류가 발생했습니다.",
+    });
   }
-  
-  const { all, cart_ids, coupon_code, use_mileage, buyer, receiver, dlv_memo } = req.body;
-
-  const preview = await getPreview(userId, { all, cart_ids, coupon_code, use_mileage });
-  if (!preview.items.length) return res.status(400).json({ message: "주문할 상품이 없습니다." });
-
-  const o = preview.totals;
-
-  const orderResult = await q(`
-    INSERT INTO orders
-      (user_id, status, subtotal, discount_total, shipping_fee, total_pay, total_mileage,
-       coupon_code, user_coupon_id, coupon_discount, used_mileage,
-       buyer_name, buyer_phone, buyer_cell, buyer_email,
-       recv_name, recv_phone, recv_cell, recv_zip, recv_addr1, recv_addr2, dlv_memo, pay_method, pg_provider)
-    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
-  `, [
-    userId, 'PENDING',
-    o.subtotal, o.discount_total, o.shipping_fee, o.total_pay, o.total_mileage,
-    o.coupon_code, o.coupon_discount, o.used_mileage,
-    buyer?.name||null, buyer?.phone||null, buyer?.cell||null, buyer?.email||null,
-    receiver?.name||null, receiver?.phone||null, receiver?.cell||null,
-    receiver?.zip||null, receiver?.addr1||null, receiver?.addr2||null,
-    dlv_memo||null, 'TOSS', 'TOSS'
-  ]);
-  const orderId = orderResult.insertId;
-
-  for (const it of preview.items) {
-    await q(`
-      INSERT INTO order_items
-        (order_id, product_table, product_id, pname, filename, options_json, option_label,
-         unit_price, option_delta, quantity, line_total, mileage)
-      VALUES (?,?,?,?,?,?,?,?,?,?,?,?)
-    `, [
-      orderId, it.product_table, it.product_id, it.pname, it.filename || null,
-      JSON.stringify({}), it.option_label || null,
-      it.unit_price, 0, it.quantity, it.line_total, it.mileage
-    ]);
-  }
-
-  await q(
-    `UPDATE orders
-        SET buyer_json=?,
-            receiver_json=?,
-            items_json=?,
-            totals_json=?
-      WHERE order_id=?`,
-    [
-      JSON.stringify(buyer || {}),
-      JSON.stringify(receiver || {}),
-      JSON.stringify(preview.items || []),
-      JSON.stringify(preview.totals || {}),
-      orderId
-    ]
-  );
-
-  // ⚠️ 여기서 coupon_redemptions / mileage_ledger(-) INSERT 하지 마세요 (결제 실패 대비)
-
-  const pgOrderUID = makeOrderUID(orderId);
-  await q(`UPDATE orders SET pg_order_uid=? WHERE order_id=?`, [pgOrderUID, orderId]);
-
-  const orderName = preview.items.length === 1
-    ? preview.items[0].pname
-    : `${preview.items[0].pname} 외 ${preview.items.length - 1}건`;
-
-  // 응답
-  res.json({
-    order_id: orderId,
-    pg_order_uid: pgOrderUID,          // ← 이름 통일!
-    amount: o.total_pay,
-    orderName,
-    successUrl: `${process.env.WEB_ORIGIN}/pay/success`,
-    failUrl: `${process.env.WEB_ORIGIN}/pay/fail`,
-    items: preview.items, 
-    totals: preview.totals
-  });
 });
 
 // 2-2. 장바구니 비우기
