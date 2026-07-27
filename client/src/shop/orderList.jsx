@@ -449,32 +449,24 @@ const OrderList = () => {
                             >
                               <label className="coupon_label">
                                 <span className="check">
-                                  <input
-                                    type="radio"
-                                    name="coupon"
-                                    value={cp.coupon_code}
-                                    disabled={!cp.usable}
-                                    checked={coupon === cp.coupon_code}
-                                    onChange={async () => {
-                                      try {
-                                        setCoupon(cp.coupon_code);
+                                <input
+                                  type="radio"
+                                  name="coupon"
+                                  value={cp.coupon_code}
+                                  disabled={!cp.usable}
+                                  checked={coupon === cp.coupon_code}
+                                  onChange={async (e) => {
+                                    const nextCoupon = e.target.value;
+                                    setCoupon(nextCoupon);
 
-                                        await fetchPreview(
-                                          cp.coupon_code,
-                                          0
-                                        );
-                                      } catch (err) {
-                                        console.error("[쿠폰 적용 실패]", err);
-
-                                        setCoupon("");
-
-                                        alert(
-                                          err?.response?.data?.message ||
-                                            "쿠폰을 적용하지 못했습니다."
-                                        );
-                                      }
-                                    }}
-                                  />
+                                    try {
+                                      await fetchPreview(nextCoupon, 0);
+                                    } catch (err) {
+                                      console.error("[쿠폰 적용 preview 실패]", err);
+                                      alert(err?.response?.data?.message || "쿠폰 적용 실패");
+                                    }
+                                  }}
+                                />
                                 </span>
 
                                 <span className="coupon_text">
