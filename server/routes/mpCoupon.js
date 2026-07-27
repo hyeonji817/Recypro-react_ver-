@@ -120,23 +120,13 @@ router.get("/", async (req, res) => {
 });
 
 // 주문서에서 사용 가능한 쿠폰 조회
+// GET /api/mpCoupon/available?subtotal=5310
 router.get("/available", async (req, res) => {
   try {
-    const userId = getSessionUserId(req);
-
-    console.log("==================================");
-    console.log("[GET /api/mpCoupon/available]");
-    console.log("[쿠폰 조회 sessionID]", req.sessionID);
-    console.log("[쿠폰 조회 session]", req.session);
-    console.log("[쿠폰 조회 userId]", userId);
-    console.log("[쿠폰 조회 subtotal]", req.query.subtotal);
+    const userId = req.session?.userId;
 
     if (!userId) {
-      console.log("[쿠폰 조회 실패] 세션 userId 없음");
-
-      return res.status(401).json({
-        message: "로그인이 필요합니다.",
-      });
+      return res.status(401).json({ message: "로그인이 필요합니다." });
     }
 
     const subtotal = Number(req.query.subtotal || 0);
@@ -156,16 +146,12 @@ router.get("/available", async (req, res) => {
         c.max_discount_amount,
         c.is_active
       FROM user_coupons uc
-      JOIN coupons c
-        ON c.coupon_id = uc.coupon_id
+      JOIN coupons c ON c.coupon_id = uc.coupon_id
       WHERE uc.user_id = ?
       ORDER BY uc.issued_at DESC
       `,
       [userId]
     );
-
-    console.log("[쿠폰 DB 조회 rows]", rows);
-    console.log("[쿠폰 DB 조회 개수]", rows.length);
 
     const coupons = rows.map((cp) => {
       let usable = true;
@@ -174,22 +160,15 @@ router.get("/available", async (req, res) => {
       if (cp.used_at) {
         usable = false;
         reason = "이미 사용한 쿠폰입니다.";
-      } else if (Number(cp.is_active) !== 1) {
+      } else if (!cp.is_active) {
         usable = false;
         reason = "비활성화된 쿠폰입니다.";
-      } else if (
-        cp.expired_at &&
-        new Date(cp.expired_at).getTime() < Date.now()
-      ) {
+      } else if (cp.expired_at && new Date(cp.expired_at) < new Date()) {
         usable = false;
         reason = "기간이 만료된 쿠폰입니다.";
-      } else if (
-        subtotal < Number(cp.min_order_amount || 0)
-      ) {
+      } else if (subtotal < Number(cp.min_order_amount || 0)) {
         usable = false;
-        reason = `최소 주문금액 ${Number(
-          cp.min_order_amount || 0
-        ).toLocaleString()}원 이상부터 사용할 수 있습니다.`;
+        reason = "최소주문금액 조건 미충족";
       }
 
       return {
@@ -199,17 +178,10 @@ router.get("/available", async (req, res) => {
       };
     });
 
-    console.log("[쿠폰 최종 응답]", coupons);
-    console.log("==================================");
-
-    return res.json({ coupons });
+    res.json({ coupons });
   } catch (err) {
     console.error("[GET /api/mpCoupon/available]", err);
-
-    return res.status(500).json({
-      message: "쿠폰 조회 실패",
-      detail: err.message,
-    });
+    res.status(500).json({ message: "쿠폰 조회 실패" });
   }
 });
 
