@@ -449,24 +449,24 @@ const OrderList = () => {
                             >
                               <label className="coupon_label">
                                 <span className="check">
-                                <input
-                                  type="radio"
-                                  name="coupon"
-                                  value={cp.coupon_code}
-                                  disabled={!cp.usable}
-                                  checked={coupon === cp.coupon_code}
-                                  onChange={async (e) => {
-                                    const nextCoupon = e.target.value;
-                                    setCoupon(nextCoupon);
+                                  <input
+                                    type="radio"
+                                    name="coupon"
+                                    value={cp.coupon_code}
+                                    disabled={!cp.usable}
+                                    checked={coupon === cp.coupon_code}
+                                    onChange={async (e) => {
+                                      const nextCoupon = e.target.value;
+                                      setCoupon(nextCoupon);
 
-                                    try {
-                                      await fetchPreview(nextCoupon, 0);
-                                    } catch (err) {
-                                      console.error("[쿠폰 적용 preview 실패]", err);
-                                      alert(err?.response?.data?.message || "쿠폰 적용 실패");
-                                    }
-                                  }}
-                                />
+                                      try {
+                                        await fetchPreview(nextCoupon, 0);
+                                      } catch (err) {
+                                        console.error("[쿠폰 적용 preview 실패]", err);
+                                        alert(err?.response?.data?.message || "쿠폰 적용 실패");
+                                      }
+                                    }}
+                                  />
                                 </span>
 
                                 <span className="coupon_text">
@@ -531,11 +531,13 @@ const OrderList = () => {
                                 value=""
                                 checked={coupon === ""}
                                 onChange={async () => {
+                                  setCoupon("");
+
                                   try {
-                                    setCoupon("");
                                     await fetchPreview("", 0);
                                   } catch (err) {
-                                    console.error("[쿠폰 해제 실패]", err);
+                                    console.error("[쿠폰 해제 preview 실패]", err);
+                                    alert("쿠폰 해제 실패");
                                   }
                                 }}
                               />
