@@ -95,21 +95,25 @@ const OrderList = () => {
   useEffect(() => {
     const subtotal = Number(tot?.subtotal || 0);
   
+    console.log("[쿠폰 useEffect 실행]", {
+      subtotal,
+      totals: tot,
+    });
+  
     if (subtotal <= 0) {
+      console.log("[쿠폰 조회 중단] subtotal이 0 이하");
       setAvailableCoupons([]);
       return;
     }
   
     const fetchAvailableCoupons = async () => {
-      setCouponLoading(true);
-      setCouponError("");
-  
       try {
-        console.log("[쿠폰 조회 요청]", {
+        console.log("[쿠폰 조회 요청 시작]", {
+          url: "http://localhost:5003/api/mpCoupon/available",
           subtotal,
         });
   
-        const { data } = await axios.get(
+        const response = await axios.get(
           "http://localhost:5003/api/mpCoupon/available",
           {
             params: {
@@ -119,27 +123,24 @@ const OrderList = () => {
           }
         );
   
-        console.log("[쿠폰 조회 응답]", data);
+        console.log("[쿠폰 조회 HTTP 상태]", response.status);
+        console.log("[쿠폰 조회 응답 전체]", response.data);
+        console.log("[쿠폰 배열]", response.data?.coupons);
   
-        setAvailableCoupons(
-          Array.isArray(data?.coupons)
-            ? data.coupons
-            : []
-        );
+        const coupons = Array.isArray(response.data?.coupons)
+          ? response.data.coupons
+          : [];
+  
+        setAvailableCoupons(coupons);
       } catch (err) {
         console.error("[사용 가능 쿠폰 조회 실패]", {
           status: err?.response?.status,
-          data: err?.response?.data,
+          responseData: err?.response?.data,
           message: err?.message,
+          url: err?.config?.url,
         });
   
         setAvailableCoupons([]);
-        setCouponError(
-          err?.response?.data?.message ||
-            "쿠폰을 불러오지 못했습니다."
-        );
-      } finally {
-        setCouponLoading(false);
       }
     };
   
