@@ -286,7 +286,7 @@ ol, ul, li {
 .orderList_Content #order .coupon_list li .content {
   font-size: 11px;
   position: relative;
-  top: -17px;
+  left: 22px;
 }
 
 .orderList_Content input[type=radio] {
