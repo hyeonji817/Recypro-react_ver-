@@ -454,7 +454,6 @@ const OrderList = () => {
                                     type="radio"
                                     name="coupon"
                                     value={cp.coupon_code}
-                                    disabled={!cp.usable}
                                     checked={coupon === cp.coupon_code}
                                     onChange={async (e) => {
                                       const nextCoupon = e.target.value;
