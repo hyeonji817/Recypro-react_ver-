@@ -25,6 +25,11 @@ const OrderList = () => {
   const [availableCoupons, setAvailableCoupons] = useState([]);     // 쿠폰
   const [couponLoading, setCouponLoading] = useState(false);
   const [couponError, setCouponError] = useState("");
+  // 적립금 상태 
+  const [useMileage, setUseMileage] = useState(0); 
+  const [mileageInput, setMileageInput] = useState("0");
+  const [mileageBalance, setMileageBalance] = useState(0); 
+  const [mileageApplying, setMileageApplying] = useState(false); 
 
   const fetchPreview = async (nextCoupon = coupon, nextMileage = 0) => {
     const params = {};
