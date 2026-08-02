@@ -31,6 +31,23 @@ const OrderList = () => {
   const [mileageBalance, setMileageBalance] = useState(0); 
   const [mileageApplying, setMileageApplying] = useState(false); 
 
+  // 프리뷰 응답 처리 함수 
+  const applyPreviewData = (data) => {
+    const nextTotals = data?.totals || {};
+
+    setItems(data?.items || []);
+    setTot(nextTotals);
+
+    // 백엔드 응답 구조에 따라 둘 중 하나를 사용 
+    const balance = Number(
+      data?.mileage_balance ?? 
+      nextTotals?.mileage_balance ??
+      0
+    );
+
+    setMileageBalance(balance);
+  };
+
   const fetchPreview = async (nextCoupon = coupon, nextMileage = 0) => {
     const params = {};
   
