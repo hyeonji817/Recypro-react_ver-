@@ -48,22 +48,37 @@ const OrderList = () => {
     setMileageBalance(balance);
   };
 
-  const fetchPreview = async (nextCoupon = coupon, nextMileage = 0) => {
+  const fetchPreview = async (
+    nextCoupon = coupon,
+    nextMileage = useMileage
+  ) => {
     const params = {};
   
-    if (sp.get("all") === "1") params.all = "1";
-    if (sp.get("cart_ids")) params.cart_ids = sp.get("cart_ids");
+    if (sp.get("all") === "1") {
+      params.all = "1";
+    }
   
-    if (nextCoupon) params.coupon_code = nextCoupon;
-    if (nextMileage) params.use_mileage = nextMileage;
+    if (sp.get("cart_ids")) {
+      params.cart_ids = sp.get("cart_ids");
+    }
   
-    const { data } = await axios.get("http://localhost:5003/api/checkout/preview", {
-      params,
-      withCredentials: true,
-    });
+    if (nextCoupon) {
+      params.coupon_code = nextCoupon;
+    }
   
-    setItems(data.items || []);
-    setTot(data.totals || {});
+    params.use_mileage = Number(nextMileage || 0);
+  
+    const { data } = await axios.get(
+      "http://localhost:5003/api/checkout/preview",
+      {
+        params,
+        withCredentials: true,
+      }
+    );
+  
+    applyPreviewData(data);
+  
+    return data;
   };
 
   useEffect(() => {
