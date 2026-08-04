@@ -81,7 +81,8 @@ const OrderList = () => {
     return data;
   };
 
-  useEffect(() => {
+  // 원본
+  /** useEffect(() => {
     (async () => {
       try {
         const params = {};
@@ -99,6 +100,25 @@ const OrderList = () => {
         setLoading(false);
       }
     })();
+  }, [sp]); */
+  // 최초 프리뷰 조회도 공통 함수 사용 
+  useEffect(() => {
+    const loadPreview = async () => {
+      try {
+        await fetchPreview("", 0);
+      } catch (e) {
+        console.error("[주문서 프리뷰 조회 실패]", e);
+  
+        alert(
+          e?.response?.data?.message ||
+          "주문서 불러오기 실패"
+        );
+      } finally {
+        setLoading(false);
+      }
+    };
+  
+    loadPreview();
   }, [sp]);
 
   // 1) 카카오 우편번호 스크립트 로드
