@@ -322,6 +322,25 @@ const OrderList = () => {
     return "무제한";
   };
 
+  // 적립금 입력 및 적용 함수 
+  // 마일리지 최대적용 
+  const getMaximumUsableMileage = () => {
+     /*
+   * 이미 적립금이 적용된 total_pay에는 적립금이 차감되어 있으므로
+   * 현재 사용 적립금을 다시 더해서 적립금 적용 전 결제 가능 금액을 계산
+   */
+  const payableBeforeMileage =
+    Number(tot?.total_pay || 0) + Number(useMileage || 0);
+
+    return Math.max(
+      0,
+      Math.min(
+        Number(mileageBalance || 0),
+        payableBeforeMileage
+      )
+    );
+  };
+
   const submitOrder = async () => {
     try {
       // 1) 주문 준비(서버 금액 재계산 + PENDING 주문 생성)
