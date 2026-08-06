@@ -341,6 +341,28 @@ const OrderList = () => {
     );
   };
 
+  // 마일리지 입력
+  const handleMileageInput = (e) => {
+    // 숫자가 아닌 문자는 제거 
+    const onlyNumber = e.target.value.replace(/[^0-9]/g, "");
+
+    if (onlyNumber === "") {
+      setMileageInput("");
+      return;
+    }
+  
+    const requestedMileage = Number(onlyNumber);
+    const maximumMileage = getMaximumUsableMileage();
+  
+    // 보유 적립금 또는 결제금액을 초과하지 않도록 제한
+    const limitedMileage = Math.min(
+      requestedMileage,
+      maximumMileage
+    );
+  
+    setMileageInput(String(limitedMileage));
+  };
+
   const submitOrder = async () => {
     try {
       // 1) 주문 준비(서버 금액 재계산 + PENDING 주문 생성)
