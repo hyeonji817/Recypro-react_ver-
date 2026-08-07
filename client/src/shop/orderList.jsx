@@ -363,6 +363,78 @@ const OrderList = () => {
     setMileageInput(String(limitedMileage));
   };
 
+  // 마일리지 추가
+  const applyMileage = async () => {
+    const requestedMileage = Number(mileageInput || 0);
+    const maximumMileage = getMaximumUsableMileage();
+  
+    if (!Number.isInteger(requestedMileage)) {
+      alert("적립금은 정수 단위로 입력해 주세요.");
+      return;
+    }
+  
+    if (requestedMileage < 0) {
+      alert("적립금은 0원 이상 입력해 주세요.");
+      return;
+    }
+  
+    if (requestedMileage > mileageBalance) {
+      alert(
+        `보유 적립금 ${mileageBalance.toLocaleString()}원을 초과할 수 없습니다.`
+      );
+      return;
+    }
+  
+    if (requestedMileage > maximumMileage) {
+      alert(
+        `이번 주문에는 최대 ${maximumMileage.toLocaleString()}원까지 사용할 수 있습니다.`
+      );
+      return;
+    }
+  
+    try {
+      setMileageApplying(true);
+  
+      const data = await fetchPreview(
+        coupon,
+        requestedMileage
+      );
+  
+      /*
+       * 서버가 실제 적용된 적립금을 반환하는 경우 그 값을 사용.
+       * 반환하지 않으면 사용자가 입력한 값을 사용.
+       */
+      const appliedMileage = Number(
+        data?.totals?.use_mileage ??
+        data?.totals?.mileage_used ??
+        requestedMileage
+      );
+  
+      setUseMileage(appliedMileage);
+      setMileageInput(String(appliedMileage));
+  
+      console.log("[적립금 적용 완료]", {
+        requestedMileage,
+        appliedMileage,
+        remainingMileage:
+          mileageBalance - appliedMileage,
+        totals: data?.totals,
+      });
+    } catch (err) {
+      console.error("[적립금 적용 실패]", err);
+  
+      setMileageInput(String(useMileage));
+  
+      alert(
+        err?.response?.data?.message ||
+        "적립금 적용에 실패했습니다."
+      );
+    } finally {
+      setMileageApplying(false);
+    }
+  };
+  
+
   const submitOrder = async () => {
     try {
       // 1) 주문 준비(서버 금액 재계산 + PENDING 주문 생성)
