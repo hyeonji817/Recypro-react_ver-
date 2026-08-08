@@ -433,7 +433,27 @@ const OrderList = () => {
       setMileageApplying(false);
     }
   };
-  
+
+  // 마일리지 취소
+  const resetMileage = async () => {
+    try {
+      setMileageApplying(true); 
+
+      await fetchPreview(coupon, 0); 
+
+      setUseMileage(0);
+      setMileageInput("0");
+    } catch (err) {
+      console.error("[적립금 사용 취소 실패]", err); 
+
+      alert(
+        err?.response?.data?.message ||
+        "적립금 사용 취소에 실패했습니다."
+      );
+    } finally {
+      setMileageApplying(false);
+    }
+  };
 
   const submitOrder = async () => {
     try {
