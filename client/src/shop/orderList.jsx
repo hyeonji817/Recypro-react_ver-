@@ -605,8 +605,61 @@ const OrderList = () => {
                       <tr>
                         <th scope="row">적립금 사용</th>
                         <td>
-                          <input type="text" name="milage_prc" value="0" className="form_input tar" /> 
-                          <p className="mileage">사용 가능 적립금 : <strong className="own_mileage">2,000</strong> 원</p>
+                          <div className="mileage_input_area">
+                            <input
+                              type="text"
+                              name="mileage_prc"
+                              value={mileageInput}
+                              className="form_input tar"
+                              inputMode="numeric"
+                              autoComplete="off"
+                              disabled={mileageApplying}
+                              onChange={handleMileageInput}
+                              onKeyDown={(e) => {
+                                if (e.key === "Enter") {
+                                  e.preventDefault();
+                                  applyMileage();
+                                }
+                              }}
+                            />
+
+                            <button
+                              type="button"
+                              className="mileage_apply_btn"
+                              disabled={mileageApplying}
+                              onClick={applyMileage}
+                            >
+                              {mileageApplying ? "적용 중" : "적용"}
+                            </button>
+
+                            {useMileage > 0 && (
+                              <button
+                                type="button"
+                                className="mileage_reset_btn"
+                                disabled={mileageApplying}
+                                onClick={resetMileage}
+                              >
+                                사용 취소
+                              </button>
+                            )}
+                          </div>
+
+                          <p className="mileage">
+                            보유 적립금 :{" "}
+                            <strong className="own_mileage">
+                              {mileageBalance.toLocaleString()}
+                            </strong>
+                            원
+                            {" / "}
+                            사용 후 잔여 적립금 :{" "}
+                            <strong className="remain_mileage">
+                              {Math.max(
+                                0,
+                                mileageBalance - useMileage
+                              ).toLocaleString()}
+                            </strong>
+                            원
+                          </p>
                         </td>
                       </tr>
         
