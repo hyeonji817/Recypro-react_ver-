@@ -4,6 +4,7 @@ import cookieParser from "cookie-parser";
 import session from "express-session"; 
 import cors from "cors";    // 프론트엔드와 백엔드 간의 통신 허용. 
 import dotenv from "dotenv"; 
+import { Sequelize } from "sequelize";
 
 // 라우트 파일 연결 
 import loginRouter from "./routes/login.js";
@@ -33,6 +34,17 @@ import { fileURLToPath } from "url";
 dotenv.config(); 
 const app = express();
 const port = 5003;    // 프론트엔드에서 호출할 포트와 일치해야 한다.   
+
+const sequelize = new Sequelize(
+  process.env.DB_NAME,
+  process.env.DB_USER,
+  process.env.DB_PASSWORD,
+  {
+    host: process.env.DB_HOST,
+    port: Number(process.env.DB_PORT || 3306),
+    dialect: "mysql",
+  }
+);
 
 // CORS 설정 (프론트와 백 연결하는 징검다리)
 app.use(cors({
