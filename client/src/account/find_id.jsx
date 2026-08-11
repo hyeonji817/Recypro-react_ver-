@@ -10,7 +10,8 @@ const FindId = () => {
   const [message, setMessage] = useState("");   // 아이디 찾기 결과 메시지  
   const [error, setError] = useState("");     // 오류 메시지 
   const [foundId, setFoundId] = useState("");   // 찾은 아이디 저장 
-  const [color, setColor] = useState("red");    
+  const [color, setColor] = useState("red"); 
+  const API_URL = import.meta.env.VITE_API_URL;   
 
   // 아이디 찾기 요청 함수 
   const handleFindId = async (e) => {
@@ -28,7 +29,7 @@ const FindId = () => {
     }
 
     try {
-      const response = await axios.post("http://localhost:5003/api/find_id", {
+      const response = await axios.post(`${API_URL}/api/find_id`, {
         name,
         email,
       });

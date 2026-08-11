@@ -12,6 +12,7 @@ const FindPw = () => {
   const [error, setError] = useState(""); 
   const [foundPw, setFoundPw] = useState(""); 
   const [color, setColor] = useState("red");
+  const API_URL = import.meta.env.VITE_API_URL;   
 
   // 패스워드 찾기 요청 함수 
   const handleFindPw = async (e) => {
@@ -33,7 +34,7 @@ const FindPw = () => {
     }
 
     try {
-      const response = await axios.post("http://localhost:5003/api/find_pw", {
+      const response = await axios.post(`${API_URL}/api/find_pw`, {
         id,
         name,
         email,

@@ -7,6 +7,7 @@ const Login = () => {
   const [formData, setFormData] = useState({ id: "", password: "" });   // 입력값(폼값) 전달
   const [errorMessage, setErrorMessage] = useState("");   // 에러전송 
   const navigate = useNavigate();   // 페이지 이동
+  const API_URL = import.meta.env.VITE_API_URL;   
 
   const handleChange = (e) => {
     const { name, value } = e.target; 
@@ -17,7 +18,7 @@ const Login = () => {
     e.preventDefault();
   
     try {
-      const response = await fetch("http://localhost:5003/login", {
+      const response = await fetch(`${API_URL}/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",

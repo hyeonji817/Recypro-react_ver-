@@ -25,6 +25,7 @@ const Register = () => {
   });
 
   const navigate = useNavigate();
+  const API_URL = import.meta.env.VITE_API_URL;
 
   // 폼(input 요소들)의 상태를 변경할 때 사용하는 함수
   const handleChange = (e) => {
@@ -58,7 +59,7 @@ const Register = () => {
     e.preventDefault();
 
     try {
-      const res = await fetch("http://localhost:5103/api/register", {   // 값 전달할 페이지 지정 
+      const res = await fetch(`${API_URL}/api/register`, {   // 값 전달할 페이지 지정 
         method: "POST",
         headers: {
           "Content-Type": "application/json",

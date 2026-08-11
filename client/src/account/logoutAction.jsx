@@ -3,9 +3,10 @@ import { useNavigate } from "react-router-dom";
 
 const LogoutAction = () => {
   const navigate = useNavigate(); 
+  const API_URL = import.meta.env.VITE_API_URL;  
 
   useEffect(() => {
-    fetch("http://localhost:5003/logout", {   // 서버 페이지(server.js)에 있는 logout API에게 값 전달 
+    fetch(`${API_URL}/logout`, {   // 서버 페이지(server.js)에 있는 logout API에게 값 전달 
       method: "POST",
       credentials: "include",   // 세션 쿠키를 포함 
     }).then((res) => {

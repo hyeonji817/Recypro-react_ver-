@@ -9,6 +9,7 @@ const ChangePw = () => {
   const [newPassword, setNewPassword] = useState("");
   const [confirmNewPassword, setConfirmNewPassword] = useState(""); 
   const [message, setMessage] = useState("");
+  const API_URL = import.meta.env.VITE_API_URL;
   
   const handleChangePassword = async (e) => {
     e.preventDefault();
@@ -19,7 +20,7 @@ const ChangePw = () => {
     }
 
     try {
-      const response = await axios.post("http://localhost:5003/api/ChangePassword", {
+      const response = await axios.post(`${API_URL}/api/ChangePassword`, {
         currentPassword,
         newPassword,
       });
