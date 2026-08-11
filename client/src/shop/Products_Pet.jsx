@@ -6,11 +6,12 @@ const Products_Pet = () => {
 	const [productPet, setProductPet] = useState([]);
   const [currentPage, setCurrentPage] = useState(1); 
   const itemsPerPage = 3; 
+  const API_URL = import.meta.env.VITE_API_URL;
 
 	useEffect(() => {
 		const fetchProductPet = async () => {
 			try {
-        const res = await fetch("http://localhost:5003/api/product_pet");    // Product_Life.js (상품목록 페이지 라우터) 페이지 연동
+        const res = await fetch(`${API_URL}/api/product_pet`);    // Product_Life.js (상품목록 페이지 라우터) 페이지 연동
         const data = await res.json();
         setProductPet(data);
       } catch (err) {
@@ -51,7 +52,7 @@ const Products_Pet = () => {
                   {/* ⛔️ <a href={item}>  이런 게 [object Object]의 원인 */}
                   <Link to={detailPath}>
                     <img
-                      src={`http://localhost:5003/uploads/${item.filename}`}
+                      src={`${API_URL}/uploads/${item.filename}`}
                       alt={item.pname}
                       width="240"
                       height="320"

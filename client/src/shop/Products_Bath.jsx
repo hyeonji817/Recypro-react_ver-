@@ -11,11 +11,12 @@ const Products_Bath = () => {
   const currentItems = productBath.slice(indexOfFirstItem, indexOfLastItem);
   const totalPages = Math.ceil(productBath.length / itemsPerPage);
   const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
+  const API_URL = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     const fetchProductBath = async () => {
       try {
-        const res = await fetch("http://localhost:5003/api/product_bath");
+        const res = await fetch(`${API_URL}/api/product_bath`);
         const data = await res.json(); 
         setProductBath(data);
       } catch (err) {
@@ -50,7 +51,7 @@ const Products_Bath = () => {
               {/* ⛔️ <a href={item}>  이런 게 [object Object]의 원인 */}
               <Link to={detailPath}>
                 <img
-                  src={`http://localhost:5003/uploads/${item.filename}`}
+                  src={`${API_URL}/uploads/${item.filename}`}
                   alt={item.pname}
                   width="240"
                   height="320"

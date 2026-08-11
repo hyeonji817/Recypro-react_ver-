@@ -6,11 +6,12 @@ const Products_Food = () => {
   const [productFood, setProductFood] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 3; 
+  const API_URL = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     const fetchProductFood = async () => {
       try {
-        const res = await fetch("http://localhost:5003/api/product_food");    // Product_Life.js (상품목록 페이지 라우터) 페이지 연동
+        const res = await fetch(`${API_URL}/api/product_food`);    // Product_Life.js (상품목록 페이지 라우터) 페이지 연동
         const data = await res.json();
         setProductFood(data);
       } catch (err) {
@@ -50,7 +51,7 @@ const Products_Food = () => {
                       <div className="prdimg">
                         <Link to={detailPath}>
                           <img
-                            src={`http://localhost:5003/uploads/${item.filename}`}
+                            src={`${API_URL}/uploads/${item.filename}`}
                             alt={item.pname}
                             width="240"
                             height="320"

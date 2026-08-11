@@ -5,6 +5,7 @@ import axios from "axios";
 export default function PaySuccess() {
   const [sp] = useSearchParams(); 
   const nav = useNavigate(); 
+  const API_URL = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     (async () => {
@@ -14,7 +15,7 @@ export default function PaySuccess() {
         const amount = Number(sp.get("amount"));
 
         const { data } = await axios.post(
-          "http://localhost:5003/api/checkout/confirm",
+          `${API_URL}/api/checkout/confirm`,
           { paymentKey, orderId, amount },
           { withCredentials: true }
         );
