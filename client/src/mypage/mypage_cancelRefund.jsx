@@ -5,12 +5,13 @@ import axios from "axios";
 import Header_loginOK from "../main/Header_loginOK";
 import Footer from "../main/Footer";
 
-const API = "http://localhost:5003";
+// const API = "http://localhost:5003";
 const formatWon = (value) => Number(value || 0).toLocaleString();
+const API_URL = import.meta.env.VITE_API_URL;
 const imgUrl = (path) => {
   if (!path) return "https://www.rolarola.com/_image/_default/prd/noimg3.gif";
   if (String(path).startsWith("http")) return path;
-  return `${API}/uploads/${String(path).replace(/^\.\//, "")}`;
+  return `${API_URL}/uploads/${String(path).replace(/^\.\//, "")}`;
 };
 const typeText = (type) => {
   if (type === "RETURN") return "반품 신청";
@@ -45,10 +46,10 @@ const Mp_CancelRefund = () => {
         setLoading(true);
 
         const [cancelRes, summaryRes] = await Promise.all([
-          axios.get(`${API}/api/mpCancel_Refund/${order_id}`, {
+          axios.get(`${API_URL}/api/mpCancel_Refund/${order_id}`, {
             withCredentials: true,
           }),
-          axios.get(`${API}/api/mypage/summary`, {
+          axios.get(`${API_URL}/api/mypage/summary`, {
             withCredentials: true,
           }),
         ]);
@@ -116,7 +117,7 @@ const Mp_CancelRefund = () => {
 
     try {
       const res = await axios.post(
-        `${API}/api/mpCancel_Refund/${order_id}`,
+        `${API_URL}/api/mpCancel_Refund/${order_id}`,
         formData,
         {
           withCredentials: true,

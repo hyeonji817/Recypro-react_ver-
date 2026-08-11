@@ -6,6 +6,7 @@ import Header_loginOK from "../main/Header_loginOK";
 import Footer from "../main/Footer";
 
 const formatWon = (value) => Number(value || 0).toLocaleString();
+const API_URL = import.meta.env.VITE_API_URL;
 
 const formatDate = (value) => {
   if (!value) return "-";
@@ -17,7 +18,7 @@ const formatDate = (value) => {
 };
 
 const CDN = (path) =>
-  `http://localhost:5003/uploads/${String(path || "").replace(/^\.\//, "")}`;
+  `${API_URL}/uploads/${String(path || "").replace(/^\.\//, "")}`;
 
 const Mp_Orders = () => {
   const [summary, setSummary] = useState(null);
@@ -32,10 +33,10 @@ const Mp_Orders = () => {
         setError("");
 
         const [summaryRes, ordersRes] = await Promise.all([
-          axios.get("http://localhost:5003/api/mypage/summary", {
+          axios.get(`${API_URL}/api/mypage/summary`, {
             withCredentials: true,
           }),
-          axios.get("http://localhost:5003/api/mypage/orders", {
+          axios.get(`${API_URL}/api/mypage/orders`, {
             withCredentials: true,
           }),
         ]);

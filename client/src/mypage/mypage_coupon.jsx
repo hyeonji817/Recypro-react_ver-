@@ -4,7 +4,8 @@ import axios from "axios";
 import Header_loginOK from "../main/Header_loginOK";
 import Footer from "../main/Footer";
 
-const API = "http://localhost:5003";
+// const API = "http://localhost:5003";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const formatWon = (value) => Number(value || 0).toLocaleString();     // 가격 표시 
 
@@ -40,7 +41,7 @@ const Mp_Coupon = () => {
   useEffect(() => {
     const fetchCoupons = async () => {
       try {
-        const { data } = await axios.get(`${API}/api/mpCoupon`, {
+        const { data } = await axios.get(`${API_URL}/api/mpCoupon`, {
           withCredentials: true,
         });
 

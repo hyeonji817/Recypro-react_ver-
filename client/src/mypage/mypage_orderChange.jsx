@@ -18,12 +18,13 @@ const Mp_OrderChange = () => {
   
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
+  const API_URL = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     const fetchOrder = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:5003/api/mypage/order-change/${order_id}`,
+          `${API_URL}/api/mypage/order-change/${order_id}`,
           { withCredentials: true }
         );
 
@@ -74,10 +75,10 @@ const Mp_OrderChange = () => {
       console.log("[OrderChange] order_id:", order_id);
       console.log(
         "[OrderChange] 요청 URL:",
-        `http://localhost:5003/api/mypage/order-change/${order_id}`
+        `${API_URL}/api/mypage/order-change/${order_id}`
       );
 
-      await axios.post("http://localhost:5003/api/mypage/order-change",
+      await axios.post(`${API_URL}/api/mypage/order-change`,
         formData,
         {
           withCredentials: true,

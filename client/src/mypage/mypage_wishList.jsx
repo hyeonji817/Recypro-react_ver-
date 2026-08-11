@@ -32,11 +32,12 @@ const Mp_WishList = () => {
   const nav = useNavigate();
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
+  const API_URL = import.meta.env.VITE_API_URL;
 
   // 관심상품(위시리스트) 조회 
   const fetchWishItems = async () => {
     try {
-      const res = await axios.get("http://localhost:5003/api/mypage/wish", {
+      const res = await axios.get(`${API_URL}/api/mypage/wish`, {
         withCredentials: true,
       });
 
@@ -68,7 +69,7 @@ const Mp_WishList = () => {
 
     try {
       await axios.delete(
-        `http://localhost:5003/api/mypage/wish/${productTable}/${encodeURIComponent(productId)}`,
+        `${API_URL}/api/mypage/wish/${productTable}/${encodeURIComponent(productId)}`,
         { withCredentials: true }
       );
 
@@ -190,7 +191,7 @@ const Mp_WishList = () => {
             ) : (
               <div className="wishList_grid">
                 {items.map((item) => {
-                  const imgSrc = `http://localhost:5003/uploads/${String(
+                  const imgSrc = `${API_URL}/uploads/${String(
                     item.filename || ""
                   ).replace(/^\.\//, "")}`;
 

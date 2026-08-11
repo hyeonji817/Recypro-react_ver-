@@ -19,7 +19,8 @@ const Mp_OrderRequest = () => {
 
   const [loading, setLoading] = useState(true); 
   const [submitting, setSubmitting] = useState(false); 
-  const [error, setError] = useState(""); 
+  const [error, setError] = useState("");
+  const API_URL = import.meta.env.VITE_API_URL; 
 
   const productText = useMemo(() => {
     const items = order?.items || [];
@@ -42,7 +43,7 @@ const Mp_OrderRequest = () => {
         setError("");
 
         const res = await axios.get(
-          `http://localhost:5003/api/mpOrder_Request/${order_id}`,
+          `${API_URL}/api/mpOrder_Request/${order_id}`,
           {
             withCredentials: true,
           }
@@ -103,7 +104,7 @@ const Mp_OrderRequest = () => {
       }
 
       await axios.post(
-        "http://localhost:5003/api/mpOrder_Request",
+        `${API_URL}/api/mpOrder_Request`,
         formData,
         {
           withCredentials: true,
