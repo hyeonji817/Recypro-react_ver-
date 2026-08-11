@@ -1,33 +1,73 @@
-# 컴파일 결과물 제외
-*.com
+# =========================
+# Node / React
+# =========================
+
+node_modules/
+server/node_modules/
+
+# Vite build output
+dist/
+server/dist/
+
+# =========================
+# Environment Variables
+# =========================
+
+.env
+.env.*
+!.env.example
+
+server/.env
+server/.env.*
+
+# =========================
+# Logs
+# =========================
+
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# =========================
+# Runtime / Temporary
+# =========================
+
+tmp/
+*.tmp
+*.bak
+*.swp
+*.swo
+
+# =========================
+# OS
+# =========================
+
+.DS_Store
+Thumbs.db
+ehthumbs.db
+
+# =========================
+# IDE
+# =========================
+
+.vscode/
+.idea/
+
+# =========================
+# Old Java / JSP / Spring
+# =========================
+
 *.class
+*.com
 *.dll
 *.exe
 *.o
 *.so
 
-# 로그파일 제외
-*.log
-
-# 운영체제에서 만드는 시스템 파일들 제외
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
-config.xml
-
-# 프로젝트정보 파일 제외
 .metadata
 bin/
-tmp/
-*.tmp
-*.bak
-*.swp
-*~.nib
-local.properties
 .settings/
 .loadpath
 .recommenders
@@ -38,10 +78,16 @@ local.properties
 .factorypath
 .buildpath
 .target
+
 /build/
 target/
 
-# Spring 팀프로젝트 충돌 방지
 MANIFEST.MF
 pom.properties
-target/
+
+# =========================
+# Local config
+# =========================
+
+local.properties
+config.xml
