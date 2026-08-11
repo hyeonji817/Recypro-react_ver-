@@ -10,9 +10,10 @@ import reply from "../assets/reply.jpg";
 
 const Customer_question = () => {
 	const [questions, setQuestions] = useState([]);
+	const API_URL = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
-    fetch("http://localhost:5001/api/questionAnswer")
+    fetch(`${API_URL}/api/questionAnswer`)
       .then((res) => res.json())
       .then((data) => {
         setQuestions(data);
@@ -58,7 +59,7 @@ const Customer_question = () => {
                   <td>
                     {qna.product_img && (
                       <img
-												src={`http://localhost:5001/uploads/${qna.product_img}`}
+												src={`${API_URL}/uploads/${qna.product_img}`}
 												alt={qna.pname}
 												width={45}
 												height={60}

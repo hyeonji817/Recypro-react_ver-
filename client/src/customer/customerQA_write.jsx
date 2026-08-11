@@ -12,6 +12,7 @@ const CustomerQA_write = () => {
   const [cate, setCate] = useState("");
   const [file1, setFile1] = useState(null);
   const [file2, setFile2] = useState(null);
+  const API_URL = import.meta.env.VITE_API_URL;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,7 +26,7 @@ const CustomerQA_write = () => {
     formData.append("id", "비회원"); // 로그인 안 되어있으면 기본값
 
     try {
-      const response = await fetch("http://localhost:5001/api/questionAnswer/customer_question", {
+      const response = await fetch(`${API_URL}/api/questionAnswer/customer_question`, {
         method: "POST",
         body: formData,
       });

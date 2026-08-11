@@ -8,6 +8,7 @@ import axios from "axios"; // axios 설치 필요
 
 const Customer_main = () => {
 	const [notices, setNotices] = useState([]);
+	const API_URL = import.meta.env.VITE_API_URL;
 	//const isAdmin = user.id === "admin"; // 또는 운영자 조건
 
 	const [newNotice, setNewNotice] = useState({
@@ -18,7 +19,7 @@ const Customer_main = () => {
 	});
 	
 	const handleSubmit = () => {
-		axios.post("http://localhost:5001/notice", newNotice)
+		axios.post(`${API_URL}/notice`, newNotice)
 			.then(() => {
 				alert("공지사항 등록 완료");
 				window.location.reload(); // or re-fetch data
@@ -27,7 +28,7 @@ const Customer_main = () => {
 	};	
 
   useEffect(() => {
-    axios.get("http://localhost:5001/api/notice")
+    axios.get(`${API_URL}/api/notice`)
       .then((res) => setNotices(res.data))
       .catch((err) => console.error(err));
   }, []);

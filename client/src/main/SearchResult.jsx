@@ -21,6 +21,7 @@ const SearchResult = () => {    // 프론트에서 전체 상품 리스트를 �
   // 서버 요청이 실패했을 때 사용자에게 에러 메시지를 보여주기 위해 사용 
   // setError : 에러가 발생하면 해당 메시지를 저장 
   const [error, setError] = useState(null);
+  const API_URL = import.meta.env.VITE_API_URL;   // 배포용 주소링크 
 
   // 검색어 강조 (자동검색어 추천)
   const highlight = (text) => {
@@ -33,7 +34,7 @@ const SearchResult = () => {    // 프론트에서 전체 상품 리스트를 �
 
   useEffect(() => {
     if (!query) return;
-    axios.get(`http://localhost:5001/api/search?q=${encodeURIComponent(query)}`)   // 검색어 포함된 API 호출
+    axios.get(`${API_URL}/api/search?q=${encodeURIComponent(query)}`)   // 검색어 포함된 API 호출
       .then((res) => {
         setFilteredProducts(res.data);
       })

@@ -16,6 +16,7 @@ import "swiper/css/autoplay";
 
 const Main_Banner1 = () => {
   const [newArrivals, setNewArrivals] = useState([]);
+  const API_URL = import.meta.env.VITE_API_URL;
 
   // 구현할 1st 배너 이미지 항목 데이터들 (호출용) 
   const mainVisuals = [
@@ -44,7 +45,7 @@ const Main_Banner1 = () => {
   useEffect(() => {
     const fetchNewArrivals = async () => {
       try {
-        const res = await fetch("http://localhost:5003/api/main_banner1", { // 여기서부터 credentials 까지는 새로 추가한 코드
+        const res = await fetch(`${API_URL}/api/main_banner1`, { // 여기서부터 credentials 까지는 새로 추가한 코드
           method: "GET", 
           credentials: "include", 
         });  // new_Product.js 페이지(신상품 라우터 페이지) 연동

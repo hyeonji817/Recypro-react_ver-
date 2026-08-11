@@ -3,11 +3,12 @@ import React, { useEffect, useState } from "react";
 
 const BestProducts = () => {
   const [bestProducts, setBestProducts] = useState([]);
+  const API_URL = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     const fetchBestProducts = async () => {
       try {
-        const res = await fetch("http://localhost:5003/api/best_products");
+        const res = await fetch(`${API_URL}/api/best_products`);
         const data = await res.json();
         setBestProducts(data);
       } catch (err) {
@@ -33,7 +34,7 @@ const BestProducts = () => {
                   <div className="prdimg">
                     <a href={item.href || "#"}>
                       <img
-                        src={`http://localhost:5003/uploads/${item.filename}`}
+                        src={`${API_URL}/uploads/${item.filename}`}
                         alt={item.pname}
                       />
                     </a>
