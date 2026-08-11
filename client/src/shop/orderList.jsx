@@ -6,7 +6,8 @@ import Header_loginOK from "../main/Header_loginOK";
 import Footer from "../main/Footer";
 import PaymentModal from "../components/PaymentModal";
 
-const CDN = (path) => `http://localhost:5003/uploads/${String(path || "").replace(/^\.\//,'')}`;
+const API_URL = import.meta.env.VITE_API_URL;
+const CDN = (path) => `${API_URL}/uploads/${String(path || "").replace(/^\.\//,'')}`;
 
 const OrderList = () => {
   const [sp] = useSearchParams();
@@ -69,7 +70,7 @@ const OrderList = () => {
     params.use_mileage = Number(nextMileage || 0);
   
     const { data } = await axios.get(
-      "http://localhost:5003/api/checkout/preview",
+      `${API_URL}/api/checkout/preview`,
       {
         params,
         withCredentials: true,
@@ -166,12 +167,12 @@ const OrderList = () => {
     const fetchAvailableCoupons = async () => {
       try {
         console.log("[쿠폰 조회 요청 시작]", {
-          url: "http://localhost:5003/api/mpCoupon/available",
+          url: `${API_URL}/api/mpCoupon/available`,
           subtotal,
         });
   
         const response = await axios.get(
-          "http://localhost:5003/api/mpCoupon/available",
+          `${API_URL}/api/mpCoupon/available`,
           {
             params: {
               subtotal,
@@ -468,7 +469,7 @@ const OrderList = () => {
         dlv_memo: recv.memo || ""
       };
       const { data } = await axios.post(
-        "http://localhost:5003/api/checkout/prepare",
+        `${API_URL}/api/checkout/prepare`,
         payload,
         { withCredentials: true }
       );
@@ -1250,7 +1251,7 @@ const OrderList = () => {
           try {
             // 모의 승인 → PAID 전환
             const { data: ok } = await axios.post(
-              "http://localhost:5003/api/checkout/confirm-mock",
+              `${API_URL}/api/checkout/confirm-mock`,
               { orderId: prepared.pg_order_uid },
               { withCredentials: true }
             );

@@ -7,7 +7,8 @@ import Footer from "../main/Footer";
 import PaymentModal from "../components/PaymentModal";
 import beepBeep_Toy1 from "../assets/pet/1. beepBeep_Toy1.jpg";
 
-const CDN = (path) => `http://localhost:5003/uploads/${String(path || "").replace(/^\.\//,'')}`;
+const API_URL = import.meta.env.VITE_API_URL;
+const CDN = (path) => `${API_URL}/uploads/${String(path || "").replace(/^\.\//,'')}`;
 
 const OrderList2 = () => {
   const [sp] = useSearchParams();
@@ -30,7 +31,7 @@ const OrderList2 = () => {
         const params = {};
         if (sp.get("all") === "1") params.all = 1;
         if (sp.get("cart_ids")) params.cart_ids = sp.get("cart_ids");
-        const { data } = await axios.get("http://localhost:5003/api/checkout/preview", {
+        const { data } = await axios.get(`${API_URL}/api/checkout/preview`, {
           params, withCredentials: true
         });
         setItems(data.items || []);
@@ -167,7 +168,7 @@ const OrderList2 = () => {
         dlv_memo: recv.memo || ""
       };
       const { data } = await axios.post(
-        "http://localhost:5003/api/checkout/prepare",
+        `${API_URL}/api/checkout/prepare`,
         payload,
         { withCredentials: true }
       );
@@ -760,7 +761,7 @@ const OrderList2 = () => {
           try {
             // 모의 승인 → PAID 전환
             const { data: ok } = await axios.post(
-              "http://localhost:5003/api/checkout/confirm-mock",
+              `${API_URL}/api/checkout/confirm-mock`,
               { orderId: prepared.pg_order_uid },
               { withCredentials: true }
             );

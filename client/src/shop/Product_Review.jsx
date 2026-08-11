@@ -11,6 +11,7 @@ const Product_Review = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchColumn, setSearchColumn] = useState("author");
   const [searchStr, setSearchStr] = useState("");
+  const API_URL = import.meta.env.VITE_API_URL;
 
   // 🔍 검색 필터링
   const filteredReviews = reviews.filter((review) => {
@@ -37,7 +38,7 @@ const Product_Review = () => {
 
   // 🔽 리뷰 불러오기
   useEffect(() => {
-    axios.get("http://localhost:5001/api/review")
+    axios.get(`${API_URL}/api/review`)
       .then((res) => {
         setReviews(res.data);
       })
@@ -73,7 +74,7 @@ const Product_Review = () => {
                     <td>
                       <a href="#">
                         <img
-                          src={`http://localhost:5001/uploads/${review.image}`} // 이미지 폴더는 서버 static 설정 필요
+                          src={`${API_URL}/uploads/${review.image}`} // 이미지 폴더는 서버 static 설정 필요
                           width={45}
                           height={60}
                           alt="리뷰"

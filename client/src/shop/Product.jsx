@@ -14,12 +14,13 @@ const Product = () => {
   const [product, setProduct] = useState(null);
   const navigate = useNavigate();       // 페이지 이동 함수 추가 
   console.log("장바구니 추가 요청:", productId);
+  const API_URL = import.meta.env.VITE_API_URL;
 
   const handleAddToCart = async () => {
     try {
       console.log("장바구니 추가 요청 시작");
 
-      const response = await fetch(`http://localhost:5003/api/cart/${productId}`, {
+      const response = await fetch(`${API_URL}/api/cart/${productId}`, {
         method: "POST", 
         headers: {
           "Content-Type": "application/json", 
@@ -49,7 +50,7 @@ const Product = () => {
     // 서버에서 상품 정보를 가져옴 
     const fetchProduct = async () => {
       try {
-        const res = await axios.get(`http://localhost:5003/api/product/${productId}`, { withCredentials: true });  // 서버 API 호출
+        const res = await axios.get(`${API_URL}/api/product/${productId}`, { withCredentials: true });  // 서버 API 호출
         setProduct(res.data);  // 서버에서 받은 데이터로 상태 업데이트
       } catch (error) {
         console.error("상품 정보를 불러오는 데 실패했습니다:", error.response?.data || error.message);
@@ -80,7 +81,7 @@ const Product = () => {
             <span className="pd_img">
               <img
                 alt="상품 이미지"
-                src={`http://localhost:5003/uploads/shopdetail/${product.filename}`}
+                src={`${API_URL}/uploads/shopdetail/${product.filename}`}
                 style={{ width: "100%" }}
               />
             </span>

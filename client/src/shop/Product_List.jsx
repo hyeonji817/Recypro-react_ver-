@@ -6,11 +6,12 @@ const Product_List = () => {
   const [productLists, setProductsList] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 3; 
+  const API_URL = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     const fetchProductsList = async () => {
       try {
-        const res = await fetch("http://localhost:5003/api/product_life");    // Product_Life.js (상품목록 페이지 라우터) 페이지 연동
+        const res = await fetch(`${API_URL}/api/product_life`);    // Product_Life.js (상품목록 페이지 라우터) 페이지 연동
         const data = await res.json();
         setProductsList(data);    // 서버로부터 불러들인 데이터를 저장
       } catch (err) {
@@ -48,7 +49,7 @@ const Product_List = () => {
 		            <div className="prdimg">
                   <Link to={`/product_life/${encodeURIComponent(item.productId)}`}>
                     <img 
-                      src={`http://localhost:5003/uploads/${String(item.filename).replace(/^\.\//,'')}`} 
+                      src={`${API_URL}/uploads/${String(item.filename).replace(/^\.\//,'')}`} 
                       alt={item.pname}
                       width="240" 
                       height="320"

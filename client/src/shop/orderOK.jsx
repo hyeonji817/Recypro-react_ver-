@@ -5,7 +5,8 @@ import { useLocation, useSearchParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const CDN = (path) => `http://localhost:5003/uploads/${String(path || "").replace(/^\.\//,'')}`;
+const API_URL = import.meta.env.VITE_API_URL;
+const CDN = (path) => `${API_URL}/uploads/${String(path || "").replace(/^\.\//,'')}`;
 
 const OrderOK = () => {
 	const loc = useLocation(); 
@@ -27,7 +28,7 @@ const OrderOK = () => {
 			}
 			try {
 				const { data: fetched } = await axios.get(
-					`http://localhost:5003/api/mypage/orders/${order_id}`,
+					`${API_URL}/api/mypage/orders/${order_id}`,
 					{ withCredentials: true }
 				);
 				setData({

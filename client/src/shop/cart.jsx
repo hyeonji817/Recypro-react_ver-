@@ -7,7 +7,8 @@ import axios from "axios";
 import cart_del from "../assets/cart_del.png"; 
 import cart_wish from "../assets/cart_wish.png";
 
-const CDN = (path) => `http://localhost:5003/uploads/${String(path || "").replace(/^\.\//,'')}`;
+const API_URL = import.meta.env.VITE_API_URL;
+const CDN = (path) => `${API_URL}/uploads/${String(path || "").replace(/^\.\//,'')}`;
 
 const Cart = () => {
 	const [rows, setRows] = useState([]);
@@ -35,7 +36,7 @@ const Cart = () => {
 	// 장바구니 조회
 	const fetchCart = async () => {
 		try {
-			const { data } = await axios.get("http://localhost:5003/api/cart", { withCredentials: true });
+			const { data } = await axios.get(`${API_URL}/api/cart`, { withCredentials: true });
       setRows(data || []);
 		} catch (e) {
 			console.error(e);
@@ -51,7 +52,7 @@ const Cart = () => {
 	const updateQty = async (row, nextQty) => {
     if (nextQty < 1) return;
     try {
-      await axios.put(`http://localhost:5003/api/cart/${row.cart_id}/qty`,
+      await axios.put(`${API_URL}/api/cart/${row.cart_id}/qty`,
         { qty: nextQty, unitPrice: row.unit_price },
         { withCredentials: true }
       );
@@ -64,7 +65,7 @@ const Cart = () => {
 
 	const removeItem = async (row) => {
 		try {
-      await axios.delete(`http://localhost:5003/api/cart/${row.cart_id}`, { withCredentials: true });
+      await axios.delete(`${API_URL}/api/cart/${row.cart_id}`, { withCredentials: true });
       fetchCart();
     } catch (e) {
       console.error(e);

@@ -5,6 +5,7 @@ import Header_loginOK from "../main/Header_loginOK";
 import Footer from "../main/Footer";
 
 const Product_write = () => {
+  const API_URL = import.meta.env.VITE_API_URL;
 	const [form, setForm] = useState({
     rv_title: "",
     rv_rating: 5,
@@ -24,7 +25,7 @@ const Product_write = () => {
     const today = new Date().toISOString().slice(0, 10); // yyyy-mm-dd
 
     try {
-      const res = await axios.post("http://localhost:5001/api/review", {
+      const res = await axios.post(`${API_URL}/api/review`, {
         ...form,
         date: today,
       });
