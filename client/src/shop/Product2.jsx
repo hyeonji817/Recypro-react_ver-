@@ -29,6 +29,7 @@ const Product2 = () => {
 	const [isWished, setIsWished] = useState(false); 
 	const [wishLoading, setWishLoading] = useState(false); 
 	const groups = React.useMemo(() => product?.optionGroups ?? [], [product]);		// Product2 컴포넌트 내부 
+	const API_URL = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
 		let mounted = true; 
@@ -36,7 +37,7 @@ const Product2 = () => {
 		(async () => {
 			try {
 				// 라우터 페이지(Product_Bath.js) 연동 
-				const res = await axios.get(`http://localhost:5003/api/product_bath/${encodeURIComponent(productId)}`, 
+				const res = await axios.get(`${API_URL}/api/product_bath/${encodeURIComponent(productId)}`, 
 										{ withCredentials: true });
 
 				console.log("Product2 API 응답: ", res.data);	
@@ -72,7 +73,7 @@ const Product2 = () => {
 	
 		const checkWish = async () => {
 			try {
-				const res = await axios.get("http://localhost:5003/api/mypage/wish/check", {
+				const res = await axios.get(`${API_URL}/api/mypage/wish/check`, {
 					params: {
 						productTable: PRODUCT_TABLE,
 						productId,
@@ -142,7 +143,7 @@ const Product2 = () => {
 		};
 
 		try {
-			await axios.post("http://localhost:5003/api/cart", payload, { withCredentials: true });
+			await axios.post(`${API_URL}/api/cart`, payload, { withCredentials: true });
 			// 장바구니 페이지로 이동
 			nav("/cart");
 		} catch (e) {
@@ -164,7 +165,7 @@ const Product2 = () => {
 			setWishLoading(true);
 	
 			const res = await axios.post(
-				"http://localhost:5003/api/mypage/wish/toggle",
+				`${API_URL}/api/mypage/wish/toggle`,
 				{
 					productTable: PRODUCT_TABLE,
 					productId,
@@ -236,8 +237,8 @@ const Product2 = () => {
 	const totalPrice = unitPrice * qty;
 
 	// 업로드 경로 통일: DB에는 "life/xxx.jpg" 저장했다고 가정
-  const mainImg = `http://localhost:5003/uploads/${String(filename).replace(/^\.\//,'')}`;
-	const DescImg = `http://localhost:5003/uploads/${String(img_Desc).replace(/^\.\//,'')}`;
+  const mainImg = `${API_URL}/uploads/${String(filename).replace(/^\.\//,'')}`;
+	const DescImg = `${API_URL}/uploads/${String(img_Desc).replace(/^\.\//,'')}`;
 
 	return (
 		<div className="ProductBath_wrap">

@@ -31,13 +31,14 @@ const Product6 = () => {
   const groups = React.useMemo(() => product?.optionGroups ?? [], [product]);   
   console.log("productId param = ", productId);
   console.log("[Product6] productId = ", productId);
+  const API_URL = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     let mounted = true; 
     (async() => {
       try {
         // 라우터 페이지(Product_Office.js) 연동 
-        const res = await axios.get(`http://localhost:5003/api/product_office/${encodeURIComponent(productId)}`, { withCredentials: true });
+        const res = await axios.get(`${API_URL}/api/product_office/${encodeURIComponent(productId)}`, { withCredentials: true });
         if (mounted) setProduct(res.data);
       } catch (err) {
         console.error(err);
@@ -55,7 +56,7 @@ const Product6 = () => {
   
     const checkWish = async () => {
       try {
-        const res = await axios.get("http://localhost:5003/api/mypage/wish/check", {
+        const res = await axios.get(`${API_URL}/api/mypage/wish/check`, {
           params: {
             productTable: PRODUCT_TABLE,
             productId,
@@ -125,7 +126,7 @@ const Product6 = () => {
 		};
 
     try {
-			await axios.post("http://localhost:5003/api/cart", payload, { withCredentials: true });
+			await axios.post(`${API_URL}/api/cart`, payload, { withCredentials: true });
 			// 장바구니 페이지로 이동
 			nav("/cart");
 		} catch (e) {
@@ -147,7 +148,7 @@ const Product6 = () => {
       setWishLoading(true);
   
       const res = await axios.post(
-        "http://localhost:5003/api/mypage/wish/toggle",
+        `${API_URL}/api/mypage/wish/toggle`,
         {
           productTable: PRODUCT_TABLE,
           productId,
@@ -224,8 +225,8 @@ const Product6 = () => {
   }
 
   // 업로드 경로 통일: DB에는 "life/xxx.jpg" 저장했다고 가정
-  const mainImg = `http://localhost:5003/uploads/${String(filename).replace(/^\.\//,'')}`;
-	const DescImg = `http://localhost:5003/uploads/${String(img_Desc).replace(/^\.\//,'')}`;
+  const mainImg = `${API_URL}/uploads/${String(filename).replace(/^\.\//,'')}`;
+	const DescImg = `${API_URL}/uploads/${String(img_Desc).replace(/^\.\//,'')}`;
 
   return (
     <div className="ProductOffice_wrap">
