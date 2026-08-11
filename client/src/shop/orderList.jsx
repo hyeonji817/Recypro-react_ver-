@@ -1080,7 +1080,17 @@ const OrderList = () => {
 
                           <tr className="use_milage_field total_sale">
                             <th scope="row">적립금 사용</th>
-                            <td>(-) <span className="use_milage_prc">0</span> 원</td>
+                            <td>
+                              (-){" "}
+                              <span className="use_mileage_prc">
+                                {Number(
+                                  tot?.use_mileage ?? 
+                                  tot?.mileage_used ?? 
+                                  useMileage
+                                ).toLocaleString()}  
+                              </span>     {/** use_mileage_prc end */}
+                              원
+                            </td>
                           </tr>
                           <tr className="use_emoney_field total_sale">
                             <th scope="row">예치금 사용</th>
