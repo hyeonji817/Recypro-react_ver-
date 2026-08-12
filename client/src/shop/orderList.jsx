@@ -699,15 +699,30 @@ const OrderList = () => {
                                     name="coupon"
                                     value={cp.coupon_code}
                                     checked={coupon === cp.coupon_code}
-                                    onChange={async (e) => {
-                                      const nextCoupon = e.target.value;
-                                      setCoupon(nextCoupon);
-
+                                    onChange={async () => {
+                                      setCoupon("");
+                                    
                                       try {
-                                        await fetchPreview(nextCoupon, 0);
+                                        const data = await fetchPreview(
+                                          "",
+                                          useMileage
+                                        );
+                                    
+                                        const appliedMileage = Number(
+                                          data?.totals?.use_mileage ??
+                                          data?.totals?.mileage_used ??
+                                          useMileage
+                                        );
+                                    
+                                        setUseMileage(appliedMileage);
+                                        setMileageInput(String(appliedMileage));
                                       } catch (err) {
-                                        console.error("[쿠폰 적용 preview 실패]", err);
-                                        alert(err?.response?.data?.message || "쿠폰 적용 실패");
+                                        console.error(
+                                          "[쿠폰 해제 preview 실패]",
+                                          err
+                                        );
+                                    
+                                        alert("쿠폰 해제 실패");
                                       }
                                     }}
                                   />
