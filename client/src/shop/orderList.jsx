@@ -460,14 +460,16 @@ const OrderList = () => {
     try {
       // 1) 주문 준비(서버 금액 재계산 + PENDING 주문 생성)
       const payload = {
-        all: sp.get("all")==="1" ? "1" : undefined,
+        all: sp.get("all") === "1" ? "1" : undefined,
         cart_ids: sp.get("cart_ids") || undefined,
         coupon_code: coupon || undefined,
+        use_mileage: Number(useMileage || 0),
         buyer,
         receiver: recv,
         pay_method: "TOSS",
         dlv_memo: recv.memo || ""
       };
+      
       const { data } = await axios.post(
         `${API_URL}/api/checkout/prepare`,
         payload,
