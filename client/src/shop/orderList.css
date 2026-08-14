@@ -656,3 +656,41 @@ ol, ul, li {
   opacity: 0.6;
   cursor: pointer;
 }
+
+.orderList_Content .mileage_input_area {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.orderList_Content .mileage_input_area .form_input {
+  width: 260px;
+}
+
+.orderList_Content
+.mileage_apply_btn,
+.mileage_reset_btn {
+  min-width: 70px;
+  height: 40px;
+  padding: 0 14px;
+  border: 1px solid #999;
+  background: #fff;
+  cursor: pointer;
+}
+
+.orderList_Content .mileage_apply_btn {
+  color: #fff;
+  border-color: #333;
+  background: #333;
+}
+
+.orderList_Content
+.mileage_apply_btn:disabled,
+.mileage_reset_btn:disabled {
+  cursor: default;
+  opacity: 0.5;
+}
+
+.orderList_Content .remain_mileage {
+  color: #e52b2b;
+}
