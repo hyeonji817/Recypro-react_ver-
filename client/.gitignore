@@ -3,10 +3,12 @@
 # =========================
 
 node_modules/
+client/node_modules/
 server/node_modules/
 
 # Vite build output
 dist/
+client/dist/
 server/dist/
 
 # =========================
@@ -17,8 +19,13 @@ server/dist/
 .env.*
 !.env.example
 
+client/.env
+client/.env.*
+!client/.env.example
+
 server/.env
 server/.env.*
+!server/.env.example
 
 # =========================
 # Logs
