@@ -33,7 +33,8 @@ import { fileURLToPath } from "url";
 
 dotenv.config(); 
 const app = express();
-const port = 5003;    // 프론트엔드에서 호출할 포트와 일치해야 한다.   
+// const port = 5003;    // 프론트엔드에서 호출할 포트와 일치해야 한다.  
+const PORT = process.env.PORT || 5003; 
 
 /** const sequelize = new Sequelize(
   process.env.DB_NAME,
@@ -332,8 +333,8 @@ app.get('/api/product/:id', (req, res) => {
 // 서버 시작 
 // app.listen : 서버를 시작하고, 지정된 포트(5003)에서 클라이언트 요청을 대기. 
 // 성공적으로 실행되면 콘솔에 서버 주소 출력 
-app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
 
 export const db = pool;    // 외부에서 pool을 사용하기 위함 
