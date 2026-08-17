@@ -95,7 +95,7 @@ app.use("/api/mypage/wish", mpWishRouter);
 app.use("/api/mpCoupon", mpCouponRouter);
 
 // MySQL 연결 설정 (공통) (DB 연결은 단일 세션으로 하면 안되고 pool을 통해 다중 세션 처리할 수 있도록 한다.)
-const pool = mysql.createPool({
+/** const pool = mysql.createPool({
   host: 'localhost',  // host : 데이터베이스 서버 주소 
   user: 'root',   // MySQL 사용자명 
   password: '1234',   // MySQL 비밀번호 
@@ -103,6 +103,14 @@ const pool = mysql.createPool({
   waitForConnections: true,   // 풀의 연결이 가득 찼을 때 대기 여부 
   connectionLimit: 0,     // 풀에서 사용할 최대 연결 수 (0은 제한 없음)
   queueLimit: 0     // 대기열 크기(0은 제한 없음)
+}); */ 
+const pool = mysql.createPool({
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+  charset: "utf8mb4",
 });
 
 // DB 연동 확인 (테스트용)
