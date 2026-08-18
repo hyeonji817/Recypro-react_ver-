@@ -34,7 +34,26 @@ import { fileURLToPath } from "url";
 dotenv.config(); 
 const app = express();
 // const port = 5003;    // 프론트엔드에서 호출할 포트와 일치해야 한다.  
-const PORT = process.env.PORT || 5003; 
+const PORT = process.env.PORT || 5003;
+
+const allowedOrigins = [
+  "http://localhost:5174",
+  "http://127.0.0.1:5174",
+  process.env.FRONTEND_URL,
+].filter(Boolean);
+
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("CORS 차단"));
+    }
+  },
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type"],
+  credentials: true,
+}));
 
 /** const sequelize = new Sequelize(
   process.env.DB_NAME,
@@ -48,12 +67,12 @@ const PORT = process.env.PORT || 5003;
 ); */
 
 // CORS 설정 (프론트와 백 연결하는 징검다리)
-app.use(cors({
+/** app.use(cors({
   origin: 'http://localhost:5174',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type'],
   credentials: true,
-}));
+})); */
 
 // JSON 형식의 요청을 처리하기 위한 미들웨어
 // JSON 형식의 요청 본문을 읽고 사용할 수 있도록 설정. 
@@ -62,7 +81,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 app.use(session({
-  secret: "guswl0817",    // 세션 암호화 키 
+  secret: process.env.SESSION_SECRET,    // 세션 암호화 키 
   resave: false, 
   saveUninitialized: false,
   cookie: {
@@ -123,7 +142,7 @@ pool.getConnection((err, connection) => {
   }
 });
 
-const allowedOrigins = [
+/** const allowedOrigins = [
   "http://localhost:5174",
   "http://127.0.0.1:5174"
 ];
@@ -137,7 +156,7 @@ app.use(cors({
     }
   },
   credentials: true
-}));
+})); */
 
 // ---------------------------------------------------------------------------
 // 인기상품 불러들이기 (해결 원인)
@@ -341,7 +360,7 @@ app.get('/api/product/:id', (req, res) => {
 // 서버 시작 
 // app.listen : 서버를 시작하고, 지정된 포트(5003)에서 클라이언트 요청을 대기. 
 // 성공적으로 실행되면 콘솔에 서버 주소 출력 
-app.listen(PORT, () => {
+app.listen(PORT, "0.0.0.0", () => {
   console.log(`Server running on port ${PORT}`);
 });
 
