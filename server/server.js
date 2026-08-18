@@ -322,7 +322,7 @@ app.post("/api/ChangePassword", async (req, res) => {
   }
 
   // 새 비밀번호 해싱 후 저장 
-  const hashedNewPassword = await bcrypt.hash(newPassword, 10);
+  const hashedNewPassword = await bcryptjs.hash(newPassword, 10);
   user.password = hashedNewPassword;
   
   res.json ({ message: "비밀번호가 성공적으로 변경되었습니다." });
