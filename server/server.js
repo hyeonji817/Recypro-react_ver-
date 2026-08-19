@@ -92,6 +92,14 @@ app.use(session({
   }
 }));
 
+// 배포 확인용
+app.get("/health", (req, res) => {
+  res.status(200).json({
+    status: "ok",
+    message: "Recypro server is running",
+  });
+});
+
 // 라우트 경로 등록 
 app.use("/login", loginRouter);
 app.use("/api/cart", cartRouter);    // cartRouter 등록하여 로직 실행
