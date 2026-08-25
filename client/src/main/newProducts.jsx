@@ -1,4 +1,4 @@
-import "./NewProducts.css";
+import "./newProducts.css";
 import React, { useEffect, useState } from "react";
 
 import { Swiper, SwiperSlide } from "swiper/react";
