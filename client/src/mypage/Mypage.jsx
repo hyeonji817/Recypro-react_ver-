@@ -8,11 +8,12 @@ const formatWon = (value) => Number(value || 0).toLocaleString();
 const Mypage = () => {
   const [summary, setSummary] = useState(null);
   const [orders, setOrders] = useState([]);
+  const API_URL = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     Promise.all([
-      fetch("/api/mypage/summary", { credentials: "include" }).then((res) => res.json()),
-      fetch("/api/mypage/orders", { credentials: "include" }).then((res) => res.json()),
+      fetch(`${API_URL}/api/mypage/summary`, { credentials: "include" }).then((res) => res.json()),
+      fetch(`${API_URL}/api/mypage/orders`, { credentials: "include" }).then((res) => res.json()),
     ])
       .then(([summaryData, orderData]) => {
         setSummary(summaryData);
