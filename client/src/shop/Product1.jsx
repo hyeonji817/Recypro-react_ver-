@@ -366,7 +366,7 @@ const Product1 = () => {
 															{Math.floor((discount_price || 0) * 0.05).toLocaleString()} 원
 															<div className="box_info">
 																<div className="info">
-																	회원적립립금 : {mileage} 원 <br />	
+																	회원적립금 : {mileage} 원 <br />	
 																</div>		{/** info end */}	
 															</div>		{/** box_info end */}
 														</td>
