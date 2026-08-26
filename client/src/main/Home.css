@@ -57,3 +57,11 @@
     margin-bottom: 0;
   }
 }
+
+@media (max-width: 360px) {
+  .main_banner1_wrap .Banner_text,
+  .main_Banner2_wrap .banner_text,
+  .bottom_bnr .banner_text {
+    font-size: 21px;
+  }
+}

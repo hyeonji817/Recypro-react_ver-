@@ -158,3 +158,34 @@
     font-size: 14px;
   }
 }
+
+/** 픽셀단위 480 반응형 추가 */ 
+@media (max-width: 480px) {
+  .footer_bar {
+    position: static;
+    top: auto;
+    padding: 40px 20px;
+  }
+
+  .footer_bar .ft_title {
+    font-size: 24px;
+  }
+
+  .footer_bar .ft_box strong {
+    font-size: 42px;
+  }
+
+  .footer_bar .ft_box p {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .footer_bar .shopInfo .ft_menu li {
+    font-size: 13px;
+  }
+
+  .footer_bar .info {
+    font-size: 12px;
+    line-height: 1.7;
+  }
+}
