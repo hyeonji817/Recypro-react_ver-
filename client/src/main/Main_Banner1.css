@@ -137,7 +137,7 @@
   right: 30px;
 }
 
-/** 반응형 */ 
+/** 반응형 (화면 픽셀 768) */ 
 @media (max-width: 768px) {
   .main_banner1_wrap {
     width: 100%;
@@ -158,5 +158,24 @@
     line-height: 1.3;
     word-break: keep-all;
     white-space: normal;
+  }
+}
+
+/** 반응형 (화면 픽셀 480) */ 
+@media (max-width: 480px) {
+  .main_banner1_wrap .main_visual img {
+    height: 220px;
+    object-fit: cover;
+  }
+
+  .main_banner1_wrap .Banner_text {
+    width: calc(100% - 32px);
+    top: 50%;
+    left: 50%;
+    font-size: 24px;
+    line-height: 1.35;
+    transform: translate(-50%, -50%);
+    white-space: normal;
+    word-break: keep-all;
   }
 }

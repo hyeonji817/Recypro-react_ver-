@@ -46,7 +46,7 @@
   font-family: 'GmarketSansMedium';
 }
 
-/** 반응형 추가 */ 
+/** 반응형(픽셀단위 768) 추가 */ 
 @media (max-width: 768px) {
   .main_Banner2_wrap {
     width: 100%;
@@ -80,5 +80,25 @@
     width: 100px;
     right: 16px;
     bottom: 16px;
+  }
+}
+
+/** 픽셀단위 (480) 반응형 */ 
+@media (max-width: 480px) {
+  .main_Banner2_wrap .bnr_img img:first-child {
+    height: 420px;
+    object-fit: cover;
+  }
+
+  .main_Banner2_wrap .banner_text {
+    width: calc(100% - 40px);
+    top: 50%;
+    left: 50%;
+    font-size: 24px;
+    line-height: 1.4;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    white-space: normal;
+    word-break: keep-all;
   }
 }
