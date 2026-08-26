@@ -45,3 +45,40 @@
   opacity: 0.9;
   font-family: 'GmarketSansMedium';
 }
+
+/** 반응형 추가 */ 
+@media (max-width: 768px) {
+  .main_Banner2_wrap {
+    width: 100%;
+    margin-top: 0;
+    overflow: hidden;
+  }
+
+  .main_Banner2_wrap .mid_bnr {
+    position: relative;
+  }
+
+  .main_Banner2_wrap .bnr_img img:first-child {
+    width: 100%;
+    height: 520px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .main_Banner2_wrap .banner_text {
+    width: calc(100% - 48px);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2rem;
+    line-height: 1.35;
+    text-align: center;
+    word-break: keep-all;
+  }
+
+  .main_Banner2_wrap .watermark_logo {
+    width: 100px;
+    right: 16px;
+    bottom: 16px;
+  }
+}
