@@ -122,3 +122,45 @@
 .best-products .prd_basic.col3 .box .price .discount {
   margin: 0;
 }
+
+/** 반응형 추가 */ 
+@media (max-width: 768px) {
+  .best-products {
+    position: static;
+    top: auto;
+    padding: 56px 16px 30px;
+    min-height: auto;
+  }
+
+  .best-products .main_best {
+    width: 100%;
+  }
+
+  .best-products .title_section {
+    margin-bottom: 28px;
+  }
+
+  .best-products .title_section h2 {
+    font-size: 26px;
+  }
+
+  .best-products .prd_basic.col3 {
+    grid-template-columns: 1fr;
+    row-gap: 32px;
+  }
+
+  .best-products .prd_basic.col3 .box {
+    min-height: auto;
+  }
+
+  .best-products .prd_basic.col3 .box .img .prdimg img {
+    max-width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+  }
+
+  .best-products .prd_basic.col3 .box .info .name {
+    font-size: 16px;
+    margin-bottom: 18px;
+  }
+}
