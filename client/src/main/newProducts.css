@@ -199,74 +199,156 @@
   font-family: 'GmarketSansMedium';
 }
 
-/** 반응형 추가 */ 
 @media (max-width: 768px) {
   .newProducts_wrap {
     width: 100%;
     min-height: auto;
     padding-bottom: 30px;
-    overflow: hidden;
+    overflow: visible;
   }
 
   .newProducts_wrap .main_new {
     width: 100%;
-    margin-top: 60px;
+    max-width: 100%;
+    margin-top: 68px;
+    box-sizing: border-box;
+    padding: 0 12px;
   }
 
   .newProducts_wrap .title_section.tac {
     left: auto;
-    margin-bottom: 24px;
+    margin-bottom: 18px;
   }
 
   .newProducts_wrap .main_new h2 {
     top: auto;
-    font-size: 26px;
+    font-size: 24px;
+    margin: 0 0 18px;
   }
 
-  .newProducts_wrap .main_new .prd_basic {
-    left: auto;
+  .newProducts_wrap .main_new_slide,
+  .newProducts_wrap .main_new_slide.swiper,
+  .newProducts_wrap .main_new_slide .swiper-wrapper {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    overflow: visible !important;
+    transform: none !important;
+  }
+
+  .newProducts_wrap .main_new_slide .swiper-slide {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    margin: 0 0 22px !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+
+  .newProducts_wrap .main_new .prd_basic,
+  .newProducts_wrap .main_new .prd_basic li {
+    display: block;
     width: 100%;
+    box-sizing: border-box;
+    left: auto;
+    text-align: center;
   }
 
   .newProducts_wrap .main_new .prd_basic .box {
-    width: calc(100% - 32px);
+    width: 100%;
     max-width: 360px;
     height: auto;
-    min-height: auto;
+    min-height: 0;
+    margin: 0 auto;
     padding: 10px;
+    box-sizing: border-box;
+    background: #fff;
+    border: 1px solid #eee;
+  }
+
+  .newProducts_wrap .main_new .prd_basic .box .img {
+    width: 100%;
+    margin: 0 auto;
   }
 
   .newProducts_wrap .main_new .prd_basic .box .img .prdimg img {
+    display: block;
     width: 100%;
     height: auto;
     aspect-ratio: 1 / 1;
     object-fit: cover;
+    margin: 0 auto;
+    position: static;
   }
 
   .newProducts_wrap .main_new .prd_basic .info {
     width: 100%;
+    padding: 18px 8px 10px;
+    box-sizing: border-box;
+    position: static;
     left: auto;
     top: auto;
-    padding: 16px 0;
+    text-align: center;
   }
 
-  .newProducts_wrap .prd_basic .box .name > a,
   .newProducts_wrap .main_new .box .info .name {
+    display: block;
     width: 100%;
+    max-width: 100%;
+    margin: 0 auto 10px;
+    box-sizing: border-box;
+    position: static;
+    right: auto;
+    font-size: 15px;
+    line-height: 1.45;
+    text-align: center;
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+  }
+
+  .newProducts_wrap .main_new .prd_basic .box .name > a,
+  .newProducts_wrap .prd_basic .box .name > a {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+    position: static;
     left: auto;
     right: auto;
-    font-size: 16px;
+    font-size: 15px;
+    line-height: 1.45;
+    text-align: center;
+    word-break: keep-all;
+    overflow-wrap: anywhere;
   }
 
   .newProducts_wrap .main_new .price {
+    width: 100%;
+    min-height: 0;
+    padding: 0 0 12px;
+    box-sizing: border-box;
+    position: static;
     left: auto;
     top: auto;
-    min-height: auto;
+    text-align: center;
+  }
+
+  .newProducts_wrap .main_new .sell_sellY {
+    display: block;
+    position: static;
+    right: auto;
+    font-size: 14px;
   }
 
   .newProducts_wrap .main_new .prd_basic .box .price .discount_section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 100%;
-    margin-left: 0;
+    margin: 8px auto 0;
+    column-gap: 10px;
+    font-size: 14px;
   }
 
   .newProducts_wrap .main_new .prd_basic .discount_section .per,
@@ -274,7 +356,15 @@
   .newProducts_wrap .main_new .per,
   .newProducts_wrap .main_new .discount_discountY {
     position: static;
-    padding-left: 0;
-    margin-left: 0;
+    left: auto;
+    right: auto;
+    margin: 0;
+    padding: 0;
+  }
+
+  .newProducts_wrap .swiper-button-prev,
+  .newProducts_wrap .swiper-button-next,
+  .newProducts_wrap .swiper-pagination {
+    display: none !important;
   }
 }
