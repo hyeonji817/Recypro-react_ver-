@@ -198,3 +198,83 @@
   right: 30px;
   font-family: 'GmarketSansMedium';
 }
+
+/** 반응형 추가 */ 
+@media (max-width: 768px) {
+  .newProducts_wrap {
+    width: 100%;
+    min-height: auto;
+    padding-bottom: 30px;
+    overflow: hidden;
+  }
+
+  .newProducts_wrap .main_new {
+    width: 100%;
+    margin-top: 60px;
+  }
+
+  .newProducts_wrap .title_section.tac {
+    left: auto;
+    margin-bottom: 24px;
+  }
+
+  .newProducts_wrap .main_new h2 {
+    top: auto;
+    font-size: 26px;
+  }
+
+  .newProducts_wrap .main_new .prd_basic {
+    left: auto;
+    width: 100%;
+  }
+
+  .newProducts_wrap .main_new .prd_basic .box {
+    width: calc(100% - 32px);
+    max-width: 360px;
+    height: auto;
+    min-height: auto;
+    padding: 10px;
+  }
+
+  .newProducts_wrap .main_new .prd_basic .box .img .prdimg img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+  }
+
+  .newProducts_wrap .main_new .prd_basic .info {
+    width: 100%;
+    left: auto;
+    top: auto;
+    padding: 16px 0;
+  }
+
+  .newProducts_wrap .prd_basic .box .name > a,
+  .newProducts_wrap .main_new .box .info .name {
+    width: 100%;
+    left: auto;
+    right: auto;
+    font-size: 16px;
+  }
+
+  .newProducts_wrap .main_new .price {
+    left: auto;
+    top: auto;
+    min-height: auto;
+  }
+
+  .newProducts_wrap .main_new .prd_basic .box .price .discount_section {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .newProducts_wrap .main_new .prd_basic .discount_section .per,
+  .newProducts_wrap .main_new .prd_basic .discount_section .discount_discountY,
+  .newProducts_wrap .main_new .per,
+  .newProducts_wrap .main_new .discount_discountY {
+    position: static;
+    padding-left: 0;
+    margin-left: 0;
+  }
+}

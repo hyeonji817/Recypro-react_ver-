@@ -47,8 +47,8 @@ const NewProducts = () => {
             autoplay={{ delay: 4000, disableOnInteraction: false }}
             breakpoints={{
               320: { slidesPerView: 1 },
-              768: { slidedPerView: 2 },
-              1024: { slidePerView: 3 },
+              768: { slidesPerView: 2 },
+              1024: { slidesPerView: 3 },
             }}
           >
             {newArrivals.map((item, index) => (
