@@ -39,6 +39,7 @@ const PORT = process.env.PORT || 5003;
 const allowedOrigins = [
   "http://localhost:5174",
   "http://127.0.0.1:5174",
+  "https://recypro-react-ver.vercel.app",
   process.env.FRONTEND_URL,
 ].filter(Boolean);
 
