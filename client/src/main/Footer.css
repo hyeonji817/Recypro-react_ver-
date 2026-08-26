@@ -105,7 +105,7 @@
 }
 
 /** 반응형 추가 */ 
-@media (max-width: 768px) {
+/** @media (max-width: 768px) {
   .footer_bar {
     position: static;
     top: auto;
@@ -157,7 +157,7 @@
   .footer_bar .ft_pay li {
     font-size: 14px;
   }
-}
+} */
 
 /** 픽셀단위 480 반응형 추가 */ 
 @media (max-width: 480px) {
@@ -187,5 +187,108 @@
   .footer_bar .info {
     font-size: 12px;
     line-height: 1.7;
+  }
+}
+
+/** 모바일 푸터 하단 인증/배송 영역 정리 */
+@media (max-width: 768px) {
+  .footer_bar {
+    width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  .footer_bar .footer_copyrt {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 34px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .footer_bar .ft_title,
+  .footer_bar .ft_box,
+  .footer_bar .shopInfo,
+  .footer_bar .shopInfo .ft_menu,
+  .footer_bar .info,
+  .footer_bar .ft_pay {
+    position: static;
+    left: auto;
+    right: auto;
+    top: auto;
+    bottom: auto;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .footer_bar .shopInfo .ft_menu {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 10px;
+    margin: 0 0 18px;
+    padding: 0;
+  }
+
+  .footer_bar .info {
+    line-height: 1.75;
+    word-break: keep-all;
+  }
+
+  .footer_bar .ft_pay {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin: 18px 0 0;
+    padding: 18px 0 0;
+    border-top: 1px solid #ddd;
+  }
+
+  .footer_bar .ft_pay li {
+    display: grid;
+    grid-template-columns: 42px 1fr;
+    align-items: center;
+    width: 100%;
+    min-height: 52px;
+    padding: 8px 10px;
+    box-sizing: border-box;
+    background-color: #f7f7f7;
+    border: 1px solid #e2e2e2;
+  }
+
+  .footer_bar .ft_pay li a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    padding: 0 !important;
+  }
+
+  .footer_bar .ft_pay li a img {
+    display: block;
+    max-width: 34px;
+    max-height: 28px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .footer_bar .ft_pay li p,
+  .footer_bar .ft_pay li:first-child p,
+  .footer_bar .ft_pay li:nth-child(2) p,
+  .footer_bar .ft_pay li:nth-child(3) p {
+    position: static;
+    left: auto;
+    right: auto;
+    top: auto;
+    bottom: auto;
+    float: none;
+    margin: 0;
+    padding: 0;
+    font-size: 15px;
+    line-height: 1.35;
+    text-align: left;
+    word-break: keep-all;
   }
 }
