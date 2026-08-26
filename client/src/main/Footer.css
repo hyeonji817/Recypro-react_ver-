@@ -103,3 +103,58 @@
   position: relative;
   left: -40px;
 }
+
+/** 반응형 추가 */ 
+@media (max-width: 768px) {
+  .footer_bar {
+    position: static;
+    top: auto;
+    padding: 48px 24px;
+  }
+
+  .footer_bar .ft_title,
+  .footer_bar .ft_box,
+  .footer_bar .shopInfo .ft_menu,
+  .footer_bar .info,
+  .footer_bar .ft_pay {
+    position: static;
+    left: auto;
+    top: auto;
+    bottom: auto;
+    width: 100%;
+  }
+
+  .footer_bar .ft_box strong {
+    font-size: 40px;
+  }
+
+  .footer_bar .shopInfo {
+    display: block;
+    margin-top: 40px;
+  }
+
+  .footer_bar .shopInfo .ft_menu {
+    padding: 0;
+    margin: 0 0 24px;
+  }
+
+  .footer_bar .shopInfo .ft_menu li {
+    display: inline;
+    font-size: 14px;
+  }
+
+  .footer_bar .info {
+    font-size: 13px;
+    line-height: 1.7;
+  }
+
+  .footer_bar .ft_pay {
+    display: block;
+    padding: 0;
+    margin-top: 32px;
+  }
+
+  .footer_bar .ft_pay li {
+    font-size: 14px;
+  }
+}
