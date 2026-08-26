@@ -136,3 +136,27 @@
   position: relative;
   right: 30px;
 }
+
+/** 반응형 */ 
+@media (max-width: 768px) {
+  .main_banner1_wrap {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .main_banner1_wrap .main_visual img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+  }
+
+  .main_banner1_wrap .Banner_text {
+    width: calc(100% - 32px);
+    top: 50%;
+    left: 50%;
+    font-size: 2rem;
+    line-height: 1.3;
+    word-break: keep-all;
+    white-space: normal;
+  }
+}
