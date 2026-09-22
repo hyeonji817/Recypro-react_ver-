@@ -10,7 +10,7 @@ export default defineConfig({
   },
   server: {
     host: "localhost",
-    port: 5174,   // 여기 변경
+    port: 5274,   // 여기 변경
     proxy: {
       '/api': {
         target: 'http://localhost:5003',
