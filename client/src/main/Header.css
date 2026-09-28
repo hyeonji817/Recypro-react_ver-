@@ -86,7 +86,7 @@
   text-decoration: none;
 }
 
-.common_top .nav-right > li {
+.common_top .nav-right>li {
   display: block;
   margin-right: 0;
   text-align: center;
@@ -95,12 +95,12 @@
   font-family: 'GmarketSansMedium' !important;
 }
 
-.common_top .nav-right > li:last-child {
+.common_top .nav-right>li:last-child {
   margin-right: 0;
   font-weight: 800;
 }
 
-.common_top .nav-right > li ul.submenu {
+.common_top .nav-right>li ul.submenu {
   display: none;
   position: absolute;
   padding: 0;
@@ -111,7 +111,7 @@
   font-weight: bold;
 }
 
-.common_top ul.nav-right > li:hover ul.submenu {
+.common_top ul.nav-right>li:hover ul.submenu {
   display: block;
   width: 150px;
   border-radius: 0px 0px 8px 8px;
@@ -161,7 +161,7 @@
   padding: 0;
 }
 
-/** 반응형 추가 */ 
+/** 반응형 추가 */
 @media (max-width: 430px) {
   .common_top .header_nav {
     padding: 0 8px;
@@ -219,13 +219,13 @@
     overflow: visible;
   }
 
-  .common_top .nav-right > li {
+  .common_top .nav-right>li {
     flex: 0 0 auto;
     display: block;
     margin-right: 0;
   }
 
-  .common_top .nav-right > li:last-child {
+  .common_top .nav-right>li:last-child {
     margin-right: 0;
   }
 
