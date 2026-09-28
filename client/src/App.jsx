@@ -58,6 +58,7 @@ import Customer_notice from "./customer/customer_notice";
 import Customer_policy from "./customer/customer_policy";
 import Customer_GiftCardPolicy from "./customer/customer_GiftCardPolicy";
 import Customer_question from "./customer/customer_question";
+import CustomerChat from "./customer/CustomerChat";
 import CustomerQA_write from "./customer/customerQA_write";
 import Customer_Subqa from "./customer/customer_Subq&a";
 import Customer_guide from "./customer/customer_guide";
@@ -144,7 +145,8 @@ function App() {
         <Route path="/customer_notice" element={<Customer_notice />} />
         <Route path="/customer_policy" element={<Customer_policy />} />
         <Route path="/customer_GiftCardPolicy" element={<Customer_GiftCardPolicy />} />
-        <Route path="/customer_question" element={<Customer_question />} />
+        <Route path="/customer_question" element={<CustomerChat />} />
+        <Route path="/customer_question_board" element={<Customer_question />} />
         <Route path="/customerQA_write" element={<CustomerQA_write />} />
         <Route path="/customer_subqa" element={<Customer_Subqa />} />
         <Route path="/customer_guide" element={<Customer_guide />} />
