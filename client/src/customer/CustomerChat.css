@@ -1,9 +1,17 @@
+@font-face {
+  font-family: 'GmarketSansMedium';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 .rc-chat {
   max-width: 1240px;
   margin: 48px auto 80px;
   padding: 0 24px;
   color: #233d32;
-  font-family: inherit
+  font-family: inherit;
+  font-family: 'GmarketSansMedium';
 }
 
 .rc-chat * {
