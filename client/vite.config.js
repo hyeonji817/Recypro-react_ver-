@@ -12,7 +12,7 @@ export default defineConfig({
     host: "localhost",
     port: 5274,   // 여기 변경
     proxy: {
-      '/api': {
+      '/api/support': {
         target: 'http://localhost:5003',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ''),

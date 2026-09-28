@@ -8,6 +8,7 @@ import dotenv from "dotenv";
 
 // 라우트 파일 연결 
 import loginRouter from "./routes/login.js";
+import supportChatRouter from "./routes/supportChat.js";
 import cartRouter from "./routes/cart.js"; 
 import newProductRouter from "./routes/new_Product.js";
 import bestProductRouter from "./routes/best_Product.js";
@@ -42,6 +43,7 @@ const allowedOrigins = [
   "http://127.0.0.1:5173",
   "http://127.0.0.1:5174",
   "http://127.0.0.1:5274",
+  "http://localhost:5274",
   "https://recypro-react-ver.vercel.app",
   process.env.FRONTEND_URL,
 ].filter(Boolean);
@@ -106,6 +108,7 @@ app.get("/health", (req, res) => {
 
 // 라우트 경로 등록 
 app.use("/login", loginRouter);
+app.use("/api/support/chat", supportChatRouter);
 app.use("/api/cart", cartRouter);    // cartRouter 등록하여 로직 실행
 app.use("/api/newProducts", newProductRouter);
 app.use("/api/best_products", bestProductRouter);
