@@ -25,7 +25,9 @@ export default function CustomerChat() {
 
     if (controller.current || !question || question.length > 2000) return;
 
-    const history = retry ? messages : [...messages, { role: 'user', content: question }];
+    // Replace an unanswered question so roles continue to alternate after an error.
+    const completed = messages.at(-1)?.role === 'user' ? messages.slice(0, -1) : messages;
+    const history = retry ? messages : [...completed, { role: 'user', content: question }];
     const request = new AbortController();
     controller.current = request;
     setMessages(history); setInput(''); setError(''); setBusy(true);
@@ -71,7 +73,7 @@ export default function CustomerChat() {
           <p>더 가벼운 일상,<br />함께 찾아가는 답.</p>
           <button onClick={reset} disabled={busy}>＋ 새 대화</button>
           <h2>이런 질문을 해보세요</h2>
-          {suggestions.map(text => <button className="rc-chat-topic" key={text} disabled={busy || !!error} onClick={() => send(text)}>{text} <span>↗</span></button>)}
+          {suggestions.map(text => <button className="rc-chat-topic" key={text} disabled={busy} onClick={() => send(text)}>{text} <span>↗</span></button>)}
           <div className="rc-chat-help">
             <strong>도움이 더 필요하신가요?</strong>
             <p>개별 주문과 정확한 운영 정책은<br />고객센터에서 확인해 주세요.</p>
@@ -109,8 +111,8 @@ export default function CustomerChat() {
           </div>}
           <form className="rc-chat-composer" onSubmit={e => { e.preventDefault(); send(); }}>
             <label className="rc-chat-sr" htmlFor="support-message">AI에게 질문하기</label>
-            <textarea id="support-message" ref={field} value={input} maxLength={2000} disabled={busy || !!error} onChange={e => setInput(e.target.value)} placeholder="궁금한 내용을 입력해 주세요" rows={2} onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey && !e.nativeEvent.isComposing) { e.preventDefault(); send(); } }} />
-            {busy ? <button type="button" onClick={() => controller.current?.abort()}>중지</button> : <button type="submit" disabled={!input.trim() || !!error} aria-label="질문 보내기">↑</button>}
+            <textarea id="support-message" ref={field} value={input} maxLength={2000} disabled={busy} onChange={e => setInput(e.target.value)} placeholder="궁금한 내용을 입력해 주세요" rows={2} onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey && !e.nativeEvent.isComposing) { e.preventDefault(); send(); } }} />
+            {busy ? <button type="button" onClick={() => controller.current?.abort()}>중지</button> : <button type="submit" disabled={!input.trim()} aria-label="질문 보내기">↑</button>}
           </form>
           <p className="rc-chat-note">AI 답변은 부정확할 수 있어요. 개인정보는 입력하지 마세요. 대화는 페이지를 나가면 삭제됩니다.</p>
         </section>
