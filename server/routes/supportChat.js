@@ -61,3 +61,5 @@ export function createSupportChatRouter({ fetchImpl = globalThis.fetch, env = pr
   });
   return router;
 }
+
+export default createSupportChatRouter();
