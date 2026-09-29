@@ -44,27 +44,7 @@ export function createSupportChatRouter({ fetchImpl = globalThis.fetch, env = pr
         body: JSON.stringify({ model: env.OPENAI_MODEL, instructions, input: messages.map(({ role, content }) => ({ role, content })), max_output_tokens: 1600, store: false }),
       });
       if (!upstream.ok) {
-        // Read only the error category; never expose provider messages or API keys.
-        const failure = await upstream.json().catch(() => ({}));
-        const code = failure?.error?.code;
-        const type = failure?.error?.type;
-        if (['credit_balance_exhausted', 'insufficient_quota', 'billing_hard_limit_reached', 'organization_spend_limit_exceeded', 'project_spend_limit_exceeded', 'organization_usage_limit_exceeded'].includes(code) || type === 'insufficient_quota') {
-          console.error('[support-chat] AI_QUOTA_EXCEEDED: Check OpenAI API billing and usage limits.');
-          return res.status(503).json({ code: 'AI_QUOTA_EXCEEDED', error: 'AI 상담의 API 이용 한도 또는 크레딧이 소진되었어요. 관리자 확인이 필요합니다. 고객센터를 이용해 주세요.' });
-        }
-        if (upstream.status === 401 || upstream.status === 403) {
-          console.error('[support-chat] AI_AUTH_ERROR: Check server API key and project permissions.');
-          return res.status(503).json({ code: 'AI_AUTH_ERROR', error: 'AI 상담의 인증 설정을 확인해야 해요. 관리자에게 문의해 주세요.' });
-        }
-        if (code === 'model_not_found') {
-          console.error('[support-chat] AI_MODEL_ERROR: Check OPENAI_MODEL and model access.');
-          return res.status(503).json({ code: 'AI_MODEL_ERROR', error: 'AI 상담의 모델 설정을 확인해야 해요. 관리자에게 문의해 주세요.' });
-        }
-        if (upstream.status === 429) {
-          res.set('Retry-After', '60');
-          return res.status(429).json({ code: 'AI_RATE_LIMITED', error: 'AI 상담 요청이 잠시 몰렸어요. 1분 후 다시 시도해 주세요.' });
-        }
-        return res.status(502).json({ error: 'AI 서비스에 연결하지 못했어요. 잠시 후 다시 시도해 주세요.' });
+        return res.status(upstream.status === 429 ? 429 : 502).json({ error: 'AI 서비스에 연결하지 못했어요. 잠시 후 다시 시도해 주세요.' });
       }
       const data = await upstream.json();
       const answer = (data.output || []).filter(item => item.type === 'message')
