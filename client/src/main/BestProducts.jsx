@@ -1,22 +1,17 @@
+import { catalogUrl, loadCatalog } from "../api/catalog";
 import "./BestProducts.css";
 import React, { useEffect, useState } from "react";
 
 const BestProducts = () => {
   const [bestProducts, setBestProducts] = useState([]);
-  const API_URL = import.meta.env.VITE_API_URL;
+  const [status, setStatus] = useState("loading");
 
   useEffect(() => {
-    const fetchBestProducts = async () => {
-      try {
-        const res = await fetch(`${API_URL}/api/best_products`);
-        const data = await res.json();
-        setBestProducts(data);
-      } catch (err) {
-        console.error("Failed to fetch best products:", err);
-      }
-    };
-
-    fetchBestProducts();
+    const controller = new AbortController();
+    loadCatalog('best', controller.signal)
+      .then(data => { setBestProducts(data); setStatus(data.length ? 'ready' : 'empty'); })
+      .catch(error => { if (error.name !== 'AbortError') { console.error(error); setStatus('error'); } });
+    return () => controller.abort();
   }, []);
 
   return (
@@ -24,6 +19,9 @@ const BestProducts = () => {
       <div className="main_best">
         <div className="title_section tac">
           <h2>BEST PRODUCT</h2>
+          {status === 'loading' && <p role="status">상품을 불러오는 중입니다.</p>}
+          {status === 'empty' && <p>등록된 상품이 없습니다.</p>}
+          {status === 'error' && <p role="alert">상품을 불러오지 못했습니다. 잠시 후 새로고침해 주세요.</p>}
         </div>
 
         <ul className="prd_basic col3">
@@ -34,7 +32,7 @@ const BestProducts = () => {
                   <div className="prdimg">
                     <a href={item.href || "#"}>
                       <img
-                        src={`${API_URL}/uploads/${item.filename}`}
+                        src={catalogUrl("image", item.filename)}
                         alt={item.pname}
                       />
                     </a>

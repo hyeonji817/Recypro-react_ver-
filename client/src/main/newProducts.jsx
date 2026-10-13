@@ -1,3 +1,4 @@
+import { catalogUrl, loadCatalog } from "../api/catalog";
 import "./newProducts.css";
 import React, { useEffect, useState } from "react";
 
@@ -11,23 +12,15 @@ import "swiper/css/autoplay";
 
 const NewProducts = () => {
   const [newArrivals, setNewArrivals] = useState([]); // 신상품 리스트들을 불러오기 위한 기능 메소드 구현
-  const API_URL = import.meta.env.VITE_API_URL;
+  const [status, setStatus] = useState("loading");
 
   useEffect(() => {
-      const fetchNewArrivals = async () => {
-        try {
-          const res = await fetch(`${API_URL}/api/newProducts`, { // 여기서부터 credentials 까지는 새로 추가한 코드
-            method: "GET", 
-            credentials: "include", 
-          });  // new_Product.js 페이지(신상품 라우터 페이지) 연동
-          const data = await res.json();
-          setNewArrivals(data);
-        } catch (err) {
-          console.error("Failed to fetch new arrivals:", err);
-        }
-      };
-      fetchNewArrivals();
-    }, []);
+    const controller = new AbortController();
+    loadCatalog('new', controller.signal)
+      .then(data => { setNewArrivals(data); setStatus(data.length ? 'ready' : 'empty'); })
+      .catch(error => { if (error.name !== 'AbortError') { console.error(error); setStatus('error'); } });
+    return () => controller.abort();
+  }, []);
   
 
   return (
@@ -36,6 +29,9 @@ const NewProducts = () => {
       <div className="main_new">
         <div className="title_section tac">
           <h2>NEW ARRIVALS</h2>
+          {status === 'loading' && <p role="status">상품을 불러오는 중입니다.</p>}
+          {status === 'empty' && <p>등록된 상품이 없습니다.</p>}
+          {status === 'error' && <p role="alert">상품을 불러오지 못했습니다. 잠시 후 새로고침해 주세요.</p>}
         </div>
 
         <div className="slide_wrap">  {/** 상품 이미지들을 가로로 여러 개 보여주는 캐러셀 형식으로 구성 */}
@@ -58,7 +54,7 @@ const NewProducts = () => {
                     <div className="prdimg">
                       <a href={item.href}>
                         <img 
-                          src={`${API_URL}/uploads/${item.filename}`}
+                          src={catalogUrl("image", item.filename)}
                           alt={item.name}
                           width="285"
                           height="380"
