@@ -6,7 +6,6 @@ export default async function handler(req, res) {
     res.setHeader('Allow', 'GET');
     return res.status(405).json({ error: 'Method not allowed' });
   }
-
   const resource = req.query.resource;
   let path;
   if (resource === 'new') path = '/api/newProducts';
@@ -26,12 +25,9 @@ export default async function handler(req, res) {
   } catch {
     return res.status(503).json({ code: 'BACKEND_NOT_CONFIGURED', error: 'Vercel BACKEND_URL must be a public HTTPS backend origin.' });
   }
-
   try {
     const upstream = await fetch(new URL(path, base), { signal: AbortSignal.timeout(15000), redirect: 'error' });
-    
     if (!upstream.ok) return res.status(502).json({ code: 'BACKEND_HTTP_ERROR', error: 'Backend request failed', upstreamStatus: upstream.status });
-
     if (resource === 'image') {
       const type = upstream.headers.get('content-type') || '';
       if (!type.startsWith('image/')) return res.status(502).json({ error: 'Backend did not return an image' });
@@ -39,15 +35,11 @@ export default async function handler(req, res) {
       res.setHeader('Cache-Control', 'public, max-age=300');
       return res.status(200).send(Buffer.from(await upstream.arrayBuffer()));
     }
-
     if (!(upstream.headers.get('content-type') || '').includes('application/json')) {
       return res.status(502).json({ code: 'BACKEND_INVALID_RESPONSE', error: 'Backend did not return JSON' });
     }
-
     const data = await upstream.json();
-
     if (!Array.isArray(data)) return res.status(502).json({ error: 'Backend did not return a product array' });
-
     res.setHeader('Cache-Control', 'no-store');
     return res.status(200).json(data);
   } catch {
