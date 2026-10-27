@@ -116,3 +116,12 @@ ol, ul, li {
 .Mypage_wrapper .mypage-order-table .mypage-order-empty{padding:50px 10px}
 .Mypage_wrapper #mypage .my_order>p{padding:0;margin:16px 0 0;font-size:12px}
 @media(max-width:1000px){.Mypage_wrapper #mypage_Content .mypage_body{width:92%}.Mypage_wrapper .my_page_tab{grid-template-columns:repeat(3,1fr);row-gap:24px;padding:60px 0}.Mypage_wrapper .mypage_top .customer_section .name{font-size:21px}.Mypage_wrapper .mypage_top .customer_section .name strong{font-size:21px}.Mypage_wrapper .point_section>li{padding:0 8px}.Mypage_wrapper .point_section>li>a,.Mypage_wrapper .point_section>li>a strong{font-size:15px}}
+
+/* Keep headings and order values on the same column centerline. */
+.Mypage_wrapper .mypage-order-table th,.Mypage_wrapper .mypage-order-table td{box-sizing:border-box;text-align:center;vertical-align:middle;line-height:1.5}
+.Mypage_wrapper .mypage-order-table th:nth-child(1),.Mypage_wrapper .mypage-order-table td:nth-child(1){width:5%}
+.Mypage_wrapper .mypage-order-table th:nth-child(2),.Mypage_wrapper .mypage-order-table td:nth-child(2){width:18%}
+.Mypage_wrapper .mypage-order-table th:nth-child(3),.Mypage_wrapper .mypage-order-table td:nth-child(3){width:30%}
+.Mypage_wrapper .mypage-order-table th:nth-child(n+4),.Mypage_wrapper .mypage-order-table td:nth-child(n+4){width:11.75%}
+.Mypage_wrapper .mypage-order-table td[colspan]{width:auto}
+
