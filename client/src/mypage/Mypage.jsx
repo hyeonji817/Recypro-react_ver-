@@ -66,19 +66,27 @@ const Mypage = () => {
 
           <div id="mypage">
             <div className="my_order">
-              {orders.length === 0 ? (
-                <p className="empty">주문내역이 존재하지 않습니다.</p>
-              ) : (
-                orders.map((order) => (
-                  <div key={order.order_id} className="order_item">
-                    <a href={`/order/${order.order_id}`}>
-                      {order.order_no || `주문번호 ${order.order_id}`}
-                    </a>
-                    <span>{order.status}</span>
-                    <span>{formatWon(order.total_pay)}원</span>
-                  </div>
-                ))
-              )}
+              <div className="mypage-order-scroll">
+                <table className="mypage-order-table">
+                  <thead><tr>{['번호', '주문번호', '상품명', '주문금액', '실 결제금액', '주문일자', '상태'].map(label => <th scope="col" key={label}>{label}</th>)}</tr></thead>
+                  <tbody>
+                    {orders.length === 0 ? <tr><td colSpan="7" className="mypage-order-empty">주문내역이 존재하지 않습니다.</td></tr> : orders.map((order, index) => {
+                      const firstItem = order.items?.[0];
+                      const productName = firstItem ? `${firstItem.pname}${order.items.length > 1 ? ` 외 ${order.items.length - 1}건` : ''}` : '상품 정보 없음';
+                      const date = order.created_at || order.paid_at;
+                      return <tr key={order.order_id}>
+                        <td>{index + 1}</td>
+                        <td><a href={`/mypage/orders/${order.order_id}`}>{order.order_no || order.order_id}</a></td>
+                        <td>{productName}</td>
+                        <td>{order.subtotal == null ? '-' : `${formatWon(order.subtotal)} 원`}</td>
+                        <td>{formatWon(order.total_pay)} 원</td>
+                        <td>{date ? new Date(date).toLocaleDateString('ko-KR') : '-'}</td>
+                        <td>{{PAID: '결제완료', PENDING: '결제대기', CANCELLED: '주문취소'}[order.status] || order.status}</td>
+                      </tr>;
+                    })}
+                  </tbody>
+                </table>
+              </div>
               <p>* 주문번호를 클릭하시면 주문정보를 확인하실 수 있습니다.</p>
             </div>
           </div>

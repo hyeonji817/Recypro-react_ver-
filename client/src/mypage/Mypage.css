@@ -100,4 +100,19 @@ ol, ul, li {
 .empty {
   padding: 100px 0 !important;
   text-align: center;
-}
+}/* Order summary follows the reference layout, scoped to this page. */
+.Mypage_wrapper #mypage_Content .mypage_body{width:calc(100% - 200px);max-width:1440px;overflow:visible}
+.Mypage_wrapper .my_page_tab{display:grid;grid-template-columns:repeat(9,minmax(0,1fr));gap:12px}
+.Mypage_wrapper .my_page_tab>li{padding:0}
+.Mypage_wrapper .mypage-order-scroll{overflow-x:auto}
+.Mypage_wrapper .mypage-order-table{width:100%;min-width:760px;border-collapse:collapse;table-layout:fixed;font-family:GmarketSansMedium,sans-serif;font-size:13px}
+.Mypage_wrapper .mypage-order-table th{padding:18px 8px;border-bottom:1px solid #ddd;text-align:center;font-weight:400}
+.Mypage_wrapper .mypage-order-table td{padding:22px 8px;border-bottom:1px solid #e5e5e5;text-align:center;overflow-wrap:anywhere}
+.Mypage_wrapper .mypage-order-table th:first-child{width:5%}
+.Mypage_wrapper .mypage-order-table th:nth-child(2){width:18%}
+.Mypage_wrapper .mypage-order-table th:nth-child(3){width:30%}
+.Mypage_wrapper .mypage-order-table a{color:#191919;text-decoration:none}
+.Mypage_wrapper .mypage-order-table a:hover{text-decoration:underline}
+.Mypage_wrapper .mypage-order-table .mypage-order-empty{padding:50px 10px}
+.Mypage_wrapper #mypage .my_order>p{padding:0;margin:16px 0 0;font-size:12px}
+@media(max-width:1000px){.Mypage_wrapper #mypage_Content .mypage_body{width:92%}.Mypage_wrapper .my_page_tab{grid-template-columns:repeat(3,1fr);row-gap:24px;padding:60px 0}.Mypage_wrapper .mypage_top .customer_section .name{font-size:21px}.Mypage_wrapper .mypage_top .customer_section .name strong{font-size:21px}.Mypage_wrapper .point_section>li{padding:0 8px}.Mypage_wrapper .point_section>li>a,.Mypage_wrapper .point_section>li>a strong{font-size:15px}}
