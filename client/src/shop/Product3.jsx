@@ -132,7 +132,7 @@ const Product3 = () => {
 			console.error(e);
 			if (e?.response?.status === 401) {
 				alert("로그인이 필요합니다.");
-				nav("/account/login");
+				nav("/login");
 				return;
 			}
 			alert("장바구니 담기 중 오류가 발생했습니다.");

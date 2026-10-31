@@ -165,7 +165,7 @@ const Product1 = () => {
 	
 			if (err?.response?.status === 401) {
 				alert("로그인이 필요합니다.");
-				nav("/account/login");
+				nav("/login");
 				return;
 			}
 	
