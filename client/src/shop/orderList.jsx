@@ -271,7 +271,7 @@ const OrderList = () => {
       name === "addressee_addr2" ||
       name === "dlv_memo"
     ) {
-      setRecv((r) => ({ ...r, [name.replace(/^addressee_/, "").replace("dlv_", "memo")]: v }));
+      setRecv((r) => ({ ...r, [name === "dlv_memo" ? "memo" : name.replace(/^addressee_/, "")]: v }));
       return;
     }
 
@@ -1018,7 +1018,7 @@ const OrderList = () => {
                             value={recv.memo || ""} 
                             id="order_dlv_memo" 
                             className="form_input block" 
-                            onChange={onInput}
+                            onChange={(e) => { const memo = e.target.value; setRecv((prev) => ({ ...prev, memo })); }}
                           />
                         </td>
                       </tr>
