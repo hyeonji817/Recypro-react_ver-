@@ -86,15 +86,18 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));  
 app.use(cookieParser());
 
+const secureSessionCookie = process.env.NODE_ENV === 'production' || Boolean(process.env.RAILWAY_ENVIRONMENT_ID);
+if (secureSessionCookie) app.set('trust proxy', 1);
+
 app.use(session({
   secret: process.env.SESSION_SECRET,    // 세션 암호화 키 
   resave: false, 
   saveUninitialized: false,
   cookie: {
-    secure: false,     // 개발환경에서는 false (https 아니므로)
+    secure: secureSessionCookie,
     httpOnly: true,  // 클라이언트에서 쿠키를 조작할 수 없도록 설정
     maxAge: 1000 * 60 * 60 * 24, // 1일
-    sameSite: "lax",   // 크로스 도메인 문제 방지
+    sameSite: secureSessionCookie ? "none" : "lax",
   }
 }));
 
