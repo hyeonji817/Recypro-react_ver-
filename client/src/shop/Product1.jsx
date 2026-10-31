@@ -165,7 +165,7 @@ const Product1 = () => {
 	
 			if (err?.response?.status === 401) {
 				alert("로그인이 필요합니다.");
-				nav("/login");
+				nav("/account/login");
 				return;
 			}
 	
@@ -414,7 +414,7 @@ const Product1 = () => {
       											href="/orderList"
       											onClick={(e) => {
         											e.preventDefault();
-        											alert("바로구매");
+        											nav("/orderList");
       											}}
     											>
       											BUY NOW

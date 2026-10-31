@@ -1,4 +1,5 @@
 import "./Product3.css";
+import { productImageUrl } from "../api/productImage";
 import React, { useEffect, useState } from "react"; 
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
@@ -132,7 +133,7 @@ const Product3 = () => {
 			console.error(e);
 			if (e?.response?.status === 401) {
 				alert("로그인이 필요합니다.");
-				nav("/login");
+				nav("/account/login");
 				return;
 			}
 			alert("장바구니 담기 중 오류가 발생했습니다.");
@@ -224,8 +225,8 @@ const Product3 = () => {
 	}
 
 	// 업로드 경로 통일: DB에는 "life/xxx.jpg" 저장했다고 가정
-  const mainImg = `${API_URL}/uploads/${String(filename).replace(/^\.\//,'')}`;
-	const DescImg = `${API_URL}/uploads/${String(img_Desc).replace(/^\.\//,'')}`;
+  const mainImg = productImageUrl(filename, API_URL);
+  const DescImg = productImageUrl(img_Desc, API_URL);
 
   return (
     <div className="ProductFood_wrap">
@@ -411,7 +412,7 @@ const Product3 = () => {
       											href="/orderList"
       											onClick={(e) => {
         											e.preventDefault();
-        											alert("바로구매");
+        											nav("/orderList");
       											}}
     											>
       											BUY NOW

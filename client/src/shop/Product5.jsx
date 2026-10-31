@@ -133,7 +133,7 @@ const Product5 = () => {
 			console.error(e);
 			if (e?.response?.status === 401) {
 				alert("로그인이 필요합니다.");
-				nav("/login");
+				nav("/account/login");
 				return;
 			}
 			alert("장바구니 담기 중 오류가 발생했습니다.");
@@ -410,7 +410,7 @@ const Product5 = () => {
       											href="/orderList"
       											onClick={(e) => {
         											e.preventDefault();
-        											alert("바로구매");
+        											nav("/orderList");
       											}}
     											>
       											BUY NOW
