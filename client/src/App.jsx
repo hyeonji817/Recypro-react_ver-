@@ -52,6 +52,7 @@ import Mypage_OrderChange from "./mypage/mypage_orderChange";
 import Mypage_CancelRefund from "./mypage/mypage_cancelRefund";
 import Mp_WishList from "./mypage/mypage_wishList";
 import Mp_Coupon from "./mypage/mypage_coupon";
+import Mp_Mileage from "./mypage/mypage_mileage";
 
 import Customer_main from "./customer/Customer_main";
 import Customer_notice from "./customer/customer_notice";
@@ -140,6 +141,7 @@ function App() {
         <Route path="/mypage/cancel-refund/:order_id" element={<Mypage_CancelRefund />} />
         <Route path="/mypage_wishList" element={<Mp_WishList />} />
         <Route path="/mypage_coupon" element={<Mp_Coupon />} />
+        <Route path="/mypage_mileage" element={<Mp_Mileage />} />
 
         <Route path="/customer_main" element={<Customer_main />} />
         <Route path="/customer_notice" element={<Customer_notice />} />
