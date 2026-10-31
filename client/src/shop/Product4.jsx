@@ -100,7 +100,7 @@ const Product4 = () => {
   .join(" / ");
 
 	// 장바구니 페이지 이동 (2025.10.07 신규추가) (장바구니 페이지로 이동하면서 해당 이동하려는 페이지에 데이터값 전달)
-	const handleAddToCart = async () => {
+	const handleAddToCart = async (buyNow = false) => {
 		if (!requiredSatisfied) {
 			alert("필수 옵션을 모두 선택해 주세요.");
 			return;
@@ -129,14 +129,19 @@ const Product4 = () => {
 		};
 
 		try {
-			await axios.post(`${API_URL}/api/cart`, payload, { withCredentials: true });
+			const { data } = await axios.post(`${API_URL}/api/cart`, { ...payload, buyNow }, { withCredentials: true });
+            if (buyNow) {
+              if (!data.cart_id) throw new Error("Missing cart ID: apply server patch");
+              nav(`/orderList?cart_ids=${encodeURIComponent(data.cart_id)}`);
+              return;
+            }
 			// 장바구니 페이지로 이동
 			nav("/cart");
 		} catch (e) {
 			console.error(e);
 			if (e?.response?.status === 401) {
 				alert("로그인이 필요합니다.");
-				nav("/account/login");
+				nav("/login");
 				return;
 			}
 			alert("장바구니 담기 중 오류가 발생했습니다.");
@@ -166,7 +171,7 @@ const Product4 = () => {
 	
 			if (err?.response?.status === 401) {
 				alert("로그인이 필요합니다.");
-				nav("/account/login");
+				nav("/login");
 				return;
 			}
 	
@@ -392,7 +397,7 @@ const Product4 = () => {
       											href="/orderList"
       											onClick={(e) => {
         											e.preventDefault();
-        											nav("/orderList");
+        											handleAddToCart(true);
       											}}
     											>
       											BUY NOW

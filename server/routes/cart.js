@@ -83,8 +83,10 @@ router.post("/", async (req,res) => {
       [userId, productTable, productId, optionLabel || ""]
     );
 
-    if (exist.length) {
+    let cartId;
+    if (exist.length && req.body.buyNow !== true) {
       const row = exist[0];
+      cartId = row.cart_id;
       const newQty = row.cart_quantity + Number(qty);
       const newTotal = newQty * Number(unitPrice);
       await q(
@@ -99,7 +101,7 @@ router.post("/", async (req,res) => {
         ]
       );
     } else {
-      await q(
+      const inserted = await q(
         `INSERT INTO cart
          (user_id, product_table, product_id, cart_quantity, options_json, option_label, unit_price, option_delta, total_price, mileage)
          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
@@ -109,9 +111,10 @@ router.post("/", async (req,res) => {
           unitPrice || 0, optionDelta || 0, totalPrice || 0, mileage || 0
         ]
       );
+      cartId = inserted.insertId;
     }
 
-    res.json({ ok: true, message: "장바구니에 담았습니다." });
+    res.json({ ok: true, cart_id: cartId, message: "장바구니에 담았습니다." });
   } catch (e) {
     console.error(e);
     res.status(500).json({ message: "장바구니 담기 중 오류" });

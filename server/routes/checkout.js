@@ -52,8 +52,8 @@ async function loadCartSnapshot({ user_id, all, cart_ids }) {
       v.filename
     FROM cart c
     JOIN v_product_catalog v
-      ON v.product_table = c.product_table
-     AND v.productId     = c.product_id
+      ON v.product_table COLLATE utf8mb4_unicode_ci = c.product_table COLLATE utf8mb4_unicode_ci
+     AND v.productId COLLATE utf8mb4_unicode_ci = c.product_id COLLATE utf8mb4_unicode_ci
     WHERE ${where}
     ORDER BY c.created_at DESC
   `,
@@ -164,8 +164,8 @@ async function getPreview(userId, { all, cart_ids, coupon_code, use_mileage }) {
              COALESCE(v.discount_price, v.price) AS base_price
         FROM cart c
         JOIN v_product_catalog v
-          ON v.product_table = c.product_table
-         AND v.productId     = c.product_id
+          ON v.product_table COLLATE utf8mb4_unicode_ci = c.product_table COLLATE utf8mb4_unicode_ci
+         AND v.productId COLLATE utf8mb4_unicode_ci = c.product_id COLLATE utf8mb4_unicode_ci
        WHERE c.user_id = ?
        ORDER BY c.created_at DESC
     `, [userId]);
@@ -186,8 +186,8 @@ async function getPreview(userId, { all, cart_ids, coupon_code, use_mileage }) {
              COALESCE(v.discount_price, v.price) AS base_price
         FROM cart c
         JOIN v_product_catalog v
-          ON v.product_table = c.product_table
-         AND v.productId     = c.product_id
+          ON v.product_table COLLATE utf8mb4_unicode_ci = c.product_table COLLATE utf8mb4_unicode_ci
+         AND v.productId COLLATE utf8mb4_unicode_ci = c.product_id COLLATE utf8mb4_unicode_ci
        WHERE c.user_id = ?
          AND c.cart_id IN (${placeholders})
        ORDER BY c.created_at DESC

@@ -14,6 +14,7 @@ const OrderList = () => {
   const [items, setItems] = useState([]);
   const [tot, setTot] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [previewError, setPreviewError] = useState("");
 
   const [buyer, setBuyer] = useState({ name:"", phone:"", cell:"", email:"" });
   const [recv,  setRecv]  = useState({ name:"", phone:"", cell:"", zip:"", addr1:"", addr2:"" });
@@ -106,9 +107,11 @@ const OrderList = () => {
   useEffect(() => {
     const loadPreview = async () => {
       try {
+        setPreviewError("");
         await fetchPreview("", 0);
       } catch (e) {
         console.error("[주문서 프리뷰 조회 실패]", e);
+        setPreviewError(e?.response?.data?.message || "주문서 조회 실패: 로그인 및 서버 연결을 확인하세요.");
   
         alert(
           e?.response?.data?.message ||
@@ -573,7 +576,7 @@ const OrderList = () => {
 
                 <tbody>
                   {items.length === 0 ? (
-                    <tr><td colSpan={7} className="tac">주문할 상품이 없습니다.</td></tr>
+                    <tr><td colSpan={7} className="tac">{previewError || "주문할 상품이 없습니다. 상품 상세 또는 장바구니의 주문 버튼으로 이동해 주세요."}</td></tr>
                   ) : items.map(it => (
                     <tr key={it.cart_id}>
                       <td className="img">
