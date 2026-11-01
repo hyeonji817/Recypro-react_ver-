@@ -205,7 +205,7 @@ const Mp_OrderChange = () => {
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="tab_title">
+                  <a href="/mypage_q%26a" className="tab_title">
                     Q&amp;A
                     <br />
                     <strong className="tab_sub">내 상품문의</strong>
