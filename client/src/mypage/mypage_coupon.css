@@ -282,3 +282,10 @@ li {
     row-gap: 24px;
   }
 }
+
+
+/* Center coupon names while preserving the original cell padding. */
+.mpCoupon_wrapper #coupon .tbl_col>tbody>tr>td.tal {
+  text-align: center !important;
+
+}
