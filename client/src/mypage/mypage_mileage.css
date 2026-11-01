@@ -238,3 +238,21 @@ li {
   margin-left: 0;
   margin-right: 0;
 }
+
+/* Align the mileage history table with its summary box. */
+.mpMileage_wrapper .milage_section .tbl_col {
+  position: static;
+  inset: auto;
+  transform: none;
+  box-sizing: border-box;
+  table-layout: fixed;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+}
+
+.mpMileage_wrapper .milage_section .tbl_col th,
+.mpMileage_wrapper .milage_section .tbl_col td {
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
