@@ -113,7 +113,6 @@ router.get("/summary", async (req, res) => {
 }); 
 
 // 마이페이지 주문내역 
-// 마이페이지 주문내역
 router.get("/orders", async (req, res) => {
   try {
     const userId = getSessionUserId(req);
@@ -294,6 +293,52 @@ router.get("/orders/:order_id", async (req, res) => {
   } catch (err) {
     console.error("[GET /api/orders/:order_id]", err);
     res.status(500).json({ message: "주문 상세 조회 실패" });
+  }
+});
+
+// 적립금 원장을 기준으로 거래 당시 잔액을 계산한다. 만료일은 현재 스키마에 없다.
+router.get("/mileage", async (req, res) => {
+  const userId = getSessionUserId(req);
+  if (!userId) {
+    return res.status(401).json({ message: "로그인이 필요합니다." });
+  }
+
+  try {
+    const rows = await q(
+      `SELECT id, delta, reason, memo,
+              DATE_FORMAT(created_at, '%Y/%m/%d') AS created_at
+       FROM mileage_ledger
+       WHERE user_id = ?
+       ORDER BY mileage_ledger.created_at ASC, id ASC`,
+      [userId]
+    );
+    let balance = 0;
+    const history = rows.map((row) => {
+      const delta = Number(row.delta);
+      balance += delta;
+      return {
+        id: row.id,
+        created_at: row.created_at,
+        earned: Math.max(delta, 0),
+        used: Math.max(-delta, 0),
+        balance,
+        expired_at: null,
+        description: row.memo || row.reason || "-",
+      };
+    }).reverse();
+
+    res.json({
+      user: {
+        id: userId,
+        name: req.session?.user?.name || userId,
+        grade: req.session?.user?.grade || "MEMBER",
+      },
+      balance,
+      history,
+    });
+  } catch (err) {
+    console.error("[GET /api/mypage/mileage]", err);
+    res.status(500).json({ message: "적립금 내역을 불러오지 못했습니다." });
   }
 });
 
