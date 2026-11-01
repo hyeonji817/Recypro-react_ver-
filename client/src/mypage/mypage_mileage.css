@@ -256,3 +256,10 @@ li {
   overflow-wrap: anywhere;
   white-space: normal;
 }
+
+/* Center the mileage history description cells. */
+.mpMileage_wrapper .milage_section .tbl_col>tbody>tr>td.tal {
+  text-align: center;
+  padding-left: 0 !important;
+  padding-right: 0;
+}
