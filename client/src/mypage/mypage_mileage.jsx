@@ -2,6 +2,11 @@ import "./mypage_mileage.css";
 import Header_loginOK from "../main/Header_loginOK";
 import Footer from "../main/Footer";
 
+function formatUsedMileage(amount) {
+  const usedAmount = Math.abs(Number(amount) || 0);
+  return `${usedAmount > 0 ? '− ' : ''}${usedAmount.toLocaleString('ko-KR')} 원`;
+}
+
 const Mp_Mileage = () => {
 
   return (
@@ -117,7 +122,7 @@ const Mp_Mileage = () => {
               <tbody><tr>
                   <td>2025/07/24</td>
                   <td><strong>+ 500 원</strong></td>
-                  <td><strong className="p_color">− 0 원</strong></td>
+                  <td><strong className="p_color">{formatUsedMileage(0)}</strong></td>
                   <td>3,030 원</td>                 
                   <td>2026/07/24</td>
                   <td className="tal">상품평 등록 (20250709-E6D79|HEART FRIENDS PUPPY T-SHIRT WHITE)</td>
@@ -126,7 +131,7 @@ const Mp_Mileage = () => {
                 <tr>
                   <td>2025/07/13</td>
                   <td><strong>+ 530 원</strong></td>
-                  <td><strong className="p_color">− 0 원</strong></td>
+                  <td><strong className="p_color">{formatUsedMileage(0)}</strong></td>
                   <td>2,530 원</td>
                   <td>2026/07/13</td>
                   <td className="tal">상품 구매 (20250709-E6D79 | HEART FRIENDS PUPPY T-SHIRT WHITE)</td>
@@ -135,7 +140,7 @@ const Mp_Mileage = () => {
                 <tr>
                   <td>2025/05/14</td>
                   <td><strong>+ 2,000 원</strong></td>
-                  <td><strong className="p_color">− 0 원</strong></td>
+                  <td><strong className="p_color">{formatUsedMileage(0)}</strong></td>
                   <td>2,000 원</td>
                   
                   <td>2026/05/14</td>
