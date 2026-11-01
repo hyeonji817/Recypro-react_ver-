@@ -177,7 +177,7 @@ const Mp_OrderRequest = () => {
                   </a>
                 </li>
                 <li>
-                  <a href="#">
+                  <a href="/mypage_mileage">
                     <strong>적립금</strong> 0 원
                   </a>
                 </li>
@@ -211,7 +211,7 @@ const Mp_OrderRequest = () => {
                   </a>
                 </li>
                 <li>
-                  <a href="/mileage" className="tab_title">
+                  <a href="/mypage_mileage" className="tab_title">
                     MILEAGE
                     <br />
                     <strong className="tab_sub">적립금</strong>

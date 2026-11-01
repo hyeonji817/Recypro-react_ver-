@@ -46,7 +46,7 @@ const Mypage = () => {
 
               <ul className="point_section">
                 <li><a href="/coupons"><strong>쿠폰</strong> {counts.coupons || 0} 장</a></li>
-                <li><a href="/mileage"><strong>적립금</strong> {formatWon(money.mileage)} 원</a></li>
+                <li><a href="/mypage_mileage"><strong>적립금</strong> {formatWon(money.mileage)} 원</a></li>
                 <li><a href="/points"><strong>포인트</strong> {formatWon(money.points)} P</a></li>
               </ul>
 
@@ -54,7 +54,7 @@ const Mypage = () => {
                 <li><a href="/orders" className="tab_title">ORDER<br /><strong className="tab_sub">주문내역</strong></a></li>
                 <li><a href="/mypage_wishList" className="tab_title">WISH LIST<br /><strong className="tab_sub">관심상품</strong></a></li>
                 <li><a href="/mypage_coupon" className="tab_title">COUPON<br /><strong className="tab_sub">쿠폰</strong></a></li>
-                <li><a href="/mileage" className="tab_title">MILEAGE<br /><strong className="tab_sub">적립금</strong></a></li>
+                <li><a href="/mypage_mileage" className="tab_title">MILEAGE<br /><strong className="tab_sub">적립금</strong></a></li>
                 <li><a href="/deposits" className="tab_title">DEPOSITS<br /><strong className="tab_sub">예치금</strong></a></li>
                 <li><a href="/special-mileage" className="tab_title">SECRET MILEAGE<br /><strong className="tab_sub">스페셜 적립금</strong></a></li>
                 <li><a href="#" className="tab_title">Q&amp;A<br /><strong className="tab_sub">내 상품문의</strong></a></li>

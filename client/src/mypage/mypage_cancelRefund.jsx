@@ -156,7 +156,7 @@ const Mp_CancelRefund = () => {
                   <a href="#"><strong>쿠폰</strong> 0 장</a>
                 </li>
                 <li>
-                  <a href="#"><strong>적립금</strong> 0 원</a>
+                  <a href="/mypage_mileage"><strong>적립금</strong> 0 원</a>
                 </li>
                 <li>
                   <a href="#"><strong>포인트</strong> 0 P</a>  
@@ -186,7 +186,7 @@ const Mp_CancelRefund = () => {
                   </a>
                 </li>
                 <li>
-                  <a href="/mileage" className="tab_title">
+                  <a href="/mypage_mileage" className="tab_title">
                     MILEAGE
                     <br />
                     <strong className="tab_sub">적립금</strong>

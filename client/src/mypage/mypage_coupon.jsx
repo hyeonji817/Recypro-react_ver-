@@ -91,7 +91,7 @@ const Mp_Coupon = () => {
 
               <ul className="point_section">
                 <li><a href="#"><strong>쿠폰</strong> {summary.available} 장</a></li>
-                <li><a href="#"><strong>적립금</strong> 0 원</a></li>
+                <li><a href="/mypage_mileage"><strong>적립금</strong> 0 원</a></li>
                 <li><a href="#"><strong>포인트</strong> 0 P</a></li>
               </ul>
 
@@ -118,7 +118,7 @@ const Mp_Coupon = () => {
                   </a>
                 </li>
                 <li>
-                  <a href="/mileage" className="tab_title">
+                  <a href="/mypage_mileage" className="tab_title">
                     MILEAGE
                     <br />
                     <strong className="tab_sub">적립금</strong>
