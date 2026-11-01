@@ -85,7 +85,7 @@ const Mp_Orders = () => {
                   </a>
                 </li>
                 <li>
-                  <a href="/mypage/milage.php">
+                  <a href="/mypage_mileage">
                     <strong>적립금</strong> {formatWon(summary?.money?.mileage)} 원
                   </a>
                 </li>
