@@ -4,6 +4,8 @@ import express from "express";
 import crypto from "crypto"; 
 import { db } from "../server.js"; 
 
+import { completeMockPayment } from "../services/completePayment.js";
+
 const router = express.Router(); 
 
 const q = (sql, params=[]) => new Promise((res, rej) => {
@@ -730,80 +732,17 @@ async function clearOrderCartItems(ord) {
 // --- 모의 결제 승인: PG 없이 주문을 PAID 처리 --- (수정본)
 router.post("/confirm-mock", async (req, res) => {
   try {
-    const { orderId, by = "pg" } = req.body;
-    // orderId 는 pg_order_uid 또는 order_id 둘 다 허용
-    let ord;
-    if (by === "db") {
-      [ord] = await q(`SELECT * FROM orders WHERE order_id = ?`, [orderId]);
-    } else {
-      [ord] = await q(`SELECT * FROM orders WHERE pg_order_uid = ?`, [orderId]);
-    }
-
-    if (!ord) return res.status(404).json({ message: "주문을 찾을 수 없습니다." });
-    if (ord.status === "PAID") {
-      await clearOrderCartItems(ord); 
-
-      // 이미 결제 완료면 현재 스냅샷 반환
-      return res.json({
-        ok: true,
-        order_id: ord.order_id,
-        order_no: ord.order_no
-      });
-    }
-
-    if (ord.user_coupon_id) {
-      const couponUpdate = await q(
-        `
-        UPDATE user_coupons
-        SET
-          used_at = NOW(),
-          order_id = ?
-        WHERE user_coupon_id = ?
-          AND user_id = ?
-          AND used_at IS NULL
-        `,
-        [
-          ord.order_id,
-          ord.user_coupon_id,
-          ord.user_id,
-        ]
-      );
-    
-      if (couponUpdate.affectedRows !== 1) {
-        throw new Error(
-          "쿠폰 사용 처리에 실패했습니다. 이미 사용된 쿠폰일 수 있습니다."
-        );
-      }
-    }
-
-    // 주문번호 생성(예: 20251014-AB12C)
-    const ymd = new Date().toISOString().slice(0,10).replace(/-/g, "");
-    const tail = crypto.randomBytes(3)
-      .toString("base64")
-      .replace(/[+/=]/g,"")
-      .slice(0,5)
-      .toUpperCase();
-    const order_no = `${ymd}-${tail}`;
-
-    await q(
-      `UPDATE orders 
-        SET status='PAID', paid_at=NOW(), order_no=?
-        WHERE order_id=?`,
-      [order_no, ord.order_id]
-    );
-
-    // 결제 완료된 장바구니 상품 삭제 
-    await clearOrderCartItems(ord);
-
-    return res.json({ 
-      ok:true,
-      order_id: ord.order_id, 
-      order_no,
-      message: "MOCK 결제 승인 완료"
+    const result = await completeMockPayment(db, {
+      userId: req.session?.user?.id || req.session?.userId,
+      orderId: req.body?.orderId,
+      by: req.body?.by,
     });
-  } catch (e) {
-    console.error(e);
-    res.status(500).json({ message: "모의 결제 승인 중 오류" });
+    return res.json(result);
+  } catch (error) {
+    console.error("[POST /api/checkout/confirm-mock]", error);
+    return res.status(error.status || 500).json({
+      message: error.status ? error.message : "모의 결제 승인 중 오류가 발생했습니다.",
+    });
   }
 });
 
