@@ -21,7 +21,8 @@ const OrderList = () => {
   const [coupon, setCoupon] = useState("");
   const [agreed, setAgreed] = useState(false);
   const navigate = useNavigate();
-  const USE_MOCK_PAY = true;    // <- 실제 PG 붙일 땐 false
+  const [payMethod, setPayMethod] = useState("CARD");
+  const [submitting, setSubmitting] = useState(false);
   const [mockOpen, setMockOpen] = useState(false);
   const [prepared, setPrepared] = useState(null); // prepare 응답 저장
   const [availableCoupons, setAvailableCoupons] = useState([]);     // 쿠폰
@@ -460,6 +461,9 @@ const OrderList = () => {
   };
 
   const submitOrder = async () => {
+    if (submitting || mockOpen) return;
+    if (!agreed) return alert("결제정보 확인 및 구매진행 동의를 체크해 주세요.");
+    setSubmitting(true);
     try {
       // 1) 주문 준비(서버 금액 재계산 + PENDING 주문 생성)
       const payload = {
@@ -469,7 +473,7 @@ const OrderList = () => {
         use_mileage: Number(useMileage || 0),
         buyer,
         receiver: recv,
-        pay_method: "TOSS",
+        pay_method: payMethod,
         dlv_memo: recv.memo || ""
       };
       
@@ -483,52 +487,11 @@ const OrderList = () => {
       setPrepared(data);
       setMockOpen(true);
 
-      // data: { order_id, pg_order_uid, amount, orderName, successUrl, failUrl }
-
-      /** if (USE_MOCK_PAY) {
-         // 2-A) 모의 결제 승인
-         const { data: ok } = await axios.post(
-          "http://localhost:5003/api/checkout/confirm-mock",
-          { orderId: data.pg_order_uid }, // 또는 { orderId: data.order_id, by: "db" }
-          { withCredentials: true }
-        );
-
-        // 3) 주문완료로 이동 (state도 같이 넘겨서 즉시 표시, 새로고침 대비해 쿼리스트링도 첨부)
-        navigate(`/orderOk?order_id=${data.order_id}`, {
-          state: {
-            order_id: data.order_id,
-            order_no: ok.order_no,
-            // 백엔드가 prepare 시점에 저장해둔 스냅샷을 그대로 쓰도록,
-            // 아래 둘을 서버에서 prepare 응답에 포함시키거나, orderOK에서 재조회하게 둘 수 있음.
-            totals: data.totals,  // prepare에서 함께 보냈다면
-            items: data.items,    // prepare에서 함께 보냈다면
-            buyer: payload.buyer
-          },
-          replace: true
-        });
-        return;
-      }
-  
-      // 2) Toss 결제 요청(redirect 방식) (실제 결제)
-      const clientKey = import.meta.env.VITE_TOSS_CLIENT_KEY;
-      const tossPayments = window.TossPayments(clientKey);
-  
-      await tossPayments.requestPayment({
-        method: "CARD", // 또는 "TOSS", "VIRTUAL_ACCOUNT" 등
-        amount: data.amount,
-        orderId: data.pg_order_uid,     // ★ PG용 주문 고유값
-        orderName: data.orderName,      // 예) "리싸이프로 주문 3건"
-        successUrl: data.successUrl,    // 예) http://localhost:5174/pay/success
-        failUrl: data.failUrl,          // 예) http://localhost:5174/pay/fail
-        customerEmail: buyer.email,
-        customerName: buyer.name,
-        customerMobilePhone: buyer.cell?.replaceAll("-", "") || "",
-      }); */
-  
-      // redirect 방식이라 여기 이후 코드는 실행되지 않음.
     } catch (e) {
       console.error(e);
       alert(e?.response?.data?.message || "주문/결제 요청 실패");
+    } finally {
+      setSubmitting(false);
     }
   }; 
 
@@ -1166,23 +1129,40 @@ const OrderList = () => {
                       <div className="method">
                         <div className="">
                           <label className="pay_label">
-                            <input type="radio" name="pay_type" id="pay_type22" value="22" /> 
+                            <input type="radio" name="pay_type" id="pay_type22" value="TOSS" checked={payMethod === "TOSS"} onChange={(e) => setPayMethod(e.target.value)} disabled={submitting} /> 
                             <img src="https://x175-engine.mywisa.com/wm_engine_SW/_engine/card.tosspayment/image/tosspayment.png" height={18} />
                           </label>    {/** pay_label end */}
                         </div>
                         <div className="">
                           <label className="pay_label">
-                            <input type="radio" name="pay_type" id="pay_type17" value="17" /> 
+                            <input type="radio" name="pay_type" id="pay_type17" value="PAYCO" checked={payMethod === "PAYCO"} onChange={(e) => setPayMethod(e.target.value)} disabled={submitting} /> 
                             <span id="payco_btn_area">
                               <img src="https://static-bill.nhnent.com//payco/checkout/img/v2/btn_type/EASYPAY_A1.png" width={103} height={14} style={{ width: "auto", verticalAlign: "middle" }} />
                             </span>
                           </label>	  {/** pay_label end */}
                         </div>
+                        {[
+                          ["CARD", "신용카드"],
+                          ["TRANSFER", "실시간 계좌이체"],
+                          ["ESCROW_VIRTUAL_ACCOUNT", "에스크로 가상계좌"],
+                          ["BANK", "무통장입금"],
+                          ["MOBILE_PHONE", "휴대폰결제"],
+                        ].map(([value, label]) => (
+                          <div key={value}>
+                            <label className="pay_label">
+                              <input type="radio" name="pay_type" value={value}
+                                checked={payMethod === value}
+                                onChange={(e) => setPayMethod(e.target.value)} disabled={submitting} />
+                              {label}
+                            </label>
+                          </div>
+                        ))}
                         <p className="order_cancel_msg">
-                          * 주문신청 후 <strong className="point_color">3</strong>
-                          일 이내에 입금 확인이 되지 않으면 자동취소 됩니다.
-                        </p>    {/** order_cancel_msg end */}
-                        <div className="event_pay">
+                          현재는 모의 결제입니다. 실제 청구나 입금은 발생하지 않습니다.
+                          {payMethod === "ESCROW_VIRTUAL_ACCOUNT" && " 실제 서비스에서는 에스크로 가상계좌 발급 및 입금 확인 후 결제가 완료됩니다."}
+                          {payMethod === "BANK" && " 실제 서비스에서는 입금 확인 후 결제가 완료됩니다."}
+                        </p>
+                        <div className="event_pay" hidden={payMethod !== "TOSS"}>
                           <h3>결제프로모션</h3>
                           <div className="field">
                             <p className="th">Toss Pay</p>
@@ -1213,6 +1193,7 @@ const OrderList = () => {
                           <button
                             type="button"
                             className="order_submit_btn"
+                            disabled={submitting}
                             onClick={() => {
                               if (!agreed) {
                                 alert("결제정보 확인 및 구매진행 동의를 체크해 주세요.");
@@ -1237,7 +1218,7 @@ const OrderList = () => {
                           </p>
                           <p className="msg">‘결제하기’ 버튼을 누르면 <br /> 결제창으로 연결됩니다.</p>
                           <span className="box_btn w150 large">
-                            <input type="button" value="결제하기" onClick={submitOrder} />
+                            <input type="button" value={submitting ? "주문 준비 중..." : "결제하기"} disabled={submitting} onClick={submitOrder} />
                           </span>
                         </div>
                       )}
@@ -1262,7 +1243,9 @@ const OrderList = () => {
 
       {/* ✅ 결제 모달 바인딩은 이 아래에 */}
       <PaymentModal
+        key={prepared?.pg_order_uid || "payment"}
         open={mockOpen}
+        payMethod={prepared?.pay_method || payMethod}
         amount={prepared?.amount || tot?.total_pay || 0}
         orderName={prepared?.orderName || "주문 결제"}
         buyer={buyer}
@@ -1289,7 +1272,7 @@ const OrderList = () => {
             });
           } catch (e) {
             console.error(e);
-            alert(e?.response?.data?.message || "모의 결제 승인 실패");
+            throw e;
           }
         }}
         onFail={(e) => {

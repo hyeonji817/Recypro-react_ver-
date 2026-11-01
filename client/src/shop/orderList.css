@@ -44,11 +44,11 @@
   vertical-align: top;
 }
 
-.orderList_Content .box_btn.small > * {
+.orderList_Content .box_btn.small>* {
   padding: 4px 8px;
 }
 
-.orderList_Content .box_btn > * {
+.orderList_Content .box_btn>* {
   display: inline-block;
   margin: 0;
   padding: 11px 12px;
@@ -86,7 +86,7 @@
 .orderList_Content .tbl_col {
   /** table-layout: fixed; */
   clear: both;
-  width: 100%; 
+  width: 100%;
   border-collapse: collapse;
 }
 
@@ -112,16 +112,15 @@
   line-height: 0;
 }
 
-.orderList_Content 
-.tbl_col.prd > thead > tr > th {
-    border-top: 0;
-    border-bottom: 2px solid #e8e8e8;
-    color: #000;
-    font-size: 17px;
-    letter-spacing: -0.03rem;
+.orderList_Content .tbl_col.prd>thead>tr>th {
+  border-top: 0;
+  border-bottom: 2px solid #e8e8e8;
+  color: #000;
+  font-size: 17px;
+  letter-spacing: -0.03rem;
 }
 
-.orderList_Content .tbl_col > thead > tr > th {
+.orderList_Content .tbl_col>thead>tr>th {
   padding: 15px 0;
   border-top: 1px solid #e0e0e0;
   border-bottom: 1px solid #e0e0e0;
@@ -130,54 +129,57 @@
   vertical-align: middle;
 }
 
-.orderList_Content .tbl_col.prd > tbody > tr > td {
+.orderList_Content .tbl_col.prd>tbody>tr>td {
   padding: 20px 0;
   border: none;
   color: #1a1a1a;
   font-size: 15px;
 }
 
-.orderList_Content .tbl_col > tbody > tr > td {
+.orderList_Content .tbl_col>tbody>tr>td {
   padding: 15px 0;
   border-bottom: 1px solid #e0e0e0;
   text-align: center;
   vertical-align: middle;
 }
 
-.orderList_Content .tbl_col > tbody > tr > td * {
+.orderList_Content .tbl_col>tbody>tr>td * {
   color: #666;
 }
 
-.orderList_Content a, a:hover, a:active, a:focus {
+.orderList_Content a,
+a:hover,
+a:active,
+a:focus {
   text-decoration: none;
   cursor: pointer;
 }
 
-.orderList_Content .tbl_col.prd > tbody > tr > td img {
+.orderList_Content .tbl_col.prd>tbody>tr>td img {
   vertical-align: middle;
 }
 
-.orderList_Content .tbl_col > tbody > tr > td.img img {
+.orderList_Content .tbl_col>tbody>tr>td.img img {
   width: 100px;
   height: auto;
-} 
+}
 
-.orderList_Content .tbl_col > tbody > tr > td img {
+.orderList_Content .tbl_col>tbody>tr>td img {
   max-width: 100%;
   height: auto;
   vertical-align: middle;
 }
 
-.orderList_Content .tbl_col.prd > tbody > tr > td {
+.orderList_Content .tbl_col.prd>tbody>tr>td {
   padding: 20px 0;
   border: none;
   color: #1a1a1a;
   font-size: 17px;
   position: relative;
   left: 3px;
-} 
+}
 
-.orderList_Content .tbl_col > tbody > tr > td.tal {
+.orderList_Content .tbl_col>tbody>tr>td.tal {
   padding-left: 15px !important;
 }
 
@@ -198,7 +200,7 @@
   width: 100%;
   margin: 0 auto;
   border-top: 1px solid #e0e0e0;
-  position: relative; 
+  position: relative;
   left: 10px;
 }
 
@@ -235,7 +237,9 @@
   top: 3px;
 }
 
-.orderList_Content input[type=text], input[type=email], input[type=password] {
+.orderList_Content input[type=text],
+input[type=email],
+input[type=password] {
   vertical-align: top;
 }
 
@@ -254,12 +258,15 @@
   text-align: right !important;
 }
 
-.orderList_Content .tbl_order td .own_mileage, .tbl_order td .own_deposit {
+.orderList_Content .tbl_order td .own_mileage,
+.tbl_order td .own_deposit {
   color: #d53838;
   line-height: 35px;
-} 
+}
 
-ol, ul, li {
+ol,
+ul,
+li {
   list-style: none;
 }
 
@@ -306,7 +313,8 @@ ol, ul, li {
   -webkit-transition: all 0.3s;
 }
 
-.orderList_Content input[type=radio], input[type=checkbox] {
+.orderList_Content input[type=radio],
+input[type=checkbox] {
   vertical-align: middle;
 }
 
@@ -318,9 +326,8 @@ ol, ul, li {
   font-size: 11px;
 }
 
-.orderList_Content 
-.tbl_order td .form_input {
-    width: 260px;
+.orderList_Content .tbl_order td .form_input {
+  width: 260px;
 }
 
 .orderList_Content input[type=checkbox]:checked {
@@ -363,9 +370,7 @@ ol, ul, li {
   top: 10px;
 }
 
-.orderList_Content .tbl_order .phone_call .msg 
-
-.orderList_Content .msg {
+.orderList_Content .tbl_order .phone_call .msg .orderList_Content .msg {
   position: relative;
   right: -120px;
 }
@@ -420,22 +425,22 @@ ol, ul, li {
 .orderList_Content .form_input.block {
   width: 100% !important;
 }
- 
+
 .orderList_Content textarea.form_input {
   height: auto;
 }
 
-.orderList_Content #order .ord_info > .area_right {
+.orderList_Content #order .ord_info>.area_right {
   padding: 30px 0 0 50px;
 }
 
-.orderList_Content #order .ord_info > .area_right .inner {
+.orderList_Content #order .ord_info>.area_right .inner {
   float: right;
   position: sticky;
   top: 30px;
 }
 
-.orderList_Content #order .ord_info > .area_right .box {
+.orderList_Content #order .ord_info>.area_right .box {
   width: 360px;
   padding: 40px;
   background: #f8f8f8;
@@ -488,7 +493,8 @@ ol, ul, li {
   position: relative;
 }
 
-.orderList_Content .tbl_order2 td p, .tbl_order2 td span {
+.orderList_Content .tbl_order2 td p,
+.tbl_order2 td span {
   color: #181818;
   font-size: 17px;
 }
@@ -520,28 +526,29 @@ ol, ul, li {
   margin-top: 5px;
 }
 
-.orderList_Content .tbl_order2 .total_price, .tbl_order2 .total_price * {
+.orderList_Content .tbl_order2 .total_price,
+.tbl_order2 .total_price * {
   color: #d53838;
 }
 
-.orderList_Content #order .ord_info > .area_right .box .line {
+.orderList_Content #order .ord_info>.area_right .box .line {
   margin-top: 25px;
   border-top: 1px solid #dfdfdf;
 }
 
-.orderList_Content #order .method > div {
+.orderList_Content #order .method>div {
   position: relative;
   padding: 25px 0 10px 25px;
 }
 
-.orderList_Content #order .method > div > label {
+.orderList_Content #order .method>div>label {
   position: absolute;
   left: 0;
   top: 0;
   cursor: pointer;
 }
 
-.orderList_Content #order .method > div > label {
+.orderList_Content #order .method>div>label {
   position: absolute;
   left: 0;
   top: 0;
@@ -552,21 +559,21 @@ ol, ul, li {
   background-image: url(https://www.rolarola.com/_skin/rolarola_250613/img/common/radio_on.png);
 }
 
-.orderList_Content #order .method > div .msg_pay {
+.orderList_Content #order .method>div .msg_pay {
   padding: 0 !important;
   color: #999 !important;
 }
 
-.orderList_Content #order .method > div select {
+.orderList_Content #order .method>div select {
   width: 100%;
   margin-bottom: 5px;
 }
 
-.orderList_Content #order .method > div .bank_name {
+.orderList_Content #order .method>div .bank_name {
   display: none;
 }
 
-.orderList_Content #order .method > div #cash_reg {
+.orderList_Content #order .method>div #cash_reg {
   padding: 5px 0 !important;
 }
 
@@ -593,7 +600,7 @@ ol, ul, li {
   font-weight: 500;
 }
 
-.orderList_Content #order .reconfirm > label {
+.orderList_Content #order .reconfirm>label {
   display: block;
   position: relative;
   padding: 15px 15px 15px 40px;
@@ -601,7 +608,7 @@ ol, ul, li {
   cursor: pointer;
 }
 
-.orderList_Content #order .reconfirm > label > input {
+.orderList_Content #order .reconfirm>label>input {
   position: absolute;
   left: 15px;
   top: 15px;
@@ -613,7 +620,7 @@ ol, ul, li {
   right: 30px;
 }
 
-.orderList_Content .box_btn.huge > * {
+.orderList_Content .box_btn.huge>* {
   padding: 16px 20px;
   font-size: 16px;
 }
@@ -632,7 +639,8 @@ ol, ul, li {
   font-weight: bold;
 }
 
-.orderList_Content #order #order2 .total_info strong, #order #order2 .total_info strong * {
+.orderList_Content #order #order2 .total_info strong,
+#order #order2 .total_info strong * {
   font-size: inherit;
 }
 
@@ -667,8 +675,7 @@ ol, ul, li {
   width: 260px;
 }
 
-.orderList_Content
-.mileage_apply_btn,
+.orderList_Content .mileage_apply_btn,
 .mileage_reset_btn {
   min-width: 70px;
   height: 40px;
@@ -684,8 +691,7 @@ ol, ul, li {
   background: #333;
 }
 
-.orderList_Content
-.mileage_apply_btn:disabled,
+.orderList_Content .mileage_apply_btn:disabled,
 .mileage_reset_btn:disabled {
   cursor: default;
   opacity: 0.5;

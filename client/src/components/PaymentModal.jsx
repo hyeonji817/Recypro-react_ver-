@@ -1,56 +1,35 @@
-// src/components/PaymentModal.jsx
 import React, { useState } from "react";
 import "./PaymentModal.css";
 
-export default function PaymentModal({
-  open,
-  amount = 0,
-  orderName = "",
-  buyer = {},
-  onClose,
-  onSuccess,
-  onFail
-}) {
-  const [form, setForm] = useState({
-    cardNumber: "",
-    expiry: "",
-    cvc: "",
-    password2: "",
-    name: buyer?.name || "",
-    email: buyer?.email || "",
-  });
-  const [loading, setLoading] = useState(false);
+const METHODS = {
+  TOSS: ["토스페이", "토스페이 앱 인증을 모의로 진행합니다."],
+  PAYCO: ["PAYCO 간편결제", "PAYCO 앱 인증을 모의로 진행합니다."],
+  CARD: ["신용카드", "카드사 인증 및 승인을 모의로 진행합니다."],
+  TRANSFER: ["실시간 계좌이체", "은행 선택 및 계좌 인증·이체를 모의로 진행합니다."],
+  ESCROW_VIRTUAL_ACCOUNT: ["에스크로 가상계좌", "에스크로 가상계좌 발급과 입금 확인을 모의로 진행합니다. 실제 계좌는 발급되지 않습니다."],
+  BANK: ["무통장입금", "무통장입금 확인을 모의로 진행합니다. 실제 입금 계좌는 제공되지 않습니다."],
+  MOBILE_PHONE: ["휴대폰결제", "통신사 본인 인증 및 휴대폰 결제 승인을 모의로 진행합니다."],
+};
 
+export default function PaymentModal({
+  open, amount = 0, orderName = "", buyer = {}, payMethod = "CARD",
+  onClose, onSuccess, onFail,
+}) {
+  const [loading, setLoading] = useState(false);
+  const [confirmed, setConfirmed] = useState(false);
+  const [error, setError] = useState("");
+  const method = METHODS[payMethod];
   if (!open) return null;
 
-  const onChange = (e) => {
-    const { name, value } = e.target;
-    setForm((f) => ({ ...f, [name]: value }));
-  };
-
-  const fakeValidate = () => {
-    // 아주 간단한 최소 검증만 (원한다면 마스킹/포맷 추가)
-    if (!form.cardNumber || !form.expiry || !form.cvc) return "카드 정보를 입력해 주세요.";
-    if (!form.name || !form.email) return "이름/이메일을 입력해 주세요.";
-    return "";
-  };
-
   const handlePay = async () => {
-    const err = fakeValidate();
-    if (err) return alert(err);
+    if (loading || !confirmed || !method) return;
     setLoading(true);
+    setError("");
     try {
-      // 1~1.5초 로딩 연출
-      await new Promise((r) => setTimeout(r, 900));
-      onSuccess?.({
-        mockPaymentKey: "mock_" + Math.random().toString(36).slice(2),
-        paidAt: new Date().toISOString(),
-        card: {
-          bin: form.cardNumber.slice(0,6),
-          last4: form.cardNumber.slice(-4),
-        },
-      });
+      await onSuccess?.({ payMethod, mock: true });
+      onClose?.();
     } catch (e) {
+      setError(e?.response?.data?.message || "모의 결제 승인에 실패했습니다. 다시 시도해 주세요.");
       onFail?.(e);
     } finally {
       setLoading(false);
@@ -58,64 +37,28 @@ export default function PaymentModal({
   };
 
   return (
-    <div className="pmask" role="dialog" aria-modal="true">
+    <div className="pmask" role="dialog" aria-modal="true" aria-labelledby="payment-title">
       <div className="pmodal">
         <div className="pheader">
-          <h3>결제하기</h3>
-          <button className="pclose" onClick={onClose} aria-label="닫기">×</button>
+          <h3 id="payment-title">{method?.[0] || "지원하지 않는 결제수단"} · 모의 결제</h3>
+          <button type="button" className="pclose" onClick={onClose} disabled={loading} aria-label="닫기">×</button>
         </div>
-
         <div className="pbody">
-          <div className="pline">
-            <div className="ptitle">주문명</div>
-            <div className="pvalue">{orderName || "-"}</div>
-          </div>
-          <div className="pline">
-            <div className="ptitle">결제금액</div>
-            <div className="pvalue"><strong>{amount.toLocaleString()}</strong> 원</div>
-          </div>
-
-          <div className="psection">카드 정보</div>
-          <div className="grid2">
-            <label>
-              카드번호
-              <input name="cardNumber" maxLength={19} placeholder="1234 5678 9012 3456"
-                     value={form.cardNumber} onChange={onChange}/>
-            </label>
-            <label>
-              유효기간(YY/MM)
-              <input name="expiry" maxLength={5} placeholder="29/12"
-                     value={form.expiry} onChange={onChange}/>
-            </label>
-            <label>
-              CVC
-              <input name="cvc" maxLength={4} placeholder="***"
-                     value={form.cvc} onChange={onChange}/>
-            </label>
-            <label>
-              비밀번호 앞 2자리
-              <input name="password2" maxLength={2} placeholder="**"
-                     value={form.password2} onChange={onChange}/>
-            </label>
-          </div>
-
-          <div className="psection">구매자</div>
-          <div className="grid2">
-            <label>
-              이름
-              <input name="name" value={form.name} onChange={onChange}/>
-            </label>
-            <label>
-              이메일
-              <input name="email" value={form.email} onChange={onChange}/>
-            </label>
-          </div>
+          <div className="pline"><div className="ptitle">주문명</div><div className="pvalue">{orderName || "-"}</div></div>
+          <div className="pline"><div className="ptitle">결제금액</div><div className="pvalue"><strong>{Number(amount).toLocaleString()}</strong> 원</div></div>
+          <div className="pline"><div className="ptitle">결제수단</div><div className="pvalue">{method?.[0] || "-"}</div></div>
+          <div className="pline"><div className="ptitle">구매자</div><div className="pvalue">{buyer.name || "-"}</div></div>
+          <p className="pmock-notice">{method?.[1]} 실제 결제나 입금은 발생하지 않습니다. 카드번호·계좌번호·인증번호를 입력하지 마세요.</p>
+          <label className="pmock-confirm">
+            <input type="checkbox" checked={confirmed} disabled={loading} onChange={(e) => setConfirmed(e.target.checked)} />
+            모의 결제임을 확인했습니다.
+          </label>
+          {error && <p role="alert" className="pmock-error">{error}</p>}
         </div>
-
         <div className="pfooter">
-          <button className="pbtn secondary" onClick={onClose} disabled={loading}>취소</button>
-          <button className="pbtn primary" onClick={handlePay} disabled={loading}>
-            {loading ? "결제 중..." : "결제하기"}
+          <button type="button" className="pbtn secondary" onClick={onClose} disabled={loading}>취소</button>
+          <button type="button" className="pbtn primary" onClick={handlePay} disabled={loading || !confirmed || !method}>
+            {loading ? "처리 중..." : ["BANK", "ESCROW_VIRTUAL_ACCOUNT"].includes(payMethod) ? "모의 입금 확인" : "모의 결제 승인"}
           </button>
         </div>
       </div>
