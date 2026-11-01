@@ -215,3 +215,26 @@ li {
 .mpMileage_wrapper .paging * {
   vertical-align: middle;
 }
+
+/* Keep the mileage content aligned with the category navigation. */
+.mpMileage_wrapper {
+  --mpMileage-content-width: 1520px;
+}
+
+.mpMileage_wrapper .mpMileage_top .mpMileage_tab,
+.mpMileage_wrapper .milage_section {
+  box-sizing: border-box;
+  width: var(--mpMileage-content-width);
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.mpMileage_wrapper .milage_section .box_mp,
+.mpMileage_wrapper .milage_section .tbl_col {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+}
