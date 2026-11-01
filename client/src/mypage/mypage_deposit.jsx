@@ -139,7 +139,7 @@ export default function Mp_Deposit() {
                   <a href="/mypage_specialMileage" className="tab_sub">스페셜 적립금</a>
                 </li>
                 <li>
-                  <a href="/mypage_q%26a" className="tab_title">
+                  <a href="/mypage_qa" className="tab_title">
                     Q&amp;A<br />
                     <strong className="tab_sub">내 상품문의</strong>
                   </a>

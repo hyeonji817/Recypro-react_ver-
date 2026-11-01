@@ -218,7 +218,7 @@ const Mp_OrderRequest = () => {
                   </a>
                 </li>
                 <li>
-                  <a href="/deposits" className="tab_title">
+                  <a href="/mypage_deposit" className="tab_title">
                     DEPOSITS
                     <br />
                     <strong className="tab_sub">예치금</strong>
@@ -232,7 +232,7 @@ const Mp_OrderRequest = () => {
                   </a>
                 </li>
                 <li>
-                  <a href="/mypage_q%26a" className="tab_title">
+                  <a href="/mypage_qa" className="tab_title">
                     Q&amp;A
                     <br />
                     <strong className="tab_sub">내 상품문의</strong>

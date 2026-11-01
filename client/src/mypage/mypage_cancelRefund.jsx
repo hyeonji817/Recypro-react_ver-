@@ -193,7 +193,7 @@ const Mp_CancelRefund = () => {
                   </a>
                 </li>
                 <li>
-                  <a href="/deposits" className="tab_title">
+                  <a href="/mypage_deposit" className="tab_title">
                     DEPOSITS
                     <br />
                     <strong className="tab_sub">예치금</strong>
