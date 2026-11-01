@@ -198,7 +198,7 @@ const Mp_OrderChange = () => {
                   </a>
                 </li>
                 <li>
-                  <a href="/special-mileage" className="tab_title">
+                  <a href="/mypage_specialMileage" className="tab_title">
                     SECRET MILEAGE
                     <br />
                     <strong className="tab_sub">스페셜 적립금</strong>

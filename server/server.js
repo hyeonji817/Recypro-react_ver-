@@ -26,6 +26,7 @@ import mypageRouter from "./routes/Mypage.js";
 import mpOrderRequestRouter from "./routes/mpOrder_Request.js";
 import mpOrderChangeRouter from "./routes/mpOrder_Change.js";
 import mpWishRouter from "./routes/mpWish.js"; 
+import { createSpecialMileageRouter } from "./routes/specialMileage.js";
 import mpCouponRouter from "./routes/mpCoupon.js";
 
 import mysql from "mysql2";   // MySQL 데이터베이스와의 연결 제공. 
@@ -130,6 +131,7 @@ app.use("/api/mpOrder_Request", mpOrderRequestRouter);
 app.use("/api/mypage/order-change", mpOrderChangeRouter);
 app.use("/api/mypage/wish", mpWishRouter);
 app.use("/api/mpCoupon", mpCouponRouter);
+app.use("/api/mypage/special-mileage", createSpecialMileageRouter(() => db));
 
 // MySQL 연결 설정 (공통) (DB 연결은 단일 세션으로 하면 안되고 pool을 통해 다중 세션 처리할 수 있도록 한다.)
 /** const pool = mysql.createPool({

@@ -145,6 +145,8 @@ function App() {
         <Route path="/mypage_coupon" element={<Mp_Coupon />} />
         <Route path="/mypage_mileage" element={<Mp_Mileage />} />
         <Route path="/mypage_deposit" element={<Mp_Deposit />} />
+        <Route path="/special-mileage" element={<Mp_SpecialMileage />} />
+        <Route path="/mypage/sccoupon.php" element={<Mp_SpecialMileage />} />
         <Route path="/mypage_specialMileage" element={<Mp_SpecialMileage />} />
 
         <Route path="/customer_main" element={<Customer_main />} />

@@ -1,0 +1,295 @@
+@charset "UTF-8";
+@font-face {
+  font-family: 'GmarketSansMedium';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.mpSpecial_Content {
+  min-height: 500px;
+  margin-top: 170px;
+}
+
+.mpSpecial_Content .mpSpecial_body {
+  overflow: hidden;
+  width: 1700px;
+  margin: 0 auto;
+  font-family: 'GmarketSansMedium';
+}
+.mpSpecial_wrapper h2.subtitle {
+  padding: 64px 0 60px;
+  color: #1a1a1a;
+  font-size: 40px;
+  font-weight: 700;
+  letter-spacing: 0.1rem;
+  text-align: center;
+}
+
+.mpSpecial_top {
+  text-align: center;
+}
+
+.mpSpecial_top .customer_section .name strong,
+.mpSpecial_top .customer_section .name {
+  color: #000;
+  font-size: 27px;
+}
+
+.mpSpecial_top .customer_section .my_edit {
+  color: #828282;
+  font-size: 22px;
+}
+.mpSpecial_wrapper a,
+.mpSpecial_wrapper a:hover,
+.mpSpecial_wrapper a:active,
+.mpSpecial_wrapper a:focus {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.mpSpecial_top .point_section {
+  padding-top: 25px;
+  font-size: 0;
+}
+.mpSpecial_wrapper ol,
+.mpSpecial_wrapper ul,
+.mpSpecial_wrapper li {
+  list-style: none;
+}
+
+.mpSpecial_top .point_section>li {
+  display: inline-block;
+  padding: 0 18px;
+  vertical-align: top;
+}
+
+.mpSpecial_top .point_section>li>a,
+.mpSpecial_top .point_section>li>a strong {
+  color: #000;
+  font-size: 22px;
+}
+
+.mpSpecial_top .mpSpecial_tab {
+  padding: 104px 0 144px;
+  font-size: 0;
+}
+
+.mpSpecial_top .mpSpecial_tab>li {
+  display: inline-block;
+  padding: 0 34px;
+  vertical-align: top;
+}
+
+.mpSpecial_top .mpSpecial_tab>li .tab_title {
+  display: block;
+  color: #828282;
+  font-size: 17px;
+}
+
+.mpSpecial_top .mpSpecial_tab>li .tab_sub {
+  display: block;
+  color: #000;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.mpSpecial_wrapper h3.title.first {
+  padding-top: 0;
+}
+
+.mpSpecial_wrapper h3.title {
+  padding: 30px 0 20px;
+}
+
+.mpSpecial_wrapper .box_mp {
+  margin-bottom: 30px;
+  padding: 30px;
+  background: #f8f8f8;
+  text-align: center;
+  line-height: 35px;
+}
+
+.mpSpecial_wrapper .box_mp .have {
+  color: #666;
+}
+
+.mpSpecial_wrapper .have span {
+  display: block;
+  padding-top: 5px;
+  color: #333;
+  font-family: 'GmarketSansMedium';
+  font-size: 24px;
+  font-weight: bold;
+}
+.mpSpecial_wrapper .tbl_col {
+  table-layout: fixed;
+  clear: both;
+  width: 100%;
+  border-collapse: collapse;
+}
+.mpSpecial_wrapper table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+.mpSpecial_wrapper .tbl_col caption {
+  padding-bottom: 20px;
+  font-weight: bold;
+  text-align: left;
+}
+.mpSpecial_wrapper .hidden {
+  visibility: hidden;
+  overflow: hidden;
+  width: 0 !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-size: 0;
+  line-height: 0;
+}
+.mpSpecial_wrapper .tbl_col>thead>tr>th {
+  padding: 15px 0;
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+}
+.mpSpecial_wrapper .tbl_col>tbody>tr>td {
+  padding: 15px 0;
+  border-bottom: 1px solid #e0e0e0;
+  text-align: center;
+  vertical-align: middle;
+}
+.mpSpecial_wrapper .tbl_col>tbody>tr>td * {
+  color: #666;
+}
+.mpSpecial_wrapper .p_color {
+  color: #d53838 !important;
+}
+.mpSpecial_wrapper .tbl_col>tbody>tr>td.tal {
+  padding-left: 15px !important;
+}
+.mpSpecial_wrapper ol,
+.mpSpecial_wrapper ul,
+.mpSpecial_wrapper li {
+  list-style: none;
+}
+
+.mpSpecial_wrapper .paging {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  font-size: 0;
+  text-align: center;
+}
+
+.mpSpecial_wrapper .paging li {
+  display: inline;
+  padding: 0 10px;
+  color: #9e9e9e;
+  vertical-align: middle;
+}
+
+.mpSpecial_wrapper .paging li strong {
+  display: inline-block;
+  color: #000;
+  font-size: 20px;
+}
+
+.mpSpecial_wrapper .paging * {
+  vertical-align: middle;
+}
+
+/* Keep the mileage content aligned with the category navigation. */
+.mpSpecial_wrapper {
+  --mpSpecial-content-width: 1520px;
+}
+
+.mpSpecial_wrapper .mpSpecial_top .mpSpecial_tab,
+.mpSpecial_wrapper .deposit_section {
+  box-sizing: border-box;
+  width: var(--mpSpecial-content-width);
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.mpSpecial_wrapper .deposit_section .box_mp,
+.mpSpecial_wrapper .deposit_section .tbl_col {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+/* Align the mileage history table with its summary box. */
+.mpSpecial_wrapper .deposit_section .tbl_col {
+  position: static;
+  inset: auto;
+  transform: none;
+  box-sizing: border-box;
+  table-layout: fixed;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+}
+
+.mpSpecial_wrapper .deposit_section .tbl_col th,
+.mpSpecial_wrapper .deposit_section .tbl_col td {
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+/* Center the mileage history description cells. */
+.mpSpecial_wrapper .deposit_section .tbl_col>tbody>tr>td.tal {
+  text-align: center;
+  padding-left: 0 !important;
+  padding-right: 0;
+}
+
+/* Override the shared .tal left alignment for mileage descriptions only. */
+.mpSpecial_wrapper .deposit_section .tbl_col>tbody>tr>td.tal {
+  text-align: center !important;
+  padding-left: 15px !important;
+  padding-right: 15px !important;
+}
+.mpSpecial_wrapper .deposit_summary { display: grid; grid-template-columns: repeat(4, 1fr); }
+.mpSpecial_wrapper .deposit_summary .have { margin: 0; border-right: 1px solid #e0e0e0; }
+.mpSpecial_wrapper .deposit_summary .have:last-child { border: 0; }
+.mpSpecial_wrapper .deposit_toolbar { display: flex; align-items: center; justify-content: space-between; gap: 20px; color: #666; }
+.mpSpecial_wrapper button { font: inherit; border: 1px solid #ccc; background: #fff; color: #333; padding: 10px 20px; cursor: pointer; }
+.mpSpecial_wrapper button:disabled { opacity: .45; cursor: default; }
+.mpSpecial_wrapper button:focus-visible, .mpSpecial_wrapper input:focus-visible { outline: 2px solid #333; outline-offset: 3px; }
+.mpSpecial_wrapper .deposit_primary { color: #fff; background: #333; border-color: #333; }
+.mpSpecial_wrapper .deposit_notice { min-height: 24px; margin: 12px 0; color: #b03030; }
+.mpSpecial_wrapper .deposit_form { border: 1px solid #e0e0e0; padding: 30px; margin-bottom: 30px; }
+.mpSpecial_wrapper .deposit_form h4, .mpSpecial_wrapper .deposit_guide h4 { font-size: 17px; margin: 0 0 18px; }
+.mpSpecial_wrapper .deposit_form p { color: #666; font-size: 14px; }
+.mpSpecial_wrapper .deposit_form fieldset { border: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.mpSpecial_wrapper .deposit_form label { display: flex; align-items: center; gap: 15px; font-size: 14px; }
+.mpSpecial_wrapper .deposit_form input:not([type=checkbox]) { flex: 1; min-width: 0; padding: 12px; border: 1px solid #ddd; font: inherit; }
+.mpSpecial_wrapper .deposit_agreement, .mpSpecial_wrapper .deposit_actions { grid-column: 1 / -1; }
+.mpSpecial_wrapper .deposit_actions { display: flex; justify-content: center; gap: 10px; }
+.mpSpecial_wrapper .deposit_tabs { display: flex; margin-bottom: 25px; border-bottom: 1px solid #333; }
+.mpSpecial_wrapper .deposit_tabs button { min-width: 220px; border-bottom: 0; }
+.mpSpecial_wrapper .deposit_tabs button[aria-pressed=true] { background: #333; color: #fff; }
+.mpSpecial_wrapper .deposit_paging { display: flex; justify-content: center; align-items: center; gap: 25px; margin: 30px 0 50px; }
+.mpSpecial_wrapper .deposit_paging button { border: 0; }
+.mpSpecial_wrapper .deposit_guide { padding: 30px; background: #f8f8f8; margin-bottom: 80px; }
+.mpSpecial_wrapper .deposit_guide ul { padding: 0; margin: 0; color: #666; font-size: 14px; line-height: 2; }
+.mpSpecial_wrapper .tbl_col small { display: block; padding-top: 5px; }
+@media (max-width: 1700px) { .mpSpecial_wrapper .mpSpecial_body { width: 100%; padding: 0 30px; box-sizing: border-box; } .mpSpecial_wrapper .mpSpecial_tab { display: flex; flex-wrap: wrap; justify-content: center; gap: 25px; } .mpSpecial_wrapper .mpSpecial_tab > li { padding: 0 15px; } }
+@media (max-width: 700px) { .mpSpecial_wrapper .deposit_summary { grid-template-columns: 1fr 1fr; gap: 20px; } .mpSpecial_wrapper .deposit_summary .have:nth-child(2) { border: 0; } .mpSpecial_wrapper .deposit_toolbar { align-items: flex-start; flex-direction: column; } .mpSpecial_wrapper .deposit_form fieldset { grid-template-columns: 1fr; } .mpSpecial_wrapper .deposit_tabs button { min-width: 0; flex: 1; padding: 12px 8px; } .mpSpecial_wrapper .deposit_table_scroll { overflow-x: auto; } .mpSpecial_wrapper .deposit_table_scroll .tbl_col { min-width: 850px; } }
+
+.special_wrapper .special_register{background:#f8f8f8;display:flex;flex-direction:column;align-items:center;gap:24px;padding:36px 20px;font-size:14px;}
+.special_wrapper .special_register input{box-sizing:border-box;width:300px;max-width:100%;height:46px;border:1px solid #ddd;background:white;padding:10px;font:inherit;text-align:center;}
+.special_wrapper .special_actions{display:flex;justify-content:center;gap:5px;margin-top:30px;}
+.special_wrapper .special_actions button{min-width:150px;}
+.special_wrapper .special_actions .deposit_primary{background:#666;border-color:#666;}
+.special_wrapper .special_list_heading{display:flex;align-items:center;justify-content:space-between;gap:15px;margin:35px 0 20px;}
+.special_wrapper .special_list_heading h3{font-size:17px;}
+.special_wrapper .deposit_guide a{text-decoration:underline;}
+@media(max-width:700px){.special_wrapper .special_actions button{min-width:0;flex:1;}.special_wrapper .deposit_table_scroll .tbl_col{min-width:600px;}.special_wrapper .special_list_heading{align-items:flex-start;}}
