@@ -95,11 +95,11 @@ const Mp_Mileage = () => {
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="tab_title">
+                  <a href="/mypage_deposit" className="tab_title">
                     DEPOSITS<br />
                     <strong className="tab_sub"></strong>
                   </a>
-                  <a href="#" className="tab_sub">예치금</a>
+                  <a href="/mypage_deposit" className="tab_sub">예치금</a>
                 </li>
                 <li>
                   <a href="#" className="tab_title">
