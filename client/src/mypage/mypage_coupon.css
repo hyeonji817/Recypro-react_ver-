@@ -8,15 +8,15 @@
 }
 
 .mpCoupon_Content {
-  min-height: 500px; 
-  margin-top: 170px; 
+  min-height: 500px;
+  margin-top: 170px;
   font-family: 'GmarketSansMedium';
 }
 
 .mpCoupon_Content .mpCoupon_body {
-  overflow: hidden; 
-  width: 1700px; 
-  margin: 0 auto; 
+  overflow: hidden;
+  width: 1700px;
+  margin: 0 auto;
   font-family: 'GmarketSansMedium';
 }
 
@@ -29,12 +29,17 @@ h2.subtitle {
   text-align: center;
 }
 
-a, a:hover, a:active, a:focus {
+a,
+a:hover,
+a:active,
+a:focus {
   text-decoration: none;
   cursor: pointer;
 }
 
-ol, ul, li {
+ol,
+ul,
+li {
   list-style: none;
 }
 
@@ -42,7 +47,7 @@ ol, ul, li {
   text-align: center;
 }
 
-.mpCoupon_top .customer_section .name strong, 
+.mpCoupon_top .customer_section .name strong,
 .mypage_top .customer_section .name {
   color: #000;
   font-size: 27px;
@@ -54,43 +59,43 @@ ol, ul, li {
 }
 
 .mpCoupon_top .point_section {
-  padding-top: 25px; 
-  font-size: 0; 
+  padding-top: 25px;
+  font-size: 0;
 }
 
-.mpCoupon_top .point_section > li {
+.mpCoupon_top .point_section>li {
   display: inline-block;
   padding: 0 18px;
   vertical-align: top;
 }
 
-.mpCoupon_top .point_section > li > a, 
-.mpOrders_top .point_section > li > a strong {
+.mpCoupon_top .point_section>li>a,
+.mpOrders_top .point_section>li>a strong {
   color: #000;
   font-size: 22px;
 }
 
 .mpCoupon_top .mpCoupon_tab {
-  padding: 104px 0 144px; 
+  padding: 104px 0 144px;
   font-size: 0;
 }
 
-.mpCoupon_top .mpCoupon_tab > li {
-  display: inline-block; 
-  padding: 0 34px; 
-  vertical-align: top; 
+.mpCoupon_top .mpCoupon_tab>li {
+  display: inline-block;
+  padding: 0 34px;
+  vertical-align: top;
 }
 
-.mpCoupon_top .mpCoupon_tab > li .tab_title {
+.mpCoupon_top .mpCoupon_tab>li .tab_title {
   display: block;
   color: #828282;
   font-size: 17px;
 }
 
-.mpCoupon_top .mpCoupon_tab > li .tab_sub {
-  display: block; 
-  color: #000; 
-  font-size: 14px; 
+.mpCoupon_top .mpCoupon_tab>li .tab_sub {
+  display: block;
+  color: #000;
+  font-size: 14px;
   font-weight: 700;
 }
 
@@ -159,7 +164,7 @@ ol, ul, li {
   line-height: 0;
 }
 
-.mpCoupon_wrapper .tbl_col > thead > tr > th {
+.mpCoupon_wrapper .tbl_col>thead>tr>th {
   padding: 15px 0;
   border-top: 1px solid #e0e0e0;
   border-bottom: 1px solid #e0e0e0;
@@ -168,27 +173,32 @@ ol, ul, li {
   vertical-align: middle;
 }
 
-.mpCoupon_wrapper .tbl_col > tbody > tr > td {
+.mpCoupon_wrapper .tbl_col>tbody>tr>td {
   padding: 15px 0;
   border-bottom: 1px solid #e0e0e0;
   text-align: center;
   vertical-align: middle;
 }
 
-.mpCoupon_wrapper .tbl_col > tbody > tr > td.tal {
+.mpCoupon_wrapper .tbl_col>tbody>tr>td.tal {
   padding-left: 15px !important;
 }
 
-.mpCoupon_wrapper .tbl_col > tbody > tr > td * {
+.mpCoupon_wrapper .tbl_col>tbody>tr>td * {
   color: #666;
 }
 
-a, a:hover, a:active, a:focus {
+a,
+a:hover,
+a:active,
+a:focus {
   text-decoration: none;
   cursor: pointer;
 }
 
-ol, ul, li {
+ol,
+ul,
+li {
   list-style: none;
 }
 
@@ -216,4 +226,59 @@ ol, ul, li {
   display: inline-block;
   color: #000;
   font-size: 20px;
+}
+
+/* Align the coupon section with the full category navigation. */
+.mpCoupon_wrapper .mpCoupon_Content .mpCoupon_body {
+  width: min(1700px, 100%);
+}
+
+.mpCoupon_wrapper .mpCoupon_top .mpCoupon_tab,
+.mpCoupon_wrapper #coupon {
+  box-sizing: border-box;
+  width: calc(100% - 200px);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.mpCoupon_wrapper .mpCoupon_top .mpCoupon_tab {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.mpCoupon_wrapper .mpCoupon_top .mpCoupon_tab>li {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.mpCoupon_wrapper #coupon h3.title:first-child {
+  position: static;
+}
+
+.mpCoupon_wrapper #coupon .box_mp {
+  box-sizing: border-box;
+  width: 100%;
+  margin-left: 0;
+}
+
+.mpCoupon_wrapper #coupon .tbl_col {
+  position: static;
+  width: 100%;
+}
+
+@media (max-width: 1000px) {
+
+  .mpCoupon_wrapper .mpCoupon_top .mpCoupon_tab,
+  .mpCoupon_wrapper #coupon {
+    width: 92%;
+  }
+
+  .mpCoupon_wrapper .mpCoupon_top .mpCoupon_tab {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    row-gap: 24px;
+  }
 }
