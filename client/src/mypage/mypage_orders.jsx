@@ -80,7 +80,7 @@ const Mp_Orders = () => {
 
               <ul className="point_section">
                 <li>
-                  <a href="#">
+                  <a href="/mypage_coupon">
                     <strong>쿠폰</strong> {summary?.counts?.coupons || 0} 장
                   </a>
                 </li>

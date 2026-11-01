@@ -103,7 +103,7 @@ const Mp_WishList = () => {
 
               <ul className="point_section">
                 <li>
-                  <a href="#"><strong>쿠폰</strong> 0 장</a>
+                  <a href="/mypage_coupon"><strong>쿠폰</strong> 0 장</a>
                 </li>
                 <li>
                   <a href="/mypage_mileage"><strong>적립금</strong> 0 원</a>

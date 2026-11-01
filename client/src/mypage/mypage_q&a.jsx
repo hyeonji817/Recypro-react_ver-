@@ -260,7 +260,7 @@ const MpQA = () => {
                 </li>
                 <li>
                   <a
-                    href="/mypage_q%26a"
+                    href="/mypage_qa"
                     aria-current="page"
                     className="tab_title"
                   >

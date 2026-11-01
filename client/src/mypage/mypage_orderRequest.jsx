@@ -172,7 +172,7 @@ const Mp_OrderRequest = () => {
 
               <ul className="point_section">
                 <li>
-                  <a href="#">
+                  <a href="/mypage_coupon">
                     <strong>쿠폰</strong> 0 장
                   </a>
                 </li>

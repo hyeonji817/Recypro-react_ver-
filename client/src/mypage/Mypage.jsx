@@ -45,7 +45,7 @@ const Mypage = () => {
               <a href="/edit" className="my_edit">정보 수정하기</a>
 
               <ul className="point_section">
-                <li><a href="/coupons"><strong>쿠폰</strong> {counts.coupons || 0} 장</a></li>
+                <li><a href="/mypage_coupon"><strong>쿠폰</strong> {counts.coupons || 0} 장</a></li>
                 <li><a href="/mypage_mileage"><strong>적립금</strong> {formatWon(money.mileage)} 원</a></li>
                 <li><a href="/points"><strong>포인트</strong> {formatWon(money.points)} P</a></li>
               </ul>
@@ -57,7 +57,7 @@ const Mypage = () => {
                 <li><a href="/mypage_mileage" className="tab_title">MILEAGE<br /><strong className="tab_sub">적립금</strong></a></li>
                 <li><a href="/deposits" className="tab_title">DEPOSITS<br /><strong className="tab_sub">예치금</strong></a></li>
                 <li><a href="/mypage_specialMileage" className="tab_title">SECRET MILEAGE<br /><strong className="tab_sub">스페셜 적립금</strong></a></li>
-                <li><a href="/mypage_q%26a" className="tab_title">Q&amp;A<br /><strong className="tab_sub">내 상품문의</strong></a></li>
+                <li><a href="/mypage_qa" className="tab_title">Q&amp;A<br /><strong className="tab_sub">내 상품문의</strong></a></li>
                 <li><a href="#" className="tab_title">MYBOARD<br /><strong className="tab_sub">내 상품평</strong></a></li>
                 <li><a href="/withdraw" className="tab_title">WITHDRAW<br /><strong className="tab_sub">회원 탈퇴</strong></a></li>
               </ul>
