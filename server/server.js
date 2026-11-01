@@ -25,6 +25,7 @@ import statsRouter from "./routes/stats.js";
 import mypageRouter from "./routes/Mypage.js";
 import mpOrderRequestRouter from "./routes/mpOrder_Request.js";
 import mpOrderChangeRouter from "./routes/mpOrder_Change.js";
+import { createProductInquiryRouter } from "./routes/productInquiries.js";
 import mpWishRouter from "./routes/mpWish.js"; 
 import { createSpecialMileageRouter } from "./routes/specialMileage.js";
 import mpCouponRouter from "./routes/mpCoupon.js";
@@ -130,6 +131,7 @@ app.use("/api/mypage", mypageRouter);
 app.use("/api/mpOrder_Request", mpOrderRequestRouter);
 app.use("/api/mypage/order-change", mpOrderChangeRouter);
 app.use("/api/mypage/wish", mpWishRouter);
+app.use("/api/mypage/product-inquiries", createProductInquiryRouter(() => db));
 app.use("/api/mpCoupon", mpCouponRouter);
 app.use("/api/mypage/special-mileage", createSpecialMileageRouter(() => db));
 

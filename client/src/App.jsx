@@ -50,6 +50,7 @@ import Mypage_OrderDetail from "./mypage/mypage_orderDetail";
 import Mypage_OrderRequest from "./mypage/mypage_orderRequest";
 import Mypage_OrderChange from "./mypage/mypage_orderChange";
 import Mypage_CancelRefund from "./mypage/mypage_cancelRefund";
+import Mp_QA from "./mypage/mypage_q&a.jsx";
 import Mp_WishList from "./mypage/mypage_wishList";
 import Mp_Coupon from "./mypage/mypage_coupon";
 import Mp_Mileage from "./mypage/mypage_mileage";
@@ -135,6 +136,8 @@ function App() {
 
         <Route path="/pd_write" element={<Pd_write />} />
         <Route path="/shop/Product_Review" element={<Product_Review />} />
+        <Route path="/mypage_q&a" element={<Mp_QA />} />
+        <Route path="/mypage/qa" element={<Mp_QA />} />
         <Route path="/mypage" element={<Mypage />} />
         <Route path="/orders" element={<Mypage_Orders />} />
         <Route path="/mypage/orders/:order_id" element={<Mypage_OrderDetail />} />

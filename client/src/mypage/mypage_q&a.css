@@ -1,0 +1,311 @@
+@charset "UTF-8";
+
+@font-face {
+  font-family: "GmarketSansMedium";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.mpQA_Content {
+  min-height: 500px;
+  margin-top: 170px;
+}
+
+.mpQA_Content .mpQA_body {
+  overflow: hidden;
+  width: min(1700px, 94%);
+  margin: 0 auto;
+  font-family: "GmarketSansMedium";
+}
+
+.mpQA_wrapper h2.subtitle {
+  padding: 64px 0 60px;
+  color: #1a1a1a;
+  font-size: 40px;
+  font-weight: 700;
+  letter-spacing: 0.1rem;
+  text-align: center;
+}
+
+.mpQA_wrapper a,
+.mpQA_wrapper a:hover,
+.mpQA_wrapper a:active,
+.mpQA_wrapper a:focus {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.mpQA_wrapper ul,
+.mpQA_wrapper li {
+  list-style: none;
+}
+
+.mpQA_top {
+  text-align: center;
+}
+
+.mpQA_top .customer_section .name strong,
+.mypage_top .customer_section .name {
+  color: #000;
+  font-size: 27px;
+}
+
+.mpQA_top .customer_section .my_edit {
+  color: #828282;
+  font-size: 22px;
+}
+
+.mpQA_top .point_section {
+  padding-top: 25px;
+  font-size: 0;
+}
+
+.mpQA_top .point_section > li {
+  display: inline-block;
+  padding: 0 18px;
+  vertical-align: top;
+}
+
+.mpQA_top .point_section > li > a,
+.mpQA_top .point_section > li > a strong {
+  color: #000;
+  font-size: 22px;
+}
+
+.mpQA_top .mpQA_tab {
+  padding: 104px 0 144px;
+  font-size: 0;
+}
+
+.mpQA_top .mpQA_tab > li {
+  display: inline-block;
+  padding: 0 34px;
+  vertical-align: top;
+}
+
+.mpQA_top .mpQA_tab > li .tab_title {
+  display: block;
+  color: #828282;
+  font-size: 17px;
+}
+
+.mpQA_top .mpQA_tab > li .tab_sub {
+  display: block;
+  color: #000;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.mpQA_wrapper .qa-section {
+  margin: 0 auto 120px;
+  max-width: 1400px;
+  color: #222;
+  font-size: 15px;
+}
+.mpQA_wrapper .qa-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid #222;
+  padding-bottom: 20px;
+}
+.mpQA_wrapper .qa-heading h3 {
+  font-size: 26px;
+  margin: 0;
+}
+.mpQA_wrapper .qa-guide {
+  color: #777;
+  margin: 24px 0 32px;
+  line-height: 1.8;
+}
+.mpQA_wrapper button,
+.mpQA_wrapper input,
+.mpQA_wrapper select,
+.mpQA_wrapper textarea {
+  font: inherit;
+}
+.mpQA_wrapper button,
+.mpQA_wrapper .qa-actions a {
+  border: 1px solid #ccc;
+  background: white;
+  color: #333;
+  padding: 11px 18px;
+  cursor: pointer;
+}
+.mpQA_wrapper button:hover {
+  border-color: #333;
+}
+.mpQA_wrapper button:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+.mpQA_wrapper .qa-heading button,
+.mpQA_wrapper .qa-actions button:first-child {
+  background: #333;
+  color: white;
+  border-color: #333;
+}
+.mpQA_wrapper .qa-search {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 22px 0;
+  flex-wrap: wrap;
+}
+.mpQA_wrapper input:not([type="checkbox"]),
+.mpQA_wrapper select,
+.mpQA_wrapper textarea {
+  border: 1px solid #ddd;
+  padding: 12px;
+  box-sizing: border-box;
+  background: #fff;
+  color: #222;
+}
+.mpQA_wrapper .qa-search input {
+  flex: 1;
+  min-width: 160px;
+}
+.mpQA_wrapper .qa-table-scroll {
+  overflow: auto;
+}
+.mpQA_wrapper .qa-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 660px;
+  text-align: center;
+}
+.mpQA_wrapper .qa-table th {
+  padding: 20px 16px;
+  border-top: 1px solid #222;
+  background: #fafafa;
+  font-weight: normal;
+}
+.mpQA_wrapper .qa-table td {
+  border-bottom: 1px solid #e5e5e5;
+  padding: 24px 16px;
+}
+.mpQA_wrapper .qa-subject {
+  text-align: left;
+  width: 60%;
+}
+.mpQA_wrapper .qa-subject > span {
+  display: block;
+  font-size: 13px;
+  color: #888;
+  margin-bottom: 10px;
+}
+.mpQA_wrapper .qa-subject button {
+  border: 0;
+  padding: 0;
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+.mpQA_wrapper .qa-waiting {
+  color: #888;
+}
+.mpQA_wrapper .qa-answered {
+  color: #4b795e;
+}
+.mpQA_wrapper .qa-detail {
+  text-align: left;
+  background: #fafafa;
+}
+.mpQA_wrapper .qa-content,
+.mpQA_wrapper .qa-answer p {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  line-height: 1.9;
+}
+.mpQA_wrapper .qa-answer {
+  border-top: 1px solid #ddd;
+  padding: 22px 0;
+  margin-top: 24px;
+}
+.mpQA_wrapper .qa-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+.mpQA_wrapper .qa-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+  margin-top: 35px;
+}
+.mpQA_wrapper .qa-empty {
+  padding: 70px 20px;
+  text-align: center;
+  color: #777;
+}
+.mpQA_wrapper .qa-message {
+  padding: 18px;
+  background: #f3f6f2;
+  white-space: pre-wrap;
+}
+.mpQA_wrapper .qa-editor {
+  padding: 28px;
+  background: #fafafa;
+  border: 1px solid #ddd;
+  margin: 24px 0;
+}
+.mpQA_wrapper .qa-editor label:not(.qa-checkbox) {
+  display: block;
+  margin-bottom: 18px;
+}
+.mpQA_wrapper .qa-editor label > input:not([type="checkbox"]),
+.mpQA_wrapper .qa-editor label > textarea,
+.mpQA_wrapper .qa-editor label > select {
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+}
+.mpQA_wrapper .qa-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 18px 0;
+}
+.mpQA_wrapper .qa-editor small {
+  color: #777;
+}
+.mpQA_wrapper .qa-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.mpQA_wrapper .mpQA_tab a[aria-current="page"],
+.mpQA_wrapper .mpQA_tab a[aria-current="page"] .tab_sub {
+  color: #4b795e;
+}
+.mpQA_wrapper :focus-visible {
+  outline: 2px solid #4b795e;
+  outline-offset: 4px;
+}
+@media (max-width: 900px) {
+  .mpQA_top .mpQA_tab {
+    padding: 45px 0;
+  }
+  .mpQA_top .mpQA_tab > li {
+    padding: 14px;
+  }
+  .mpQA_wrapper .qa-heading h3 {
+    font-size: 22px;
+  }
+  .mpQA_wrapper .qa-editor {
+    padding: 16px;
+  }
+  .mpQA_Content {
+    margin-top: 130px;
+  }
+}
