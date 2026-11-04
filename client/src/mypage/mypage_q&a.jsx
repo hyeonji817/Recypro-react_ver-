@@ -270,7 +270,7 @@ const MpQA = () => {
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="tab_title">
+                  <a href="/mypage_reviews" className="tab_title">
                     MYBOARD
                     <br />
                     <strong className="tab_sub">내 상품평</strong>

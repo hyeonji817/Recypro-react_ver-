@@ -342,4 +342,49 @@ router.get("/mileage", async (req, res) => {
   }
 });
 
+
+// Session-scoped personal reviews. Legacy review rows identify products by pname.
+router.get('/reviews', async (req, res) => {
+  const userId = getSessionUserId(req);
+  if (!userId) return res.status(401).json({ message: '로그인이 필요합니다.' });
+  try {
+    const [written, purchased] = await Promise.all([
+      q('SELECT image, rv_title, rv_rating, date, pname FROM review WHERE id = ? ORDER BY date DESC', [userId]),
+      q(`SELECT oi.order_item_id, oi.pname, oi.filename, oi.option_label, o.created_at
+         FROM order_items oi JOIN orders o ON o.order_id = oi.order_id
+         WHERE o.user_id = ? AND o.status = 'PAID' ORDER BY o.created_at ASC`, [userId])
+    ]);
+    const reviewed = new Set(written.map(row => row.pname));
+    const products = new Map(purchased.map(row => [row.pname, row]));
+    res.json({
+      written: written.map(row => ({ ...row, filename: products.get(row.pname)?.filename || '', option_label: products.get(row.pname)?.option_label || '' })),
+      available: purchased.filter(row => !reviewed.has(row.pname))
+    });
+  } catch (error) {
+    console.error('[mypage/reviews]', error);
+    res.status(500).json({ message: '리뷰를 불러오지 못했습니다.' });
+  }
+});
+router.post('/reviews', async (req, res) => {
+  const userId = getSessionUserId(req);
+  if (!userId) return res.status(401).json({ message: '로그인이 필요합니다.' });
+  const { order_item_id, rv_title, rv_rating } = req.body || {};
+  if (!Number.isSafeInteger(Number(order_item_id)) || Number(order_item_id) <= 0 || typeof rv_title !== 'string' || !rv_title.trim() || rv_title.length > 1000 || !Number.isInteger(rv_rating) || rv_rating < 1 || rv_rating > 5) {
+    return res.status(400).json({ message: '리뷰 내용(1~1000자)과 별점(1~5점)을 확인해 주세요.' });
+  }
+  try {
+    const [item] = await q(`SELECT oi.pname FROM order_items oi JOIN orders o ON o.order_id = oi.order_id WHERE oi.order_item_id = ? AND o.user_id = ? AND o.status = 'PAID'`, [order_item_id, userId]);
+    if (!item) return res.status(404).json({ message: '리뷰를 작성할 구매 상품이 없습니다.' });
+    const result = await q(`INSERT INTO review (image, rv_title, rv_rating, id, date, pname)
+      SELECT '', ?, ?, ?, CURRENT_DATE(), ? FROM DUAL
+      WHERE NOT EXISTS (SELECT 1 FROM review WHERE id = ? AND pname = ?)`,
+      [rv_title.trim(), rv_rating, userId, item.pname, userId, item.pname]);
+    if (!result.affectedRows) return res.status(409).json({ message: '이미 작성한 상품평이 있습니다.' });
+    res.status(201).json({ success: true });
+  } catch (error) {
+    console.error('[mypage/reviews/create]', error);
+    res.status(500).json({ message: '리뷰를 등록하지 못했습니다.' });
+  }
+});
+
 export default router;

@@ -1,0 +1,271 @@
+.my-reviews {
+  color: #1a1a1a;
+  background: #fff;
+}
+.my-reviews button,
+.my-reviews select {
+  font: inherit;
+}
+.my-reviews .reviews-section {
+  max-width: 1248px;
+  margin: 20px auto 120px;
+  font-family: GmarketSansMedium, sans-serif;
+  font-size: 14px;
+}
+.my-reviews .reviews-policy {
+  text-align: right;
+  margin-bottom: 0;
+}
+.my-reviews .reviews-policy button {
+  border: 0;
+  background: none;
+  color: #aab2c3;
+  font-size: 12px;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+.my-reviews .reviews-policy-text {
+  padding: 18px;
+  background: #f7f8fa;
+  color: #747d8e;
+  line-height: 1.9;
+  margin: 8px 0;
+}
+.my-reviews .reviews-tabs {
+  display: flex;
+  gap: 48px;
+  border-bottom: 1px solid #e6eaf0;
+}
+.my-reviews .reviews-tabs button {
+  position: relative;
+  border: 0;
+  background: none;
+  padding: 0 0 14px;
+  color: #b3bbcb;
+  font-size: 16px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.my-reviews .reviews-tabs button[aria-selected="true"] {
+  color: #191b20;
+  font-weight: 700;
+}
+.my-reviews .reviews-tabs button[aria-selected="true"]:after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #191b20;
+}
+.my-reviews .reviews-sort {
+  padding: 16px 0;
+  border-bottom: 1px solid #e6eaf0;
+}
+.my-reviews .reviews-sort select {
+  background: #fff;
+  color: #30343b;
+  border: 0;
+  border-right: 1px solid #e6eaf0;
+  padding: 8px 20px 8px 8px;
+  font-size: 13px;
+}
+.my-reviews .reviews-empty {
+  text-align: center;
+  padding: 90px 12px;
+  color: #7a8291;
+  margin: 0;
+  min-height: 240px;
+}
+.my-reviews .review-card {
+  position: relative;
+  padding: 32px 24px;
+  border-bottom: 1px solid #e6eaf0;
+  line-height: 1.7;
+}
+.my-reviews .review-product {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 20px;
+}
+.my-reviews .review-product > img,
+.my-reviews .review-placeholder {
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+.my-reviews .review-placeholder {
+  display: grid;
+  place-items: center;
+  background: #f3f4f1;
+  color: #88947f;
+}
+.my-reviews .review-product h3 {
+  font-size: 14px;
+  font-weight: 700;
+  margin: 0 0 2px;
+}
+.my-reviews .review-product p {
+  margin: 0;
+  color: #767e8d;
+  font-size: 13px;
+}
+.my-reviews .review-option {
+  border-left: 2px solid #e8ecf3;
+  padding-left: 9px;
+  font-size: 12px;
+  margin: 0 0 16px;
+}
+.my-reviews .review-option span {
+  color: #7a8291;
+}
+.my-reviews .review-stars {
+  font-family: Arial, sans-serif;
+  font-size: 21px;
+  letter-spacing: -1px;
+  line-height: 1.2;
+  color: #ffb9b1;
+}
+.my-reviews .review-pink {
+  color: #ffb9b1;
+}
+.my-reviews .review-content {
+  margin: 6px 150px 22px 0;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.my-reviews .review-content.is-expanded {
+  display: block;
+}
+.my-reviews .review-more {
+  position: absolute;
+  right: 24px;
+  top: 190px;
+  color: #a7abb1;
+  background: none;
+  border: 0;
+  text-decoration: underline;
+  font-size: 12px;
+  cursor: pointer;
+}
+.my-reviews .review-photo {
+  display: block;
+  border: 0;
+  background: none;
+  padding: 0;
+  cursor: zoom-in;
+  margin: 40px 0 22px;
+  max-width: 100%;
+}
+.my-reviews .review-photo img {
+  display: block;
+  width: 160px;
+  max-width: 100%;
+  max-height: 220px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+.my-reviews .review-photo img.is-large {
+  width: 520px;
+  max-height: none;
+}
+.my-reviews .review-notice {
+  color: #7a8291;
+  font-size: 12px;
+  margin: 24px 0 0;
+}
+.my-reviews .review-notice a {
+  color: inherit;
+  text-decoration: underline;
+}
+.my-reviews .review-write {
+  display: inline-block;
+  border: 1px solid #222;
+  color: #222;
+  padding: 9px 22px;
+  font-size: 13px;
+}
+.my-reviews button:focus-visible,
+.my-reviews a:focus-visible,
+.my-reviews select:focus-visible {
+  outline: 2px solid #6b8165;
+  outline-offset: 4px;
+}
+@media (max-width: 650px) {
+  .my-reviews .reviews-section {
+    margin-top: 0;
+  }
+  .my-reviews .reviews-tabs {
+    gap: 24px;
+  }
+  .my-reviews .reviews-tabs button {
+    font-size: 13px;
+  }
+  .my-reviews .review-card {
+    padding: 24px 4px;
+  }
+  .my-reviews .review-content {
+    margin-right: 0;
+  }
+  .my-reviews .review-more {
+    position: static;
+    padding: 0;
+    margin-top: 12px;
+  }
+  .my-reviews .review-product h3 {
+    font-size: 12px;
+  }
+  .my-reviews .review-notice {
+    font-size: 11px;
+  }
+  .my-reviews .reviews-policy button {
+    padding-right: 0;
+  }
+}
+
+.my-reviews .review-write {
+  background: #fff;
+  cursor: pointer;
+}
+.my-reviews .review-compose {
+  max-width: 760px;
+  margin: 0 auto 80px;
+  padding: 28px;
+  background: #f7f8f5;
+  font-family: GmarketSansMedium, sans-serif;
+}
+.my-reviews .review-compose label {
+  display: block;
+  margin: 20px 0;
+}
+.my-reviews .review-compose select {
+  margin-left: 20px;
+  padding: 8px;
+}
+.my-reviews .review-compose textarea {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 12px;
+  padding: 12px;
+  font: inherit;
+  border: 1px solid #ddd;
+}
+.my-reviews .review-compose button {
+  border: 1px solid #333;
+  background: #fff;
+  padding: 10px 20px;
+  margin-right: 8px;
+  cursor: pointer;
+}
+.my-reviews .review-compose button:disabled {
+  opacity: 0.5;
+}
