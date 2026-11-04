@@ -67,7 +67,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: clamp(6px, 2.2vw, 20px);
+  gap: clamp(6px, 3vw, 45px);
   line-height: 1;
   text-align: center;
 }
