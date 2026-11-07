@@ -271,7 +271,7 @@
 /* Keep dropdown links readable in both guest and signed-in headers. */
 .common_top .nav-right > li ul.submenu a {
   display: block;
-  padding: 10px 16px;
+  padding: 17px 16px;
   line-height: 1.5;
   color: #111;
 }
