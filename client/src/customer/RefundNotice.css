@@ -1,0 +1,18 @@
+@charset "UTF-8";
+.recypro-notices .notice-refunds.refund-detailed { padding:32px 30px 40px; color:#283039; font-family:'GmarketSansMedium',sans-serif; font-size:13px; line-height:1.9; overflow-wrap:anywhere; }
+.recypro-notices .refund-detailed .refund-intro { margin:0 0 20px; }
+.recypro-notices .refund-detailed .refund-highlight { margin:0 0 28px; }
+.recypro-notices .refund-highlight > span { color:#e2af32; margin-right:4px; }
+.recypro-notices .refund-detailed .refund-section { margin:0 0 30px; }
+.recypro-notices .refund-detailed .refund-section h2 { display:flex; align-items:baseline; gap:9px; margin:0 0 7px; font-size:16px; font-weight:700; line-height:1.7; }
+.recypro-notices .refund-detailed .refund-number { display:inline-grid; place-items:center; flex:0 0 19px; height:19px; background:#4c91d6; color:#fff; border-radius:3px; font-size:12px; line-height:1; }
+.recypro-notices .refund-detailed .refund-items { counter-reset:refund-item; list-style:none; margin:0; padding:0; }
+.recypro-notices .refund-detailed .refund-items li { position:relative; padding-left:24px; margin:3px 0; counter-increment:refund-item; }
+.recypro-notices .refund-detailed .refund-items li::before { content:counter(refund-item) ")"; position:absolute; left:0; top:0; }
+.recypro-notices .refund-detailed .refund-note { margin:7px 0 0; padding:0; color:#53657a; }
+.recypro-notices .refund-detailed .refund-group { margin:0 0 21px; }
+.recypro-notices .refund-detailed .refund-group h3 { margin:0 0 5px; font-size:14px; font-weight:700; }
+.recypro-notices .refund-group h3 > span { color:#d34f7d; }
+.recypro-notices .refund-detailed .refund-contact { margin:36px 0 0; padding:22px 24px; background:#f6f7f4; border-top:1px solid #dfe3dc; }
+.recypro-notices .refund-detailed .refund-contact p { margin:8px 0 0; font-size:12px; }
+@media(max-width:700px) { .recypro-notices .notice-refunds.refund-detailed { padding:28px 6px; font-size:12px; } .recypro-notices .refund-detailed .refund-section h2 { font-size:15px; } .recypro-notices .refund-detailed .refund-contact { padding:18px 16px; } }

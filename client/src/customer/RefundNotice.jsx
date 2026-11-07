@@ -1,36 +1,20 @@
-const sections = [
-  [
-    "카드·선불금",
-    "카드 취소 반영에는 승인 후 영업일 기준 3~7일이 걸릴 수 있습니다. 이후에도 환불이 확인되지 않으면 카드사에 확인해 주세요."
-  ],
-  [
-    "무통장 입금",
-    "환불받을 은행·계좌번호·예금주를 알려 주세요. 실제 입금자와 계좌 명의가 다르거나 정보가 정확하지 않으면 처리가 늦어질 수 있습니다."
-  ],
-  [
-    "휴대폰 결제",
-    "결제한 달에는 전체 취소가 가능합니다. 부분 취소나 이전 달 결제는 현금 환불 방식으로 처리될 수 있습니다."
-  ],
-  [
-    "가상계좌",
-    "전체 취소 시 계좌 환불로 진행됩니다. 품절 상품이 포함된 주문은 전체 취소 후 나머지 상품의 재주문이 필요할 수 있습니다."
-  ],
-  [
-    "네이버페이·카카오페이",
-    "환불과 배송비 정산은 이용한 결제 서비스의 처리 방식에 따릅니다. 구매 확정 이후에는 배송비를 별도로 정산할 수 있습니다."
-  ],
-  [
-    "적립금",
-    "부분 반품 시 사용한 적립금이 남은 상품에 반영될 수 있습니다. 반환 내역은 마이페이지에서 확인해 주세요. 환불액을 적립금이나 예치금으로 바꾸지는 않습니다."
-  ],
-  [
-    "쿠폰",
-    "반품 후 남은 구매금액이 사용 조건을 충족하지 않으면 쿠폰 할인이 취소될 수 있습니다. 만료된 쿠폰과 일부 일회성 쿠폰은 복원되지 않습니다."
-  ]
-];
+import { refundSections } from "./refundNoticeData";
+import "./RefundNotice.css";
+
+function NumberedItems({ items }) {
+  return <ol className="refund-items">{items.map(item => <li key={item}>{item}</li>)}</ol>;
+}
+
 export default function RefundNotice() {
-  return <article className="notice-refunds">
-    <p className="notice-refunds-intro">리싸이프로를 이용해 주셔서 감사합니다.<br/>취소·반품 신청 전, 결제수단별 환불 안내와 적립금·쿠폰 적용 내용을 확인해 주세요.</p>
-    {sections.map(([title, body], index) => <section key={title}><h2><span>{String(index + 1).padStart(2, "0")}</span>{title}</h2><p>{body}</p></section>)}
+  return <article className="notice-refunds refund-detailed" aria-label="리싸이프로 결제수단별 환불 안내">
+    <p className="refund-intro">리싸이프로를 이용해 주시는 고객님께 감사드립니다.<br/>원활한 취소 및 반품 처리를 위해 결제수단별 환불 절차와 적립금, 쿠폰 정산 내용을 확인해 주세요.</p>
+    <p className="refund-highlight"><span aria-hidden="true">★</span> 환불금액은 원결제수단으로 반환하며, 적립금이나 예치금으로 임의 전환하지 않습니다.</p>
+    {refundSections.map((section,index) => <section className="refund-section" key={section.title}>
+      <h2><span className="refund-number">{index+1}</span>{section.title}</h2>
+      {section.items && <NumberedItems items={section.items}/>}
+      {section.note && <p className="refund-note">※ {section.note}</p>}
+      {section.groups?.map(group => <section className="refund-group" key={group.title}><h3><span aria-hidden="true">▴</span> {group.title}</h3><NumberedItems items={group.items}/></section>)}
+    </section>)}
+    <aside className="refund-contact"><strong>환불 내역이 궁금하신가요?</strong><p>주문번호와 결제수단을 준비하여 고객센터 또는 Q&A 게시판으로 문의해 주세요.<br/>고객센터 2010-0609 · 평일 10:00~12:00 / 13:00~17:00</p><p>처리 기간은 영업일 기준이며 주말과 공휴일은 제외됩니다. 최종 환불금액과 적용 조건은 해당 주문의 결제/배송/쿠폰 내역을 확인하여 안내합니다.</p></aside>
   </article>;
 }
