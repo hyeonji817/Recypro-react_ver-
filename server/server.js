@@ -7,7 +7,7 @@ import dotenv from "dotenv";
 // import { Sequelize } from "sequelize";
 
 // 라우트 파일 연결 
-import loginRouter from "./routes/login.js";
+import { createAccountHandlers } from "./services/accountAccess.js";
 import supportChatRouter from "./routes/supportChat.js";
 import cartRouter from "./routes/cart.js"; 
 import newProductRouter from "./routes/new_Product.js";
@@ -63,25 +63,6 @@ app.use(cors({
   credentials: true,
 }));
 
-/** const sequelize = new Sequelize(
-  process.env.DB_NAME,
-  process.env.DB_USER,
-  process.env.DB_PASSWORD,
-  {
-    host: process.env.DB_HOST,
-    port: Number(process.env.DB_PORT || 3306),
-    dialect: "mysql",
-  }
-); */
-
-// CORS 설정 (프론트와 백 연결하는 징검다리)
-/** app.use(cors({
-  origin: 'http://localhost:5174',
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type'],
-  credentials: true,
-})); */
-
 // JSON 형식의 요청을 처리하기 위한 미들웨어
 // JSON 형식의 요청 본문을 읽고 사용할 수 있도록 설정. 
 app.use(express.json());
@@ -103,6 +84,17 @@ app.use(session({
   }
 }));
 
+// 탈퇴 계정은 기존 세션으로도 접근할 수 없도록 모든 라우트보다 먼저 검사합니다.
+const account = createAccountHandlers({
+  getDb: () => db,
+  compare: (input, stored) => bcryptjs.compare(input, stored),
+  secureCookie: secureSessionCookie,
+  allowedOrigins,
+});
+app.use(account.guard);
+app.post('/login', account.login);
+app.post('/api/account/withdraw', account.withdraw);
+
 // 배포 확인용
 app.get("/health", (req, res) => {
   res.status(200).json({
@@ -112,7 +104,7 @@ app.get("/health", (req, res) => {
 });
 
 // 라우트 경로 등록 
-app.use("/login", loginRouter);
+// /login은 account.login에서 처리합니다.
 app.use("/api/support/chat", supportChatRouter);
 app.use("/api/cart", cartRouter);    // cartRouter 등록하여 로직 실행
 app.use("/api/newProducts", newProductRouter);
@@ -135,16 +127,6 @@ app.use("/api/mypage/product-inquiries", createProductInquiryRouter(() => db));
 app.use("/api/mpCoupon", mpCouponRouter);
 app.use("/api/mypage/special-mileage", createSpecialMileageRouter(() => db));
 
-// MySQL 연결 설정 (공통) (DB 연결은 단일 세션으로 하면 안되고 pool을 통해 다중 세션 처리할 수 있도록 한다.)
-/** const pool = mysql.createPool({
-  host: 'localhost',  // host : 데이터베이스 서버 주소 
-  user: 'root',   // MySQL 사용자명 
-  password: '1234',   // MySQL 비밀번호 
-  database: 'recypro',   // 사용할 데이터베이스 이름 
-  waitForConnections: true,   // 풀의 연결이 가득 찼을 때 대기 여부 
-  connectionLimit: 0,     // 풀에서 사용할 최대 연결 수 (0은 제한 없음)
-  queueLimit: 0     // 대기열 크기(0은 제한 없음)
-}); */ 
 const pool = mysql.createPool({
   host: process.env.DB_HOST,
   port: process.env.DB_PORT,
@@ -164,21 +146,6 @@ pool.getConnection((err, connection) => {
   }
 });
 
-/** const allowedOrigins = [
-  "http://localhost:5174",
-  "http://127.0.0.1:5174"
-];
-
-app.use(cors({
-  origin: function(origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error("CORS 차단"));
-    }
-  },
-  credentials: true
-})); */
 
 // ---------------------------------------------------------------------------
 // 인기상품 불러들이기 (해결 원인)
@@ -207,7 +174,6 @@ app.post('/api/account/register', (req, res) => {
   const { id, password, name, age, gender, email } = req.body;
 
   // 요청 데이터 확인 
-  console.log(`ID: ${id}, Password: ${password}, Name: ${name}, Age: ${age}, Gender: ${gender}, Email: ${email}`);
 
   // 데이터베이스에 데이터 삽입 
   const query = 'INSERT INTO user (id, password, name, age, gender, email) VALUES (?, ?, ?, ?, ?, ?)';
@@ -226,36 +192,7 @@ app.post('/api/account/register', (req, res) => {
 
 // -----------------------------------------------------------------------------
 // 로그인 API 처리 기능 
-app.post('/login', (req, res) => {
-  const { id, password } = req.body; 
-  console.log("로그인 요청:", req.body); // 👈 여기에 로그 추가
-
-  if (!id || !password) {
-    return res.status(400).json({ message: "아이디와 비밀번호를 입력하세요." });
-  }
-
-  const query = 'SELECT * FROM user WHERE id = ? AND password = ?'; 
-
-  pool.query(query, [id, password], (err, results) => {
-    if (err) {
-      console.error('로그인 실패:', err); 
-      return res.status(500).json({ message: "서버 오류로 인해 로그인할 수 없습니다." });
-    }
-
-    if (results.length === 0) {
-      return res.status(401).json({ message: "아이디 또는 비밀번호가 올바르지 않습니다. "});
-    }
-
-    // 로그인 성공 시 응답 
-    res.status(200).json ({
-      message: "로그인 성공!",
-      token: "dummy-token-for-now"    // 차후에 JWT 토큰 추가 가능 
-    });
-  });
-});
-
-// ----------------------------------------------------------------------------
-// 로그인 상태 확인 API 
+// 로그인은 위 account.login 단일 경로에서 처리합니다.
 app.get("/api/session", (req, res) => {
   if (req.session.user_id) {
     res.json({ loggedIn: true, user: req.session.user_id });
@@ -286,7 +223,7 @@ app.post("/api/find_id", (req, res) => {
     return res.json({ success: false, message: "이름과 이메일을 입력해 주세요." });
   }
 
-  const sql = "SELECT id FROM user WHERE name = ? AND email = ?"; 
+  const sql = "SELECT id FROM user WHERE name = ? AND email = ? AND withdrawn_at IS NULL"; 
   pool.query(sql, [name, email], (err, results) => {
     if (err) {
       console.error(err); 
@@ -310,7 +247,7 @@ app.post("/api/find_pw", (req, res) => {
     return res.json({ success: false, message: "모든 필드를 입력해 주세요." });
   }
 
-  const sql = "SELECT password FROM user WHERE id = ? AND name = ? AND email = ?"; 
+  const sql = "SELECT password FROM user WHERE id = ? AND name = ? AND email = ? AND withdrawn_at IS NULL"; 
   pool.query(sql, [id, name, email], (err, results) => {
     if (err) {
       console.error(err);

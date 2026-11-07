@@ -1,4 +1,14 @@
-import express from "express"; 
+import express from 'express';
+import bcryptjs from 'bcryptjs';
+import { db } from '../server.js';
+import { createAccountHandlers } from '../services/accountAccess.js';
+const router = express.Router();
+const { login } = createAccountHandlers({ getDb: () => db, compare: (a, b) => bcryptjs.compare(a, b), secureCookie: process.env.NODE_ENV === 'production' || Boolean(process.env.RAILWAY_ENVIRONMENT_ID), allowedOrigins: [] });
+router.post('/', login);
+export default router;
+
+// 원본
+/** import express from "express"; 
 import { db } from "../server.js"; 
 
 const router = express.Router(); 
@@ -43,4 +53,4 @@ router.post("/", (req, res) => {
   });
 });
 
-export default router;
+export default router; */

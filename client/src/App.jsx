@@ -57,6 +57,7 @@ import Mp_Mileage from "./mypage/mypage_mileage";
 import Mp_Deposit from "./mypage/mypage_deposit";
 import Mp_SpecialMileage from "./mypage/mypage_specialMileage";
 import MpQA from "./mypage/mypage_q&a";
+import Mp_Withdraw from "./mypage/mypage-withdraw"; 
 
 import Customer_main from "./customer/Customer_main";
 import Customer_notice from "./customer/customer_notice";
@@ -94,7 +95,6 @@ function App() {
     <>
       <Routes>
         <Route path="/mypage_reviews" element={<MyReviews />} />
-        <Route path="/mypage/reviews" element={<MyReviews />} />
         <Route path="/" element={<Home />} />
         <Route path="/index" element={<Index />} />
         <Route path="/main_banner1" element={<Main_Banner1 />} />
@@ -153,6 +153,7 @@ function App() {
         <Route path="/mypage/sccoupon.php" element={<Mp_SpecialMileage />} />
         <Route path="/mypage_specialMileage" element={<Mp_SpecialMileage />} />
         <Route path="/mypage_qa" element={<MpQA />} />
+        <Route path="/mypage_withdraw" element={<Mp_Withdraw />} />
 
         <Route path="/customer_main" element={<Customer_main />} />
         <Route path="/customer_notice" element={<Customer_notice />} />
