@@ -1,5 +1,5 @@
 @charset "UTF-8";
-.recypro-notices .shopping-guide-notice { max-width:1100px; margin:0 auto; padding:64px 24px 32px; text-align:center; font-family:Arial,'Malgun Gothic',sans-serif; font-size:12px; line-height:1.65; color:#888; overflow-wrap:anywhere; }
+.recypro-notices .shopping-guide-notice { max-width:1100px; margin:0 auto; padding:64px 24px 32px; text-align:center; font-family:'GmarketSansMedium',sans-serif; font-size:12px; line-height:1.65; color:#888; overflow-wrap:anywhere; }
 .recypro-notices .shopping-guide-notice .sg-section { margin:0 0 52px; }
 .recypro-notices .shopping-guide-notice h2 { display:table; min-width:140px; max-width:100%; margin:0 auto 24px; border-top:1px solid #aaa; border-bottom:1px solid #aaa; padding:5px 16px; font-size:12px; font-weight:400; line-height:1.5; color:#777; }
 .recypro-notices .shopping-guide-notice p { white-space:pre-line; margin:0 0 22px; }
