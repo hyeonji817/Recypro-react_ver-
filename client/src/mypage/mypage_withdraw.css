@@ -1,0 +1,207 @@
+@charset "UTF-8";
+
+@font-face {
+  font-family: 'GmarketSansMedium';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+.Mp_withdraw_Content {
+  width: calc(100% - 200px);
+  max-width: 1440px;
+  min-height: 500px;
+  margin: 170px auto 0;
+  padding-top: 64px;
+}
+
+.mypage-withdraw {
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto 120px;
+  color: #1a1a1a;
+  font-family: 'GmarketSansMedium', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.7;
+}
+
+.mypage-withdraw,
+.mypage-withdraw * {
+  box-sizing: border-box;
+}
+
+.mypage-withdraw .mypage-withdraw__title {
+  margin: 0 0 20px;
+  padding: 0;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.6;
+  text-align: left;
+}
+
+.mypage-withdraw__panel {
+  padding: 60px 24px;
+  background: #f5f5f5;
+}
+
+.mypage-withdraw__fields {
+  width: 100%;
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+.mypage-withdraw__notice {
+  margin-bottom: 12px;
+  color: #828282;
+  font-size: 12px;
+  text-align: center;
+  line-height: 1.8;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+.mypage-withdraw__notice p {
+  margin: 0;
+  padding: 0;
+}
+
+.mypage-withdraw input,
+.mypage-withdraw textarea {
+  display: block;
+  width: 100%;
+  margin: 0;
+  border: 1px solid #d9d9d9;
+  border-radius: 0;
+  background: #fff;
+  color: #333;
+  font: inherit;
+  font-size: 12px;
+  box-shadow: none;
+}
+
+.mypage-withdraw input {
+  height: 40px;
+  padding: 0 12px;
+}
+
+.mypage-withdraw textarea {
+  height: 250px;
+  min-height: 150px;
+  margin-top: 10px;
+  padding: 10px 12px;
+  resize: vertical;
+}
+
+.mypage-withdraw input::placeholder,
+.mypage-withdraw textarea::placeholder {
+  color: #828282;
+  opacity: 1;
+}
+
+.mypage-withdraw__actions {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  margin-top: 30px;
+}
+
+.mypage-withdraw__actions button {
+  width: 150px;
+  height: 46px;
+  padding: 0 12px;
+  border: 1px solid #c5c5c5;
+  border-radius: 0;
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.mypage-withdraw__actions .mypage-withdraw__confirm {
+  border-color: #666;
+  background: #666;
+  color: #fff;
+}
+
+.mypage-withdraw__actions .mypage-withdraw__cancel {
+  background: #fff;
+  color: #828282;
+}
+
+.mypage-withdraw__confirm:hover {
+  filter: brightness(.9);
+}
+
+.mypage-withdraw__cancel:hover {
+  background: #f5f5f5;
+}
+
+.mypage-withdraw button:disabled {
+  opacity: .55;
+  cursor: wait;
+}
+
+.mypage-withdraw input:focus-visible,
+.mypage-withdraw textarea:focus-visible,
+.mypage-withdraw button:focus-visible {
+  outline: 2px solid #555;
+  outline-offset: 3px;
+}
+
+.mypage-withdraw__message {
+  margin: 16px 0 0;
+  color: #555;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.mypage-withdraw .mypage-withdraw__sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 650px) {
+  .Mp_withdraw_Content {
+    width: 92%;
+    padding-top: 40px;
+  }
+
+  .mypage-withdraw {
+    margin-bottom: 70px;
+  }
+
+  .mypage-withdraw__panel {
+    padding: 32px 20px;
+  }
+
+  .mypage-withdraw__notice {
+    text-align: left;
+    line-height: 1.9;
+  }
+
+  .mypage-withdraw__notice p+p {
+    margin-top: 6px;
+  }
+
+  .mypage-withdraw textarea {
+    height: 220px;
+  }
+
+  .mypage-withdraw__actions {
+    margin-top: 24px;
+    gap: 8px;
+  }
+
+  .mypage-withdraw__actions button {
+    width: min(150px, 45%);
+  }
+}
