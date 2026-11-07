@@ -59,3 +59,12 @@
   .recypro-notices .notice-authenticity-page { padding-top: 100px; }
   .recypro-notices .notice-authenticity { padding: 24px 16px; font-size: 13px; }
 }
+
+.recypro-notices .notice-refunds { padding: 34px 30px 40px; border-bottom: 1px solid #ccc; font-size: 14px; line-height: 1.9; color: #333; }
+.recypro-notices .notice-refunds-intro { margin: 0 0 38px; }
+.recypro-notices .notice-refunds section { margin: 0 0 30px; }
+.recypro-notices .notice-refunds section:last-child { margin-bottom: 0; }
+.recypro-notices .notice-refunds h2 { display: flex; align-items: baseline; gap: 12px; font-size: 18px; font-weight: 600; margin: 0 0 10px; }
+.recypro-notices .notice-refunds h2 span { color: #888; font-size: 13px; font-weight: 400; }
+.recypro-notices .notice-refunds section p { margin: 0; padding-left: 30px; }
+@media(max-width:700px) { .recypro-notices .notice-refunds { padding: 28px 16px; } }

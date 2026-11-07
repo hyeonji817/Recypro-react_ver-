@@ -1,3 +1,4 @@
+import RefundNotice from "./RefundNotice";
 import { Link, useParams } from "react-router-dom";
 import Header_loginOK from "../main/Header_loginOK";
 import Footer from "../main/Footer";
@@ -25,7 +26,7 @@ export default function Customer_notice() {
             <p>연휴 이전 온라인 주문 건 중 상품 및 거래처와 택배사의 사정에<br/>따라 일부 상품의 배송이 지연될 수 있습니다.<br/>최대한 많은 물량을 확보하여 고객님께서 불편함이 없도록 최선을 다하겠습니다.</p>
             <p>*연휴 기간 (9/24 ~ 9/27)에는 CS 고객센터 운영이 중단됩니다.</p>
           </div>
-        </article> : notice.id === "membership" ? <MembershipNotice /> : notice.id === "authenticity" ? <article className="notice-authenticity">
+        </article> : notice.id === "payment-refunds" ? <RefundNotice /> : notice.id === "membership" ? <MembershipNotice /> : notice.id === "authenticity" ? <article className="notice-authenticity">
           <p>안녕하세요, 리싸이프로입니다.</p>
           <p>리싸이프로는 26년 3월 15일부터 SS시즌 상품부터 정품 인증 홀로그램 스티커가 부착되지 않습니다.</p>
           <p>간혹, 가격택에 홀로그램 스티커 없이 상품이 출고되므로 구매 전 참고바랍니다.</p>
