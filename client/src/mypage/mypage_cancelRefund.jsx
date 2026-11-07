@@ -221,7 +221,7 @@ const Mp_CancelRefund = () => {
                   </a>
                 </li>
                 <li>
-                  <a href="/withdraw" className="tab_title">
+                  <a href="/mypage_withdraw" className="tab_title">
                     WITHDRAW
                     <br />
                     <strong className="tab_sub">회원 탈퇴</strong>

@@ -151,7 +151,7 @@ export default function Mp_Deposit() {
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="tab_title">
+                  <a href="/mypage_withdraw" className="tab_title">
                     WITHDRAW<br />
                     <strong className="tab_sub">회원 탈퇴</strong>
                   </a>
