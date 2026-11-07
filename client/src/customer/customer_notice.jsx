@@ -1,3 +1,4 @@
+import ReturnsNotice from "./ReturnsNotice";
 import ShoppingGuideNotice from "./ShoppingGuideNotice";
 import NewMembershipNotice from "./NewMembershipNotice";
 import RefundNotice from "./RefundNotice";
@@ -18,7 +19,7 @@ export default function Customer_notice() {
       <h1 className="notice-heading">공지사항</h1>
       {!notice ? <div className="notice-missing"><p>존재하지 않는 공지사항입니다.</p><Link to="/customer_main">목록으로</Link></div> : <>
         <dl className="notice-meta"><div><dt>제목</dt><dd>{notice.title}</dd><dt>조회</dt><dd>{notice.views}</dd></div><div><dt>작성자</dt><dd>{notice.author}</dd><dt>작성일</dt><dd>{notice.date}</dd></div></dl>
-        {notice.id === "shopping-guide" ? <ShoppingGuideNotice /> : notice.id === "new-membership" ? <NewMembershipNotice /> : notice.id === "chuseok-2026" ? <article className="notice-holiday">
+        {notice.id === "returns" ? <ReturnsNotice /> : notice.id === "shopping-guide" ? <ShoppingGuideNotice /> : notice.id === "new-membership" ? <NewMembershipNotice /> : notice.id === "chuseok-2026" ? <article className="notice-holiday">
           <p className="notice-brand">리싸이프로</p>
           <h2>2026년 풍성한 한가위 보내세요!</h2>
           <p className="notice-intro">리싸이프로를 사랑해 주셔서 감사드립니다.<br/>추석 연휴를 맞아 온라인 배송 및<br/>고객센터 휴무 일정을 안내드립니다.</p>
