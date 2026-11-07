@@ -27,7 +27,7 @@ export default function Customer_notice() {
           </div>
         </article> : notice.id === "membership" ? <MembershipNotice /> : notice.id === "authenticity" ? <article className="notice-authenticity">
           <p>안녕하세요, 리싸이프로입니다.</p>
-          <p>리싸이프로는 23년 SS시즌 상품부터 정품 인증 홀로그램 스티커가 부착되지 않습니다.</p>
+          <p>리싸이프로는 26년 3월 15일부터 SS시즌 상품부터 정품 인증 홀로그램 스티커가 부착되지 않습니다.</p>
           <p>간혹, 가격택에 홀로그램 스티커 없이 상품이 출고되므로 구매 전 참고바랍니다.</p>
           <p>리싸이프로의 모든 상품은 자사의 승인 없이 이미지를 복제하거나,</p>
           <p>디자인 및 특허권을 도용 및 침해하는 경우 강력한 법적 조치 대상이 될 수 있습니다.</p>
