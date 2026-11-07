@@ -1,56 +1,8 @@
 import express from 'express';
-import bcryptjs from 'bcryptjs';
-import { db } from '../server.js';
-import { createAccountHandlers } from '../services/accountAccess.js';
-const router = express.Router();
-const { login } = createAccountHandlers({ getDb: () => db, compare: (a, b) => bcryptjs.compare(a, b), secureCookie: process.env.NODE_ENV === 'production' || Boolean(process.env.RAILWAY_ENVIRONMENT_ID), allowedOrigins: [] });
-router.post('/', login);
-export default router;
 
-// 원본
-/** import express from "express"; 
-import { db } from "../server.js"; 
-
-const router = express.Router(); 
-
-router.post("/", (req, res) => {
-  const { id, password } = req.body; 
-  const sql = "SELECT * FROM user WHERE id = ?"; 
-
-  db.query(sql, [id], (err, results) => {
-    if (err) {
-      console.error("[LOGIN] DB 오류:", err);
-      return res.status(500).json({ message: "서버 오류" });
-    }
-
-    if (results.length === 0) {
-      return res.status(401).json({ message: "로그인 실패" });
-    }
-
-    const user = results[0];
-
-    // 현재 DB 비밀번호가 평문인 경우
-    if (user.password !== password) {
-      return res.status(401).json({ message: "비밀번호 불일치" });
-    }
-
-    req.session.userId = user.id;
-
-    console.log("[LOGIN] sessionID:", req.sessionID);
-    console.log("[LOGIN] 저장 후 session:", req.session);
-
-    req.session.save((err) => {
-      if (err) {
-        console.error("세션 저장 오류:", err);
-        return res.status(500).json({ message: "세션 저장 실패" });
-      }
-
-      res.json({
-        message: "로그인 성공",
-        userId: user.id,
-      });
-    });
-  });
-});
-
-export default router; */
+// server.js에서 만든 단일 계정 핸들러를 공유합니다.
+export default function createLoginRouter(account) {
+  const router = express.Router();
+  router.post('/', account.login);
+  return router;
+}

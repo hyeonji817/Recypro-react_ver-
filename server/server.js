@@ -7,6 +7,7 @@ import dotenv from "dotenv";
 // import { Sequelize } from "sequelize";
 
 // 라우트 파일 연결 
+import createLoginRouter from "./routes/login.js";
 import { createAccountHandlers } from "./services/accountAccess.js";
 import supportChatRouter from "./routes/supportChat.js";
 import cartRouter from "./routes/cart.js"; 
@@ -92,7 +93,7 @@ const account = createAccountHandlers({
   allowedOrigins,
 });
 app.use(account.guard);
-app.post('/login', account.login);
+app.use('/login', createLoginRouter(account));
 app.post('/api/account/withdraw', account.withdraw);
 
 // 배포 확인용

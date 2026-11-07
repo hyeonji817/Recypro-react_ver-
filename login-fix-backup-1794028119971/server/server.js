@@ -1,0 +1,326 @@
+import express from "express";  // express : Node.js 기반 웹 애플리케이션 프레임워크. API 요청 처리.
+import bcryptjs from "bcryptjs"; 
+import cookieParser from "cookie-parser";
+import session from "express-session"; 
+import cors from "cors";    // 프론트엔드와 백엔드 간의 통신 허용. 
+import dotenv from "dotenv"; 
+// import { Sequelize } from "sequelize";
+
+// 라우트 파일 연결 
+import { createAccountHandlers } from "./services/accountAccess.js";
+import supportChatRouter from "./routes/supportChat.js";
+import cartRouter from "./routes/cart.js"; 
+import newProductRouter from "./routes/new_Product.js";
+import bestProductRouter from "./routes/best_Product.js";
+import ProductLifeRouter from "./routes/Product_Life.js";
+import ProductBathRouter from "./routes/Product_Bath.js";
+import ProductFoodRouter from "./routes/Product_Food.js";
+import ProductKitchenRouter from "./routes/Product_Kitchen.js";
+import ProductPetRouter from "./routes/Product_Pet.js";
+import ProductOfficeRouter from "./routes/Product_Office.js";
+import checkoutRouter from "./routes/checkout.js"; 
+import orderRouter from "./routes/orders.js";
+import subOrderRouter from "./routes/orders2.js";
+import statsRouter from "./routes/stats.js";
+import mypageRouter from "./routes/Mypage.js";
+import mpOrderRequestRouter from "./routes/mpOrder_Request.js";
+import mpOrderChangeRouter from "./routes/mpOrder_Change.js";
+import { createProductInquiryRouter } from "./routes/productInquiries.js";
+import mpWishRouter from "./routes/mpWish.js"; 
+import { createSpecialMileageRouter } from "./routes/specialMileage.js";
+import mpCouponRouter from "./routes/mpCoupon.js";
+
+import mysql from "mysql2";   // MySQL 데이터베이스와의 연결 제공. 
+import path from "path";    // path : 파일 경로 조작을 위한 Node.js 기본 모듈 
+import { fileURLToPath } from "url";
+
+dotenv.config(); 
+const app = express();
+// const port = 5003;    // 프론트엔드에서 호출할 포트와 일치해야 한다.  
+const PORT = process.env.PORT || 5003;
+
+const allowedOrigins = [
+  "http://localhost:5173",
+  "http://localhost:5174",
+  "http://127.0.0.1:5173",
+  "http://127.0.0.1:5174",
+  "http://127.0.0.1:5274",
+  "http://localhost:5274",
+  "https://recypro-react-ver.vercel.app",
+  process.env.FRONTEND_URL,
+].filter(Boolean);
+
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("CORS 차단"));
+    }
+  },
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type"],
+  credentials: true,
+}));
+
+// JSON 형식의 요청을 처리하기 위한 미들웨어
+// JSON 형식의 요청 본문을 읽고 사용할 수 있도록 설정. 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));  
+app.use(cookieParser());
+
+const secureSessionCookie = process.env.NODE_ENV === 'production' || Boolean(process.env.RAILWAY_ENVIRONMENT_ID);
+if (secureSessionCookie) app.set('trust proxy', 1);
+
+app.use(session({
+  secret: process.env.SESSION_SECRET,    // 세션 암호화 키 
+  resave: false, 
+  saveUninitialized: false,
+  cookie: {
+    secure: secureSessionCookie,
+    httpOnly: true,  // 클라이언트에서 쿠키를 조작할 수 없도록 설정
+    maxAge: 1000 * 60 * 60 * 24, // 1일
+    sameSite: secureSessionCookie ? "none" : "lax",
+  }
+}));
+
+// 탈퇴 계정은 기존 세션으로도 접근할 수 없도록 모든 라우트보다 먼저 검사합니다.
+const account = createAccountHandlers({
+  getDb: () => db,
+  compare: (input, stored) => bcryptjs.compare(input, stored),
+  secureCookie: secureSessionCookie,
+  allowedOrigins,
+});
+app.use(account.guard);
+app.post('/login', account.login);
+app.post('/api/account/withdraw', account.withdraw);
+
+// 배포 확인용
+app.get("/health", (req, res) => {
+  res.status(200).json({
+    status: "ok",
+    message: "Recypro server is running",
+  });
+});
+
+// 라우트 경로 등록 
+// /login은 account.login에서 처리합니다.
+app.use("/api/support/chat", supportChatRouter);
+app.use("/api/cart", cartRouter);    // cartRouter 등록하여 로직 실행
+app.use("/api/newProducts", newProductRouter);
+app.use("/api/best_products", bestProductRouter);
+app.use("/api/product_life", ProductLifeRouter);
+app.use("/api/product_bath", ProductBathRouter);
+app.use("/api/product_food", ProductFoodRouter);
+app.use("/api/product_kitchen", ProductKitchenRouter);
+app.use("/api/product_pet", ProductPetRouter);
+app.use("/api/product_office", ProductOfficeRouter);
+app.use("/api/checkout", checkoutRouter);
+app.use("/api/orders", orderRouter);
+app.use("/api/orders2", subOrderRouter);
+app.use("/api/stats", statsRouter);
+app.use("/api/mypage", mypageRouter);
+app.use("/api/mpOrder_Request", mpOrderRequestRouter);
+app.use("/api/mypage/order-change", mpOrderChangeRouter);
+app.use("/api/mypage/wish", mpWishRouter);
+app.use("/api/mypage/product-inquiries", createProductInquiryRouter(() => db));
+app.use("/api/mpCoupon", mpCouponRouter);
+app.use("/api/mypage/special-mileage", createSpecialMileageRouter(() => db));
+
+const pool = mysql.createPool({
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+  charset: "utf8mb4",
+});
+
+// DB 연동 확인 (테스트용)
+pool.getConnection((err, connection) => {
+  if (err) {
+    console.error("MySQL 연결 실패: ", err); 
+  } else {
+    console.log("MySQL 연결 성공!");
+    connection.release();     // 사용한 연결 반환 
+  }
+});
+
+
+// ---------------------------------------------------------------------------
+// 인기상품 불러들이기 (해결 원인)
+// __dirname 대체 설정 
+// ESM 환경에서 '__dirname'을 사용할 수 없으므로, 'fileURLToPath'와 'path.dirname'을 사용해 현재 파일의 디렉토리 설정.
+const __filename = fileURLToPath(import.meta.url); 
+const __dirname = path.dirname(__filename);
+
+console.log('__dirname:', __dirname);
+console.log('Serving static files from:', path.join(__dirname, 'uploads'));
+
+// 정적 파일 제공 : '/uploads'로 시작하는 요청은 '__dirname/uploads' 디렉토리에서 파일 제공 (해결 원인)
+// ex) /uploads/image.jpg 요청 시 '__dirname/uploads/image.jpg' 파일을 반환 
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+app.use('/uploads', (req, res, next) => {
+  console.log(`Static file requested: ${req.path}`);
+  next();
+}, express.static(path.join(__dirname, 'uploads')));
+
+// -----------------------------------------------------------------------------
+// API 경로 설정 (예: /api/account/register) (회원가입 처리과정)
+// 회원가입 데이터 처리 
+// 요청 본문(req.body)에서 사용자 정보 가져옴. 
+app.post('/api/account/register', (req, res) => {
+  const { id, password, name, age, gender, email } = req.body;
+
+  // 요청 데이터 확인 
+
+  // 데이터베이스에 데이터 삽입 
+  const query = 'INSERT INTO user (id, password, name, age, gender, email) VALUES (?, ?, ?, ?, ?, ?)';
+
+  pool.query(query, [id, password, name, age, gender, email], (err, results) => {
+    if (err) {
+      console.error('회원가입 실패:', err); 
+      return res.status(500).json({ error: '회원가입 처리에 실패했습니다.' });
+    }
+
+    // 성공적인 삽입 후 응답 
+    console.log('회원가입 성공:', results);
+    res.status(201).json({ message: '회원가입 성공!' });
+  });
+});
+
+// -----------------------------------------------------------------------------
+// 로그인 API 처리 기능 
+// 로그인은 위 account.login 단일 경로에서 처리합니다.
+app.get("/api/session", (req, res) => {
+  if (req.session.user_id) {
+    res.json({ loggedIn: true, user: req.session.user_id });
+  } else {
+    res.status(401).json({ message: "로그인이 필요합니다." });
+  }
+}); 
+
+// ----------------------------------------------------------------------------
+// 로그아웃 API 
+app.post("/logout", (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      console.error("세션 삭제 실패:", err); 
+      return res.status(500).send("Logout failed");
+    }
+    res.clearCookie("connect.sid");   // 세션 쿠키 삭제 
+    return res.status(200).send("Logout success");
+  });
+});
+
+// -----------------------------------------------------------------------------
+// 아이디 찾기 API
+app.post("/api/find_id", (req, res) => {
+  const { name, email } = req.body;
+
+  if (!name || !email) {
+    return res.json({ success: false, message: "이름과 이메일을 입력해 주세요." });
+  }
+
+  const sql = "SELECT id FROM user WHERE name = ? AND email = ? AND withdrawn_at IS NULL"; 
+  pool.query(sql, [name, email], (err, results) => {
+    if (err) {
+      console.error(err); 
+      return res.json({ success: false, message: "서버 오류가 발생했습니다." });
+    } 
+
+    if (results.length > 0) {
+      return res.json({ success: true, userId: results[0].id });
+    } else {
+      return res.json({ success: false, message: "일치하는 회원 정보가 없습니다." });
+    }
+  });
+});
+
+// ---------------------------------------------------------------------------------
+// 비밀번호 찾기 API 
+app.post("/api/find_pw", (req, res) => {
+  const { id, name, email } = req.body;
+
+  if (!id || !name || !email) {
+    return res.json({ success: false, message: "모든 필드를 입력해 주세요." });
+  }
+
+  const sql = "SELECT password FROM user WHERE id = ? AND name = ? AND email = ? AND withdrawn_at IS NULL"; 
+  pool.query(sql, [id, name, email], (err, results) => {
+    if (err) {
+      console.error(err);
+      return res.json({ success: false, message: "서버 오류가 발생했습니다." });
+    }
+
+    if (results.length > 0) {
+      return res.json({ success: true, userPw: result[0].password });
+    } else {
+      return res.json({ success: false, message: "일치하는 회원 정보가 없습니다." });
+    }
+  });
+});
+
+// 비밀번호 변경 요청 처리 
+// 가짜 사용자 데이터 (실제로는 DB 사용)
+let user = {
+  id: 1, 
+  username: "user",
+  password: "$2b$10$abcdefghijklmnopqrstuv" // 해시된 비밀번호 (bcrypt 사용)
+};
+
+// 비밀번호 변경 API 
+app.post("/api/ChangePassword", async (req, res) => {
+  const { currentPassword, newPassword } = req.body;
+
+  // 현재 비밀번호 확인 
+  const passwordMatch = await bcryptjs.compare(currentPassword, user.password);
+  if (!passwordMatch) {
+    return res.status(400).json({ message: "현재 비밀번호가 일치하기 않습니다." });
+  }
+
+  // 새 비밀번호 해싱 후 저장 
+  const hashedNewPassword = await bcryptjs.hash(newPassword, 10);
+  user.password = hashedNewPassword;
+  
+  res.json ({ message: "비밀번호가 성공적으로 변경되었습니다." });
+});
+
+// 상품 목록 조회 API 
+app.get("/api/Products", (req, res) => {
+  const sql = "SELECT * FROM product";
+  pool.query(sql, (err, result) => {
+    if (err) return res.json({ error: err });
+    res.json(result);
+  });
+});
+
+// 특정 상품 정보 API 
+app.get('/api/product/:id', (req, res) => {
+  const productId = req.params.id; 
+  const query = 'SELECT * FROM product WHERE productId = ?';
+
+  pool.query(query, [productId], (err, result) => {
+    if (err) {
+      console.error('DB 오류:', err); 
+      return res.status(500).json({ messsage: '서버 오류' });
+    }
+
+    if (result.length === 0) {
+      return res.status(404).json({ message: '상품을 찾을 수 없습니다.' });
+    }
+
+    console.log('쿼리 결과:', result); 
+    res.json(result[0]);
+  });
+});
+
+// 서버 시작 
+// app.listen : 서버를 시작하고, 지정된 포트(5003)에서 클라이언트 요청을 대기. 
+// 성공적으로 실행되면 콘솔에 서버 주소 출력 
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(`Server running on port ${PORT}`);
+});
+
+export const db = pool;    // 외부에서 pool을 사용하기 위함 

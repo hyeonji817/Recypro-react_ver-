@@ -10,6 +10,9 @@ export async function verifyPassword(input, stored, compare) {
 }
 
 export function createAccountHandlers({ getDb, compare, secureCookie, allowedOrigins }) {
+  const reportError = (stage, error) => {
+    console.error('[ACCOUNT]', stage, { code: error?.code, message: error?.sqlMessage || error?.message });
+  };
   const query = async (sql, params) => (await getDb().promise().query(sql, params))[0];
   const cookie = { path: '/', httpOnly: true, secure: secureCookie, sameSite: secureCookie ? 'none' : 'lax' };
   const expire = (req, res) => {
@@ -35,7 +38,8 @@ export function createAccountHandlers({ getDb, compare, secureCookie, allowedOri
       req.session.userId = rows[0].id;
       req.session.user_id = rows[0].id;
       return next();
-    } catch {
+    } catch (error) {
+      reportError('guard', error);
       // DB 오류 시 회원 API를 통과시키지 않습니다.
       return res.status(503).json({ message: '계정 상태를 확인할 수 없습니다. 잠시 후 다시 시도해 주세요.' });
     }
@@ -53,18 +57,26 @@ export function createAccountHandlers({ getDb, compare, secureCookie, allowedOri
       }
       if (user.withdrawn_at != null) return blocked(req, res);
       req.session.regenerate(error => {
-        if (error) return res.status(500).json({ message: '로그인을 처리하지 못했습니다.' });
+        if (error) {
+          reportError('login.session.regenerate', error);
+          return res.status(500).json({ message: '로그인 세션을 생성하지 못했습니다.' });
+        }
         req.session.userId = user.id;
         req.session.user_id = user.id;
         req.session.save(saveError => {
           if (saveError) {
+            reportError('login.session.save', saveError);
             expire(req, res);
             return res.status(500).json({ message: '로그인을 처리하지 못했습니다.' });
           }
           return res.json({ message: '로그인 성공', userId: user.id });
         });
       });
-    } catch {
+    } catch (error) {
+      reportError('login', error);
+      if (error.code === 'ER_BAD_FIELD_ERROR') {
+        return res.status(503).json({ code: 'ACCOUNT_SCHEMA_MISMATCH', message: '회원 DB 업데이트가 필요합니다. 서버 관리자에게 문의해 주세요.' });
+      }
       return res.status(500).json({ message: '로그인을 처리하지 못했습니다.' });
     }
   };
@@ -98,7 +110,8 @@ export function createAccountHandlers({ getDb, compare, secureCookie, allowedOri
       }
       expire(req, res);
       return res.json({ message: '회원탈퇴가 완료되었습니다.', withdrawn: true });
-    } catch {
+    } catch (error) {
+      reportError('withdraw', error);
       return res.status(500).json({ message: '회원탈퇴를 처리하지 못했습니다. 잠시 후 다시 시도해 주세요.' });
     }
   };

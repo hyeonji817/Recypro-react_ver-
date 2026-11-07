@@ -16,6 +16,7 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setErrorMessage("");
   
     try {
       const response = await fetch(`${API_URL}/login`, {
@@ -25,10 +26,10 @@ const Login = () => {
         body: JSON.stringify(formData),
       });
   
-      const data = await response.json();
+      const data = await response.json().catch(() => ({}));
   
       if (!response.ok) {
-        setErrorMessage(data.message || data.error || "로그인 실패");
+        setErrorMessage(data.message || data.error || `로그인 실패 (HTTP ${response.status})`);
         return;
       }
   
@@ -99,7 +100,8 @@ const Login = () => {
                       <label htmlFor="member_pwd_save">비밀번호저장</label>
 						        </div>  {/** savessl end */}
 
-						        <div className="login_btn_wrap">
+						        {errorMessage && <p role="alert" style={{ color: "#c00", margin: "12px 0" }}>{errorMessage}</p>}
+                    <div className="login_btn_wrap">
 							        <span className="box_btn block black2">
                         <input type="submit" value="LOG IN" />
                       </span>
@@ -138,7 +140,7 @@ const Login = () => {
 							        <input type="text" name="phone" id="login_phone" className="form_input member block" />
 						        </div>    {/** fld end */}
 						        <div className="savessl dn">
-							        <input type="checkbox" name="setOpenSSL" id="nonmember_ssl" checked="" /> 
+							        <input type="checkbox" name="setOpenSSL" id="nonmember_ssl" defaultChecked={false} /> 
                       <label htmlFor="nonmember_ssl">보안접속</label>
 						        </div>    {/** savessl dn end */}
 						        <div className="login_btn_wrap">
