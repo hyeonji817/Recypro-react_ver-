@@ -157,6 +157,7 @@ function App() {
 
         <Route path="/customer_main" element={<Customer_main />} />
         <Route path="/customer_notice" element={<Customer_notice />} />
+        <Route path="/customer_notice/:noticeId" element={<Customer_notice />} />
         <Route path="/customer_policy" element={<Customer_policy />} />
         <Route path="/customer_GiftCardPolicy" element={<Customer_GiftCardPolicy />} />
         <Route path="/customer_question" element={<CustomerChat />} />
