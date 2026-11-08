@@ -710,7 +710,7 @@ const OrderList = () => {
                                     {" / "}
 
                                     할인액(율):{" "}
-                                    {cp.discount_type === "PERCENT"
+                                    {cp.benefit_effect === "SHIPPING" ? "기본 배송비 무료" : cp.discount_type === "PERCENT"
                                       ? `${Number(cp.discount_value || 0)}%`
                                       : `${Number(
                                           cp.discount_value || 0

@@ -1,3 +1,5 @@
+import { createRegistrationHandler } from "./services/registerWithBenefits.js";
+import { startCouponBenefitJob } from "./services/couponBenefits.js";
 import express from "express";  // express : Node.js 기반 웹 애플리케이션 프레임워크. API 요청 처리.
 import bcryptjs from "bcryptjs"; 
 import cookieParser from "cookie-parser";
@@ -171,26 +173,7 @@ app.use('/uploads', (req, res, next) => {
 // API 경로 설정 (예: /api/account/register) (회원가입 처리과정)
 // 회원가입 데이터 처리 
 // 요청 본문(req.body)에서 사용자 정보 가져옴. 
-app.post('/api/account/register', (req, res) => {
-  const { id, password, name, age, gender, email } = req.body;
-
-  // 요청 데이터 확인 
-
-  // 데이터베이스에 데이터 삽입 
-  const query = 'INSERT INTO user (id, password, name, age, gender, email) VALUES (?, ?, ?, ?, ?, ?)';
-
-  pool.query(query, [id, password, name, age, gender, email], (err, results) => {
-    if (err) {
-      console.error('회원가입 실패:', err); 
-      return res.status(500).json({ error: '회원가입 처리에 실패했습니다.' });
-    }
-
-    // 성공적인 삽입 후 응답 
-    console.log('회원가입 성공:', results);
-    res.status(201).json({ message: '회원가입 성공!' });
-  });
-});
-
+app.post(['/api/account/register','/api/register'], createRegistrationHandler(() => pool, value => bcryptjs.hash(value, 12)));
 // -----------------------------------------------------------------------------
 // 로그인 API 처리 기능 
 // 로그인은 위 account.login 단일 경로에서 처리합니다.
@@ -320,6 +303,7 @@ app.get('/api/product/:id', (req, res) => {
 // 서버 시작 
 // app.listen : 서버를 시작하고, 지정된 포트(5003)에서 클라이언트 요청을 대기. 
 // 성공적으로 실행되면 콘솔에 서버 주소 출력 
+startCouponBenefitJob(pool);
 app.listen(PORT, "0.0.0.0", () => {
   console.log(`Server running on port ${PORT}`);
 });

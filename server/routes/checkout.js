@@ -1,3 +1,4 @@
+import { couponBenefitsMiddleware, isShippingCoupon } from "../services/couponBenefits.js";
 import { calculateShippingFee } from "../services/shippingPolicy.js";
 // 주문 생성 페이지 (장바구니 기반)
 // routes/checkout.js 
@@ -7,7 +8,8 @@ import { db } from "../server.js";
 
 import { completeMockPayment } from "../services/completePayment.js";
 
-const router = express.Router(); 
+const router = express.Router();
+router.use(couponBenefitsMiddleware(() => db)); 
 
 const q = (sql, params=[]) => new Promise((res, rej) => {
   db.query(sql, params, (err, rows) => err ? rej(err) : res(rows));
@@ -246,6 +248,7 @@ async function getPreview(userId, { all, cart_ids, coupon_code, use_mileage }) {
   let usableCoupon = null;
   let coupon_discount = 0;
   let coupon_reason = "";
+  let freeShipping = false;
 
   const couponCode = coupon_code || null;
 
@@ -289,6 +292,7 @@ async function getPreview(userId, { all, cart_ids, coupon_code, use_mileage }) {
       coupon_reason = "쿠폰 최소주문금액 조건을 만족하지 않습니다.";
       usableCoupon = null;
     } else {
+      freeShipping = await isShippingCoupon(db, usableCoupon.coupon_id);
       if (usableCoupon.discount_type === "AMOUNT") {
         coupon_discount = Number(usableCoupon.discount_value || 0);
       }
@@ -315,7 +319,10 @@ async function getPreview(userId, { all, cart_ids, coupon_code, use_mileage }) {
     }
   }
 
-  shipping_fee = calculateShippingFee(subtotal, coupon_discount);
+  if (freeShipping && calculateShippingFee(subtotal) === 0) {
+    freeShipping = false; usableCoupon = null; coupon_reason = "이미 무료배송이 적용되는 주문입니다.";
+  }
+  shipping_fee = freeShipping ? 0 : calculateShippingFee(subtotal, coupon_discount);
 
   // 4) 적립금 잔액 조회
   let myBalance = 0;

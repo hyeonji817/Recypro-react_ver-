@@ -1,9 +1,11 @@
+import { couponBenefitsMiddleware } from "../services/couponBenefits.js";
 import { membershipMiddleware } from "../services/membershipGrade.js";
 import express from "express"; 
 import { db } from "../server.js"; 
 
 const router = express.Router();
-router.use(membershipMiddleware(() => db)); 
+router.use(membershipMiddleware(() => db));
+router.use(couponBenefitsMiddleware(() => db)); 
 const app = express(); 
 
 const q = (sql, params = []) =>
@@ -89,6 +91,7 @@ router.get("/summary", async (req, res) => {
       ).catch(() => [{ wishCount: 0 }]),
     ]);
 
+    const [couponSummary] = await q("SELECT COUNT(*) AS n FROM user_coupons uc JOIN coupons c ON c.coupon_id=uc.coupon_id WHERE uc.user_id=? AND uc.used_at IS NULL AND c.is_active=1 AND (uc.expired_at IS NULL OR uc.expired_at>=NOW())", [userId]);
     res.json({
       user: {
         id: userId,
@@ -99,7 +102,7 @@ router.get("/summary", async (req, res) => {
       counts: {
         orders: Number(orderSummary?.orderCount || 0),
         wishlist: Number(wishSummary?.wishCount || 0),
-        coupons: 0,
+        coupons: Number(couponSummary?.n || 0),
         qa: 0,
         reviews: 0,
       },

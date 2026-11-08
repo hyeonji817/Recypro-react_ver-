@@ -1,3 +1,4 @@
+import { couponBenefitsMiddleware, saveCouponBirthday, isShippingCoupon } from "../services/couponBenefits.js";
 import { membershipMiddleware } from "../services/membershipGrade.js";
 // server/routes/mpCoupon.js
 import express from "express";
@@ -5,6 +6,14 @@ import { db } from "../server.js";
 
 const router = express.Router();
 router.use(membershipMiddleware(() => db));
+router.use(couponBenefitsMiddleware(() => db));
+router.get('/benefits', (req,res) => req.couponBenefits ? res.json(req.couponBenefits) : res.status(401).json({message:'로그인이 필요합니다.'}));
+router.post('/birthday', async(req,res) => {
+ const id=req.session?.user?.id||req.session?.userId||req.session?.user_id;
+ if(!id)return res.status(401).json({message:'로그인이 필요합니다.'});
+ if(!req.is('application/json'))return res.status(415).json({message:'JSON 요청이 필요합니다.'});
+ try{res.json(await saveCouponBirthday(db,id,req.body?.birth));}catch(e){res.status(e.status||503).json({message:e.status?e.message:'생일을 저장하지 못했습니다.'});}
+});
 
 const q = (sql, params = []) =>
   new Promise((resolve, reject) => {
@@ -75,6 +84,7 @@ router.get("/", async (req, res) => {
       [userId]
     );
 
+    const shippingIds = new Set((await q("SELECT coupon_id FROM coupon_benefit_effects WHERE effect = 'SHIPPING'")).map(r => String(r.coupon_id)));
     const coupons = rows.map((r, index) => {
       const isExpired =
         r.expired_at && new Date(r.expired_at).getTime() < Date.now();
@@ -90,6 +100,7 @@ router.get("/", async (req, res) => {
         coupon_code: r.coupon_code,
         coupon_name: r.coupon_name,
         discount_type: r.discount_type,
+        benefit_effect: shippingIds.has(String(r.coupon_id)) ? "SHIPPING" : null,
         discount_value: r.discount_value,
         min_order_amount: r.min_order_amount,
         max_discount_amount: r.max_discount_amount,
@@ -170,6 +181,7 @@ router.get("/available", async (req, res) => {
     console.log("[쿠폰 DB 조회 rows]", rows);
     console.log("[쿠폰 DB 조회 개수]", rows.length);
 
+    const shippingIds = new Set((await q("SELECT coupon_id FROM coupon_benefit_effects WHERE effect = 'SHIPPING'")).map(r => String(r.coupon_id)));
     const coupons = rows.map((cp) => {
       let usable = true;
       let reason = "사용 가능";
@@ -195,8 +207,10 @@ router.get("/available", async (req, res) => {
         ).toLocaleString()}원 이상부터 사용할 수 있습니다.`;
       }
 
+      if (usable && shippingIds.has(String(cp.coupon_id)) && subtotal >= 80000) { usable = false; reason = "이미 무료배송이 적용되는 주문입니다."; }
       return {
         ...cp,
+        benefit_effect: shippingIds.has(String(cp.coupon_id)) ? "SHIPPING" : null,
         usable,
         reason,
       };

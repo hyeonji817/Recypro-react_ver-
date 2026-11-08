@@ -1,3 +1,4 @@
+import CouponBenefitsPanel from "./CouponBenefitsPanel";
 import useMemberGrade from "./useMemberGrade";
 import "./mypage_coupon.css"; 
 import React, { useEffect, useState } from "react";
@@ -12,6 +13,7 @@ const formatWon = (value) => Number(value || 0).toLocaleString();     // 가격 
 
 // 할인율 
 const formatDiscount = (coupon) => {
+  if(coupon.benefit_effect === "SHIPPING") return "기본 배송비 무료";
   if (coupon.discount_type === "PERCENT") {
     return `${coupon.discount_value} %`;
   }
@@ -82,6 +84,7 @@ const Mp_Coupon = () => {
       <div className="mpCoupon_Content">
         <div className="mpCoupon_body">
           <h2 className="subtitle">MY PAGE</h2>
+          <CouponBenefitsPanel />
 
           <div className="mpCoupon_top">
             <div className="customer_section">
