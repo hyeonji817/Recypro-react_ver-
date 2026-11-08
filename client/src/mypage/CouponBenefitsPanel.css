@@ -1,8 +1,49 @@
-.coupon-benefits-panel { margin:24px 0; padding:24px; border:1px solid #dbe3d3; background:#f6f8f2; color:#354735; font-family:'GmarketSansMedium',sans-serif; font-size:12px; line-height:1.9; }
-.coupon-benefits-panel h3 { margin:0 0 12px; font-size:17px; font-weight:500; }
-.coupon-benefits-panel p { margin:8px 0; }
-.coupon-benefits-panel label { display:block; margin:16px 0 6px; }
-.coupon-benefits-panel input,.coupon-benefits-panel button { padding:9px 12px; border:1px solid #859778; font:inherit; background:white; }
-.coupon-benefits-panel button { margin-left:8px; background:#49633d; color:white; cursor:pointer; }
-.coupon-benefits-panel small { display:block; margin-top:8px; }
-.coupon-benefits-panel [role=alert] { color:#a92828; }
+.coupon-benefits-panel {
+  margin: 24px 0;
+  padding: 24px;
+  border: 1px solid #dbe3d3;
+  background: #f6f8f2;
+  color: #354735;
+  font-family: 'GmarketSansMedium', sans-serif;
+  font-size: 12px;
+  line-height: 1.9;
+}
+
+.coupon-benefits-panel h3 {
+  margin: 0 0 12px;
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.coupon-benefits-panel p {
+  margin: 8px 0;
+}
+
+.coupon-benefits-panel label {
+  display: block;
+  margin: 16px 0 6px;
+}
+
+.coupon-benefits-panel input,
+.coupon-benefits-panel button {
+  padding: 9px 12px;
+  border: 1px solid #859778;
+  font: inherit;
+  background: white;
+}
+
+.coupon-benefits-panel button {
+  margin-left: 8px;
+  background: #49633d;
+  color: white;
+  cursor: pointer;
+}
+
+.coupon-benefits-panel small {
+  display: block;
+  margin-top: 8px;
+}
+
+.coupon-benefits-panel [role=alert] {
+  color: #a92828;
+}
