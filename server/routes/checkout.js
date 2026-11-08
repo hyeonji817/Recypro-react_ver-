@@ -1,3 +1,4 @@
+import {loadOwnedCoupon,evaluateOwnedCoupon} from "../services/couponRedemption.js";
 import { couponBenefitsMiddleware, isShippingCoupon } from "../services/couponBenefits.js";
 import { calculateShippingFee } from "../services/shippingPolicy.js";
 // 주문 생성 페이지 (장바구니 기반)
@@ -157,7 +158,7 @@ async function getUsableCoupon(userId, couponCode, subtotal) {
   return coupon;
 }
 
-async function getPreview(userId, { all, cart_ids, coupon_code, use_mileage }) {
+async function getPreview(userId, { all, cart_ids, coupon_code, user_coupon_id, use_mileage }) {
   // 1) 카트 행 조회
   let rows;
 
@@ -244,85 +245,23 @@ async function getPreview(userId, { all, cart_ids, coupon_code, use_mileage }) {
     return sum + Number(item.mileage || 0);
   }, 0);
 
-  // 3) 쿠폰 검증 / 할인 계산
+  // 보유번호로 쿠폰을 특정하며 코드만 보내는 기존 요청도 호환합니다.
   let usableCoupon = null;
   let coupon_discount = 0;
   let coupon_reason = "";
-  let freeShipping = false;
-
-  const couponCode = coupon_code || null;
-
-  if (couponCode) {
-    const couponRows = await q(
-      `
-      SELECT
-        uc.user_coupon_id,
-        uc.user_id,
-        uc.issued_at,
-        uc.expired_at,
-        uc.used_at,
-        uc.order_id,
-
-        c.coupon_id,
-        c.coupon_code,
-        c.coupon_name,
-        c.discount_type,
-        c.discount_value,
-        c.min_order_amount,
-        c.max_discount_amount,
-        c.target_type,
-        c.is_active
-      FROM user_coupons uc
-      JOIN coupons c ON c.coupon_id = uc.coupon_id
-      WHERE uc.user_id = ?
-        AND c.coupon_code = ?
-        AND uc.used_at IS NULL
-        AND c.is_active = 1
-        AND (uc.expired_at IS NULL OR uc.expired_at >= NOW())
-      LIMIT 1
-      `,
-      [userId, couponCode]
-    );
-
-    usableCoupon = couponRows[0] || null;
-
-    if (!usableCoupon) {
-      coupon_reason = "사용할 수 없는 쿠폰입니다.";
-    } else if (subtotal < Number(usableCoupon.min_order_amount || 0)) {
-      coupon_reason = "쿠폰 최소주문금액 조건을 만족하지 않습니다.";
-      usableCoupon = null;
-    } else {
-      freeShipping = await isShippingCoupon(db, usableCoupon.coupon_id);
-      if (usableCoupon.discount_type === "AMOUNT") {
-        coupon_discount = Number(usableCoupon.discount_value || 0);
-      }
-
-      if (usableCoupon.discount_type === "PERCENT") {
-        const rawDiscount = Math.floor(
-          subtotal * (Number(usableCoupon.discount_value || 0) / 100)
-        );
-
-        if (usableCoupon.max_discount_amount == null) {
-          coupon_discount = rawDiscount;
-        } else {
-          coupon_discount = Math.min(
-            rawDiscount,
-            Number(usableCoupon.max_discount_amount || 0)
-          );
-        }
-      }
-
-      // 할인금액이 상품합계보다 커지는 것 방지
-      coupon_discount = Math.min(coupon_discount, subtotal);
-
-      coupon_reason = "쿠폰 적용 가능";
+  if (coupon_code || user_coupon_id != null) {
+    try {
+      const owned = await loadOwnedCoupon(db.promise(), userId, {coupon_code,user_coupon_id});
+      const applied = evaluateOwnedCoupon(owned, subtotal);
+      usableCoupon = owned;
+      coupon_discount = applied.coupon_discount;
+      shipping_fee = applied.shipping_fee;
+      coupon_reason = "쿠폰 적용 완료";
+    } catch(error) {
+      if(!error.status) throw error;
+      coupon_reason = error.message;
     }
   }
-
-  if (freeShipping && calculateShippingFee(subtotal) === 0) {
-    freeShipping = false; usableCoupon = null; coupon_reason = "이미 무료배송이 적용되는 주문입니다.";
-  }
-  shipping_fee = freeShipping ? 0 : calculateShippingFee(subtotal, coupon_discount);
 
   // 4) 적립금 잔액 조회
   let myBalance = 0;
@@ -433,6 +372,7 @@ router.get("/preview", async (req, res) => {
       all: req.query.all,
       cart_ids: req.query.cart_ids,
       coupon_code: req.query.coupon_code,
+      user_coupon_id: req.query.user_coupon_id,
       use_mileage: req.query.use_mileage,
     });
 
@@ -463,6 +403,7 @@ router.post("/prepare", async (req, res) => {
       all,
       cart_ids,
       coupon_code,
+      user_coupon_id,
       use_mileage,
       buyer = {},
       receiver = {},
@@ -475,6 +416,7 @@ router.post("/prepare", async (req, res) => {
       all,
       cart_ids,
       coupon_code,
+      user_coupon_id,
       use_mileage,
     });
 
@@ -483,6 +425,7 @@ router.post("/prepare", async (req, res) => {
       all,
       cart_ids,
       coupon_code,
+      user_coupon_id,
       use_mileage,
     });
 
@@ -496,8 +439,8 @@ router.post("/prepare", async (req, res) => {
 
     // 프론트가 쿠폰을 보냈는데 서버 검증 후 적용되지 않았다면 주문 중단
     if (
-      coupon_code &&
-      totals.coupon_code !== coupon_code
+      (coupon_code && totals.coupon_code !== coupon_code) ||
+      (user_coupon_id != null && String(totals.user_coupon_id) !== String(user_coupon_id))
     ) {
       return res.status(400).json({
         message:

@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react"; 
+import OwnedCouponPicker from "../components/OwnedCouponPicker";
+import React, { useEffect, useState, useRef } from "react"; 
 import { useSearchParams, useNavigate } from "react-router-dom";
 import "./orderList.css";
 import axios from "axios"; 
@@ -19,6 +20,10 @@ const OrderList = () => {
   const [buyer, setBuyer] = useState({ name:"", phone:"", cell:"", email:"" });
   const [recv,  setRecv]  = useState({ name:"", phone:"", cell:"", zip:"", addr1:"", addr2:"" });
   const [coupon, setCoupon] = useState("");
+  const [selectedCouponId,setSelectedCouponId] = useState(null);
+  const [couponApplying,setCouponApplying] = useState(false);
+  const previewSequence = useRef(0);
+  const appliedSequence = useRef(0);
   const [agreed, setAgreed] = useState(false);
   const navigate = useNavigate();
   const [payMethod, setPayMethod] = useState("CARD");
@@ -51,37 +56,31 @@ const OrderList = () => {
     setMileageBalance(balance);
   };
 
-  const fetchPreview = async (
-    nextCoupon = coupon,
-    nextMileage = useMileage
-  ) => {
-    const params = {};
-  
-    if (sp.get("all") === "1") {
-      params.all = "1";
-    }
-  
-    if (sp.get("cart_ids")) {
-      params.cart_ids = sp.get("cart_ids");
-    }
-  
-    if (nextCoupon) {
-      params.coupon_code = nextCoupon;
-    }
-  
-    params.use_mileage = Number(nextMileage || 0);
-  
-    const { data } = await axios.get(
-      `${API_URL}/api/checkout/preview`,
-      {
-        params,
-        withCredentials: true,
-      }
-    );
-  
-    applyPreviewData(data);
-  
-    return data;
+  const fetchPreview = async (nextCoupon = coupon, nextMileage = useMileage, nextId = selectedCouponId) => {
+    const sequence = ++previewSequence.current;
+    const params = { use_mileage: Number(nextMileage || 0) };
+    if(sp.get("all") === "1") params.all = "1";
+    if(sp.get("cart_ids")) params.cart_ids = sp.get("cart_ids");
+    if(nextCoupon) { params.coupon_code=nextCoupon; if(nextId) params.user_coupon_id=nextId; }
+    try {
+      const {data}=await axios.get(API_URL+"/api/checkout/preview",{params,withCredentials:true});
+      if(sequence !== previewSequence.current) return {...data,stale:true};
+      applyPreviewData(data); appliedSequence.current=sequence; setPreviewError("");
+      return data;
+    } catch(error) { if(sequence===previewSequence.current) setPreviewError(error?.response?.data?.message||"주문금액을 다시 조회해 주세요."); throw error; }
+  };
+  const selectOwnedCoupon = async cp => {
+    if(couponApplying) return;
+    setCouponApplying(true);setCouponError("");
+    try {
+      const data=await fetchPreview(cp?.coupon_code||"",useMileage,cp?.user_coupon_id||null);
+      if(data.stale) return;
+      if(cp && String(data.totals?.user_coupon_id)!==String(cp.user_coupon_id)) {
+        setCoupon("");setSelectedCouponId(null);setCouponError(data.totals?.coupon_reason||"이 쿠폰은 사용할 수 없습니다.");
+      } else {setCoupon(cp?.coupon_code||"");setSelectedCouponId(cp?.user_coupon_id||null);}
+      const used=Number(data.totals?.used_mileage||0);setUseMileage(used);setMileageInput(String(used));
+    } catch(error) {setCouponError(error?.response?.data?.message||"쿠폰 적용에 실패했습니다. 다시 선택해 주세요.");}
+    finally {setCouponApplying(false);}
   };
 
   // 원본
@@ -152,63 +151,6 @@ const OrderList = () => {
     s.async = true;
     document.body.appendChild(s);
   }, []);
-
-  // 사용 가능한 쿠폰 조회
-  useEffect(() => {
-    const subtotal = Number(tot?.subtotal || 0);
-  
-    console.log("[쿠폰 useEffect 실행]", {
-      subtotal,
-      totals: tot,
-    });
-  
-    if (subtotal <= 0) {
-      console.log("[쿠폰 조회 중단] subtotal이 0 이하");
-      setAvailableCoupons([]);
-      return;
-    }
-  
-    const fetchAvailableCoupons = async () => {
-      try {
-        console.log("[쿠폰 조회 요청 시작]", {
-          url: `${API_URL}/api/mpCoupon/available`,
-          subtotal,
-        });
-  
-        const response = await axios.get(
-          `${API_URL}/api/mpCoupon/available`,
-          {
-            params: {
-              subtotal,
-            },
-            withCredentials: true,
-          }
-        );
-  
-        console.log("[쿠폰 조회 HTTP 상태]", response.status);
-        console.log("[쿠폰 조회 응답 전체]", response.data);
-        console.log("[쿠폰 배열]", response.data?.coupons);
-  
-        const coupons = Array.isArray(response.data?.coupons)
-          ? response.data.coupons
-          : [];
-  
-        setAvailableCoupons(coupons);
-      } catch (err) {
-        console.error("[사용 가능 쿠폰 조회 실패]", {
-          status: err?.response?.status,
-          responseData: err?.response?.data,
-          message: err?.message,
-          url: err?.config?.url,
-        });
-  
-        setAvailableCoupons([]);
-      }
-    };
-  
-    fetchAvailableCoupons();
-  }, [tot?.subtotal]);
-
 
   // 도로명/지번 + 건물명 등 추가 표기 조립
   const buildAddress = (data) => {
@@ -463,6 +405,7 @@ const OrderList = () => {
   const submitOrder = async () => {
     if (submitting || mockOpen) return;
     if (!agreed) return alert("결제정보 확인 및 구매진행 동의를 체크해 주세요.");
+    if(couponApplying || previewSequence.current !== appliedSequence.current || previewError) return alert("쿠폰과 주문금액 계산이 끝난 뒤 다시 시도해 주세요.");
     setSubmitting(true);
     try {
       // 1) 주문 준비(서버 금액 재계산 + PENDING 주문 생성)
@@ -470,6 +413,7 @@ const OrderList = () => {
         all: sp.get("all") === "1" ? "1" : undefined,
         cart_ids: sp.get("cart_ids") || undefined,
         coupon_code: coupon || undefined,
+        user_coupon_id: selectedCouponId || undefined,
         use_mileage: Number(useMileage || 0),
         buyer,
         receiver: recv,
@@ -637,147 +581,9 @@ const OrderList = () => {
                         <th scope="row">전체상품 쿠폰</th>
 
                         <td>
-                        <ul className="coupon_list">
-                        {couponLoading ? (
-                          <li className="coupon_empty">
-                            쿠폰을 불러오는 중입니다.
-                          </li>
-                        ) : couponError ? (
-                          <li className="coupon_empty coupon_error">
-                            {couponError}
-                          </li>
-                        ) : availableCoupons.length === 0 ? (
-                          <li className="coupon_empty">
-                            보유한 쿠폰이 없습니다.
-                          </li>
-                        ) : (
-                          availableCoupons.map((cp) => (
-                            <li
-                              key={cp.user_coupon_id}
-                              className={
-                                cp.usable
-                                  ? "coupon_item"
-                                  : "coupon_item disabled_coupon"
-                              }
-                            >
-                              <label className="coupon_label">
-                                <span className="check">
-                                  <input
-                                    type="radio"
-                                    name="coupon"
-                                    value={cp.coupon_code}
-                                    checked={coupon === cp.coupon_code}
-                                    onChange={async () => {
-                                      setCoupon("");
-                                    
-                                      try {
-                                        const data = await fetchPreview(
-                                          "",
-                                          useMileage
-                                        );
-                                    
-                                        const appliedMileage = Number(
-                                          data?.totals?.use_mileage ??
-                                          data?.totals?.mileage_used ??
-                                          useMileage
-                                        );
-                                    
-                                        setUseMileage(appliedMileage);
-                                        setMileageInput(String(appliedMileage));
-                                      } catch (err) {
-                                        console.error(
-                                          "[쿠폰 해제 preview 실패]",
-                                          err
-                                        );
-                                    
-                                        alert("쿠폰 해제 실패");
-                                      }
-                                    }}
-                                  />
-                                </span>
-
-                                <span className="coupon_text">
-                                  <strong className="name">
-                                    {cp.coupon_name}
-                                  </strong>
-
-                                  <span className="content">
-                                    최소주문금액:{" "}
-                                    {Number(
-                                      cp.min_order_amount || 0
-                                    ).toLocaleString()}
-                                    원 이상
-                                    {" / "}
-
-                                    할인액(율):{" "}
-                                    {cp.benefit_effect === "SHIPPING" ? "기본 배송비 무료" : cp.discount_type === "PERCENT"
-                                      ? `${Number(cp.discount_value || 0)}%`
-                                      : `${Number(
-                                          cp.discount_value || 0
-                                        ).toLocaleString()}원`}
-                                    {" / "}
-
-                                    사용기간:{" "}
-                                    {cp.expired_at
-                                      ? `~ ${cp.expired_at}`
-                                      : "무제한"}
-
-                                    {Number(cp.max_discount_amount || 0) > 0 && (
-                                      <>
-                                        <br />
-                                        최대할인금액:{" "}
-                                        {Number(
-                                          cp.max_discount_amount
-                                        ).toLocaleString()}
-                                        원
-                                      </>
-                                    )}
-
-                                    {!cp.usable && (
-                                      <>
-                                        <br />
-                                        <strong className="coupon_reason">
-                                          {cp.reason}
-                                        </strong>
-                                      </>
-                                    )}
-                                  </span>
-                                </span>
-                              </label>
-                            </li>
-                          ))
-                        )}
-
-                        <li className="coupon_item no_coupon">
-                          <label className="coupon_label">
-                            <span className="check">
-                              <input
-                                type="radio"
-                                id="no_cpn"
-                                name="coupon"
-                                value=""
-                                checked={coupon === ""}
-                                onChange={async () => {
-                                  setCoupon("");
-
-                                  try {
-                                    await fetchPreview("", 0);
-                                  } catch (err) {
-                                    console.error("[쿠폰 해제 preview 실패]", err);
-                                    alert("쿠폰 해제 실패");
-                                  }
-                                }}
-                              />
-                            </span>
-
-                            <span className="coupon_text">
-                              <strong className="name">
-                                사용안함
-                              </strong>
-                            </span>
-                          </label>
-                        </li>
-                      </ul>
+                        <OwnedCouponPicker subtotal={Number(tot?.subtotal||0)} selectedId={selectedCouponId} onChange={selectOwnedCoupon} disabled={couponApplying||submitting||mockOpen} />
+                        {couponApplying && <p role="status">쿠폰 할인금액을 계산하는 중입니다.</p>}
+                        {couponError && <p role="alert" style={{color:"#a32929"}}>{couponError}</p>}
                         </td>
                       </tr>
                       {/** // 쿠폰사용 */}
@@ -1218,7 +1024,7 @@ const OrderList = () => {
                           </p>
                           <p className="msg">‘결제하기’ 버튼을 누르면 <br /> 결제창으로 연결됩니다.</p>
                           <span className="box_btn w150 large">
-                            <input type="button" value={submitting ? "주문 준비 중..." : "결제하기"} disabled={submitting} onClick={submitOrder} />
+                            <input type="button" value={submitting ? "주문 준비 중..." : "결제하기"} disabled={submitting || couponApplying || Boolean(previewError)} onClick={submitOrder} />
                           </span>
                         </div>
                       )}
@@ -1246,7 +1052,7 @@ const OrderList = () => {
         key={prepared?.pg_order_uid || "payment"}
         open={mockOpen}
         payMethod={prepared?.pay_method || payMethod}
-        amount={prepared?.amount || tot?.total_pay || 0}
+        amount={prepared?.amount ?? tot?.total_pay ?? 0}
         orderName={prepared?.orderName || "주문 결제"}
         buyer={buyer}
         onClose={() => setMockOpen(false)}
@@ -1277,7 +1083,8 @@ const OrderList = () => {
         }}
         onFail={(e) => {
           console.error(e);
-          alert("결제를 진행할 수 없습니다.");
+          setMockOpen(false);
+          alert(e?.response?.data?.message || "결제를 진행할 수 없습니다. 쿠폰과 주문금액을 다시 확인해 주세요.");
         }}
       />
     </div>

@@ -1,0 +1,9 @@
+.owned-coupon-picker { border:1px solid #d7dfd0; padding:18px; margin:12px 0; font-family:'GmarketSansMedium',sans-serif; color:#374535; font-size:12px; line-height:1.8; }
+.owned-coupon-picker legend { width:auto; padding:0 8px; font-size:15px; }
+.owned-coupon-picker>p { margin:0 0 12px; }
+.owned-coupon-picker>label { display:flex; align-items:flex-start; gap:12px; margin:0; padding:14px 4px; border-top:1px solid #e3e7df; cursor:pointer; }
+.owned-coupon-picker input[type=radio] { position:static!important; appearance:auto!important; opacity:1!important; width:16px!important; height:16px!important; margin-top:5px; flex:0 0 16px; }
+.owned-coupon-picker label span span { display:block; }
+.owned-coupon-picker .owned-coupon-disabled { color:#7c8178; cursor:default; background:#f7f8f5; }
+.owned-coupon-picker .owned-coupon-reason { color:#a24d32; }
+.owned-coupon-picker button { font:inherit; padding:5px 10px; border:1px solid #829376; background:white; }

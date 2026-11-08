@@ -1,3 +1,4 @@
+import {validateOrderCoupon} from "./couponRedemption.js";
 import crypto from "node:crypto";
 
 const paymentError = (status, message) => Object.assign(new Error(message), { status });
@@ -33,6 +34,7 @@ export async function completeMockPayment(pool, { userId, orderId, by }) {
       throw paymentError(409, "결제 대기 상태의 주문만 결제할 수 있습니다.");
     }
 
+    await validateOrderCoupon(conn, userId, order);
     const used = Number(order.used_mileage || 0);
     const earned = Number(order.total_mileage || 0);
     if (![used, earned].every(value => Number.isSafeInteger(value) && value >= 0)) {

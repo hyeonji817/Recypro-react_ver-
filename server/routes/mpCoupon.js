@@ -64,6 +64,7 @@ router.get("/", async (req, res) => {
         uc.user_coupon_id,
         uc.user_id,
         uc.issued_at,
+        (uc.issued_at IS NULL OR uc.issued_at <= NOW()) AS has_started,
         uc.expired_at,
         uc.used_at,
         uc.order_id,
@@ -159,6 +160,8 @@ router.get("/available", async (req, res) => {
       `
       SELECT
         uc.user_coupon_id,
+        uc.issued_at,
+        (uc.issued_at IS NULL OR uc.issued_at <= NOW()) AS has_started,
         uc.used_at,
         uc.expired_at,
         c.coupon_id,
@@ -168,7 +171,8 @@ router.get("/available", async (req, res) => {
         c.discount_value,
         c.min_order_amount,
         c.max_discount_amount,
-        c.is_active
+        c.is_active,
+        c.target_type
       FROM user_coupons uc
       JOIN coupons c
         ON c.coupon_id = uc.coupon_id
@@ -189,6 +193,10 @@ router.get("/available", async (req, res) => {
       if (cp.used_at) {
         usable = false;
         reason = "이미 사용한 쿠폰입니다.";
+      } else if (!Number(cp.has_started)) {
+        usable = false; reason = "아직 사용 기간이 시작되지 않은 쿠폰입니다.";
+      } else if (cp.target_type === "OFFLINE") {
+        usable = false; reason = "오프라인 전용 쿠폰입니다.";
       } else if (Number(cp.is_active) !== 1) {
         usable = false;
         reason = "비활성화된 쿠폰입니다.";
