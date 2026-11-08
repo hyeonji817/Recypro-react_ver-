@@ -39,7 +39,8 @@ router.get("/", async (req, res) => {
       [userId]
     );
 
-    res.json(rows);
+    // 장바구니는 할인·적립금 사용 전 예상 적립 1%. 실제 지급액은 주문서에서 확정.
+    res.json(rows.map(row=>({...row,mileage:Math.floor(Number(row.unit_price||row.base_price||0)*Number(row.cart_quantity||1)/100)})));
   } catch (e) {
     console.error(e);
     res.status(500).json({ message: "장바구니 조회 중 오류" });

@@ -352,6 +352,7 @@ const OrderList = () => {
        * 반환하지 않으면 사용자가 입력한 값을 사용.
        */
       const appliedMileage = Number(
+        data?.totals?.used_mileage ??
         data?.totals?.use_mileage ??
         data?.totals?.mileage_used ??
         requestedMileage

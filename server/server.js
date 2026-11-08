@@ -1,3 +1,5 @@
+import {createMileageAdminRouter} from "./routes/mileageAdmin.js";
+import {startMileageJob} from "./services/mileagePolicy.js";
 import { createRegistrationHandler } from "./services/registerWithBenefits.js";
 import { startCouponBenefitJob } from "./services/couponBenefits.js";
 import express from "express";  // express : Node.js 기반 웹 애플리케이션 프레임워크. API 요청 처리.
@@ -128,6 +130,7 @@ app.use("/api/mypage/order-change", mpOrderChangeRouter);
 app.use("/api/mypage/wish", mpWishRouter);
 app.use("/api/mypage/product-inquiries", createProductInquiryRouter(() => db));
 app.use("/api/mpCoupon", mpCouponRouter);
+app.use("/api/admin/mileage", createMileageAdminRouter(() => pool));
 app.use("/api/mypage/special-mileage", createSpecialMileageRouter(() => db));
 
 const pool = mysql.createPool({
@@ -304,6 +307,7 @@ app.get('/api/product/:id', (req, res) => {
 // app.listen : 서버를 시작하고, 지정된 포트(5003)에서 클라이언트 요청을 대기. 
 // 성공적으로 실행되면 콘솔에 서버 주소 출력 
 startCouponBenefitJob(pool);
+startMileageJob(pool);
 app.listen(PORT, "0.0.0.0", () => {
   console.log(`Server running on port ${PORT}`);
 });

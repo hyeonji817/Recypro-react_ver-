@@ -1,6 +1,6 @@
 export const SHIPPING_THRESHOLD = 30000; 
 export const SHIPPING_FEE = 3000; 
-export const MILEAGE_RATE = 0.05; 
+export const MILEAGE_RATE = 0.01; 
 
 export function calcTotals(items) {
   const subtotal = items.reduce((sum, it) => sum + it.unit_price * it.cart_quantity, 0);

@@ -1,3 +1,4 @@
+import AdminMileage from "./admin_page/AdminMileage";
 import Mp_Withdraw from './mypage/mypage_withdraw';
 import MyReviews from "./mypage/mypage_reviews";
 import "./App.css";
@@ -94,6 +95,7 @@ function App() {
   return (
     <>
       <Routes>
+        <Route path="/admin/mileage" element={<AdminMileage />} />
         <Route path="/mypage_withdraw" element={<Mp_Withdraw />} />
         <Route path="/mypage_reviews" element={<MyReviews />} />
         <Route path="/" element={<Home />} />

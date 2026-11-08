@@ -1,0 +1,1 @@
+export default function ReviewRewardInfo(){return <aside style={{padding:18,margin:'16px 0',background:'#f4f7ef',fontSize:13,lineHeight:1.9,fontFamily:'GmarketSansMedium, sans-serif'}}>배송완료 상품의 텍스트 리뷰는 <strong>500원</strong>, 사진 포함 리뷰는 <strong>1,500원</strong>을 지급합니다. 주문 상품당 1회 지급하며 기존 리뷰는 소급 적립하지 않습니다.</aside>;}

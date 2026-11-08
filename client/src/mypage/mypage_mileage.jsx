@@ -19,6 +19,7 @@ const Mp_Mileage = () => {
   const [user, setUser] = useState({ name: "", grade: "MEMBER" });
   const [balance, setBalance] = useState(0);
   const [history, setHistory] = useState([]);
+  const [pending,setPending] = useState([]);
   const [couponCount, setCouponCount] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -32,6 +33,7 @@ const Mp_Mileage = () => {
         setUser(data.user);
         setBalance(data.balance);
         setHistory(data.history);
+        setPending(data.pending || []);
       })
       .catch((err) => {
         if (!controller.signal.aborted) {
@@ -138,6 +140,7 @@ const Mp_Mileage = () => {
 		          <p className="have">총 적립금<span>{loading || error ? "-" : formatAmount(balance)}</span></p>
 	          </div>
 	
+            <aside style={{padding:20,margin:'20px 0',background:'#f4f7ef',lineHeight:1.9}}><p>구매 적립 1% · 관리자 배송완료 확인 후 7일 뒤 지급 · 사용 최소금액·만료 없음</p><p>텍스트 리뷰 500원 / 사진 리뷰 1,500원 · 배송완료 주문 상품당 1회</p>{pending.length>0&&<><strong>구매 적립 대기</strong><ul>{pending.map(row=><li key={row.order_id}>주문 {row.order_id} · {Number(row.amount).toLocaleString()}원 · {row.available_at?new Date(row.available_at).toLocaleString('ko-KR',{timeZone:'Asia/Seoul'})+' 지급 예정':'배송완료 확인 대기'}</li>)}</ul></>}</aside>
             <table className="tbl_col">
 	            <caption className="hidden">적립금 내역</caption>
               <colgroup>

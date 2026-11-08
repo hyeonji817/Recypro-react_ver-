@@ -9,7 +9,7 @@ const q = (sql, params=[]) => new Promise((res, rej) => {
   db.query(sql, params, (err, rows) => err ? rej(err) : res(rows)); 
 });
 
-const MILEAGE_RATE = 0.05; 
+const MILEAGE_RATE = 0.01; 
 
 function makeOrderUID(orderId) {
   const rand = crypto.randomBytes(9).toString("base64").replace(/[+/]/g, "_");

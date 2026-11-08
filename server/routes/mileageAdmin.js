@@ -1,0 +1,7 @@
+import express from 'express';import {confirmDelivery} from '../services/mileagePolicy.js';
+export function createMileageAdminRouter(getPool){const router=express.Router();
+ router.use((req,res,next)=>{const id=req.session?.user?.id||req.session?.userId||req.session?.user_id;const admins=(process.env.ADMIN_USER_IDS||'admin').split(',').map(s=>s.trim()).filter(Boolean);if(!id)return res.status(401).json({message:'로그인이 필요합니다.'});if(!admins.includes(String(id)))return res.status(403).json({message:'관리자만 배송완료를 확인할 수 있습니다.'});req.mileageAdminId=id;next();});
+ router.get('/orders',async(req,res)=>{try{const [rows]=await getPool().promise().query("SELECT o.order_id,o.order_no,o.user_id,o.total_pay,o.paid_at,r.amount,r.status AS reward_status,DATE_FORMAT(d.delivered_at,'%Y-%m-%dT%H:%i:%sZ') AS delivered_at FROM orders o LEFT JOIN mileage_purchase_rewards r ON r.order_id=o.order_id LEFT JOIN mileage_delivery_confirmations d ON d.order_id=o.order_id WHERE o.status='PAID' ORDER BY o.order_id DESC LIMIT 100");res.json(rows);}catch(error){res.status(503).json({message:'배송완료 대상 주문을 불러오지 못했습니다. DB 업데이트를 확인해 주세요.'});}});
+ router.post('/orders/:orderId/delivered',async(req,res)=>{if(!req.is('application/json'))return res.status(415).json({message:'JSON 요청이 필요합니다.'});try{res.json(await confirmDelivery(getPool(),req.params.orderId,req.mileageAdminId));}catch(error){res.status(error.status||503).json({message:error.status?error.message:'배송완료 처리에 실패했습니다.'});}});
+ return router;
+}

@@ -11,7 +11,7 @@ const Header_admin = () => {
             <a className="link" href="#">상품</a>
           </li>
           <li>
-            <a className="link" href="#">관리자 페이지</a>
+            <a className="link" href="/admin/mileage">배송완료·적립 관리</a>
           </li>
           <li>
             <a className="link" href="./review/Review.jsx">게시판</a>

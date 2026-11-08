@@ -1,3 +1,6 @@
+import {mileageMiddleware} from "../services/mileagePolicy.js";
+import {submitRewardReview} from "../services/reviewMileage.js";
+import multer from "multer";
 import { couponBenefitsMiddleware } from "../services/couponBenefits.js";
 import { membershipMiddleware } from "../services/membershipGrade.js";
 import express from "express"; 
@@ -5,7 +8,9 @@ import { db } from "../server.js";
 
 const router = express.Router();
 router.use(membershipMiddleware(() => db));
-router.use(couponBenefitsMiddleware(() => db)); 
+router.use(couponBenefitsMiddleware(() => db));
+router.use(mileageMiddleware(() => db));
+const reviewUpload = multer({storage:multer.memoryStorage(),limits:{fileSize:5*1024*1024,files:3,fields:6}}); 
 const app = express(); 
 
 const q = (sql, params = []) =>
@@ -334,6 +339,7 @@ router.get("/mileage", async (req, res) => {
       };
     }).reverse();
 
+    const pending = await q("SELECT r.order_id,r.amount,DATE_FORMAT(DATE_ADD(d.delivered_at,INTERVAL 7 DAY),'%Y-%m-%dT%H:%i:%sZ') AS available_at FROM mileage_purchase_rewards r JOIN orders o ON o.order_id=r.order_id LEFT JOIN mileage_delivery_confirmations d ON d.order_id=r.order_id WHERE r.user_id=? AND r.status='PENDING' AND o.status='PAID' ORDER BY r.order_id DESC",[userId]);
     res.json({
       user: {
         id: userId,
@@ -343,6 +349,8 @@ router.get("/mileage", async (req, res) => {
       },
       balance,
       history,
+      pending,
+      policy: {rate:0.01,delay_days:7,minimum_balance:0,expires:false},
     });
   } catch (err) {
     console.error("[GET /api/mypage/mileage]", err);
@@ -352,47 +360,17 @@ router.get("/mileage", async (req, res) => {
 
 
 // Session-scoped personal reviews. Legacy review rows identify products by pname.
-router.get('/reviews', async (req, res) => {
-  const userId = getSessionUserId(req);
-  if (!userId) return res.status(401).json({ message: '로그인이 필요합니다.' });
-  try {
-    const [written, purchased] = await Promise.all([
-      q('SELECT image, rv_title, rv_rating, date, pname FROM review WHERE id = ? ORDER BY date DESC', [userId]),
-      q(`SELECT oi.order_item_id, oi.pname, oi.filename, oi.option_label, o.created_at
-         FROM order_items oi JOIN orders o ON o.order_id = oi.order_id
-         WHERE o.user_id = ? AND o.status = 'PAID' ORDER BY o.created_at ASC`, [userId])
-    ]);
-    const reviewed = new Set(written.map(row => row.pname));
-    const products = new Map(purchased.map(row => [row.pname, row]));
-    res.json({
-      written: written.map(row => ({ ...row, filename: products.get(row.pname)?.filename || '', option_label: products.get(row.pname)?.option_label || '' })),
-      available: purchased.filter(row => !reviewed.has(row.pname))
-    });
-  } catch (error) {
-    console.error('[mypage/reviews]', error);
-    res.status(500).json({ message: '리뷰를 불러오지 못했습니다.' });
-  }
+router.get('/reviews', async(req,res)=>{
+ const userId=getSessionUserId(req);if(!userId)return res.status(401).json({message:'로그인이 필요합니다.'});
+ try {
+  const current=await q("SELECT r.order_item_id,r.pname,r.content AS rv_title,r.rating AS rv_rating,r.images_json,r.amount AS reward_amount,DATE_FORMAT(r.created_at,'%Y-%m-%d') AS date,oi.filename,oi.option_label FROM mileage_review_rewards r JOIN order_items oi ON oi.order_item_id=r.order_item_id WHERE r.user_id=? ORDER BY r.created_at DESC",[userId]);
+  const legacy=await q("SELECT image,rv_title,rv_rating,date,pname FROM review r WHERE id=? AND NOT EXISTS (SELECT 1 FROM mileage_review_rewards a WHERE a.user_id=r.id AND a.pname=r.pname) ORDER BY date DESC",[userId]);
+  const available=await q("SELECT oi.order_item_id,oi.pname,oi.filename,oi.option_label,o.created_at FROM order_items oi JOIN orders o ON o.order_id=oi.order_id JOIN mileage_delivery_confirmations d ON d.order_id=o.order_id WHERE o.user_id=? AND o.status='PAID' AND NOT EXISTS (SELECT 1 FROM mileage_review_rewards a WHERE a.order_item_id=oi.order_item_id) AND NOT EXISTS (SELECT 1 FROM review r WHERE r.id=o.user_id AND r.pname=oi.pname AND NOT EXISTS (SELECT 1 FROM mileage_review_rewards a WHERE a.user_id=r.id AND a.pname=r.pname)) ORDER BY o.created_at DESC",[userId]);
+  res.json({written:[...current.map(row=>{const images=typeof row.images_json==='string'?JSON.parse(row.images_json):row.images_json;return {...row,images,image:images[0]||''};}),...legacy],available});
+ }catch(error){res.status(503).json({message:'리뷰와 적립 내역을 불러오지 못했습니다.'});}
 });
-router.post('/reviews', async (req, res) => {
-  const userId = getSessionUserId(req);
-  if (!userId) return res.status(401).json({ message: '로그인이 필요합니다.' });
-  const { order_item_id, rv_title, rv_rating } = req.body || {};
-  if (!Number.isSafeInteger(Number(order_item_id)) || Number(order_item_id) <= 0 || typeof rv_title !== 'string' || !rv_title.trim() || rv_title.length > 1000 || !Number.isInteger(rv_rating) || rv_rating < 1 || rv_rating > 5) {
-    return res.status(400).json({ message: '리뷰 내용(1~1000자)과 별점(1~5점)을 확인해 주세요.' });
-  }
-  try {
-    const [item] = await q(`SELECT oi.pname FROM order_items oi JOIN orders o ON o.order_id = oi.order_id WHERE oi.order_item_id = ? AND o.user_id = ? AND o.status = 'PAID'`, [order_item_id, userId]);
-    if (!item) return res.status(404).json({ message: '리뷰를 작성할 구매 상품이 없습니다.' });
-    const result = await q(`INSERT INTO review (image, rv_title, rv_rating, id, date, pname)
-      SELECT '', ?, ?, ?, CURRENT_DATE(), ? FROM DUAL
-      WHERE NOT EXISTS (SELECT 1 FROM review WHERE id = ? AND pname = ?)`,
-      [rv_title.trim(), rv_rating, userId, item.pname, userId, item.pname]);
-    if (!result.affectedRows) return res.status(409).json({ message: '이미 작성한 상품평이 있습니다.' });
-    res.status(201).json({ success: true });
-  } catch (error) {
-    console.error('[mypage/reviews/create]', error);
-    res.status(500).json({ message: '리뷰를 등록하지 못했습니다.' });
-  }
+router.post('/reviews',(req,res,next)=>{if(!getSessionUserId(req))return res.status(401).json({message:'로그인이 필요합니다.'});reviewUpload.array('photos',3)(req,res,error=>error?res.status(400).json({message:'사진은 JPG·PNG·WEBP 형식, 장당 5MB, 최대 3장까지 첨부해 주세요.'}):next());},async(req,res)=>{
+ try{res.status(201).json(await submitRewardReview(db,getSessionUserId(req),req.body,req.files||[]));}catch(error){res.status(error.status||503).json({message:error.status?error.message:'리뷰 등록과 적립을 처리하지 못했습니다.'});}
 });
 
 export default router;

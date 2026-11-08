@@ -1,3 +1,4 @@
+import {registerPendingMileage,settleMileageLocked} from "./mileagePolicy.js";
 import {validateOrderCoupon} from "./couponRedemption.js";
 import crypto from "node:crypto";
 
@@ -35,6 +36,8 @@ export async function completeMockPayment(pool, { userId, orderId, by }) {
     }
 
     await validateOrderCoupon(conn, userId, order);
+    await settleMileageLocked(conn,userId);
+    await registerPendingMileage(conn,order);
     const used = Number(order.used_mileage || 0);
     const earned = Number(order.total_mileage || 0);
     if (![used, earned].every(value => Number.isSafeInteger(value) && value >= 0)) {
@@ -64,12 +67,7 @@ export async function completeMockPayment(pool, { userId, orderId, by }) {
         [userId, order.order_id, -used, "ORDER_USE", `상품 구매 적립금 사용 (${orderNo})`]
       );
     }
-    if (earned > 0) {
-      await conn.query(
-        "INSERT INTO mileage_ledger (user_id, order_id, delta, reason, memo) VALUES (?, ?, ?, ?, ?)",
-        [userId, order.order_id, earned, "ORDER_EARN", `상품 구매 적립 (${orderNo})`]
-      );
-    }
+
     await conn.query(
       "UPDATE orders SET status = 'PAID', paid_at = NOW(), order_no = ? WHERE order_id = ? AND user_id = ?",
       [orderNo, order.order_id, userId]

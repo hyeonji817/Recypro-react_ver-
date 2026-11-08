@@ -1,3 +1,4 @@
+import ReviewRewardInfo from "./ReviewRewardInfo";
 import useMemberGrade from "./useMemberGrade";
 import { useEffect, useState } from "react";
 import Header_loginOK from "../main/Header_loginOK";
@@ -69,19 +70,12 @@ export default function MyReviews() {
     setSaving(true);
     setFormError("");
     try {
-      const response = await fetch(API + "/api/mypage/reviews", {
-        method: "POST",
-        credentials: "include",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          order_item_id: writing.order_item_id,
-          rv_rating: Number(values.get("rating")),
-          rv_title: values.get("content"),
-        }),
-      });
+      const payload=new FormData();payload.set('order_item_id',writing.order_item_id);payload.set('rv_rating',values.get('rating'));payload.set('rv_title',values.get('content'));for(const photo of values.getAll('photos'))if(photo.size)payload.append('photos',photo);
+      const response=await fetch(API+'/api/mypage/reviews',{method:'POST',credentials:'include',body:payload});
       const result = await response.json();
       if (!response.ok)
         throw new Error(result.message || "등록에 실패했습니다.");
+      alert(result.message || "리뷰와 적립금이 등록되었습니다.");
       setWriting(null);
       setTab("written");
       setSort("newest");
@@ -168,6 +162,7 @@ export default function MyReviews() {
                 고객센터로 문의해 주세요.
               </div>
             )}
+            <ReviewRewardInfo />
             <div className="reviews-tabs" role="tablist" aria-label="리뷰 구분">
               {[
                 ["available", "작성 가능한 리뷰"],
@@ -300,23 +295,8 @@ export default function MyReviews() {
                         >
                           {item.rv_title}
                         </p>
-                        {item.image && (
-                          <button
-                            className="review-photo"
-                            aria-label="리뷰 사진 크게 보기"
-                            onClick={() => toggle(`photo-${index}`)}
-                          >
-                            <img
-                              className={
-                                expanded.includes(`photo-${index}`)
-                                  ? "is-large"
-                                  : ""
-                              }
-                              src={media(item.image)}
-                              alt={`${item.pname} 구매 후기`}
-                            />
-                          </button>
-                        )}
+                        {(item.images || (item.image ? [item.image] : [])).map((image,photoIndex)=><button key={image} type="button" className="review-photo" aria-label={`리뷰 사진 ${photoIndex+1} 크게 보기`} onClick={()=>toggle(`photo-${index}-${photoIndex}`)}><img className={expanded.includes(`photo-${index}-${photoIndex}`)?"is-large":""} src={media(image)} alt={`${item.pname} 구매 후기 ${photoIndex+1}`}/></button>)}
+                        {item.reward_amount!=null&&<p>리뷰 적립금 {Number(item.reward_amount).toLocaleString()}원</p>}
                         <button
                           className="review-more"
                           aria-expanded={expanded.includes(index)}
@@ -376,6 +356,7 @@ export default function MyReviews() {
                 placeholder="구매하신 상품은 어떠셨나요?"
               />
             </label>
+            <label>사진 첨부 (선택)<input type="file" name="photos" accept="image/jpeg,image/png,image/webp" multiple disabled={saving}/></label><p>장당 5MB, 최대 3장 · 텍스트 500원 / 사진 포함 1,500원</p>
             {formError && <p role="alert">{formError}</p>}
             <div>
               <button

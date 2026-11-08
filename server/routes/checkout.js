@@ -1,3 +1,4 @@
+import {calculatePurchaseMileage,mileageMiddleware} from "../services/mileagePolicy.js";
 import {loadOwnedCoupon,evaluateOwnedCoupon} from "../services/couponRedemption.js";
 import { couponBenefitsMiddleware, isShippingCoupon } from "../services/couponBenefits.js";
 import { calculateShippingFee } from "../services/shippingPolicy.js";
@@ -10,14 +11,15 @@ import { db } from "../server.js";
 import { completeMockPayment } from "../services/completePayment.js";
 
 const router = express.Router();
-router.use(couponBenefitsMiddleware(() => db)); 
+router.use(couponBenefitsMiddleware(() => db));
+router.use(mileageMiddleware(() => db)); 
 
 const q = (sql, params=[]) => new Promise((res, rej) => {
   db.query(sql, params, (err, rows) => err ? rej(err) : res(rows));
 });
 
 // 무료배송 임계값/배송비 정책 예시 
-const MILEAGE_RATE = 0.05; 
+const MILEAGE_RATE = 0.01; 
 
 // 공통 헬퍼: 주문 UID 
 function makeOrderUID(orderId) {
@@ -90,7 +92,8 @@ async function loadCartSnapshot({ user_id, all, cart_ids }) {
   const shipping_fee = calculateShippingFee(subtotal); 
   const discount_total = 0;     // 쿠폰 적용은 별도 함수에서 
   const total_pay = subtotal + shipping_fee - discount_total; 
-  const total_mileage = items.reduce((s, it) => s + it.mileage, 0);
+  let total_mileage = items.reduce((s, it) => s + it.mileage, 0);
+
 
   return {
     items,
@@ -241,7 +244,7 @@ async function getPreview(userId, { all, cart_ids, coupon_code, user_coupon_id, 
 
   let shipping_fee = calculateShippingFee(subtotal);
 
-  const total_mileage = items.reduce((sum, item) => {
+  let total_mileage = items.reduce((sum, item) => {
     return sum + Number(item.mileage || 0);
   }, 0);
 
@@ -276,17 +279,15 @@ async function getPreview(userId, { all, cart_ids, coupon_code, user_coupon_id, 
       [userId]
     );
 
-    myBalance = Number(mileageRow?.bal || 0);
+    myBalance = Math.max(0,Number(mileageRow?.bal || 0));
   } catch (err) {
     console.warn("[getPreview] mileage_ledger 조회 실패:", err.message);
-    myBalance = 0;
+    throw Object.assign(Error("적립금 잔액을 확인할 수 없습니다."),{status:503});
   }
 
   // 5) 적립금 사용 한도 계산
-  const wantedUse = Math.max(
-    0,
-    parseInt(use_mileage || "0", 10) || 0
-  );
+  const wantedUse = Number(use_mileage || 0);
+  if(!Number.isSafeInteger(wantedUse) || wantedUse < 0) throw Object.assign(Error("적립금은 0 이상의 정수로 입력해 주세요."),{status:400});
 
   const afterCoupon = Math.max(
     0,
@@ -306,6 +307,11 @@ async function getPreview(userId, { all, cart_ids, coupon_code, user_coupon_id, 
     0,
     subtotal + shipping_fee - discount_total - mileage_to_use
   );
+
+  total_mileage = calculatePurchaseMileage(subtotal,coupon_discount,mileage_to_use);
+  // 상품별 예상 적립금도 주문 적립 총액에 맞춘다.
+  let remainingMileage=total_mileage;
+  items.forEach((item,index)=>{const amount=index===items.length-1?remainingMileage:Math.floor(total_mileage*item.line_total/subtotal);item.mileage=amount;remainingMileage-=amount;});
 
   return {
     items,
@@ -380,7 +386,7 @@ router.get("/preview", async (req, res) => {
   } catch (err) {
     console.error("[GET /api/checkout/preview]", err);
 
-    return res.status(500).json({
+    return res.status(err.status || 500).json({
       message: err.message || "프리뷰 조회 실패",
     });
   }
@@ -436,6 +442,7 @@ router.post("/prepare", async (req, res) => {
     }
 
     const totals = preview.totals;
+    if(Number(use_mileage||0)!==totals.used_mileage) return res.status(400).json({message:"적립금 잔액 또는 주문금액이 변경되었습니다. 주문서를 다시 확인해 주세요."});
 
     // 프론트가 쿠폰을 보냈는데 서버 검증 후 적용되지 않았다면 주문 중단
     if (
@@ -625,7 +632,7 @@ router.post("/prepare", async (req, res) => {
   } catch (err) {
     console.error("[POST /api/checkout/prepare]", err);
 
-    return res.status(500).json({
+    return res.status(err.status || 500).json({
       message: err.message || "주문 준비 중 오류가 발생했습니다.",
     });
   }
