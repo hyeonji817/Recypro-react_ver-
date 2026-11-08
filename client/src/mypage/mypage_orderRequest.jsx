@@ -1,3 +1,4 @@
+import useMemberGrade from "./useMemberGrade";
 import "./mypage_orderRequest.css"; 
 import Header_loginOK from "../main/Header_loginOK";
 import Footer from "../main/Footer";
@@ -6,6 +7,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
 const Mp_OrderRequest = () => {
+  const memberGrade = useMemberGrade();
   const { order_id } = useParams(); 
   const navigate = useNavigate(); 
 
@@ -163,7 +165,7 @@ const Mp_OrderRequest = () => {
             <div className="customer_section">
               <div className="name">
                 <strong>{user?.name || user?.id}</strong>님은{" "}
-                {user?.grade || "MEMBER"}
+                {memberGrade.grade || (memberGrade.error ? "등급 조회 불가" : "등급 조회 중")}
               </div>
 
               <a href="#" className="my_edit">

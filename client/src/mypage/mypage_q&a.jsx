@@ -1,3 +1,4 @@
+import useMemberGrade from "./useMemberGrade";
 import { Fragment, useCallback, useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
@@ -19,6 +20,7 @@ const INITIAL_FORM = {
 };
 
 const MpQA = () => {
+  const memberGrade = useMemberGrade();
   // 회원 정보와 문의 목록
   const [user, setUser] = useState({});
   const [data, setData] = useState({
@@ -212,7 +214,7 @@ const MpQA = () => {
             <div className="customer_section">
               <div className="name">
                 <strong>{user.name || user.id || "회원"}</strong>님은{" "}
-                {user.grade || "MEMBER"}
+                {memberGrade.grade || (memberGrade.error ? "등급 조회 불가" : "등급 조회 중")}
               </div>{" "}
               {/** name end */}
               <ul className="mpQA_tab">

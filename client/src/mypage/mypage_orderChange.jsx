@@ -1,3 +1,4 @@
+import useMemberGrade from "./useMemberGrade";
 import "./mypage_orderChange.css"; 
 import Header_loginOK from "../main/Header_loginOK";
 import Footer from "../main/Footer";
@@ -6,6 +7,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
 const Mp_OrderChange = () => {
+  const memberGrade = useMemberGrade();
   const { order_id } = useParams();
   const navigate = useNavigate(); 
   
@@ -136,7 +138,7 @@ const Mp_OrderChange = () => {
           <div className="mpOrder_Change_top">
             <div className="customer_section">
               <div className="name">
-                <strong>{order?.user_id}</strong>님은 MEMBER  
+                <strong>{memberGrade.name || memberGrade.id || "회원"}</strong>님은 {memberGrade.grade || (memberGrade.error ? "등급 조회 불가" : "등급 조회 중")}  
               </div>      {/** name end */}
 
               <a href="#" className="my_edit">

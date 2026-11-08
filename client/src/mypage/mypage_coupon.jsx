@@ -1,3 +1,4 @@
+import useMemberGrade from "./useMemberGrade";
 import "./mypage_coupon.css"; 
 import React, { useEffect, useState } from "react";
 import axios from "axios";
@@ -32,6 +33,7 @@ const formatUsedAt = (coupon) => {
 };
 
 const Mp_Coupon = () => {
+  const memberGrade = useMemberGrade();
   const [coupons, setCoupons] = useState([]);
   const [summary, setSummary] = useState({ total: 0, available: 0 });
   const [user, setUser] = useState({ user_id: "", grade: "MEMBER" });
@@ -84,7 +86,7 @@ const Mp_Coupon = () => {
           <div className="mpCoupon_top">
             <div className="customer_section">
               <div className="name">
-                <strong>{user.user_id}</strong>님은 {user.grade || "MEMBER"}
+                <strong>{user.user_id}</strong>님은 {memberGrade.grade || (memberGrade.error ? "등급 조회 불가" : "등급 조회 중")}
               </div>
 
               <a href="#" className="my_edit">정보 수정하기</a>

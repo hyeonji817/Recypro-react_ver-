@@ -1,0 +1,6 @@
+.membership-grade-panel { display:grid; grid-template-columns:1fr 1.4fr; gap:14px 28px; padding:24px; margin:24px 0; border:1px solid #dce3d5; background:#f5f7f0; color:#354635; font-family:'GmarketSansMedium',sans-serif; font-size:13px; line-height:1.8; }
+.membership-grade-panel h3 { margin:4px 0; font-size:26px; font-weight:500; }
+.membership-grade-panel p { margin:6px 0; }
+.membership-grade-panel .membership-grade-label { font-size:10px; letter-spacing:.12em; color:#647357; }
+.membership-grade-panel .membership-grade-basis { grid-column:1/-1; border-top:1px solid #dce3d5; padding-top:12px; font-size:11px; color:#64705c; }
+@media(max-width:700px) { .membership-grade-panel { grid-template-columns:1fr; padding:18px; } }

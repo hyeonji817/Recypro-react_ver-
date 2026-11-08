@@ -1,3 +1,4 @@
+import useMemberGrade from "./useMemberGrade";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import "./mypage_mileage.css"; 
@@ -14,6 +15,7 @@ const PAGE_SIZE = 10;
 const formatAmount = (value) => Number(value || 0).toLocaleString("ko-KR");
 
 const Mp_Mileage = () => {
+  const memberGrade = useMemberGrade();
   const [user, setUser] = useState({ name: "", grade: "MEMBER" });
   const [balance, setBalance] = useState(0);
   const [history, setHistory] = useState([]);
@@ -61,7 +63,7 @@ const Mp_Mileage = () => {
 
           <div className="mpMileage_top">
 	          <div className="customer_section">
-		          <div className="name"><strong>{user.name}</strong>님은 {user.grade || "MEMBER"}</div>
+		          <div className="name"><strong>{user.name}</strong>님은 {memberGrade.grade || (memberGrade.error ? "등급 조회 불가" : "등급 조회 중")}</div>
 		          <a href="/member/edit_step1.php" className="my_edit">정보 수정하기</a>
 		          <ul className="point_section">
                 <li><a href="/mypage_coupon"><strong>쿠폰</strong> {couponCount ?? "-"} 장</a></li>

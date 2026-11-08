@@ -1,3 +1,5 @@
+import MembershipGradePanel from "./MembershipGradePanel";
+import useMemberGrade from "./useMemberGrade";
 import React, { useEffect, useState } from "react";
 import "./Mypage.css";
 import Header_loginOK from "../main/Header_loginOK";
@@ -6,6 +8,7 @@ import Footer from "../main/Footer";
 const formatWon = (value) => Number(value || 0).toLocaleString();
 
 const Mypage = () => {
+  const memberGrade = useMemberGrade();
   const [summary, setSummary] = useState(null);
   const [orders, setOrders] = useState([]);
   const API_URL = import.meta.env.VITE_API_URL;
@@ -39,7 +42,7 @@ const Mypage = () => {
           <div className="mypage_top">
             <div className="customer_section">
               <div className="name">
-                <strong>{user.name || user.id}</strong>님은 {user.grade || "MEMBER"}
+                <strong>{user.name || user.id}</strong>님은 {memberGrade.grade || (memberGrade.error ? "등급 조회 불가" : "등급 조회 중")}
               </div>
 
               <a href="/edit" className="my_edit">정보 수정하기</a>
@@ -64,6 +67,7 @@ const Mypage = () => {
             </div>
           </div>
 
+          {memberGrade.error ? <p role="alert">회원등급을 불러오지 못했습니다. 새로고침 후 다시 확인해 주세요.</p> : <MembershipGradePanel membership={memberGrade.membership} />}
           <div id="mypage">
             <div className="my_order">
               <div className="mypage-order-scroll">

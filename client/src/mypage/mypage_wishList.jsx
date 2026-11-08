@@ -1,3 +1,4 @@
+import useMemberGrade from "./useMemberGrade";
 import "./mypage_wishList.css"; 
 import React, { useEffect, useState } from "react";
 import axios from "axios";
@@ -29,6 +30,7 @@ const getDetailPath = (productTable, productId) => {
 };
 
 const Mp_WishList = () => {
+  const memberGrade = useMemberGrade();
   const nav = useNavigate();
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -97,7 +99,7 @@ const Mp_WishList = () => {
 
           <div className="mpWishList_top">
             <div className="customer_section">
-              <div className="name"><strong>곽현지</strong>님은 MEMBER</div>      {/** name end */}
+              <div className="name"><strong>{memberGrade.name || memberGrade.id || "회원"}</strong>님은 {memberGrade.grade || (memberGrade.error ? "등급 조회 불가" : "등급 조회 중")}</div>      {/** name end */}
 
               <a href="#" className="my_edit">정보 수정하기</a>       {/** my_edit end */}
 

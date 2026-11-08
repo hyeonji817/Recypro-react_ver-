@@ -1,3 +1,4 @@
+import useMemberGrade from "./useMemberGrade";
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import Header_loginOK from "../main/Header_loginOK";
@@ -11,6 +12,7 @@ const TYPES = { CREDIT: "지급", USE: "사용", RESTORE: "복원", REFUND: "계
 const STATUS = { PENDING: "처리 대기", PROCESSING: "처리 중", COMPLETED: "환불 완료", CANCELLED: "신청 취소", REJECTED: "반려" };
 
 export default function Mp_Deposit() {
+  const memberGrade = useMemberGrade();
   const [user, setUser] = useState({ name: "", grade: "MEMBER" });
   const [balance, setBalance] = useState(0);
   const [couponCount, setCouponCount] = useState(null);
@@ -91,7 +93,7 @@ export default function Mp_Deposit() {
 
           <div className="mpDeposit_top">
 	          <div className="customer_section">
-		          <div className="name"><strong>{user.name}</strong>님은 {user.grade || "MEMBER"}</div>
+		          <div className="name"><strong>{user.name}</strong>님은 {memberGrade.grade || (memberGrade.error ? "등급 조회 불가" : "등급 조회 중")}</div>
 		          <a href="/member/edit_step1.php" className="my_edit">정보 수정하기</a>
 		          <ul className="point_section">
                 <li><a href="/mypage_coupon"><strong>쿠폰</strong> {couponCount ?? "-"} 장</a></li>

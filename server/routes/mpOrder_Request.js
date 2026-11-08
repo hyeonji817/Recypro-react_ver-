@@ -1,3 +1,4 @@
+import { membershipMiddleware } from "../services/membershipGrade.js";
 import express from "express";
 import multer from "multer";
 import path from "path";
@@ -5,6 +6,7 @@ import fs from "fs";
 import { db } from "../server.js";
 
 const router = express.Router();
+router.use(membershipMiddleware(() => db));
 
 const q = (sql, params = []) =>
   new Promise((resolve, reject) => {
@@ -109,7 +111,8 @@ router.get("/:orderId", async (req, res) => {
         id: user?.id || userId,
         name: user?.name || userId,
         email: user?.email || "",
-        grade: req.session?.user?.grade || "MEMBER",
+        grade: req.membership.grade,
+        membership: req.membership,
       },
       order: {
         ...order,

@@ -1,8 +1,10 @@
+import { membershipMiddleware } from "../services/membershipGrade.js";
 // server/routes/mpCoupon.js
 import express from "express";
 import { db } from "../server.js";
 
 const router = express.Router();
+router.use(membershipMiddleware(() => db));
 
 const q = (sql, params = []) =>
   new Promise((resolve, reject) => {
@@ -105,7 +107,8 @@ router.get("/", async (req, res) => {
     res.json({
       user: {
         user_id: userId,
-        grade: "MEMBER",
+        grade: req.membership.grade,
+        membership: req.membership,
       },
       summary: {
         total: coupons.length,

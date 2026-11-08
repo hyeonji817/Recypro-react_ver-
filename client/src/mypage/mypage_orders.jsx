@@ -1,3 +1,4 @@
+import useMemberGrade from "./useMemberGrade";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -21,6 +22,7 @@ const CDN = (path) =>
   `${API_URL}/uploads/${String(path || "").replace(/^\.\//, "")}`;
 
 const Mp_Orders = () => {
+  const memberGrade = useMemberGrade();
   const [summary, setSummary] = useState(null);
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -73,7 +75,7 @@ const Mp_Orders = () => {
             <div className="customer_section">
               <div className="name">
                 <strong>{summary?.user?.name || summary?.user?.id || "회원"}</strong>님은{" "}
-                {summary?.user?.grade || "MEMBER"}
+                {memberGrade.grade || (memberGrade.error ? "등급 조회 불가" : "등급 조회 중")}
               </div>      {/** name end */}
 
               <a href="/edit" className="my_edit">정보 수정하기</a>

@@ -1,3 +1,4 @@
+import useMemberGrade from "./useMemberGrade";
 import "./mypage_orderDetail.css";
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
@@ -49,6 +50,7 @@ const payMethodText = (method) => {
 };
 
 const Mp_OrderDetail = () => {
+  const memberGrade = useMemberGrade();
   const { order_id } = useParams(); 
   const navigate = useNavigate(); 
 
@@ -116,7 +118,7 @@ const Mp_OrderDetail = () => {
             <div className="customer_section">
               <div className="name">
                 <strong>{summary?.user?.name || buyer.name || "회원"}</strong>님은{" "}
-                {summary?.user?.grade || "MEMBER"}
+                {memberGrade.grade || (memberGrade.error ? "등급 조회 불가" : "등급 조회 중")}
               </div>    {/** name end */}
 
               <a href="#" className="my_edit">정보 수정하기</a>   {/** my_edit end */}

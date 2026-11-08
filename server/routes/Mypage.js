@@ -1,7 +1,9 @@
+import { membershipMiddleware } from "../services/membershipGrade.js";
 import express from "express"; 
 import { db } from "../server.js"; 
 
-const router = express.Router(); 
+const router = express.Router();
+router.use(membershipMiddleware(() => db)); 
 const app = express(); 
 
 const q = (sql, params = []) =>
@@ -43,7 +45,8 @@ router.get("/", (req, res) => {
   res.json({
     id: userId, 
     name: req.session?.user?.name || "",
-    grade: req.session?.user?.grade || "MEMBER",
+    grade: req.membership.grade,
+        membership: req.membership,
   }); 
 });
 
@@ -90,7 +93,8 @@ router.get("/summary", async (req, res) => {
       user: {
         id: userId,
         name: req.session?.user?.name || userId,
-        grade: req.session?.user?.grade || "MEMBER",
+        grade: req.membership.grade,
+        membership: req.membership,
       },
       counts: {
         orders: Number(orderSummary?.orderCount || 0),
@@ -331,7 +335,8 @@ router.get("/mileage", async (req, res) => {
       user: {
         id: userId,
         name: req.session?.user?.name || userId,
-        grade: req.session?.user?.grade || "MEMBER",
+        grade: req.membership.grade,
+        membership: req.membership,
       },
       balance,
       history,

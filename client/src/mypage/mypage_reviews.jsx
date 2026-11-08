@@ -1,3 +1,4 @@
+import useMemberGrade from "./useMemberGrade";
 import { useEffect, useState } from "react";
 import Header_loginOK from "../main/Header_loginOK";
 import Footer from "../main/Footer";
@@ -25,6 +26,7 @@ const media = (value) => {
 };
 
 export default function MyReviews() {
+  const memberGrade = useMemberGrade();
   const [writing, setWriting] = useState(null);
   const [saving, setSaving] = useState(false);
   const [formError, setFormError] = useState("");
@@ -113,7 +115,7 @@ export default function MyReviews() {
             <div className="customer_section">
               <div className="name">
                 <strong>{user.name || user.id || "회원"}</strong>님은{" "}
-                {user.grade || "MEMBER"}
+                {memberGrade.grade || (memberGrade.error ? "등급 조회 불가" : "등급 조회 중")}
               </div>
               <a href="/edit" className="my_edit">
                 정보 수정하기
