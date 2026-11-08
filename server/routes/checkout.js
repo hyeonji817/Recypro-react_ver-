@@ -1,3 +1,4 @@
+import { calculateShippingFee } from "../services/shippingPolicy.js";
 // 주문 생성 페이지 (장바구니 기반)
 // routes/checkout.js 
 import express from "express"; 
@@ -13,8 +14,6 @@ const q = (sql, params=[]) => new Promise((res, rej) => {
 });
 
 // 무료배송 임계값/배송비 정책 예시 
-const SHIPPING_THRESHOLD = 30000; 
-const SHIPPING_FEE = 3000; 
 const MILEAGE_RATE = 0.05; 
 
 // 공통 헬퍼: 주문 UID 
@@ -85,7 +84,7 @@ async function loadCartSnapshot({ user_id, all, cart_ids }) {
     };
   });
 
-  const shipping_fee = subtotal >= SHIPPING_THRESHOLD || subtotal === 0 ? 0 : SHIPPING_FEE; 
+  const shipping_fee = calculateShippingFee(subtotal); 
   const discount_total = 0;     // 쿠폰 적용은 별도 함수에서 
   const total_pay = subtotal + shipping_fee - discount_total; 
   const total_mileage = items.reduce((s, it) => s + it.mileage, 0);
@@ -237,8 +236,7 @@ async function getPreview(userId, { all, cart_ids, coupon_code, use_mileage }) {
     return sum + Number(item.line_total || 0);
   }, 0);
 
-  const shipping_fee =
-    subtotal >= SHIPPING_THRESHOLD || subtotal === 0 ? 0 : SHIPPING_FEE;
+  let shipping_fee = calculateShippingFee(subtotal);
 
   const total_mileage = items.reduce((sum, item) => {
     return sum + Number(item.mileage || 0);
@@ -316,6 +314,8 @@ async function getPreview(userId, { all, cart_ids, coupon_code, use_mileage }) {
       coupon_reason = "쿠폰 적용 가능";
     }
   }
+
+  shipping_fee = calculateShippingFee(subtotal, coupon_discount);
 
   // 4) 적립금 잔액 조회
   let myBalance = 0;

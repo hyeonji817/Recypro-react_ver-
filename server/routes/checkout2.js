@@ -1,3 +1,4 @@
+import { calculateShippingFee } from "../services/shippingPolicy.js";
 import express from "express"; 
 import crypto from "crypto"; 
 import { db } from "../server.js"; 
@@ -8,8 +9,6 @@ const q = (sql, params=[]) => new Promise((res, rej) => {
   db.query(sql, params, (err, rows) => err ? rej(err) : res(rows)); 
 });
 
-const SHIPPING_THRESHOLD = 30000; 
-const SHIPPING_FEE = 3000; 
 const MILEAGE_RATE = 0.05; 
 
 function makeOrderUID(orderId) {
@@ -19,7 +18,7 @@ function makeOrderUID(orderId) {
 
 function calcTotals(items) {
   const subtotal = items.reduce((s, it) => s + it.unit_price * it.cart_quantity, 0);
-  const shipping_fee = subtotal === 0 || subtotal >= SHIPPING_THRESHOLD ? 0 : SHIPPING_FEE;
+  const shipping_fee = calculateShippingFee(subtotal);
   const coupon_discount = 0; 
   const used_mileage = 0; 
   const discount_total = coupon_discount + used_mileage; 

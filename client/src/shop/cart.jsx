@@ -1,3 +1,4 @@
+import { calculateShippingFee } from "../shippingPolicy";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./cart.css";
@@ -15,7 +16,8 @@ const Cart = () => {
 	const [loading, setLoading] = useState(true);
 	const navigate = useNavigate(); 
 	const totalQty = rows.reduce((s, r) => s + (r.cart_quantity || 0), 0);
-	const totalPay = rows.reduce((s, r) => s + (r.total_price || 0), 0);
+	const totalPay = rows.reduce((s, r) => s + Number(r.total_price || 0), 0);
+	const shippingFee = calculateShippingFee(totalPay);
 	const totalMileage = rows.reduce((s, r) => s + (r.mileage || 0), 0);
 	const [checked, setChecked] = useState({});
 	
@@ -235,7 +237,7 @@ const Cart = () => {
           							<tr>
             							<th>배송비:</th>
             							<td>
-              							<span className="dlv_prc_cart">0</span> 원
+              							<span className="dlv_prc_cart">{shippingFee.toLocaleString()}</span> 원
             							</td>
           							</tr>
 
@@ -253,7 +255,7 @@ const Cart = () => {
             							<td className="total">
               							<strong>
                 							<span className="price total_order_price_cartlist">
-                  							{totalPay.toLocaleString()}
+                  							{(totalPay + shippingFee).toLocaleString()}
                 							</span> 원
               							</strong>
             							</td>
@@ -321,7 +323,7 @@ const Cart = () => {
 							<div className="msg_box">
   							<h4>SHOPPING GUIDE</h4>
   							<dl className="msg">
-    							<dd>- 배송비는 3만원이상 무료배송 적용 됩니다.</dd>
+    							<dd>- 기본 배송비는 3,500원이며, 쿠폰 할인 후 상품금액 8만원 이상 무료배송입니다. 장바구니는 쿠폰 적용 전 예상 금액입니다.</dd>
     							<dd>- 상품 쿠폰 및 적립금 사용은 [주문서 작성/결제]에서 적용됩니다.</dd>
     							<dd>
       							- 장바구니는 접속 종료 후 회원에 한해 7일(168시간)동안 보관됩니다.
